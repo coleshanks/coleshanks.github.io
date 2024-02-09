@@ -1,8 +1,12 @@
+<!doctype html>
 <html>
     <head>
-        <title>Example</title>
+        <title>Coles Website</title>
+            <meta name="description" content="Cole's Website">
+            <meta name="keywords" content="html tutorial template">
     </head>
     <body>
-        <p>This is an example my website [just a test]</p>
+        Main pragraphs and content goes here
     </body>
+
 </html>
