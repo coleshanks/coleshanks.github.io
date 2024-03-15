@@ -1,0 +1,16 @@
+body {background-color: powderblue; text-align: center;}
+h1 {
+    color: violet;
+    font-family: roboto;
+    font-size: 30px;
+}
+p {
+    color: auto;
+    font-family: auto;
+    font-size: 20px;
+}
+a:link {
+    color: greenyellow;
+    background-color: transparent;
+    text-decoration: none;
+}
