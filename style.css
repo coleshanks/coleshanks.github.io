@@ -1,4 +1,12 @@
-body {background-color: powderblue; text-align: center;}
+body {
+    background-image: url(/assets/images/space/space.jpeg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /*background-color: powderblue;
+    text-align: center;*/
+
+}
 h1{
     color: violet;
     font-family: roboto;
