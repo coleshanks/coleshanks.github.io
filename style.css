@@ -1,9 +1,9 @@
 body {
-    background-image: url(/assets/images/space/space.jpeg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    /*background-color: powderblue;
+    /*background-image: url(/assets/images/space/space.jpeg);*/
+    /*background-repeat: no-repeat; /*image wont repeat itself*/
+    /*background-attachment: fixed; /*ensure that element is always covered*/
+    /*background-size: cover; /*cover the entire body element*/
+    background-color: powderblue;
     text-align: center;*/
 
 }
