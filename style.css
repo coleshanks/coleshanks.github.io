@@ -1,16 +1,31 @@
 body {background-color: powderblue; text-align: center;}
-h1 {
+h1{
     color: violet;
     font-family: roboto;
     font-size: 30px;
 }
-p {
+p{
     color: auto;
     font-family: auto;
     font-size: 20px;
 }
-a:link {
+a:link{
     color: greenyellow;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited{
+    color: pink;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover{
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active{
+    color: fuchsia;
     background-color: transparent;
     text-decoration: none;
 }
