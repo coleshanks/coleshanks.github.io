@@ -18,12 +18,9 @@ p{
     font-size: 20px;
 }
 a:link, :visited{
-    background-color: blueviolet;
-    color: white;
-    padding: 15px 25px;
+    color: black;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
 }
 a:hover{
     color: red;
