@@ -32,3 +32,11 @@ a:active{
     background-color: transparent;
     text-decoration: none;
 }
+table, th, td{                          /*CSS styling with style property to add border*/
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: aquamarine;
+}
+th, td{
+    border-radius: 10px;
+}
