@@ -10,10 +10,6 @@ body {
 div{
     margin: auto;
 }
-.mycontainer{
-    display: inline-block;
-    float: none;
-}
 h1{
     color: violet;
     font-family: roboto;
