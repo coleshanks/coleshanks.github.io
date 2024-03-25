@@ -41,3 +41,7 @@ th, td{
     border-radius: 10px;
     border-style: none;                 /*can be dotted or slashed if u want. many other options like colour, etc*/
 }
+
+ul, ol{
+    text-align: center;
+}
