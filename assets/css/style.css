@@ -1,4 +1,5 @@
 body {
+    font-family: sans-serif;
     /*background-image: url(/assets/images/space/space.jpeg);*/
     /*background-repeat: no-repeat; /*image wont repeat itself*/
     /*background-attachment: fixed; /*ensure that element is always covered*/
@@ -15,7 +16,7 @@ ul#navbar {
 ul#navbar li {
     display:inline;
     text-align: center;
-    text-decoration: white;
+    color: white;
 }
 div{
     margin: auto;
