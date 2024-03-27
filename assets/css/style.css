@@ -5,7 +5,13 @@ body {
     /*background-size: cover; /*cover the entire body element*/
     background-color: powderblue;
     text-align: center;
-
+}
+ul#navbar {
+    display:inline;
+    /* Any other CSS you want */
+}
+ul#navbar li {
+    display:inline;
 }
 div{
     margin: auto;
