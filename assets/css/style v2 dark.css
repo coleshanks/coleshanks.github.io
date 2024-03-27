@@ -7,6 +7,9 @@ body {
     text-align: center;
 
 }
+.navbar{
+    position: fixed;
+}
 div{
     margin: auto;
 }
