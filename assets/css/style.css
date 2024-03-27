@@ -10,9 +10,9 @@
     --stroke: #222;
     --shadow: #bbb;
     --shadow-dark: #666;
-    --text: #222;
+    --bg: #222;
     --highlight: #F5C86F;
-    --bg: #fff;
+    --text: #fff;
 }
 body {
     font-family: sans-serif;
@@ -25,7 +25,6 @@ body {
 }
 ul#navbar {
     display:inline;
-    background-color: #222;
     /* Any other CSS you want */
 }
 ul#navbar li {
