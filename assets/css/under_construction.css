@@ -1,20 +1,11 @@
-.mask{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-image: url(/assets/images/space/space.jpeg);
-    z-index: 100;
-}
 body {
-    /*background-image: url(/assets/images/space/space.jpeg);*/
-    /*background-repeat: no-repeat; /*image wont repeat itself*/
-    /*background-attachment: fixed; /*ensure that element is always covered*/
-    /*background-size: cover; /*cover the entire body element*/
+    background-image: url(/assets/images/space/space.jpeg);
+    background-repeat: no-repeat; /*image wont repeat itself*/
+    background-attachment: fixed; /*ensure that element is always covered*/
+    background-size: cover; /*cover the entire body element*/
     background-color: #222;
     text-align: center;
-
+    z-index: 2;
 }
 div{
     margin: auto;
@@ -23,33 +14,5 @@ h1{
     color: violet;
     font-family: roboto;
     font-size: 30px;
-}
-p{
-    color: auto;
-    font-family: auto;
-    font-size: 20px;
-}
-a:link, :visited{
-    color: black;
-    text-align: center;
-    text-decoration: none;
-}
-a:hover{
-    color: red;
-    background-color: transparent;
-    text-decoration: underline;
-}
-a:active{
-    color: fuchsia;
-    background-color: transparent;
-    text-decoration: none;
-}
-table, th, td{                          /*CSS styling with style property to add border*/
-    border: 1px solid black;
-    border-collapse: collapse;
-    background-color: aquamarine;
-}
-th, td{
-    border-radius: 10px;
-    border-style: none;                 /*can be dotted or slashed if u want. many other options like colour, etc*/
+    z-index: 1;
 }
