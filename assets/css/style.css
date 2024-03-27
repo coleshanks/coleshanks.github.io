@@ -8,10 +8,14 @@ body {
 }
 ul#navbar {
     display:inline;
+    position: fixed;
+    background-color: #222;
     /* Any other CSS you want */
 }
 ul#navbar li {
     display:inline;
+    text-align: center;
+    text-decoration: white;
 }
 div{
     margin: auto;
