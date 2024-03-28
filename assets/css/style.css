@@ -34,8 +34,8 @@ ul#navbar {
 }
 ul#navbar li {
     display:inline;
-    font-size: 50px;
-    padding: 10px;
+    font-size: 120%;
+    padding: 10%;
     text-align: center;
     color: white;
 }
