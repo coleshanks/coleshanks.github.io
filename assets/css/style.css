@@ -108,8 +108,8 @@ th, td{
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
-    background: var(--bg);
+    background: var(--secondary_dark);
     /*box-shadow: 2px 2px var(--shadow);*/
     transition: none;
-    color: var(--text_green);
+    color: var(--text_white);
 }
