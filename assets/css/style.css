@@ -5,7 +5,7 @@
     --hf: 'Gloock', serif;
 
     /* Colors */
-    --primary: #40916C;
+    --primary: #57cc8a;
     --primary-light: #ebf4f0;
     --stroke: #222;
     --shadow: #bbb;
@@ -13,6 +13,9 @@
     --bg: #222;
     --highlight: #F5C86F;
     --text: #fff;
+    --primary_dark: #353b43;
+    --secondary_dark: #242930;
+
 }
 body {
     font-family: sans-serif;
