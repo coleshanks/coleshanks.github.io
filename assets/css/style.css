@@ -5,7 +5,6 @@
     --hf: 'Gloock', serif;
 
     /* Colors */
-    --primary: #57cc8a;
     --primary-light: #ebf4f0;
     --stroke: #222;
     --shadow: #bbb;
@@ -15,6 +14,9 @@
     --text: #fff;
     --primary_dark: #353b43;
     --secondary_dark: #242930;
+    --text_green: #57cc8a;
+    --text_grey: #AFBAC4;
+    --text_white: white;
 
 }
 body {
@@ -23,7 +25,7 @@ body {
     /*background-repeat: no-repeat; /*image wont repeat itself*/
     /*background-attachment: fixed; /*ensure that element is always covered*/
     /*background-size: cover; /*cover the entire body element*/
-    background-color: powderblue;
+    background-color: var(--primary_dark);
     text-align: center;
 }
 ul#navbar {
@@ -37,9 +39,10 @@ ul#navbar li {
 }
 div{
     margin: auto;
+    background-color: var(--secondary_dark);
 }
 h1{
-    color: violet;
+    color: var(--text_green);
     font-family: roboto;
     font-size: 30px;
 }
