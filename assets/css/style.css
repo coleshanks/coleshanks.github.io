@@ -39,6 +39,9 @@ ul#navbar li {
     text-align: center;
     color: white;
 }
+a#nav_link{
+    color: var(--text_green);
+}
 div{
     margin: auto;
     text-align: center;
