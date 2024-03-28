@@ -43,7 +43,7 @@ a#nav_link{
     color: var(--text_green);
 }
 div{
-    margin: auto;
+    margin: 0 auto;
     text-align: center;
 }
 h1{
