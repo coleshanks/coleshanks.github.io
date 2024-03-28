@@ -54,6 +54,7 @@ h1{
 p{
     font-family: auto;
     font-size: 20px;
+    text-align: center;
 }
 a:link, :visited{
     color: var(--text_white);
@@ -112,6 +113,19 @@ th, td{
     vertical-align: middle;
     white-space: nowrap;
     background: var(--secondary_dark);
+    /*box-shadow: 2px 2px var(--shadow);*/
+    transition: none;
+    color: var(--text_white);
+}
+.btn_on_page{
+    border: 0.5px solid var(--stroke);
+    border-radius: 0;
+    padding: .15rem .6rem 0;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    background: var(--bg);
     /*box-shadow: 2px 2px var(--shadow);*/
     transition: none;
     color: var(--text_white);
