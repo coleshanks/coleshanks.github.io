@@ -40,7 +40,6 @@ ul#navbar li {
 }
 div{
     margin: auto;
-    background-color: var(--secondary_dark);
 }
 h1{
     color: var(--text_green);
@@ -58,7 +57,7 @@ a:link, :visited{
     text-decoration: none;
 }
 a:hover{
-    color: red;
+    color: var(--text_green);
     background-color: transparent;
     text-decoration: underline;
 }
