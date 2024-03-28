@@ -21,6 +21,7 @@
 }
 body {
     font-family: sans-serif;
+    color: var(--text_grey);
     /*background-image: url(/assets/images/space/space.jpeg);*/
     /*background-repeat: no-repeat; /*image wont repeat itself*/
     /*background-attachment: fixed; /*ensure that element is always covered*/
@@ -34,7 +35,7 @@ ul#navbar {
 }
 ul#navbar li {
     display:inline;
-    font-size: 120%;
+    font-size: 140%;
     text-align: center;
     color: white;
 }
@@ -53,8 +54,7 @@ p{
     font-size: 20px;
 }
 a:link, :visited{
-    color: black;
-    text-align: center;
+    color: var(--text_white);
     text-decoration: none;
 }
 a:hover{
