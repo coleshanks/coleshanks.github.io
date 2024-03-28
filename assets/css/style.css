@@ -101,7 +101,7 @@ th, td{
     color: white;
 }
 .btn:active, .btn:focus{
-    border: 0.5px solid var(--stroke);
+    /*border: 0.5px solid var(--stroke);
     border-radius: 0;
     padding: .15rem .6rem 0;
     display: inline-block;
