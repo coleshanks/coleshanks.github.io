@@ -7,13 +7,15 @@
     /* Colors */
     --primary-light: #ebf4f0;
     --stroke: #222;
-    --shadow: #bbb;
-    --shadow-dark: #666;
     --bg: #222;
     --highlight: #F5C86F;
     --text: #fff;
+
+    /*My stuff*/
     --primary_dark: #353b43;
     --secondary_dark: #242930;
+    --shadow: #bbb;
+    --shadow-dark: #666;
     --text_green: #57cc8a;
     --text_grey: #AFBAC4;
     --text_white: white;
@@ -128,5 +130,17 @@ th, td{
     background: var(--bg);
     /*box-shadow: 2px 2px var(--shadow);*/
     transition: none;
+    color: var(--text_white);
+}
+
+.nav_btn{
+    border: 0.5px solid var(--secondary_dark);
+    border-radius: 0;
+    padding: 2px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--secondary_dark);
+    box-shadow: 2px 2px 2px var(--shadow);
     color: var(--text_white);
 }
