@@ -34,9 +34,9 @@ body {
 }
 ul#navbar {
     display:inline;
-    font-size: large;
+    font-size: 200%;
     text-align: center;
-    color: var(--text_white);
+    /*color: var(--text_white);*/
     /* Any other CSS you want */
 }
 a#nav_link{
