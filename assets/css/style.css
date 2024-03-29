@@ -81,19 +81,6 @@ th, td{
     border-radius: 10px;
     border-style: none;                 /*can be dotted or slashed if u want. many other options like colour, etc*/
 }
-.btn {
-    border: 0.5px solid var(--stroke);
-    border-radius: 0;
-    padding: .15rem .6rem 0;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    background: var(--bg);
-    box-shadow: 2px 2px var(--shadow);
-    transition: none;
-    color: var(--text);
-}
 
 .btn.disabled {
     box-shadow: none;
@@ -136,11 +123,25 @@ th, td{
 .nav_btn{
     border: 0.5px solid var(--secondary_dark);
     border-radius: 0;
-    padding: 2px;
+    padding: 2.4px 9.6px 0;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
     background-color: var(--secondary_dark);
-    box-shadow: 2px 2px 2px var(--shadow);
+    box-shadow: 2px 2px var(--shadow);
     color: var(--text_white);
+}
+
+.btn {
+    border: 0.5px solid var(--stroke);
+    border-radius: 0;
+    padding: .15rem .6rem 0;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    background: var(--bg);
+    box-shadow: 2px 2px var(--shadow);
+    transition: none;
+    color: var(--text);
 }
