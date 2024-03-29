@@ -34,13 +34,10 @@ body {
 }
 ul#navbar {
     display:inline;
-    /* Any other CSS you want */
-}
-ul#navbar li {
-    display:inline;
-    font-size: 140%;
+    font-size: large;
     text-align: center;
-    color: white;
+    color: var(--text_white);
+    /* Any other CSS you want */
 }
 a#nav_link{
     color: var(--text_green);
@@ -69,7 +66,7 @@ a:hover{
     text-decoration: underline;
 }
 a:active{
-    color: fuchsia;
+    color: var(--text_green);
     background-color: transparent;
     text-decoration: none;
 }
@@ -108,29 +105,29 @@ th, td{
     color: var(--text_white);
 }
 .btn_on_page{
-    border: 0.5px solid var(--stroke);
-    border-radius: 0;
-    padding: .15rem .6rem 0;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    background: var(--bg);
-    /*box-shadow: 2px 2px var(--shadow);*/
-    transition: none;
-    color: var(--text_white);
-}
-
-.nav_btn{
-    border: 0.5px solid var(--secondary_dark);
+    border: 0.5px solid var(--tertiary_dark);
     border-radius: 0;
     padding: 2.4px 9.6px 0;
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    background-color: var(--secondary_dark);
+    background-color: var(--tertiary_dark);
+    /*box-shadow: 2px 2px var(--shadow);*/
+    color: var(--text_green);
+    transition: none;
+}
+
+.nav_btn{
+    border: 0.5px solid var(--tertiary_dark);
+    border-radius: 0;
+    padding: 2.4px 9.6px 0;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--tertiary_dark);
     box-shadow: 2px 2px var(--shadow);
     color: var(--text_white);
+    transition: none;
 }
 
 .btn {
