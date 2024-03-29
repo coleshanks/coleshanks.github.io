@@ -25,11 +25,11 @@
 body {
     font-family: sans-serif;
     color: var(--text_grey);
-    /*background-image: url(/assets/images/space/space.jpeg);*/
-    /*background-repeat: no-repeat; /*image wont repeat itself*/
-    /*background-attachment: fixed; /*ensure that element is always covered*/
-    /*background-size: cover; /*cover the entire body element*/
     background-color: var(--primary_dark);
+    text-align: center;
+}
+div{
+    margin: 0 auto;
     text-align: center;
 }
 ul#navbar {
@@ -41,10 +41,6 @@ ul#navbar {
 }
 a#nav_link{
     color: var(--text_green);
-}
-div{
-    margin: 0 auto;
-    text-align: center;
 }
 h1{
     color: var(--text_green);
