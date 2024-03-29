@@ -82,22 +82,9 @@ th, td{
     cursor: not-allowed;
 }
 
-.btn:hover {
-    background: var(--primary);
+.nav_btn:hover, .btn_on_page:hover {
+    background: var(--primary_dark);
     box-shadow: 2px 2px var(--shadow-dark);
-    color: white;
-}
-.btn:active, .btn:focus{
-    /*border: 0.5px solid var(--stroke);
-    border-radius: 0;
-    padding: .15rem .6rem 0;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    background: var(--secondary_dark);
-    /*box-shadow: 2px 2px var(--shadow);*/
-    transition: none;
     color: var(--text_white);
 }
 .btn_on_page{
