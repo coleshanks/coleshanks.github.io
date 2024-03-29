@@ -89,7 +89,7 @@ th, td {
 }
 .btn_on_page {
     border: 0.5px solid var(--tertiary_dark);
-    border-radius: 12px;
+    border-radius: 6px;
     padding: 2.4px 9.6px 0;
     display: inline-block;
     text-align: center;
@@ -101,7 +101,7 @@ th, td {
 }
 .nav_btn {
     border: 0.5px solid var(--tertiary_dark);
-    border-radius: 12px;
+    border-radius: 6px;
     padding: 2.4px 9.6px 0;
     display: inline-block;
     text-align: center;
