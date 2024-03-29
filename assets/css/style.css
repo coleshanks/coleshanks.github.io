@@ -28,7 +28,7 @@ body {
     background-color: var(--primary_dark);
     text-align: center;
 }
-div{
+div {
     margin: 0 auto;
     text-align: center;
 }
@@ -39,39 +39,39 @@ ul#navbar {
     /*color: var(--text_white);*/
     /* Any other CSS you want */
 }
-a#nav_link{
+a#nav_link {
     color: var(--text_green);
 }
-h1{
+h1 {
     color: var(--text_green);
     font-family: roboto;
     font-size: 30px;
 }
-p{
+p {
     font-family: auto;
     font-size: 20px;
     text-align: center;
 }
-a:link, :visited{
+a:link, :visited {
     color: var(--text_white);
     text-decoration: none;
 }
-a:hover{
-    color: var(--text_green);
-    background-color: transparent;
-    text-decoration: underline;
-}
-a:active{
+a:hover {
     color: var(--text_green);
     background-color: transparent;
     text-decoration: none;
 }
-table, th, td{                          /*CSS styling with style property to add border*/
+a:active {
+    color: var(--text_green);
+    background-color: transparent;
+    text-decoration: none;
+}
+table, th, td {                          /*CSS styling with style property to add border*/
     border: 1px solid black;
     border-collapse: collapse;
     background-color: aquamarine;
 }
-th, td{
+th, td {
     border-radius: 10px;
     border-style: none;                 /*can be dotted or slashed if u want. many other options like colour, etc*/
 }
@@ -87,9 +87,9 @@ th, td{
     box-shadow: 2px 2px var(--shadow-dark);
     color: var(--text_white);
 }
-.btn_on_page{
+.btn_on_page {
     border: 0.5px solid var(--tertiary_dark);
-    border-radius: 0;
+    border-radius: 12px;
     padding: 2.4px 9.6px 0;
     display: inline-block;
     text-align: center;
@@ -99,10 +99,9 @@ th, td{
     color: var(--text_green);
     transition: none;
 }
-
-.nav_btn{
+.nav_btn {
     border: 0.5px solid var(--tertiary_dark);
-    border-radius: 0;
+    border-radius: 12px;
     padding: 2.4px 9.6px 0;
     display: inline-block;
     text-align: center;
@@ -112,7 +111,6 @@ th, td{
     color: var(--text_white);
     transition: none;
 }
-
 .btn {
     border: 0.5px solid var(--stroke);
     border-radius: 0;
