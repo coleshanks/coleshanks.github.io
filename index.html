@@ -5,23 +5,6 @@
         <meta charset="utf-8">
         <meta http-equiv="refresh" content="1000; url=../pages/under_construction/404.html" /> <!--UNDER CONSTRUCTION mode enabled-->
 
-        <script type="text/javascript">
-              var ship_pos = -200;
-              function fly_spaceship() {
-  
-  ship_pos = ship_pos + 1;
- 
-  if (ship_pos < screen.width)
-     document.getElementById("falcon").style.left = ship_pos + "px"; 
-  
-  else
-     ship_pos = -800;
-     
-  setTimeout("fly_spaceship()", 9);
- 
-}
-        </script>
-
         <!--Favicon-->
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
 
@@ -31,7 +14,7 @@
         <title>Home | Cole Shanks</title>   <!--Appears in the title bar (tab bar)-->
     </head>
 
-    <body onload="fly_spaceship()">
+    <body>
         <div>
             <!--Top of the page NAVBAR/directory-->
             <ul id="navbar">
@@ -209,6 +192,30 @@ my ideas
         SECRET PAGE FOR MOM (DO NOT CLICK!!)
        <link href="temp.txt">
        using this I can hide a txt file within the html source
+
+
+
+
+       spaceship stuff
+
+           <body onload="fly_spaceship()">
+
+            <script type="text/javascript">
+              var ship_pos = -200;
+              function fly_spaceship() {
+  
+  ship_pos = ship_pos + 1;
+ 
+  if (ship_pos < screen.width)
+     document.getElementById("falcon").style.left = ship_pos + "px"; 
+  
+  else
+     ship_pos = -800;
+     
+  setTimeout("fly_spaceship()", 9);
+ 
+}
+        </script>
 
 
 -->
