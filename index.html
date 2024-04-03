@@ -143,12 +143,23 @@
 
         <!--Adding an i-frame-->
         <br><br>
-
+        <div>
         <iframe src="https://coleshanks.github.io/" name="cole_iframe" title="website_mine" style="border: none; height: auto; width: auto;"></iframe>
+        </div>
+        <!--Using JS-->
+        <br>
+        <div>
+        <h2>JS testing</h2><p>JS script to be run below</p>
+        <img id="space2" src="/assets/images/space/space.jpeg" alt="space2">
+        <img id="deathstar2" src="/assets/images/common/death_star.jpg" alt="deathstar">
+        <script>
+            function switch_img_fcu() {
+                document.getElementById('space2').src="deathstar2";
+            }
+        </script>
+        <button type="button" onclick="switch_img_fcu">switch</button>
 
-
-
-
+        </div>
     </body>
 </html>
 
