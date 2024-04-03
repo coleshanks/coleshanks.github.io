@@ -15,6 +15,7 @@
     </head>
 
     <body>
+        <noscript>Sorry, your browser does not support JavaScript!</noscript> <!--if no JS support-->
         <div>
             <!--Top of the page NAVBAR/directory-->
             <ul id="navbar">
@@ -154,7 +155,7 @@
         <img id="deathstar2" src="/assets/images/common/death_star.jpg" alt="deathstar">
         <script>
             function switch_img_fcu() {
-                document.getElementById('space2').src="deathstar2";
+                document.getElementById('space2').src="/assets/images/common/death_star.jpg";
             }
         </script>
         <button type="button" onclick="switch_img_fcu">switch</button>
