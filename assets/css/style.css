@@ -20,6 +20,9 @@
     --text_green: #57cc8a;
     --text_grey: #AFBAC4;
     --text_white: white;
+
+    /*extra*/
+    --nav_margin: 6px;
     
 }
 body {
