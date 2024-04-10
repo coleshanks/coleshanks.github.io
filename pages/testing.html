@@ -1,0 +1,272 @@
+<!DOCTYPE html>     <!--Specifies the doctype-->
+<html lang="en-CA">    <!--Specifies the document language/region-->
+    <head>
+        <!--META tags go here-->
+        <meta charset="utf-8">
+        <meta name="keywords" content="Cole Shanks, cole shanks">
+        <meta name="description" content="personal wesbite">
+        <meta name="author" content="Cole Shanks">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="refresh" content="1000; url=../pages/under_construction/404_index.html" /> <!--UNDER CONSTRUCTION mode enabled-->
+
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+
+        <!--CSS styling-->
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+
+        <title>Home | Cole Shanks</title>   <!--Appears in the title bar (tab bar)-->
+    </head>
+
+    <body>
+        <noscript>Sorry, your browser does not support JavaScript!</noscript> <!--if no JS support-->
+        <div>
+            <!--Top of the page NAVBAR/directory-->
+            <ul id="navbar">
+                <li class="btn_on_page"><a href="/index.html" target="_self">Home</a></li>
+                <li class="nav_btn" style="margin-left: 6px;"><a class="nav_link" href="/pages/about/about.html" target="_self">About</a></li>
+                <li class="nav_btn" style="margin-left: 6px;"><a class="nav_link" href="/pages/blog/blog.html" target="_self">Blog</a></li>
+                <li class="nav_btn" style="margin-left: 6px;"><a class="nav_link" href="/pages/CV/cv.html" target="_self">CV</a></li>
+                <li class="nav_btn" style="margin-left: 6px;"><a class="nav_link" href="/pages/projects/projects.html" target="_self">Projects</a></li>
+                <li class="nav_btn" style="margin-left: 6px;"><a class="nav_link" href="/pages/documents/documents.html" target="_self">Documents</a></li>
+                <li class="nav_btn" style="margin-left: 6px;"><a class="nav_link" href="/pages/photos/photos.html" target="_self">Photos</a></li>
+            </ul>   
+        </div>
+
+        <div>
+            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">This is my Website</h1>
+        </div>
+        <p title="It's in Japanese">
+            <a href="/ja/index_ja.html" target="_self"><i>こんにちは！</i></a>
+        </p>
+        <a href="#elec315">Jump to elec 315 doc</a> <!--This references a created bookmark-->
+        <h2>This is the second heading</h2>
+        <p>Heres a youtube link</p>
+        <a href="https://www.youtube.com" target="_blank">youtube home page link</a> <br>
+        <h3 style="border: 4px solid tomato;">Adding a space img jpeg</h3> <br>
+        <img src = "/assets/images/space/space.jpeg" alt="space" style="width: 25%;height: 25%;"> <br> <!--img requires img src, alt text. width and height can also be specified or set to auto-->
+        <bdo dir="rtl">こんにちは！</bdo>                                                                    <!--using the style attribute ensures that it isnt overwitten by the global style guidelines-->
+
+        <br><p>More tests below</p>
+
+        <a href="https://www.netflix.com/browse" target="_blank">
+            <img src="/assets/images/logo/netflix.png" alt="netflix"style="width:5%;height:5%">
+        </a>
+
+        <p>below is an email test</p>
+        <a href="mailto:cshanks223@gmail.com">Send email</a>
+
+        <p>now lets add a button with JS</p>
+        <button>Button</button>
+
+        <p id="elec315">Lets add a file (ELEC 315) doc</p> <!--Creating a bookmark to be referenced elsewhere-->
+        <a href="assets/School/UBC/Year 3/ELEC 315 (Electronic Materials and Devices)/Notes.pdf" target="_blank">ELEC 315 Notes</a>
+        <br />
+        <object data="assets/School/UBC/Year 3/ELEC 315 (Electronic Materials and Devices)/Notes.pdf" style="height: 30%; width: 30%;">ELEC 315</object>
+
+        <p><i>Check out the <em>ubc</em> page</i></p>
+        <a href="/pages/ubc.html">ubc Page</a>
+
+        <p><img src="/assets/images/space/space.jpeg" alt="space" style="float: right;width: 100px;height: 50px;">Lets add a gif</p>
+        <img src="/assets/images/gifs/coding-hello-world.gif" alt="coding-hello-world" style="width: 300px; height: 200px;"> <!--Adding a gif-->
+
+        <p>Adding an image map</p> <!--Example from w3 schools-->
+        <img src="/assets/images/common/workplace.jpg" alt="workplace" usemap="#workmap">
+
+        <map name="workmap">
+            <area shape="rect" coords="34, 44, 270, 350" alt="computer" href="/pages/temp/computer.html">
+            <area shape="rect" coords="290, 172, 333, 250" alt="phone" href="/pages/temp/phone.html">
+            <area shape="circle" coords="337, 300, 44" alt="coffee" href="/pages/temp/coffee.html" onclick="myFunction()">
+        </map>
+
+        <script>
+            function myFunction(){
+                alert("You clicked the coffee cup!");
+            }
+        </script>
+
+
+        <p>Adding kanji list below</p>
+        <a href="/pages/ja/kanji list.html">kanji list</a>
+
+        <p><strong>let's add a table below</strong></p>     <!--TABLES-->
+        <div>
+            <table style="margin-left: auto; margin-right: auto; color: tomato;">
+            <caption>temp table</caption>
+            <colgroup>
+                <col span="2" style="background-color: coral;">
+            </colgroup>
+            <tr>                                                <!--Table row-->
+                <th colspan="2">Meat</th>                                   <!--Table headers-->
+                <th>Vegetable</th>
+                <th>Fruit</th>
+            </tr>
+            <tr>
+                <td>Chicken</td>                                <!--Table data-->
+                <td>carrot</td>
+                <td><img src="/assets/images/space/space.jpeg" alt="space" style="height: 100px; width: 200px;"></td>
+            </tr>
+        </table>
+        </div>
+
+        <p>Let's add a list below</p>                       <!--LISTS-->
+        <ul style="list-style-type: square; text-align: left;">    <!---unordered list-->
+            <li>list item 1</li>
+            <li>list item 2</li>
+            <li>list item 3</li>
+        </ul>
+        <br>
+        <ol start="7" style="text-align: left;">    <!--ordered list-->
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+        </ol>
+        <br>
+        <dl style="text-align: left;">    <!--description list-->
+            <dt>coffee</dt> <!--description tag-->
+            <dd>black hot drink</dd><!--description-->
+        </dl>
+        <br>
+
+        <!--Block elements-->
+        <p>This is a block element</p>
+        <div>This is a block element</div> <!--defines a division or section in a document-->
+        <!--inline elements-->
+        <span>This is an inline element</span>
+        <!--EXAMPLE-->
+        <div style="background-color: #333333;">
+            <h2>Japanese</h2>
+            <p>a language spoken in <span style="color: aqua;text-decoration: wavy;">asia</span></p>
+        </div>
+
+        <!--Star wars map-->
+        <div>
+            <img src="/assets/images/common/death_star.jpg" alt="death_star" usemap="#death_star_map" style="height: 40%; width: 40%;">
+                <map name="death_star_map">
+                    <area shape="circle" coords="390, 180, 120" alt="vader" href="https://www.youtube.com/watch?v=y8-8xeUvS1g" target="_blank">
+                </map>
+
+        <!--Adding an i-frame-->
+        <br><br>
+        <div>
+        <iframe src="https://coleshanks.github.io/" name="cole_iframe" title="website_mine" style="border: none; height: 200%; width: 200%;"></iframe>
+        </div>
+        <!--Using JS-->
+        <br>
+        <div>
+        <h2>JS testing</h2><p>JS script to be run below</p>
+        <img id="space2" src="/assets/images/space/space.jpeg" alt="space2" style="height: 15%; width: 15%;">
+        <img id="deathstar2" src="/assets/images/common/death_star.jpg" alt="deathstar" style="height: 15%; width: 15%;">
+        <script>
+            function switch_img_fcu() {
+                document.getElementById('space2').src="/assets/images/common/death_star.jpg";
+            }
+        </script>
+        <button type="button" onclick="switch_img_fcu">switch</button>
+
+        </div>
+        <input type="button" onclick="alert('Hello World!')" value="Click Me!">
+    </body>
+</html>
+
+
+
+<!--                    END of the actual code                                -->
+<!--Below is cool functions features, etc that I would like to implement later-->
+<!--
+
+            button{
+            cursor: pointer;
+            border: 1px solid #555;
+            text-align: center;
+            padding: 5px;
+            margin-left: 8px; 
+            }
+            .dark{
+                background-color: #222;
+                color: #e6e6e6;
+            }
+
+
+
+<button onclick="myFunction()">Switch mode</button> 
+     
+<script>
+    function myFunction() {
+        let element = document.body;
+        element.classList.toggle("dark");
+    }
+</script>
+
+my ideas
+        SECRET PAGE FOR MOM (DO NOT CLICK!!)
+       <link href="temp.txt">
+       using this I can hide a txt file within the html source
+
+
+
+
+       spaceship stuff
+
+           <body onload="fly_spaceship()">
+
+            <script type="text/javascript">
+              var ship_pos = -200;
+              function fly_spaceship() {
+  
+  ship_pos = ship_pos + 1;
+ 
+  if (ship_pos < screen.width)
+     document.getElementById("falcon").style.left = ship_pos + "px"; 
+  
+  else
+     ship_pos = -800;
+     
+  setTimeout("fly_spaceship()", 9);
+ 
+}
+        </script>
+
+                </div>
+        JS testing
+         the ship 
+        <div id="falcon" style="position:absolute; left:-600; top:60;">  original - left:440; now off the page so it can fly in
+            <img id="theship" src="assets/images/space/space.jpeg" />
+            </div>
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
