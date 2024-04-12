@@ -93,7 +93,7 @@ th, td {
     /*color: var(--text_white);*/
     color: var(--text_green);
 }
-.navbar > .nav_btn:hover{
+.nav_btn:hover > .nav_link{
     color: var(red);
 }
 
