@@ -88,7 +88,7 @@ th, td {
 .nav_btn:hover, .btn_on_page:hover {
     background: var(--primary_dark);
     padding: 2.4px 9.6px 0;
-    margin: 5px;
+    margin: 1px;
     box-shadow: 2px 2px var(--shadow-dark);
     /*color: var(--text_white);*/
     color: var(--text_green);
