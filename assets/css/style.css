@@ -19,7 +19,6 @@
     --shadow-dark: #666;
     --text_green: #57cc8a;
     --text_grey: #AFBAC4;
-    --text_white: white;
 
     /*extra*/
     --nav_margin: 6px;
@@ -56,7 +55,7 @@ p {
     text-align: center;
 }
 a:link, :visited {
-    color: var(--text_white);
+    /*color: var(--text_white);*/
     text-decoration: none;
 }
 a:hover {
@@ -120,7 +119,7 @@ th, td {
     vertical-align: middle;
     background-color: var(--tertiary_dark);
     box-shadow: 2px 2px var(--shadow);
-    color: var(--text_white);
+    /*color: var(--text_white);*/
     transition: none;
 }
 .light-mode {
