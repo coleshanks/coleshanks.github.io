@@ -42,7 +42,10 @@ ul#navbar {
     /*color: var(--text_white);*/
     /* Any other CSS you want */
 }
-a#nav_link {
+a#nav_link:hover {
+    color: var(--text_grey);
+}
+a#nav_link:hover {
     color: var(--text_green);
 }
 h1 {
@@ -59,6 +62,7 @@ p {
 a:link, :visited {
     /*color: var(--text_white);*/
     text-decoration: none;
+    color: var(--text_grey);
 }
 a:hover {
     color: var(--text_green);
