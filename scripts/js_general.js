@@ -1,5 +1,5 @@
 function myFunction() {
     var element = document.body;
-    element.classList.toggle("light-mode");
     alert("MY EYES !!");
+    element.classList.toggle("light-mode");
 }

@@ -42,10 +42,10 @@ ul#navbar {
     /*color: var(--text_white);*/
     /* Any other CSS you want */
 }
-a#nav_link {
+.nav_link {
     color: white;
 }
-a#nav_link:hover {
+.nav_link:hover {
     color: var(--text_green);
 }
 h1 {
