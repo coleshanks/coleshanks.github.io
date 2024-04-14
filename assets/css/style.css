@@ -62,7 +62,7 @@ p {
 a:link, :visited {
     /*color: var(--text_white);*/
     text-decoration: none;
-    color: var(--text_grey);
+    color: white;
 }
 a:hover {
     color: var(--text_green);
