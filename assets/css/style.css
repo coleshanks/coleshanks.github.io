@@ -35,10 +35,14 @@ div {
     text-align: center;
     color: var(--text_grey);
 }
-ul#navbar {
+.navbar {
     display:inline;
     font-size: 160%;
     text-align: center;
+    background-color: var(--secondary_dark);
+    position: fixed;
+    top: 0;
+    width: 100%;
     /*color: var(--text_white);*/
     /* Any other CSS you want */
 }
