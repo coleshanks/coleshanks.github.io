@@ -31,7 +31,7 @@ body {
     text-align: center;
 }
 div {
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     text-align: center;
     color: var(--text_grey);
 }
