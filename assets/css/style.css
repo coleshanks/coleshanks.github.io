@@ -41,9 +41,10 @@ div {
     text-align: center;
     background-color: var(--secondary_dark);
     position: fixed;
-    top: 0;
+    top: -10;
     width: 100%;
     padding: 20px;
+    padding-inline: 0;
     /*color: var(--text_white);*/
     /* Any other CSS you want */
 }
