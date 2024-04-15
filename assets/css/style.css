@@ -141,3 +141,7 @@ th, td {
     background-color: white;
     color: black;
   }
+.nav_test{
+    position: fixed;
+    padding-inline-start: 0%;
+}
