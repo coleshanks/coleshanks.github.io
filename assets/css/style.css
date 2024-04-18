@@ -28,19 +28,30 @@ div {
     text-align: center;
     color: var(--text_grey);
 }
-.navbar {
+/*.navbar {
     display:inline;
     font-size: 160%;
     text-align: center;
     background-color: var(--secondary_dark);
     /*position: fixed;*/
-    top: -10;
+   /* top: -10;
     width: 100%;
     padding: 20px;
     padding-inline: 0;
     /*color: var(--text_white);*/
     /* Any other CSS you want */
-}
+/*}*/
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures the header is on top of other content */
+  }
 h1 {
     color: var(--text_green);
     font-family: roboto;
