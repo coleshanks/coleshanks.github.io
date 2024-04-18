@@ -93,7 +93,7 @@ th, td {
 .nav_btn:hover, .btn_on_page:hover {
     background: var(--primary_dark);
     padding: 2.4px 9.6px 0;
-    padding-inline: 0;
+    /*padding-inline: 0;*/
     margin: 4px;
     box-shadow: 2px 2px var(--shadow-dark);
     /*color: var(--text_white);*/
