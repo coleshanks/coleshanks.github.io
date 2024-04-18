@@ -4,13 +4,6 @@
     --f: 'Merriweather', serif;
     --hf: 'Gloock', serif;
 
-    /* Colors */
-    --primary-light: #ebf4f0;
-    --stroke: #222;
-    --bg: #222;
-    --highlight: #F5C86F;
-    --text: #fff;
-
     /*My stuff*/
     --primary_dark: #353b43;
     --secondary_dark: #242930;
@@ -48,12 +41,6 @@ div {
     /*color: var(--text_white);*/
     /* Any other CSS you want */
 }
-.nav_link {
-    color: white;
-}
-.nav_link:hover {
-    color: var(--text_green);
-}
 h1 {
     color: var(--text_green);
     font-family: roboto;
@@ -70,12 +57,7 @@ a:link, :visited {
     text-decoration: none;
     color: white;
 }
-a:hover {
-    color: var(--text_green);
-    background-color: transparent;
-    text-decoration: none;
-}
-a:active {
+a:hover, :active {
     color: var(--text_green);
     background-color: transparent;
     text-decoration: none;
@@ -90,11 +72,11 @@ th, td {
     border-style: none;                 /*can be dotted or slashed if u want. many other options like colour, etc*/
 }
 
-.btn.disabled {
+/*.btn.disabled {
     box-shadow: none;
     opacity: 0.3;
     cursor: not-allowed;
-}
+}*/
 
 .nav_btn:hover, .btn_on_page:hover {
     background: var(--primary_dark);
@@ -104,9 +86,6 @@ th, td {
     box-shadow: 2px 2px var(--shadow-dark);
     /*color: var(--text_white);*/
     color: var(--text_green);
-}
-.nav_btn:hover > .nav_link{
-    color: var(red);
 }
 
 .btn_on_page {
@@ -141,7 +120,3 @@ th, td {
     background-color: white;
     color: black;
   }
-.nav_test{
-    position: fixed;
-    padding-inline-start: 0%;
-}
