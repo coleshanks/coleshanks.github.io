@@ -33,7 +33,7 @@ div {
     font-size: 160%;
     text-align: center;
     background-color: var(--secondary_dark);
-    position: fixed;
+    /*position: fixed;*/
     top: -10;
     width: 100%;
     padding: 20px;
@@ -92,7 +92,7 @@ th, td {
     border: 0.5px solid var(--tertiary_dark);
     border-radius: 6px;
     padding: 2.4px 9.6px 0;
-    padding-inline: 0;
+    /*padding-inline: 0;*/
     margin: 4px;
     display: inline-block;
     text-align: center;
@@ -106,7 +106,7 @@ th, td {
     border: 0.5px solid var(--tertiary_dark);
     border-radius: 6px;
     padding: 2.4px 9.6px 0;
-    padding-inline: 0;
+    /*padding-inline: 0;*/
     margin: 4px;
     display: inline-block;
     text-align: center;
