@@ -17,14 +17,14 @@
     --nav_margin: 6px;
     
 }
-/*body {
+body {
     font-family: sans-serif;
     color: var(--text_grey);
     background-color: var(--primary_dark);
     text-align: center;
     margin-top: 0;
 }
-div {
+/*div {
     /*margin: 0 auto;*/
    /* text-align: center;
     color: var(--text_grey);
