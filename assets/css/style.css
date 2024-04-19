@@ -29,6 +29,9 @@ div {
     text-align: center;
     color: var(--text_grey);
 }
+.content{
+    text-decoration: none;
+}
 /*.navbar {
     display:inline;
     font-size: 160%;
@@ -129,7 +132,3 @@ th, td {
     /*color: var(--text_white);*/
     transition: none;
 }
-/*.light-mode {
-    background-color: white;
-    color: black;
-  }*?
