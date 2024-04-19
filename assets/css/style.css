@@ -17,7 +17,7 @@
     --nav_margin: 6px;
     
 }
-body {
+/*body {
     font-family: sans-serif;
     color: var(--text_grey);
     background-color: var(--primary_dark);
@@ -26,12 +26,12 @@ body {
 }
 div {
     /*margin: 0 auto;*/
-    text-align: center;
+   /* text-align: center;
     color: var(--text_grey);
 }
-.content{
+/*.content{
     text-decoration: none;
-}
+}*/
 /*.navbar {
     display:inline;
     font-size: 160%;
@@ -73,11 +73,11 @@ a:link, :visited {
     text-decoration: none;
     color: white;
 }
-a:hover, :active {
+/*a:hover, :active {
     color: var(--text_green);
     background-color: transparent;
     text-decoration: none;
-}
+}*/
 table, th, td {                          /*CSS styling with style property to add border*/
     border: 1px solid black;
     border-collapse: collapse;
