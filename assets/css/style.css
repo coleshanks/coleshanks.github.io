@@ -24,9 +24,9 @@ body {
     text-align: center;
     margin-top: 0;
 }
-/*div {
-    /*margin: 0 auto;*/
-   /* text-align: center;
+div {
+    margin: 0 auto;
+    text-align: center;
     color: var(--text_grey);
 }
 /*.content{
