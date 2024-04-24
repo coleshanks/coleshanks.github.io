@@ -19,6 +19,9 @@
 }
 body {
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding-top: 125px;
     color: var(--text_grey);
     background-color: var(--primary_dark);
     text-align: center;
@@ -30,10 +33,11 @@ div {
     color: var(--text_grey);
 }
 .content{
-    text-decoration: none;
+    /*text-decoration: none;*/
 }
 .navbar {
     display: inline;
+    flex: 0 0 auto;
     margin-top: 0;
     font-size: 160%;
     text-align: center;
