@@ -74,11 +74,11 @@ a:link, :visited {
     text-decoration: none;
     color: white;
 }
-/*a:hover, :active {
+a:hover, :active {
     color: var(--text_green);
     background-color: transparent;
     text-decoration: none;
-}*/
+}
 table, th, td {                          /*CSS styling with style property to add border*/
     border: 1px solid black;
     border-collapse: collapse;
@@ -95,8 +95,9 @@ th, td {
     cursor: not-allowed;
 }*/
 
-.nav_btn:hover, .btn_on_page:hover {
+.nav_btn:hover, .btn_on_page:hover, .nav_btn:hover a, .btn_on_page:hover a {
     background: var(--primary_dark);
+    color: var(--text_green);
     padding: 2.4px 9.6px 0;
     /*padding-inline: 0;*/
     margin: 4px;
