@@ -100,7 +100,7 @@ th, td {
     color: var(--text_green);
     /*padding: 2.4px 9.6px 0;
     margin: 4px;*/
-    box-shadow: 2px 2px var(--shadow-dark);
+    box-shadow: 2px 2px 4px var(--shadow-dark);
     /*color: var(--text_white);*/
 }
 
