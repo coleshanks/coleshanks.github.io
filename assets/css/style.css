@@ -69,11 +69,9 @@ p {
     text-align: center;
     color: var(--text_grey);
 }
-/* a:link, :visited {
-    /*color: var(--text_white);*/
-    /* text-decoration: none;
+ a:link, :visited {
     color: white;
-} */
+}
 /* a:hover, :active {
     color: var(--text_green); */
     /* background-color: transparent; */
