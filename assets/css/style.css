@@ -55,6 +55,7 @@ div {
     left: 0;
     width: 100%;
     z-index: 1000; /* Ensures the header is on top of other content */
+    border-radius: 0 0 8px 8px; /* top-left, top-right, bottom-right, bottom-left */
   }
 h1 {
     color: var(--text_green);
