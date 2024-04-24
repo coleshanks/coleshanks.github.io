@@ -34,6 +34,7 @@ div {
 }
 .content{
     /*text-decoration: none;*/
+    flex: 1 0 auto;
 }
 .navbar {
     display: inline;
