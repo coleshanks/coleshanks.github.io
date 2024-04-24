@@ -28,8 +28,8 @@ body {
     margin-top: 0;
 }
 div {
-    margin: 0 auto;
-    text-align: center;
+    /*margin: 0 auto;
+    text-align: center;*/
     color: var(--text_grey);
 }
 .content{
@@ -37,7 +37,7 @@ div {
     flex: 1 0 auto;
 }
 .navbar {
-    display: inline;
+    /*display: inline;*/
     flex: 0 0 auto;
     margin-top: 0;
     font-size: 160%;
