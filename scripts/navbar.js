@@ -1,17 +1,18 @@
-// navbar.js
 let lastScrollTop = 0;
-const scrollThreshold = 100; // Number of pixels to scroll before hiding the navbar
-const visibleNavbarHeight = 10; // The amount of navbar height that will remain visible
+const scrollThreshold = 100; // Number of pixels to scroll before the navbar starts to escape
+const escapeSpeed = 2; // Speed at which the navbar escapes (adjust as needed)
+let visibleNavbarHeight = document.querySelector('.navbar').offsetHeight;
 
 window.addEventListener("scroll", function() {
   let currentScroll = window.scrollY;
   let navbar = document.querySelector('.navbar');
-  let navbarHeight = navbar.offsetHeight; // Dynamically gets the navbar's height
-  let hiddenNavbarHeight = navbarHeight - visibleNavbarHeight; // Calculate the height to hide
+  let navbarHeight = navbar.offsetHeight;
+  let hiddenNavbarHeight = navbarHeight - visibleNavbarHeight;
 
   if (currentScroll > lastScrollTop && currentScroll > scrollThreshold) {
-    // Scroll Down - hide navbar, but leave a small portion visible
-    navbar.style.top = `-${hiddenNavbarHeight}px`; // Hide part of the navbar based on its dynamic height
+    // Scroll Down - gradually move navbar up to escape
+    let distanceToEscape = (currentScroll - scrollThreshold) / escapeSpeed;
+    navbar.style.top = `-${distanceToEscape}px`; // Move the navbar up to escape
   } else if (currentScroll < lastScrollTop || currentScroll <= scrollThreshold) {
     // Scroll Up or within threshold - show navbar
     navbar.style.top = '0';
