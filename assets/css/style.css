@@ -27,11 +27,11 @@ body {
     text-align: center;
     margin-top: 0;
 }
-/* div {
+div {
     /*margin: 0 auto;
     text-align: center;*/
-    /* color: var(--text_grey);
-} */
+    color: var(--text_grey);
+} 
 /* .content{
     /*text-decoration: none;*/
     /* flex: 1 0 auto;
@@ -100,7 +100,8 @@ th, td {
     color: var(--text_green);
     /*padding: 2.4px 9.6px 0;
     margin: 4px;*/
-    /*box-shadow: 2px 2px 4px var(--shadow-dark);*/
+    box-shadow: 2px 2px var(--shadow);
+    /*box-shadow: 2px 0 var(--shadow-dark); /* Only horizontal shadow */
     /*color: var(--text_white);*/
 }
 
@@ -125,6 +126,6 @@ th, td {
     text-align: center;
     vertical-align: middle;
     background-color: var(--tertiary_dark);
-    /*box-shadow: 2px 2px var(--shadow);*/
+    box-shadow: 2px 2px var(--shadow);
     transition: background-color 0.3s, color 0.3s; /* Smooth transitions for properties */
 }
