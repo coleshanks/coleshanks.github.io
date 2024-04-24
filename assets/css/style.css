@@ -35,7 +35,12 @@ div {
 .content{
     /*text-decoration: none;*/
     flex: 1 0 auto;
+    width: 100%; /* This makes sure the div takes full width of its parent */
+    margin: 0 auto; /* This centers the div inside its parent, useful if you set a max-width */
+    text-align: center; /* This centers text inside the div */
+    color: var(--text_grey); /* This sets the text color */
 }
+
 .navbar {
     /*display: inline;*/
     flex: 0 0 auto;
