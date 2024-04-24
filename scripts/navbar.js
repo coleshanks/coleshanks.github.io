@@ -1,3 +1,4 @@
+console.log("JavaScript code is running...");
 let lastScrollTop = 0;
 const scrollThreshold = 100; // Number of pixels to scroll before the navbar starts to escape
 const escapeSpeed = 2; // Speed at which the navbar escapes (adjust as needed)
