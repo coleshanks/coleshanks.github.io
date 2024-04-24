@@ -100,7 +100,7 @@ th, td {
     color: var(--text_green);
     /*padding: 2.4px 9.6px 0;
     margin: 4px;*/
-    box-shadow: 2px 2px 4px var(--shadow-dark);
+    /*box-shadow: 2px 2px 4px var(--shadow-dark);*/
     /*color: var(--text_white);*/
 }
 
@@ -114,7 +114,7 @@ th, td {
     vertical-align: middle;
     background-color: var(--tertiary_dark);
     color: var(--text_green);
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth transitions for properties */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions for properties */
 }
 .nav_btn {
     border: 0.5px solid var(--tertiary_dark);
@@ -125,6 +125,6 @@ th, td {
     text-align: center;
     vertical-align: middle;
     background-color: var(--tertiary_dark);
-    box-shadow: 2px 2px var(--shadow);
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth transitions for properties */
+    /*box-shadow: 2px 2px var(--shadow);*/
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions for properties */
 }
