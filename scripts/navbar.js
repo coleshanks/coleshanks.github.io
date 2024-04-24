@@ -5,7 +5,7 @@ window.addEventListener("scroll", function() {
   
   if (currentScroll > lastScrollTop) {
     // Scroll Down
-    document.querySelector('.navbar').style.top = '-50px'; // Adjust '-50px' as needed to hide the navbar
+    document.querySelector('.navbar').style.top = '-80px'; // Adjust '-50px' as needed to hide the navbar
   } else {
     // Scroll Up
     document.querySelector('.navbar').style.top = '0px';
