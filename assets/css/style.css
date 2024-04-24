@@ -55,6 +55,7 @@ div {
     left: 0;
     width: 100%;
     z-index: 1000; /* Ensures the header is on top of other content */
+    transition: top 0.3s; /* Smooth transition for the sliding effect */
     border-radius: 0 0 8px 8px; /* top-left, top-right, bottom-right, bottom-left */
   }
 h1 {
