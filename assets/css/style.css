@@ -17,7 +17,7 @@
     --nav_margin: 6px;
     
 }
-/*body {
+body {
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
@@ -26,20 +26,20 @@
     background-color: var(--primary_dark);
     text-align: center;
     margin-top: 0;
-}*/
-div {
+}
+/* div {
     /*margin: 0 auto;
     text-align: center;*/
-    color: var(--text_grey);
-}
-.content{
+    /* color: var(--text_grey);
+} */
+/* .content{
     /*text-decoration: none;*/
-    flex: 1 0 auto;
+    /* flex: 1 0 auto;
     width: 100%; /* This makes sure the div takes full width of its parent */
-    margin: 0 auto; /* This centers the div inside its parent, useful if you set a max-width */
-    text-align: center; /* This centers text inside the div */
-    color: var(--text_grey); /* This sets the text color */
-}
+    /* margin: 0 auto; /* This centers the div inside its parent, useful if you set a max-width */
+    /* text-align: center; /* This centers text inside the div */
+    /* color: var(--text_grey); /* This sets the text color */
+/* } */
 
 .navbar {
     /*display: inline;*/
@@ -69,16 +69,16 @@ p {
     text-align: center;
     color: var(--text_grey);
 }
-a:link, :visited {
+/* a:link, :visited {
     /*color: var(--text_white);*/
-    text-decoration: none;
+    /* text-decoration: none;
     color: white;
-}
-a:hover, :active {
-    color: var(--text_green);
-    background-color: transparent;
-    text-decoration: none;
-}
+} */
+/* a:hover, :active {
+    color: var(--text_green); */
+    /* background-color: transparent; */
+    /* text-decoration: none; */
+/* } */ 
 table, th, td {                          /*CSS styling with style property to add border*/
     border: 1px solid black;
     border-collapse: collapse;
