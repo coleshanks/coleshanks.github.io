@@ -1,15 +1,20 @@
-let lastScrollTop = 0; // Keep track of the last scroll position
+// navbar.js
+let lastScrollTop = 0; 
+const navHeight = 80; // Height of your navbar
+const scrollThreshold = 100; // Number of pixels to scroll before hiding the navbar
 
 window.addEventListener("scroll", function() {
   let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-  
-  if (currentScroll > lastScrollTop) {
-    // Scroll Down
-    document.querySelector('.navbar').style.top = '-80px'; // Adjust '-50px' as needed to hide the navbar
-  } else {
-    // Scroll Up
-    document.querySelector('.navbar').style.top = '0px';
+
+  // Check if we've scrolled past the threshold and more than the navbar height to avoid hiding it immediately
+  if (currentScroll > lastScrollTop && currentScroll > scrollThreshold + navHeight) {
+    // Scroll Down - hide navbar
+    document.querySelector('.navbar').style.top = `-${navHeight}px`; // Hide the navbar by its height
+  } else if (currentScroll < lastScrollTop || currentScroll <= scrollThreshold) {
+    // Scroll Up or not past the threshold - show navbar
+    document.querySelector('.navbar').style.top = '0';
   }
-  
-  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+
+  // Remember the last scroll position
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; 
 }, false);
