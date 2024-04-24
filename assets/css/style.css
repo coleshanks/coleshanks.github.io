@@ -71,6 +71,7 @@ p {
 }
  a:link, :visited {
     color: white;
+    text-decoration: none;
 }
 /* a:hover, :active {
     color: var(--text_green); */
@@ -98,8 +99,8 @@ th, td {
     color: var(--text_green);
     /*padding: 2.4px 9.6px 0;
     margin: 4px;*/
-    box-shadow: 2px 2px var(--shadow);
-    /*box-shadow: 2px 0 var(--shadow-dark); /* Only horizontal shadow */
+    box-shadow: 2px 2px var(--shadow-dark);
+    box-shadow: 2px 0 var(--shadow-dark); /* Horizontal offset: 2px, Vertical offset: 0, Blur radius: var(--shadow-dark) */
     /*color: var(--text_white);*/
 }
 
