@@ -17,7 +17,7 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: var(--f);
     display: flex;
     flex-direction: column;
     padding-top: 125px;
@@ -25,10 +25,6 @@ body {
     background-color: var(--primary_dark);
     text-align: center;
     margin-top: 0;
-}
-
-div {
-    color: var(--text_grey);
 }
 
 .content {
@@ -58,19 +54,17 @@ div {
 
 h1 {
     color: var(--text_green);
-    font-family: roboto;
+    font-family: var(--hf);
     font-size: 30px;
 }
 
 p {
-    font-family: auto;
     font-size: 20px;
     text-align: center;
-    color: var(--text_grey);
 }
 
 a:link,
-:visited {
+a:visited {
     color: white;
     text-decoration: none;
 }
@@ -95,13 +89,11 @@ td {
 .btn_on_page:hover a {
     background: var(--primary_dark);
     color: var(--text_green);
-    box-shadow: 2px 2px var(--shadow), 0 2px var(--shadow-dark);
-    border: 0.5px solid var(--tertiary_dark);
-    border-radius: 6px;
+    box-shadow: 2px 2px var(--shadow);
+    box-shadow: 2px 0 var(--shadow-dark);
 }
 
-.btn_on_page,
-.nav_btn {
+.btn_on_page {
     border: 0.5px solid var(--tertiary_dark);
     border-radius: 6px;
     padding: 2.4px 9.6px 0;
@@ -112,5 +104,17 @@ td {
     background-color: var(--tertiary_dark);
     color: var(--text_green);
     transition: background-color 0.3s, color 0.3s;
+}
+
+.nav_btn {
+    border: 0.5px solid var(--tertiary_dark);
+    border-radius: 6px;
+    padding: 2.4px 9.6px 0;
+    margin: 4px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--tertiary_dark);
     box-shadow: 2px 2px var(--shadow);
+    transition: background-color 0.3s, color 0.3s;
 }
