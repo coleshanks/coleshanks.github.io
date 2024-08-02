@@ -28,36 +28,32 @@ body {
 }
 
 div {
-    /*margin: 0 auto;
-    text-align: center;*/
     color: var(--text_grey);
 }
 
 .content {
     text-decoration: none;
     flex: 1 0 auto;
-    width: 100%; /* This makes sure the div takes full width of its parent */
-    margin: 0 auto; /* This centers the div inside its parent, useful if you set a max-width */
-    text-align: center; /* This centers text inside the div */
-    color: var(--text_grey); /* This sets the text color */
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text_grey);
 }
 
 .navbar {
-    /*display: inline;*/
     flex: 0 0 auto;
     margin-top: 0;
     font-size: 160%;
     text-align: center;
     background-color: var(--secondary_dark);
-    /*color: #fff;*/
     padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Ensures the header is on top of other content */
-    transition: top 0.3s; /* Smooth transition for the sliding effect */
-    border-radius: 0 0 8px 8px; /* top-left, top-right, bottom-right, bottom-left */
+    z-index: 1000;
+    transition: top 0.3s;
+    border-radius: 0 0 8px 8px;
 }
 
 h1 {
@@ -79,15 +75,9 @@ a:link,
     text-decoration: none;
 }
 
-/* a:hover, :active {
-    color: var(--text_green);
-     background-color: transparent;
-     text-decoration: none;
- }  */
-
 table,
 th,
-td { /*CSS styling with style property to add border*/
+td {
     border: 1px solid black;
     border-collapse: collapse;
     background-color: aquamarine;
@@ -96,14 +86,8 @@ td { /*CSS styling with style property to add border*/
 th,
 td {
     border-radius: 10px;
-    border-style: none; /*can be dotted or slashed if u want. many other options like colour, etc*/
+    border-style: none;
 }
-
-/*.btn.disabled {
-    box-shadow: none;
-    opacity: 0.3;
-    cursor: not-allowed;
-}*/
 
 .nav_btn:hover,
 .btn_on_page:hover,
@@ -111,26 +95,12 @@ td {
 .btn_on_page:hover a {
     background: var(--primary_dark);
     color: var(--text_green);
-    /* padding: 2.4px 9.6px 0; */ /* Keep padding consistent */
-    /* margin: 4px; */ /* Keep margin consistent */
-    box-shadow: 2px 2px var(--shadow), 0 2px var(--shadow-dark); /* Added 0 2px shadow to ensure bottom border is visible */
-    border: 0.5px solid var(--tertiary_dark); /* Maintain border */
-    border-radius: 6px; /* Maintain border-radius */
-}
-
-.btn_on_page {
+    box-shadow: 2px 2px var(--shadow), 0 2px var(--shadow-dark);
     border: 0.5px solid var(--tertiary_dark);
     border-radius: 6px;
-    padding: 2.4px 9.6px 0;
-    margin: 4px;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    background-color: var(--tertiary_dark);
-    color: var(--text_green);
-    transition: background-color 0.3s, color 0.3s; /* Smooth transitions for properties */
 }
 
+.btn_on_page,
 .nav_btn {
     border: 0.5px solid var(--tertiary_dark);
     border-radius: 6px;
@@ -140,6 +110,7 @@ td {
     text-align: center;
     vertical-align: middle;
     background-color: var(--tertiary_dark);
+    color: var(--text_green);
+    transition: background-color 0.3s, color 0.3s;
     box-shadow: 2px 2px var(--shadow);
-    transition: background-color 0.3s, color 0.3s; /* Smooth transitions for properties */
 }
