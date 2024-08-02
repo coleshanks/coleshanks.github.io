@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+
 :root {
     /* Fonts */
-    --f: 'Merriweather', serif;
-    --hf: 'Gloock', serif;
+    --f: 'Fira Sans', sans-serif;
+    --hf: 'Fira Sans', sans-serif;
 
     /* My stuff */
     --primary_dark: #353b43;
