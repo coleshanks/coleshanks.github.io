@@ -76,6 +76,11 @@ a:visited {
     text-decoration: none;
 }
 
+a:hover {
+    color: var(--text_green);
+    text-decoration: none;
+}
+
 table,
 th,
 td {
