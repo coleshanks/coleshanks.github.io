@@ -96,14 +96,22 @@ td {
     border-style: none;
 }
 
-.nav_btn:hover,
+/* .nav_btn:hover,
 .btn_on_page:hover{
 /* .nav_btn:hover a,
 .btn_on_page:hover a { */
+    /* background: var(--primary_dark);
+    color: var(--text_green); */
+    /* box-shadow: 2px 2px var(--shadow); */
+    /* box-shadow: 2px 0 var(--shadow-dark);
+/* } */
+
+.nav_btn:hover, .nav_btn:hover a,
+.btn_on_page:hover, .btn_on_page:hover a {
     background: var(--primary_dark);
     color: var(--text_green);
-    /* box-shadow: 2px 2px var(--shadow); */
     box-shadow: 2px 0 var(--shadow-dark);
+    color: var(--text_green); /* Ensures the link turns green */
 }
 
 .btn_on_page {
