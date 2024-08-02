@@ -97,9 +97,9 @@ td {
 }
 
 .nav_btn:hover,
-.btn_on_page:hover,
-.nav_btn:hover a,
-.btn_on_page:hover a {
+.btn_on_page:hover{
+/* .nav_btn:hover a,
+.btn_on_page:hover a { */
     background: var(--primary_dark);
     color: var(--text_green);
     /* box-shadow: 2px 2px var(--shadow); */
