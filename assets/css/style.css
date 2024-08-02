@@ -55,7 +55,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    transition: top 0.5s ease; /* Adjust the 0.5s to control the speed */
+    transition: top 5s ease; /* Adjust the 0.5s to control the speed */
     border-radius: 0 0 16px 16px;
 }
 
