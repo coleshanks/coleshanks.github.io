@@ -1,6 +1,6 @@
 console.log("JavaScript code is running...");
 let lastScrollTop = 0;
-const scrollThreshold = 100; // Number of pixels to scroll before the navbar starts to escape
+const scrollThreshold = 200; // Number of pixels to scroll before the navbar starts to escape
 const escapeSpeed = 0.5; // Speed at which the navbar escapes (adjust as needed)
 let visibleNavbarHeight = document.querySelector('.navbar').offsetHeight;
 
