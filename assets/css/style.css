@@ -97,7 +97,7 @@ td {
     background: var(--primary_dark);
     color: var(--text_green);
     box-shadow: 2px 2px var(--shadow);
-    box-shadow: 2px 0 var(--shadow-dark);
+    /* box-shadow: 2px 0 var(--shadow-dark); */
 }
 
 .btn_on_page {
