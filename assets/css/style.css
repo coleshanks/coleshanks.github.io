@@ -20,6 +20,9 @@
 
     /* extra */
     --nav_margin: 6px;
+
+    /* speed */
+    --btn_transition_speed: 0.6s
 }
 
 body {
@@ -99,7 +102,7 @@ td {
 .nav_btn:hover,
 .btn_on_page:hover{
      background: var(--primary_dark);
-     color: var(--text_green); 
+    color: var(--text_green); 
      box-shadow: 2px 2px var(--shadow); 
      box-shadow: 2px 0 var(--shadow-dark);
  }
@@ -122,7 +125,7 @@ td {
     vertical-align: middle;
     background-color: var(--tertiary_dark);
     color: var(--text_green);
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color var(--btn_transition_speed), color var(--btn_transition_speed);
 }
 
 .nav_btn {
@@ -136,7 +139,7 @@ td {
     vertical-align: middle;
     background-color: var(--tertiary_dark);
     box-shadow: 2px 2px var(--shadow);
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color var(--btn_transition_speed), color var(--btn_transition_speed);
 }
 
 /* Styles for tablets and smaller screens */
