@@ -103,13 +103,13 @@ a:hover {
     text-decoration: none;
 }
 
-table,
+/* table,
 th,
 td {
     border: 1px solid black;
     border-collapse: collapse;
     background-color: aquamarine;
-}
+} */
 
 th,
 td {
