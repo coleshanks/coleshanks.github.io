@@ -39,7 +39,7 @@ body {
 
 .content {
     text-decoration: none;
-    display: flex;
+    /* display: flex; */
     flex: 1 0 auto; 
     width: 100%;
     margin: 0;
