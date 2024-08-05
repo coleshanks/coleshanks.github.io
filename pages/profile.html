@@ -54,10 +54,21 @@
             width: 80%;
         }
 
-        /* .left-column td {
-            width: .5%;
-            height: auto;
-        } */
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .left-column, .right-column {
+                width: 100%;
+                height: auto;
+            }
+
+            .left-column {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 
