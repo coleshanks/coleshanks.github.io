@@ -61,6 +61,21 @@ body {
     transition: top 0.5s ease; /* Adjust the 0.5s to control the speed */
     border-radius: 0 0 8px 8px;
 }
+.profile_navbar {
+    flex: 0 0 auto;
+    margin-top: 0;
+    font-size: 160%;
+    text-align: center;
+    background-color: var(--secondary_dark);
+    padding: 30px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: top 0.5s ease; /* Adjust the 0.5s to control the speed */
+    border-radius: 0 0 8px 8px;
+}
 
 h1 {
     color: var(--text_green);
