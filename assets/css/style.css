@@ -115,6 +115,7 @@ th,
 td {
     border-radius: 10px;
     border-style: none;
+    padding: 10px;
 }
 
 .nav_btn:hover,
