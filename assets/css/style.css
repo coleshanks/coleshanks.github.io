@@ -22,7 +22,7 @@
     --nav_margin: 6px;
 
     /* speed */
-    --btn_transition_speed: 2s
+    --btn_transition_speed: 0.6s
 }
 
 body {
