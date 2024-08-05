@@ -67,7 +67,7 @@ body {
     font-size: 160%;
     text-align: center;
     background-color: var(--secondary_dark);
-    padding: 30px 0;
+    /* padding: 30px 0; */
     /* position: fixed;
     top: 0;
     left: 0; */
