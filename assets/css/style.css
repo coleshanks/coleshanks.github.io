@@ -203,6 +203,7 @@ td {
 
 footer {
     /* background-color: #203457; */
+    width: 100%;
     position: absolute;
     bottom: 0; /* Aligns the footer to the bottom */
     /* left: 0; */
