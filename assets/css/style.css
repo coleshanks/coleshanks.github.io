@@ -200,7 +200,7 @@ td {
     color: white;
 }
 
-.footer {
+footer {
     width: 100%;
     /* background-color: #203457; */
     position: fixed; /* Sticks the footer at the bottom */
@@ -210,7 +210,7 @@ td {
     text-align: center;
 }
 
-.footer p {
+footer p {
     font-size: 10px; /* Specify the unit */
     width: 100%;
     color: #D8DEE9; /* Text color */
