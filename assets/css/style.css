@@ -218,7 +218,8 @@ footer p {
 }
 
 footer img {
-    font-size: 10px; /* Specify the unit */
+    width: 25px; /* Adjust the width as needed */
+    height: auto;
 }
 
 
