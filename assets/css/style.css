@@ -182,8 +182,8 @@ td {
     position: fixed; /* Keep the button fixed in place */
     top: 5px; /* Position the button from the top */
     right: 5px; /* Position the button from the right */
-    padding: 8px 28px; /* Adjusts the space inside the button: top-bottom, left-right */
-    background-color: #007BFF; /* Button background color */
+    padding: 6px 16px; /* Adjusts the space inside the button: top-bottom, left-right */
+    background-color: #242930; /* Button background color */
     color: white; /* Text color */
     border: none; /* No border */
     border-radius: 5px; /* Rounds the corners of the button */
@@ -196,7 +196,7 @@ td {
 }
 
 .ja-button:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
+    background-color: #ff3e3e; /* Darker shade for hover effect */
 }
 
 /* Styles for tablets and smaller screens */
