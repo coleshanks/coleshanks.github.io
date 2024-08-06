@@ -201,7 +201,6 @@ td {
 }
 
 footer {
-    width: 100%;
     /* background-color: #203457; */
     position: absolute;
     bottom: 0; /* Aligns the footer to the bottom */
@@ -218,7 +217,7 @@ footer p {
 }
 
 footer img {
-    width: 100px; /* Adjust the width as needed */
+    width: 40px; /* Adjust the width as needed */
     height: auto;
 }
 
