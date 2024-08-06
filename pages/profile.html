@@ -94,45 +94,13 @@
             }
 
             .left-column, .right-column {
+                flex-direction: column;
                 width: 100%;
                 height: auto;
-                flex: auto;
-                position: fixed;
             }
 
-            .left-column {
-                padding: 10px;
-                align-items: center; /* Center the content horizontally */
-            }
-
-            .left-column img {
-                width: 25%; /* Reduce the width of the profile image */
-                height: auto;
-                margin: 0 auto; /* Center the image */
-            }
-
-            .left-column h2 {
-                font-size: 1.5em; /* Adjust the font size */
-            }
-
-            .left-column p {
-                font-size: 1em; /* Adjust the font size */
-            }
-
-            /* .left-column td a img {
-                width: 50%; /* Adjust the size of the logos */
-                /* height: 50%; */
-            /* } */ 
-
-            .right-column h1 {
-                font-size: 2em; /* Adjust the font size */
-            }
-
-            .right-column p, .right-column a {
-                font-size: 1em; /* Adjust the font size */
-            }
-    
         }
+    
     </style>
 </head>
 
@@ -143,7 +111,9 @@
         <div class="left-column">
             <img src="/assets/images/images.png" alt="profile" style="width: 100%; height: auto; max-width: 100%;">
             <h1> Cole Shanks</h1>
-            <h4 style="padding: 0 12px;">Kure, Hiroshima, Japan</h4><a href="https://maps.app.goo.gl/zTk8r8mL82zHNzJt9" target="_blank"><span class='fa fa-map-marker'></span></a>
+            <div style="display: inline-block;">
+                <h4 style="padding: 0 12px;">Kure, Hiroshima, Japan</h4><a href="https://maps.app.goo.gl/zTk8r8mL82zHNzJt9" target="_blank"><span class='fa fa-map-marker' style="font-size: 20px;"></span></a>
+            </div>
             <div style="display: inline; padding: 0 20px;">
                 <a href="mailto:cshanks223@gmail.com"><span class='fa fa-envelope'></span></a>
                 <a href="https://github.com/coleshanks" target="_blank"><span class='fab fa-github'></span></a>
