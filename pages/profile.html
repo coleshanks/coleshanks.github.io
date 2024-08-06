@@ -48,15 +48,13 @@
             top: 0;
             left: 0;
             bottom: 0;
+            /* width: 200px; */
             overflow-y: auto; /* Add scroll if content overflows */
         }
-
         .right-column {
-            margin-left: 25%; /* Adjust margin to be equal to the width of the left column */
+            margin-left: 30%;
             width: 75%;
-            padding: 20px;
             height: 100%;
-            overflow-y: auto;
         }
 
         /* .left-column img {
@@ -91,41 +89,49 @@
 
         /* Responsive design for smaller screens */
         @media (max-width: 600px) {
-        .main-content {
-            flex-direction: column; /* Stack columns vertically */
-        }
+            .main-content {
+                flex-direction: column;
+            }
 
-        .left-column, .right-column {
-            width: 100%; /* Full width for both columns */
-            height: auto; /* Auto height to adjust content */
-            position: relative; /* Reset position to relative */
-            margin-left: 0; /* Reset margin */
-            padding: 10px; /* Adjust padding if necessary */
-        }
+            .left-column, .right-column {
+                width: 100%;
+                height: auto;
+                flex: auto;
+            }
 
-        .left-column {
-            padding: 10px;
-            align-items: center; /* Center the content horizontally */
-        }
+            .left-column {
+                padding: 10px;
+                align-items: center; /* Center the content horizontally */
+            }
 
-        .left-column img {
-            width: 50%; /* Reduce the width of the profile image */
-            height: auto;
-            margin: 0 auto; /* Center the image */
-        }
+            .left-column img {
+                width: 25%; /* Reduce the width of the profile image */
+                height: auto;
+                margin: 0 auto; /* Center the image */
+            }
 
-        .left-column h2 {
-            font-size: 1.5em; /* Adjust the font size */
-        }
+            .left-column h2 {
+                font-size: 1.5em; /* Adjust the font size */
+            }
 
-        .left-column p {
-            font-size: 1em; /* Adjust the font size */
-        }
+            .left-column p {
+                font-size: 1em; /* Adjust the font size */
+            }
 
-        .right-column {
-            padding: 20px; /* Adjust padding if necessary */
+            /* .left-column td a img {
+                width: 50%; /* Adjust the size of the logos */
+                /* height: 50%; */
+            /* } */ 
+
+            .right-column h1 {
+                font-size: 2em; /* Adjust the font size */
+            }
+
+            .right-column p, .right-column a {
+                font-size: 1em; /* Adjust the font size */
+            }
+    
         }
-    }
     </style>
 </head>
 
