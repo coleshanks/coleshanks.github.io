@@ -179,7 +179,7 @@ td {
 }
 
 .ja-button {
-    position: fixed; /* Keep the button fixed in place */
+    position: absolute; /* Keep the button fixed in place */
     top: 5px; /* Position the button from the top */
     right: 5px; /* Position the button from the right */
     padding: 6px 16px; /* Adjusts the space inside the button: top-bottom, left-right */
@@ -203,7 +203,7 @@ td {
 footer {
     width: 100%;
     /* background-color: #203457; */
-    position: fixed; /* Sticks the footer at the bottom */
+    position: absolute;
     bottom: 0; /* Aligns the footer to the bottom */
     /* left: 0; */
     z-index: 1000; /* Ensures the footer stays on top */
