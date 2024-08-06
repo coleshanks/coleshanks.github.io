@@ -85,7 +85,8 @@ h1 {
     color: var(--text_green);
     font-family: var(--hf2); /* Use Roboto for headers */
     font-size: 30px; /* Default font size */
-    margin: 12px 10px;
+    margin: 12px 16px;
+    text-align: left;
 }
 h2 {
     color: var(--text_grey);
@@ -103,9 +104,9 @@ h4 {
 p {
     font-family: var(--f2); /* Use Open Sans for paragraphs */
     width: 80%;
-    font-size: 16px; /* Default font size */
+    font-size: 18px; /* Default font size */
     text-align: left;
-    margin: 12px 10px;
+    margin: 12px 16px;
 }
 
 a:link,
@@ -178,10 +179,9 @@ td {
 }
 
 .ja-button {
-    position: absolute;
-    width: 60px;
-    top: 5px; /* Adjust as needed */
-    right: 5px; /* Adjust as needed */
+    position: fixed; /* Use fixed to keep it in the same place even when scrolling */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
     padding: 10px 20px;
     background-color: #007BFF; /* Button color */
     color: white;
