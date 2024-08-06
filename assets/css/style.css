@@ -200,6 +200,16 @@ td {
     color: white;
 }
 
+.footer {
+    width: 100%;
+    color: #D8DEE9; /* Text color */
+    text-align: center;
+    padding: 10px 0;
+    position: fixed; /* Sticks the footer at the bottom */
+    bottom: 5; /* Aligns the footer to the bottom */
+    z-index: 1000; /* Ensures the footer stays on top */
+}
+
 /* Styles for tablets and smaller screens */
 @media (max-width: 768px) {
     body {
