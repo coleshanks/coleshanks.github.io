@@ -104,6 +104,7 @@ p {
     font-family: var(--f2); /* Use Open Sans for paragraphs */
     font-size: 20px; /* Default font size */
     text-align: center;
+    margin: 12px 10px;
 }
 
 a:link,
