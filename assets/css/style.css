@@ -114,7 +114,7 @@ td {
 th,
 td {
     border-radius: 10px;
-    border-style: none;
+    border-style: solid;
     padding: 10px;
 }
 
