@@ -195,8 +195,9 @@ td {
     display: inline-block; /* Ensure the button sizes to its content */
 }
 
-.ja-button:hover {
+.ja-button:hover, .ja-button:hover a {
     background-color: #ff3e3e; /* Darker shade for hover effect */
+    color: white;
 }
 
 /* Styles for tablets and smaller screens */
