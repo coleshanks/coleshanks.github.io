@@ -211,15 +211,14 @@ footer {
 }
 
 footer p {
-    font-size: 14px; /* Specify the unit */
+    font-size: 16px; /* Specify the unit */
     text-align: center;
-    width: 100%;
-    color: #D8DEE9; /* Text color */
+    /* color: #D8DEE9;  */
     padding: 10px 0;
 }
 
 footer img {
-    width: 20%; /* Adjust the width as needed */
+    width: 30%; /* Adjust the width as needed */
     height: auto;
 }
 
