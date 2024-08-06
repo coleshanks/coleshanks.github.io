@@ -1,5 +1,5 @@
-<!DOCTYPE html>     <!--Specifies the doctype-->
-<html lang="en-CA">    <!--Specifies the document language/region-->
+<!DOCTYPE html> <!--Specifies the doctype-->
+<html lang="en-CA"> <!--Specifies the document language/region-->
     <head>
         <!--META tags go here-->
         <meta charset="utf-8">
@@ -20,40 +20,160 @@
 
         <!--Scripts-->
         <script defer src="/scripts/navbar.js"></script>
+        <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
 
-    </head>
+        <style>
+        :root {
+    /* Fonts */
+    --f: 'Fira Sans', sans-serif;
+    --page-height: 1400px;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-    <body>
-        <noscript>Sorry, your browser does not support JavaScript!</noscript> <!--if no JS support-->
-        <button class="ja-button"><a href="/ja/index_ja.html" target="_self">日本語</a></button>
-        <div>
-            <!--Top of the page NAVBAR/directory-->
-            <ul class="navbar">
-                <li class="btn_on_page"><a href="/index.html" target="_self">Home</a></li>
-                <li class="nav_btn"><a href="/pages/projects.html" target="_self">Projects</a></li>
-                <li class="nav_btn"><a href="/pages/CV.html" target="_self">CV</a></li>
-                <li class="nav_btn"><a href="/pages/Japan_JET.html" target="_self">Japan/JET</a></li>
-                <li class="nav_btn"><a href="/pages/Travel.html" target="_self">Travel</a></li>
-                <li class="nav_btn"><a href="/pages/Extras.html" target="_self">Extras</a></li>
-                <li class="nav_btn"><a href="/pages/profile.html" target="_self">Profile</a></li>
-                <li class="nav_btn"><a href="/pages/testing.html" target="_self">Testing</a></li>
-            </ul>   
+        /* Flexbox styles for the main content */
+        .main-content {
+            display: flex;
+            height: 100%;
+        }
+
+        .left-column {
+            width: 25%;
+            background-color: #203457;
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            /* width: 200px; */
+            overflow-y: auto; /* Add scroll if content overflows */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+        .right-column {
+            margin-left: 25%;
+            width: 75%;
+            height: 100%;
+        }
+
+         .left-column img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            box-sizing: border-box;
+        } 
+
+        .left-column .td img {
+            width: 10%;
+        }
+        table {
+        table-layout: fixed;
+        width: 80%; /* Optional: Make the table take full width */
+    }
+
+    td {
+        width: 50px; /* Set a fixed width for each cell */
+        padding: 10px; /* Optional: Add padding for better spacing */
+        text-align: center; /* Optional: Center align text for consistency */
+    }
+    td img {
+        display: block; /* Ensures the image is treated as a block element */
+        margin: 0 auto; /* Centers the image horizontally */
+        width: 40%;
+        height: auto;
+    }
+    i, span {
+            font-size: 30px; /* Set font size for icons */
+            padding: 0 12px; /* Adds padding to the left and right of each icon */
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .left-column, .right-column {
+                flex-direction: column;
+                width: 100%;
+                height: auto;
+            }
+
+        }
+    
+    </style>
+</head>
+
+<body>
+    <noscript>Sorry, your browser does not support JavaScript!</noscript> <!--if no JS support-->
+    <button class="ja-button"><a href="/ja/index_ja.html" target="_self">日本語</a></button>
+
+    <div class="main-content">
+        <div class="left-column">
+            <img src="/assets/images/images.png" alt="profile" style="width: 100%; height: auto; max-width: 100%;">
+            <h1 style="text-align: center;"> Cole Shanks</h1>
+            <div style="display: inline-block;">
+                <h4>Kure, Hiroshima, Japan<a href="https://maps.app.goo.gl/zTk8r8mL82zHNzJt9" target="_blank"><span class='fa fa-map-marker' style="font-size: 20px; padding: 0 12px;"></span></a></h4>
+            </div>
+            <div style="display: inline; padding: 0 20px;">
+                <a href="mailto:cshanks223@gmail.com"><span class='fa fa-envelope'></span></a>
+                <a href="https://github.com/coleshanks" target="_blank"><span class='fab fa-github'></span></a>
+                <a href="https://www.linkedin.com/in/coleshanks" target="_blank"><span class='fa fa-linkedin'></span></a>
+                <a href="https://www.instagram.com/coleshanks_" target="_blank"><span class='fab fa-instagram'></span></a>
+            </div>
+            <!-- <div class="content">
+                <ul style="display: inline-flex;">
+                    <li><a href="https://github.com/coleshanks" target="_blank"><img src="/assets/images/logo/netflix.png" alt="github"></a></li>
+                </ul>
+            </div> -->
+
+            <!-- <div> -->
+                <!-- <table>
+                    <tr>
+                        <td><a href="https://github.com/coleshanks" target="_blank"><img src="/assets/images/logo/github.png" alt="github"></a></td>
+                        <td><a href="https://www.linkedin.com/in/coleshanks" target="_blank"><img src="/assets/images/logo/linkedin.png" alt="linkedin"></a></td>
+                        <td><a href="https://www.instagram.com/coleshanks_" target="_blank"><img src="/assets/images/logo/instagram.png" alt="instagram"></a></td>
+                    </tr>
+                </table> -->
+            <!-- </div> -->
+            <!-- <div>
+                <ul class="profile_navbar" style="display: inline-block; background-color: inherit; list-style: none;">
+                    <li style="display: inline; padding: 12px;"><a href="https://github.com/coleshanks" target="_blank"><img src="/assets/images/logo/github.png" alt="github" style="width: 20%; height: 20%;"></a></li>
+                    <li style="display: inline; padding: 12px;"><a href="https://www.linkedin.com/in/coleshanks" target="_blank"><img src="/assets/images/logo/linkedin.png" alt="linkedin" style="width: 20%; height: 20%;"></a></li>
+                    <li style="display: inline; padding: 12px;"><a href="https://www.instagram.com/coleshanks_" target="_blank"><img src="/assets/images/logo/instagram.png" alt="instagram" style="width: 20%; height: 20%;"></a></li>
+                </ul>   
+            </div> -->
+            <p>This is some content for the left column.</p>
         </div>
 
-        <div class="content">
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">Website</h1>
+        <div class="right-column">
+            <div>
+                <!--Top of the page NAVBAR/directory-->
+                <ul class="profile_navbar">
+                    <li class="btn_on_page"><a href="/index.html" target="_self">Home</a></li>
+                    <li class="nav_btn"><a href="/pages/projects.html" target="_self">Projects</a></li>
+                    <li class="nav_btn"><a href="/pages/CV.html" target="_self">CV</a></li>
+                    <li class="nav_btn"><a href="/pages/Japan_JET.html" target="_self">Japan/JET</a></li>
+                    <li class="nav_btn"><a href="/pages/Travel.html" target="_self">Travel</a></li>
+                    <li class="nav_btn"><a href="/pages/Extras.html" target="_self">Extras</a></li>
+                </ul>   
+            </div>
+            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">Welcome to my website</h1>
+            <!--Content about me going here-->
+            <h2>about me</h2>
+            <p>Hi there! I'm a graduate of <a href="https://engineering.ubc.ca/programs/undergraduate/electrical-engineering" target="_blank">Electrical Engineering from UBC</a>, currently living in Japan as part of the <a href="https://jetprogramme.org/en/" target="_blank">JET Programme</a>. I'm passionate about learning Japanese, exploring history and culture, and reading—particularly sci-fi and fantasy.</p>
+            <p>In my free time, I enjoy programming—this website and some small games on my GitHub showcase my work.</p>
+            <p>Traveling is another one of my passions, and I've been fortunate to visit many countries during my time in Japan. Feel free to explore the rest of my website—there are some cool hidden gems if you look around!</p>
+            
+            <footer>
+                <p><a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img src="/assets/images/license/by-nc.png" alt="CC BY-NC 4.0"></a>Cole Shanks - 2024</p>
+            </footer>
         </div>
-        <p title="It's in Japanese">
-            <a href="/ja/index_ja.html" target="_self"><i>Japanese Site</i></a>
-        </p>
-    </body>
+    </div>
+</body>
 </html>
-
-
-
-
-
-
-
-
-
