@@ -179,18 +179,20 @@ td {
 }
 
 .ja-button {
-    position: fixed; /* Use fixed to keep it in the same place even when scrolling */
-    top: 10px; /* Adjust as needed */
-    right: 10px; /* Adjust as needed */
-    padding: 10px 20px;
-    background-color: #007BFF; /* Button color */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    position: fixed; /* Keep the button fixed in place */
+    top: 10px; /* Position the button from the top */
+    right: 10px; /* Position the button from the right */
+    padding: 10px 20px; /* Adjusts the space inside the button: top-bottom, left-right */
+    background-color: #007BFF; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Pointer cursor on hover */
     z-index: 2000; /* Ensure the button stays on top */
-    font-size: 16px; /* Adjust as needed */
-    text-align: center;
+    font-size: 16px; /* Adjust the text size */
+    text-align: center; /* Center the text horizontally */
+    white-space: nowrap; /* Prevent text from wrapping */
+    display: inline-block; /* Ensure the button sizes to its content */
 }
 
 .ja-button:hover {
