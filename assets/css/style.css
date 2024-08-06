@@ -178,16 +178,17 @@ td {
 }
 
 .ja-button {
-    position: fixed;
-    top: 10px; /* Adjust as needed */
-    right: 10px; /* Adjust as needed */
+    position: absolute;
+    width: 60px;
+    top: 5px; /* Adjust as needed */
+    right: 5px; /* Adjust as needed */
     padding: 10px 20px;
     background-color: #007BFF; /* Button color */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    z-index: 1000; /* Ensure the button stays on top */
+    z-index: 2000; /* Ensure the button stays on top */
     font-size: 16px; /* Adjust as needed */
     text-align: center;
 }
