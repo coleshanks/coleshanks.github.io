@@ -85,7 +85,7 @@ h1 {
     color: var(--text_green);
     font-family: var(--hf2); /* Use Roboto for headers */
     font-size: 30px; /* Default font size */
-    margin: 5px 10px;
+    margin: 12px 10px;
 }
 h2 {
     color: var(--text_grey);
@@ -97,6 +97,7 @@ h4 {
     color: var(--text_grey);
     font-family: var(--f2); /* Use sans for h2 */
     font-size: 16px; /* Default font size */
+    margin: 12px 10px;
 }
 
 p {
