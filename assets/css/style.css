@@ -86,6 +86,11 @@ h1 {
     font-family: var(--hf2); /* Use Roboto for headers */
     font-size: 30px; /* Default font size */
 }
+h2 {
+    color: var(--text_grey);
+    font-family: var(--f2); /* Use sans for h2 */
+    font-size: 20px; /* Default font size */
+}
 
 p {
     font-family: var(--f2); /* Use Open Sans for paragraphs */
