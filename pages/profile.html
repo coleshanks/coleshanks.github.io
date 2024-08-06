@@ -50,6 +50,7 @@
             bottom: 0;
             /* width: 200px; */
             overflow-y: auto; /* Add scroll if content overflows */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         .right-column {
             margin-left: 25%;
@@ -57,11 +58,12 @@
             height: 100%;
         }
 
-        /* .left-column img {
+         .left-column img {
             width: 100%;
             height: auto;
             max-width: 100%;
-        } */
+            box-sizing: border-box;
+        } 
 
         .left-column .td img {
             width: 10%;
