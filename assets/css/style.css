@@ -93,6 +93,11 @@ h2 {
     font-size: 20px; /* Default font size */
     margin: 5px 10px;
 }
+h4 {
+    color: var(--text_grey);
+    font-family: var(--f2); /* Use sans for h2 */
+    font-size: 16px; /* Default font size */
+}
 
 p {
     font-family: var(--f2); /* Use Open Sans for paragraphs */
