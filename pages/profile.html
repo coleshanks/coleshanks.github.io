@@ -38,6 +38,9 @@
         }
 
         .left-column {
+            position: fixed;
+            top: 0;
+            bottom: 0;
             width: 25%;
             background-color: #203457;
             padding: 0 16px;
@@ -58,6 +61,24 @@
 
         .left-column .td img {
             width: 10%;
+        }
+        table {
+        table-layout: fixed;
+        width: 100%; /* Optional: Make the table take full width */
+    }
+
+    td {
+        width: 50px; /* Set a fixed width for each cell */
+        padding: 10px; /* Optional: Add padding for better spacing */
+        text-align: center; /* Optional: Center align text for consistency */
+    }
+    td img {
+        display: block; /* Ensures the image is treated as a block element */
+        margin: 0 auto; /* Centers the image horizontally */
+    }
+    i, span {
+            font-size: 30px; /* Set font size for icons */
+            padding: 0 20px; /* Adds padding to the left and right of each icon */
         }
 
         /* Responsive design for smaller screens */
@@ -102,24 +123,7 @@
             .right-column p, .right-column a {
                 font-size: 1em; /* Adjust the font size */
             }
-            table {
-        table-layout: fixed;
-        width: 100%; /* Optional: Make the table take full width */
-    }
-
-    td {
-        width: 50px; /* Set a fixed width for each cell */
-        padding: 10px; /* Optional: Add padding for better spacing */
-        text-align: center; /* Optional: Center align text for consistency */
-    }
-    td img {
-        display: block; /* Ensures the image is treated as a block element */
-        margin: 0 auto; /* Centers the image horizontally */
-    }
     
-
-    
-
         }
     </style>
 </head>
@@ -141,7 +145,6 @@
                     <li><a href="https://github.com/coleshanks" target="_blank"><img src="/assets/images/logo/netflix.png" alt="github"></a></li>
                 </ul>
             </div> -->
-            <h1>fab fa-instagram</h1>
             <div class="content" style="display: inline-block;"></div>
             <a href="https://github.com/coleshanks" target="_blank"><i class='fa fa-linkedin' style='font-size:24px'></i></a>
             <i class='fab fa-instagram'></i>
