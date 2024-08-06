@@ -217,6 +217,11 @@ footer p {
     padding: 10px 0;
 }
 
+footer img {
+    font-size: 10px; /* Specify the unit */
+}
+
+
 /* Styles for tablets and smaller screens */
 @media (max-width: 768px) {
     body {
