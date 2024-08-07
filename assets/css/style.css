@@ -143,6 +143,7 @@ td {
     border-radius: 10px;
     border-style: none;
     padding: 10px;
+    background-color: black;
 }
 
 .nav_btn:hover,
