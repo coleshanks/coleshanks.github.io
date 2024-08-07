@@ -83,7 +83,8 @@ h1 {
     color: var(--text_green);
     font-family: var(--hf2); /* Use Roboto for headers */
     font-size: 30px; /* Default font size */
-    margin: 12px auto;
+    margin: 0;
+    padding: 12px 0;
     text-align: left;
 }
 h2 {
