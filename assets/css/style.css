@@ -204,7 +204,7 @@ td {
 footer {
     /* background-color: #203457; */
     /* width: 75%; */
-    position: absolute;
+    position: static;
     bottom: 0; /* Aligns the footer to the bottom */
     /* left: 0; */
     z-index: 1000; /* Ensures the footer stays on top */
