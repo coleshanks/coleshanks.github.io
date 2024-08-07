@@ -95,6 +95,14 @@ h2 {
     margin: 12px 30px;
     text-align: left;
 }
+
+h3 {
+    color: var(--text_grey);
+    font-family: var(--f2); /* Use sans for h2 */
+    font-size: 20px; /* Default font size */
+    margin: 12px 10px;
+}
+
 h4 {
     color: var(--text_grey);
     font-family: var(--f2); /* Use sans for h2 */
