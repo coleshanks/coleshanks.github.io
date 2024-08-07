@@ -238,7 +238,7 @@ td {
     top: 5px; /* Position the button from the top */
     left: 5px; /* Position the button from the right */
     padding: 6px 16px; /* Adjusts the space inside the button: top-bottom, left-right */
-    background-color: #242930; /* Button background color */
+    background-color: #1a0d48; /* Button background color */
     color: white; /* Text color */
     border: none; /* No border */
     border-radius: 3px; /* Rounds the corners of the button */
@@ -248,11 +248,6 @@ td {
     text-align: center; /* Center the text horizontally */
     white-space: nowrap; /* Prevent text from wrapping */
     display: inline-block; /* Ensure the button sizes to its content */
-}
-
-.back-to-main, .back-to-main a {
-    background-color: #1a0d48; /* Darker shade for hover effect */
-    color: white;
 }
 
 footer {
