@@ -100,7 +100,7 @@ h3 {
     color: var(--text_grey);
     font-family: var(--f2); /* Use sans for h2 */
     font-size: 20px; /* Default font size */
-    margin: 12px 30px;
+    margin: 8px 30px;
     text-align: left;
 }
 
@@ -108,7 +108,7 @@ h4 {
     color: var(--text_grey);
     font-family: var(--f2); /* Use sans for h2 */
     font-size: 16px; /* Default font size */
-    margin: 12px 30px;
+    margin: 8px 30px;
     text-align: left;
 }
 
