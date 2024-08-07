@@ -29,7 +29,7 @@ body {
     font-family: var(--f2); /* Use Open Sans for paragraphs */
     display: flex;
     flex-direction: column;
-    padding-top: 112px;
+    padding-top: 120px;
     color: var(--text_grey);
     background-color: var(--primary_dark);
     text-align: center;
