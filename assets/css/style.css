@@ -91,7 +91,7 @@ h2 {
     color: var(--text_green);
     font-family: var(--hf2); /* Use Roboto for headers */
     font-size: 28px; /* Default font size */
-    margin: 12px 30px;
+    margin: 8px 30px;
     text-align: left;
 }
 
