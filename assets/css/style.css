@@ -211,6 +211,28 @@ td {
     color: white;
 }
 
+.en-button {
+    position: absolute; /* Keep the button fixed in place */
+    top: 5px; /* Position the button from the top */
+    right: 5px; /* Position the button from the right */
+    padding: 2px 8px; /* Adjusts the space inside the button: top-bottom, left-right */
+    background-color: #242930; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    z-index: 1100; /* Ensure the button stays on top */
+    font-size: 14px; /* Adjust the text size */
+    text-align: center; /* Center the text horizontally */
+    white-space: nowrap; /* Prevent text from wrapping */
+    display: inline-block; /* Ensure the button sizes to its content */
+}
+
+.en-button:hover, .ja-button:hover a {
+    background-color: #3e82ff; /* Darker shade for hover effect */
+    color: white;
+}
+
 .back-to-main {
     position: absolute; /* Keep the button fixed in place */
     top: 5px; /* Position the button from the top */
