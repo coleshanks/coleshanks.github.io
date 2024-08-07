@@ -228,7 +228,7 @@ td {
     display: inline-block; /* Ensure the button sizes to its content */
 }
 
-.en-button:hover, .ja-button:hover a {
+.en-button:hover, .en-button:hover a {
     background-color: #3e82ff; /* Darker shade for hover effect */
     color: white;
 }
