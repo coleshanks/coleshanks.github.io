@@ -255,6 +255,10 @@ footer img {
     height: auto;
 }
 
+footer:hover a {
+    color: white;
+}
+
 
 /* Styles for tablets and smaller screens */
 @media (max-width: 768px) {
