@@ -1,0 +1,94 @@
+        /* :root {
+    /* Fonts */
+    /* --f: 'Fira Sans', sans-serif; */
+    /* --page-height: 1400px; */
+        /* } */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Flexbox styles for the main content */
+        .main-content {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* If you want the content to stack vertically */
+            text-align: center; /* If you want text inside to be centered */
+        }
+
+        .left-column {
+            width: 20%;
+            background-color: #203457;
+            /* padding: 0 16px; */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            /* width: 200px; */
+            overflow-y: auto; /* Add scroll if content overflows */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+        .right-column {
+            margin-left: 20%;
+            width: 80%;
+            height: 100%;
+        }
+
+         .left-column img {
+            width: 80%;
+            height: auto;
+            /* max-width: 212px; */
+            box-sizing: border-box;
+            display: block;
+            margin: 0 auto;
+        } 
+
+        .left-column .td img {
+            width: 10%;
+        }
+        table {
+        table-layout: fixed;
+        width: 80%; /* Optional: Make the table take full width */
+    }
+
+    td {
+        width: 50px; /* Set a fixed width for each cell */
+        padding: 10px; /* Optional: Add padding for better spacing */
+        text-align: center; /* Optional: Center align text for consistency */
+    }
+    td img {
+        display: block; /* Ensures the image is treated as a block element */
+        margin: 0 auto; /* Centers the image horizontally */
+        width: 40%;
+        height: auto;
+    }
+    i, span {
+            font-size: 30px; /* Set font size for icons */
+            padding: 0 6px; /* Adds padding to the left and right of each icon */
+    }
+
+    hr {
+        border: 1px solid #57cc8a;
+        margin: 0 30px;
+        width: 85%;
+    }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .left-column, .right-column {
+                flex-direction: column;
+                width: 100%;
+                height: auto;
+            }
+
+        }
