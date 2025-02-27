@@ -20,7 +20,7 @@
         }
 
         .left-column {
-            width: 10%;
+            width: 15%;
             background-color: #203457;
             /* padding: 0 16px; */
             display: flex;
@@ -35,8 +35,8 @@
             box-sizing: border-box; /* Include padding in width calculation */
         }
         .right-column {
-            margin-left: 10%;
-            width: 90%;
+            margin-left: 15%;
+            width: 85%;
             height: 100%;
         }
 
