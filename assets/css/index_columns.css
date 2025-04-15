@@ -93,17 +93,20 @@
 
         @media (max-width: 768px) {
             .main-content {
-              flex-direction: column; /* Stack children vertically */
+              flex-direction: column;
             }
           
             .left-column {
-              position: relative;     /* Unfix the sidebar */
-              width: 100%;
-              height: auto;
+              position: relative !important;   /* Fully cancel fixed positioning */
+              width: 100% !important;
+              height: auto !important;
+              z-index: 1;
             }
           
             .right-column {
-              margin-left: 0;
-              width: 100%;
+              margin-left: 0 !important;       /* Fully cancel left offset */
+              width: 100% !important;
+              position: relative;
+              z-index: 0;
             }
           }
