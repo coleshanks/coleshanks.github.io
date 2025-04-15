@@ -46,15 +46,6 @@
             height: 100%;
         }
 
-         .left-column img {
-            width: 80%;
-            height: auto;
-            /* max-width: 212px; */
-            box-sizing: border-box;
-            display: block;
-            margin: 0 auto;
-        } 
-
         /* Profile image inside the sidebar */
         .left-column img {
             width: 80%;
