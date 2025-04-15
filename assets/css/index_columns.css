@@ -12,11 +12,9 @@
         /* Flexbox styles for the main content */
         .main-content {
             display: flex;
+            flex-direction: row;      /* lay out children left to right */
             height: 100%;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column; /* If you want the content to stack vertically */
-            text-align: center; /* If you want text inside to be centered */
+            align-items: stretch;     /* let columns expand full height */
         }
 
         .left-column {
