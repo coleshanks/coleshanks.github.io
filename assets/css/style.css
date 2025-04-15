@@ -277,7 +277,7 @@ footer:hover a {
 }
 
 
-/* Styles for tablets and smaller screens */
+/* Styles for tablets and smaller screens
 @media (max-width: 768px) {
     body {
         font-size: 14px;
@@ -302,7 +302,7 @@ footer:hover a {
 }
 
 /* Styles for mobile phones */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     body {
         font-size: 12px;
     }
@@ -323,4 +323,4 @@ footer:hover a {
         padding: 2px 6px 0;
         margin: 2px;
     }
-}
+} */
