@@ -11,7 +11,7 @@ window.addEventListener("scroll", function() {
   if (currentScroll > lastScrollTop && currentScroll > scrollThreshold) {
     // Scroll Down - gradually move navbar up to escape
     let distanceToEscape = (currentScroll - scrollThreshold) / escapeSpeed;
-    navbar.style.top = `-${Math.min(distanceToEscape, navbarHeight)}px`;
+    navbar.style.top = `-${distanceToEscape}px`; // Move the navbar up to escape
   } else if (currentScroll < lastScrollTop || currentScroll <= scrollThreshold) {
     // Scroll Up or within threshold - show navbar
     navbar.style.top = '0';
