@@ -78,7 +78,7 @@
     }
 
         /* Responsive design for smaller screens */
-        @media (max-width: 600px) {
+        /* @media (max-width: 600px) {
             .main-content {
                 flex-direction: column;
             }
@@ -89,4 +89,21 @@
                 height: auto;
             }
 
-        }
+        } */
+
+        @media (max-width: 768px) {
+            .main-content {
+              flex-direction: column; /* Stack children vertically */
+            }
+          
+            .left-column {
+              position: relative;     /* Unfix the sidebar */
+              width: 100%;
+              height: auto;
+            }
+          
+            .right-column {
+              margin-left: 0;
+              width: 100%;
+            }
+          }
