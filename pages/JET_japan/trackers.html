@@ -76,6 +76,12 @@
       width: 0;
       transition: width 0.2s;
     }
+
+    .log {
+      text-align: left;
+      font-size: 14px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -85,14 +91,16 @@
     <h2>🇯🇵 JA (AJATT)</h2>
     <p><span id="ja-time">0:00:00</span> / 3h goal</p>
     <div class="progress-bar"><div class="progress" id="ja-progress"></div></div>
-    <button class="btn" onclick="toggleTimer('ja')">Start / Stop</button>
+    <button class="btn" onclick="toggleSession('ja')">Start / Stop</button>
+    <div class="log" id="ja-log"></div>
   </div>
 
   <div class="tracker" id="code">
     <h2>🐍 Python (Carmack)</h2>
     <p><span id="code-time">0:00:00</span> / 1h goal</p>
     <div class="progress-bar"><div class="progress" id="code-progress"></div></div>
-    <button class="btn" onclick="toggleTimer('code')">Start / Stop</button>
+    <button class="btn" onclick="toggleSession('code')">Start / Stop</button>
+    <div class="log" id="code-log"></div>
   </div>
 
   <script>
@@ -101,64 +109,63 @@
       code: 1 * 3600
     };
 
-    const timers = {
-      ja: { time: 0, running: false, start: null },
-      code: { time: 0, running: false, start: null }
+    const data = {
+      ja: { total: 0, active: null, log: [] },
+      code: { total: 0, active: null, log: [] }
     };
 
-    function updateDisplay(section) {
-      const t = timers[section].time;
-      const h = Math.floor(t / 3600);
-      const m = Math.floor((t % 3600) / 60);
-      const s = t % 60;
-      document.getElementById(`${section}-time`).innerText = `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-
-      const pct = Math.min(t / goals[section], 1) * 100;
-      document.getElementById(`${section}-progress`).style.width = `${pct}%`;
-    }
-
-    function toggleTimer(section) {
-      const timer = timers[section];
-      if (!timer.running) {
-        timer.start = Date.now();
-        timer.running = true;
-      } else {
-        timer.time += Math.floor((Date.now() - timer.start) / 1000);
-        timer.running = false;
-        save();
-      }
-    }
-
     function save() {
-      localStorage.setItem('timers', JSON.stringify({
-        ja: timers.ja.time,
-        code: timers.code.time,
+      localStorage.setItem('trackerData', JSON.stringify({
+        ja: data.ja,
+        code: data.code,
         date: new Date().toDateString()
       }));
     }
 
     function load() {
-      const saved = JSON.parse(localStorage.getItem('timers'));
-      if (!saved) return;
+      const saved = JSON.parse(localStorage.getItem('trackerData'));
       const now = new Date();
-      if (saved.date === now.toDateString() || now.getHours() < 4) {
-        timers.ja.time = saved.ja;
-        timers.code.time = saved.code;
+      if (saved && (saved.date === now.toDateString() || now.getHours() < 4)) {
+        data.ja = saved.ja;
+        data.code = saved.code;
       }
     }
 
-    function tick() {
-      ['ja', 'code'].forEach(section => {
-        if (timers[section].running) {
-          timers[section].time += 1;
-          timers[section].start = Date.now();
-        }
-        updateDisplay(section);
-      });
+    function toggleSession(type) {
+      const now = Date.now();
+      const session = data[type];
+      if (!session.active) {
+        session.active = now;
+      } else {
+        const duration = Math.floor((now - session.active) / 1000);
+        session.total += duration;
+        const start = new Date(session.active).toLocaleTimeString();
+        const end = new Date(now).toLocaleTimeString();
+        session.log.push(`${start} → ${end} = ${format(duration)}`);
+        session.active = null;
+        save();
+      }
+      update(type);
+    }
+
+    function format(seconds) {
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = seconds % 60;
+      return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function update(type) {
+      const total = data[type].total;
+      document.getElementById(`${type}-time`).innerText = format(total);
+      const pct = Math.min(total / goals[type], 1) * 100;
+      document.getElementById(`${type}-progress`).style.width = `${pct}%`;
+      document.getElementById(`${type}-log`).innerHTML = data[type].log.slice().reverse().map(line => `• ${line}`).join('<br>');
     }
 
     load();
-    setInterval(tick, 1000);
+    update('ja');
+    update('code');
   </script>
 </body>
 </html>
