@@ -81,6 +81,7 @@
       text-align: left;
       font-size: 14px;
       margin-top: 10px;
+      white-space: pre-line;
     }
   </style>
 </head>
@@ -138,7 +139,7 @@
       if (!data[type].activeStart) {
         data[type].activeStart = now.toISOString();
         const line = document.createElement('div');
-        line.textContent = `• Session started at ${now.toLocaleTimeString()}`;
+        line.textContent = `• Session started at ${formatTime12(now)}`;
         line.dataset.startLine = 'true';
         logEl.prepend(line);
         save();
@@ -146,23 +147,24 @@
         const start = new Date(data[type].activeStart);
         const duration = Math.floor((now - start) / 1000);
         data[type].total += duration;
-        const startStr = start.toLocaleTimeString();
-        const endStr = now.toLocaleTimeString();
-        const durationStr = format(duration);
+        const startStr = formatTime12(start);
+        const endStr = formatTime12(now);
+        const durationStr = formatReadable(duration);
 
-        // Replace session start line with full log
         const lines = Array.from(logEl.children);
         const startLine = lines.find(line => line.dataset.startLine === 'true');
+        const entry = `• ${startStr} → ${endStr}\n${durationStr}`;
+
         if (startLine) {
-          startLine.textContent = `• ${startStr} → ${endStr} = ${durationStr}`;
+          startLine.textContent = entry;
           startLine.removeAttribute('data-start-line');
         } else {
           const completed = document.createElement('div');
-          completed.textContent = `• ${startStr} → ${endStr} = ${durationStr}`;
+          completed.textContent = entry;
           logEl.prepend(completed);
         }
 
-        data[type].log.unshift(`${startStr} → ${endStr} = ${durationStr}`);
+        data[type].log.unshift(`${startStr} → ${endStr}\n${durationStr}`);
         data[type].activeStart = null;
         update(type);
         save();
@@ -174,6 +176,19 @@
       const m = Math.floor((seconds % 3600) / 60);
       const s = seconds % 60;
       return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function formatReadable(seconds) {
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const parts = [];
+      if (h > 0) parts.push(`${h}h`);
+      if (m > 0 || h === 0) parts.push(`${m}m`);
+      return parts.join(' ');
+    }
+
+    function formatTime12(date) {
+      return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
     }
 
     function update(type) {
@@ -190,15 +205,13 @@
     ['ja', 'code'].forEach(type => {
       const logEl = document.getElementById(`${type}-log`);
 
-      // Re-render active start
       if (data[type].activeStart) {
         const line = document.createElement('div');
-        line.textContent = `• Session started at ${new Date(data[type].activeStart).toLocaleTimeString()}`;
+        line.textContent = `• Session started at ${formatTime12(new Date(data[type].activeStart))}`;
         line.dataset.startLine = 'true';
         logEl.prepend(line);
       }
 
-      // Re-render completed logs
       data[type].log.forEach(entry => {
         const div = document.createElement('div');
         div.textContent = `• ${entry}`;
