@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Time Tracker</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap">
+  <style>
+    :root {
+      --f: 'Fira Sans', sans-serif;
+      --hf: 'Fira Sans', sans-serif;
+      --f2: 'Open Sans', sans-serif;
+      --hf2: 'Roboto', sans-serif;
+      --primary_dark: #353b43;
+      --secondary_dark: #242930;
+      --tertiary_dark: #222;
+      --shadow: #bbb;
+      --shadow-dark: #666;
+      --text_green: #57cc8a;
+      --text_grey: #AFBAC4;
+      --btn_transition_speed: 0.6s;
+    }
+
+    body {
+      background-color: var(--primary_dark);
+      color: var(--text_grey);
+      font-family: var(--f2);
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: var(--hf2);
+      color: var(--text_green);
+    }
+
+    .tracker {
+      background-color: var(--secondary_dark);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 500px;
+      box-shadow: 2px 2px 8px var(--shadow-dark);
+    }
+
+    .btn {
+      background-color: var(--tertiary_dark);
+      color: var(--text_green);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-family: var(--hf2);
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color var(--btn_transition_speed);
+    }
+
+    .btn:hover {
+      background-color: var(--primary_dark);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: var(--text_green);
+      width: 0;
+      transition: width 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <h1>Daily Tracker</h1>
+
+  <div class="tracker" id="ja">
+    <h2>🇯🇵 JA (AJATT)</h2>
+    <p><span id="ja-time">0:00:00</span> / 3h goal</p>
+    <div class="progress-bar"><div class="progress" id="ja-progress"></div></div>
+    <button class="btn" onclick="toggleTimer('ja')">Start / Stop</button>
+  </div>
+
+  <div class="tracker" id="code">
+    <h2>🐍 Python (Carmack)</h2>
+    <p><span id="code-time">0:00:00</span> / 1h goal</p>
+    <div class="progress-bar"><div class="progress" id="code-progress"></div></div>
+    <button class="btn" onclick="toggleTimer('code')">Start / Stop</button>
+  </div>
+
+  <script>
+    const goals = {
+      ja: 3 * 3600,
+      code: 1 * 3600
+    };
+
+    const timers = {
+      ja: { time: 0, running: false, start: null },
+      code: { time: 0, running: false, start: null }
+    };
+
+    function updateDisplay(section) {
+      const t = timers[section].time;
+      const h = Math.floor(t / 3600);
+      const m = Math.floor((t % 3600) / 60);
+      const s = t % 60;
+      document.getElementById(`${section}-time`).innerText = `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+
+      const pct = Math.min(t / goals[section], 1) * 100;
+      document.getElementById(`${section}-progress`).style.width = `${pct}%`;
+    }
+
+    function toggleTimer(section) {
+      const timer = timers[section];
+      if (!timer.running) {
+        timer.start = Date.now();
+        timer.running = true;
+      } else {
+        timer.time += Math.floor((Date.now() - timer.start) / 1000);
+        timer.running = false;
+        save();
+      }
+    }
+
+    function save() {
+      localStorage.setItem('timers', JSON.stringify({
+        ja: timers.ja.time,
+        code: timers.code.time,
+        date: new Date().toDateString()
+      }));
+    }
+
+    function load() {
+      const saved = JSON.parse(localStorage.getItem('timers'));
+      if (!saved) return;
+      const now = new Date();
+      if (saved.date === now.toDateString() || now.getHours() < 4) {
+        timers.ja.time = saved.ja;
+        timers.code.time = saved.code;
+      }
+    }
+
+    function tick() {
+      ['ja', 'code'].forEach(section => {
+        if (timers[section].running) {
+          timers[section].time += 1;
+          timers[section].start = Date.now();
+        }
+        updateDisplay(section);
+      });
+    }
+
+    load();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
