@@ -110,8 +110,8 @@
     };
 
     const data = {
-      ja: { total: 0, log: [] },
-      code: { total: 0, log: [] }
+      ja: { total: 0, activeStart: null, log: [] },
+      code: { total: 0, activeStart: null, log: [] }
     };
 
     function save() {
@@ -133,25 +133,37 @@
 
     function toggleSession(type) {
       const logEl = document.getElementById(`${type}-log`);
-      const lines = Array.from(logEl.children);
-      const startLine = lines.find(line => line.dataset.start);
       const now = new Date();
 
-      if (!startLine) {
+      if (!data[type].activeStart) {
+        data[type].activeStart = now.toISOString();
         const line = document.createElement('div');
         line.textContent = `• Session started at ${now.toLocaleTimeString()}`;
-        line.dataset.start = now.toISOString();
+        line.dataset.startLine = 'true';
         logEl.prepend(line);
+        save();
       } else {
-        const start = new Date(startLine.dataset.start);
+        const start = new Date(data[type].activeStart);
         const duration = Math.floor((now - start) / 1000);
         data[type].total += duration;
         const startStr = start.toLocaleTimeString();
         const endStr = now.toLocaleTimeString();
         const durationStr = format(duration);
-        startLine.textContent = `• ${startStr} → ${endStr} = ${durationStr}`;
-        startLine.removeAttribute('data-start');
-        data[type].log.unshift(startLine.textContent);
+
+        // Replace session start line with full log
+        const lines = Array.from(logEl.children);
+        const startLine = lines.find(line => line.dataset.startLine === 'true');
+        if (startLine) {
+          startLine.textContent = `• ${startStr} → ${endStr} = ${durationStr}`;
+          startLine.removeAttribute('data-start-line');
+        } else {
+          const completed = document.createElement('div');
+          completed.textContent = `• ${startStr} → ${endStr} = ${durationStr}`;
+          logEl.prepend(completed);
+        }
+
+        data[type].log.unshift(`${startStr} → ${endStr} = ${durationStr}`);
+        data[type].activeStart = null;
         update(type);
         save();
       }
@@ -175,13 +187,22 @@
     update('ja');
     update('code');
 
-    // Re-render persistent log entries
     ['ja', 'code'].forEach(type => {
       const logEl = document.getElementById(`${type}-log`);
-      data[type].log.forEach(entry => {
+
+      // Re-render active start
+      if (data[type].activeStart) {
         const line = document.createElement('div');
-        line.textContent = `• ${entry}`;
-        logEl.appendChild(line);
+        line.textContent = `• Session started at ${new Date(data[type].activeStart).toLocaleTimeString()}`;
+        line.dataset.startLine = 'true';
+        logEl.prepend(line);
+      }
+
+      // Re-render completed logs
+      data[type].log.forEach(entry => {
+        const div = document.createElement('div');
+        div.textContent = `• ${entry}`;
+        logEl.appendChild(div);
       });
     });
   </script>
