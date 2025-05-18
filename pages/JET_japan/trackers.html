@@ -110,8 +110,8 @@
     };
 
     const data = {
-      ja: { total: 0, active: null, log: [] },
-      code: { total: 0, active: null, log: [] }
+      ja: { total: 0, log: [] },
+      code: { total: 0, log: [] }
     };
 
     function save() {
@@ -132,20 +132,29 @@
     }
 
     function toggleSession(type) {
-      const now = Date.now();
-      const session = data[type];
-      if (!session.active) {
-        session.active = now;
+      const logEl = document.getElementById(`${type}-log`);
+      const lines = Array.from(logEl.children);
+      const startLine = lines.find(line => line.dataset.start);
+      const now = new Date();
+
+      if (!startLine) {
+        const line = document.createElement('div');
+        line.textContent = `• Session started at ${now.toLocaleTimeString()}`;
+        line.dataset.start = now.toISOString();
+        logEl.prepend(line);
       } else {
-        const duration = Math.floor((now - session.active) / 1000);
-        session.total += duration;
-        const start = new Date(session.active).toLocaleTimeString();
-        const end = new Date(now).toLocaleTimeString();
-        session.log.push(`${start} → ${end} = ${format(duration)}`);
-        session.active = null;
+        const start = new Date(startLine.dataset.start);
+        const duration = Math.floor((now - start) / 1000);
+        data[type].total += duration;
+        const startStr = start.toLocaleTimeString();
+        const endStr = now.toLocaleTimeString();
+        const durationStr = format(duration);
+        startLine.textContent = `• ${startStr} → ${endStr} = ${durationStr}`;
+        startLine.removeAttribute('data-start');
+        data[type].log.unshift(startLine.textContent);
+        update(type);
         save();
       }
-      update(type);
     }
 
     function format(seconds) {
@@ -160,12 +169,21 @@
       document.getElementById(`${type}-time`).innerText = format(total);
       const pct = Math.min(total / goals[type], 1) * 100;
       document.getElementById(`${type}-progress`).style.width = `${pct}%`;
-      document.getElementById(`${type}-log`).innerHTML = data[type].log.slice().reverse().map(line => `• ${line}`).join('<br>');
     }
 
     load();
     update('ja');
     update('code');
+
+    // Re-render persistent log entries
+    ['ja', 'code'].forEach(type => {
+      const logEl = document.getElementById(`${type}-log`);
+      data[type].log.forEach(entry => {
+        const line = document.createElement('div');
+        line.textContent = `• ${entry}`;
+        logEl.appendChild(line);
+      });
+    });
   </script>
 </body>
 </html>
