@@ -225,7 +225,7 @@
         const pct = Math.min(total / goals[type], 1) * 100;
         document.getElementById(`${type}-progress`).style.width = `${pct}%`;
       } else {
-        const width = Math.min(total / 3600 * 10, 100); // GITS: fill based on 10h max
+        const width = Math.min(total / 3600 * 25, 100); // 4h max (25% per hour)
         document.getElementById(`${type}-progress`).style.width = `${width}%`;
       }
     }
