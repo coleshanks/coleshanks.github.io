@@ -45,6 +45,18 @@
       box-shadow: 2px 2px 8px var(--shadow-dark);
     }
 
+    .active-glow-ja {
+      box-shadow: 0 0 10px rgba(88, 180, 255, 0.5);
+    }
+
+    .active-glow-code {
+      box-shadow: 0 0 10px rgba(87, 204, 138, 0.5);
+    }
+
+    .active-glow-gits {
+      box-shadow: 0 0 15px rgba(138, 138, 255, 0.4);
+    }
+
     .btn {
       background-color: var(--tertiary_dark);
       color: var(--text_green);
@@ -104,21 +116,32 @@
     <div class="log" id="code-log"></div>
   </div>
 
+  <div class="tracker" id="gits">
+    <h2>🧘 GITS: Motoko</h2>
+    <p><span id="gits-time">0:00:00</span> total</p>
+    <div class="progress-bar"><div class="progress" id="gits-progress"></div></div>
+    <button class="btn" onclick="toggleSession('gits')">Start / Stop</button>
+    <div class="log" id="gits-log"></div>
+  </div>
+
   <script>
     const goals = {
       ja: 3 * 3600,
-      code: 1 * 3600
+      code: 1 * 3600,
+      gits: Infinity // No fixed goal
     };
 
     const data = {
       ja: { total: 0, activeStart: null, log: [] },
-      code: { total: 0, activeStart: null, log: [] }
+      code: { total: 0, activeStart: null, log: [] },
+      gits: { total: 0, activeStart: null, log: [] }
     };
 
     function save() {
       localStorage.setItem('trackerData', JSON.stringify({
         ja: data.ja,
         code: data.code,
+        gits: data.gits,
         date: new Date().toDateString()
       }));
     }
@@ -129,11 +152,13 @@
       if (saved && (saved.date === now.toDateString() || now.getHours() < 4)) {
         data.ja = saved.ja;
         data.code = saved.code;
+        data.gits = saved.gits;
       }
     }
 
     function toggleSession(type) {
       const logEl = document.getElementById(`${type}-log`);
+      const trackerEl = document.getElementById(type);
       const now = new Date();
 
       if (!data[type].activeStart) {
@@ -142,6 +167,7 @@
         line.textContent = `• Session started at ${formatTime12(now)}`;
         line.dataset.startLine = 'true';
         logEl.prepend(line);
+        trackerEl.classList.add(`active-glow-${type}`);
         save();
       } else {
         const start = new Date(data[type].activeStart);
@@ -166,6 +192,7 @@
 
         data[type].log.unshift(`${startStr} → ${endStr}\n${durationStr}`);
         data[type].activeStart = null;
+        trackerEl.classList.remove(`active-glow-${type}`);
         update(type);
         save();
       }
@@ -188,21 +215,24 @@
     }
 
     function formatTime12(date) {
-      return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+      return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
     }
 
     function update(type) {
       const total = data[type].total;
       document.getElementById(`${type}-time`).innerText = format(total);
-      const pct = Math.min(total / goals[type], 1) * 100;
-      document.getElementById(`${type}-progress`).style.width = `${pct}%`;
+      if (goals[type] !== Infinity) {
+        const pct = Math.min(total / goals[type], 1) * 100;
+        document.getElementById(`${type}-progress`).style.width = `${pct}%`;
+      } else {
+        const width = Math.min(total / 3600 * 10, 100); // GITS: fill based on 10h max
+        document.getElementById(`${type}-progress`).style.width = `${width}%`;
+      }
     }
 
     load();
-    update('ja');
-    update('code');
-
-    ['ja', 'code'].forEach(type => {
+    ['ja', 'code', 'gits'].forEach(type => {
+      update(type);
       const logEl = document.getElementById(`${type}-log`);
 
       if (data[type].activeStart) {
@@ -210,6 +240,7 @@
         line.textContent = `• Session started at ${formatTime12(new Date(data[type].activeStart))}`;
         line.dataset.startLine = 'true';
         logEl.prepend(line);
+        document.getElementById(type).classList.add(`active-glow-${type}`);
       }
 
       data[type].log.forEach(entry => {
