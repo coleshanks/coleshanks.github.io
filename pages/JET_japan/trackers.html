@@ -95,6 +95,39 @@
       margin-top: 10px;
       white-space: pre-line;
     }
+
+    .timeline-bar {
+      display: flex;
+      margin-top: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .block {
+      flex: 1;
+      height: 20px;
+      margin: 0 1px;
+      background-color: #444;
+    }
+
+    .block-ja { background-color: rgba(88, 180, 255, 0.8); }
+    .block-code { background-color: rgba(87, 204, 138, 0.8); }
+    .block-gits { background-color: rgba(138, 138, 255, 0.8); }
+    .block-none { background-color: #333; }
+
+    .legend {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .legend span {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
   </style>
 </head>
 <body>
@@ -124,131 +157,44 @@
     <div class="log" id="gits-log"></div>
   </div>
 
+  <h2>📊 Daily Timeline (7AM–9PM)</h2>
+  <div class="timeline-bar" id="timeline"></div>
+  <div class="legend">
+    <span style="background: rgba(88, 180, 255, 0.8);"></span> JA
+    <span style="background: rgba(87, 204, 138, 0.8);"></span> CODE
+    <span style="background: rgba(138, 138, 255, 0.8);"></span> GITS
+    <span style="background: #333;"></span> UNTRACKED
+  </div>
+  <div class="log" id="timeline-log"></div>
+
   <script>
-    const goals = {
-      ja: 3 * 3600,
-      code: 1 * 3600,
-      gits: Infinity // No fixed goal
-    };
+    // existing code...
 
-    const data = {
-      ja: { total: 0, activeStart: null, log: [] },
-      code: { total: 0, activeStart: null, log: [] },
-      gits: { total: 0, activeStart: null, log: [] }
-    };
+    function renderFullTimelineLog() {
+      const output = [];
+      const timelineLog = document.getElementById('timeline-log');
+      const sorted = [...data.timeline].sort((a, b) => new Date(a.start) - new Date(b.start));
+      let lastEnd = new Date();
+      lastEnd.setHours(7, 0, 0, 0);
 
-    function save() {
-      localStorage.setItem('trackerData', JSON.stringify({
-        ja: data.ja,
-        code: data.code,
-        gits: data.gits,
-        date: new Date().toDateString()
-      }));
-    }
-
-    function load() {
-      const saved = JSON.parse(localStorage.getItem('trackerData'));
-      const now = new Date();
-      if (saved && (saved.date === now.toDateString() || now.getHours() < 4)) {
-        data.ja = saved.ja;
-        data.code = saved.code;
-        data.gits = saved.gits;
-      }
-    }
-
-    function toggleSession(type) {
-      const logEl = document.getElementById(`${type}-log`);
-      const trackerEl = document.getElementById(type);
-      const now = new Date();
-
-      if (!data[type].activeStart) {
-        data[type].activeStart = now.toISOString();
-        const line = document.createElement('div');
-        line.textContent = `• Session started at ${formatTime12(now)}`;
-        line.dataset.startLine = 'true';
-        logEl.prepend(line);
-        trackerEl.classList.add(`active-glow-${type}`);
-        save();
-      } else {
-        const start = new Date(data[type].activeStart);
-        const duration = Math.floor((now - start) / 1000);
-        data[type].total += duration;
-        const startStr = formatTime12(start);
-        const endStr = formatTime12(now);
-        const durationStr = formatReadable(duration);
-
-        const lines = Array.from(logEl.children);
-        const startLine = lines.find(line => line.dataset.startLine === 'true');
-        const entry = `• ${startStr} → ${endStr}\n${durationStr}`;
-
-        if (startLine) {
-          startLine.textContent = entry;
-          startLine.removeAttribute('data-start-line');
-        } else {
-          const completed = document.createElement('div');
-          completed.textContent = entry;
-          logEl.prepend(completed);
+      sorted.forEach(({ start, end, mode }) => {
+        const s = new Date(start);
+        const e = new Date(end);
+        if (s > lastEnd) {
+          output.push(`• ${formatTime12(lastEnd)} → ${formatTime12(s)}\n${formatReadable((s - lastEnd) / 1000)} (UNTRACKED)`);
         }
-
-        data[type].log.unshift(`${startStr} → ${endStr}\n${durationStr}`);
-        data[type].activeStart = null;
-        trackerEl.classList.remove(`active-glow-${type}`);
-        update(type);
-        save();
-      }
-    }
-
-    function format(seconds) {
-      const h = Math.floor(seconds / 3600);
-      const m = Math.floor((seconds % 3600) / 60);
-      const s = seconds % 60;
-      return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-    }
-
-    function formatReadable(seconds) {
-      const h = Math.floor(seconds / 3600);
-      const m = Math.floor((seconds % 3600) / 60);
-      const parts = [];
-      if (h > 0) parts.push(`${h}h`);
-      if (m > 0 || h === 0) parts.push(`${m}m`);
-      return parts.join(' ');
-    }
-
-    function formatTime12(date) {
-      return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-    }
-
-    function update(type) {
-      const total = data[type].total;
-      document.getElementById(`${type}-time`).innerText = format(total);
-      if (goals[type] !== Infinity) {
-        const pct = Math.min(total / goals[type], 1) * 100;
-        document.getElementById(`${type}-progress`).style.width = `${pct}%`;
-      } else {
-        const width = Math.min(total / 3600 * 25, 100); // 4h max (25% per hour)
-        document.getElementById(`${type}-progress`).style.width = `${width}%`;
-      }
-    }
-
-    load();
-    ['ja', 'code', 'gits'].forEach(type => {
-      update(type);
-      const logEl = document.getElementById(`${type}-log`);
-
-      if (data[type].activeStart) {
-        const line = document.createElement('div');
-        line.textContent = `• Session started at ${formatTime12(new Date(data[type].activeStart))}`;
-        line.dataset.startLine = 'true';
-        logEl.prepend(line);
-        document.getElementById(type).classList.add(`active-glow-${type}`);
-      }
-
-      data[type].log.forEach(entry => {
-        const div = document.createElement('div');
-        div.textContent = `• ${entry}`;
-        logEl.appendChild(div);
+        output.push(`• ${formatTime12(s)} → ${formatTime12(e)}\n${formatReadable((e - s) / 1000)} (${mode.toUpperCase()})`);
+        lastEnd = e;
       });
-    });
+
+      const endOfDay = new Date();
+      endOfDay.setHours(21, 0, 0, 0);
+      if (lastEnd < endOfDay) {
+        output.push(`• ${formatTime12(lastEnd)} → ${formatTime12(endOfDay)}\n${formatReadable((endOfDay - lastEnd) / 1000)} (UNTRACKED)`);
+      }
+
+      timelineLog.innerText = output.join('\n\n');
+    }
   </script>
 </body>
 </html>
