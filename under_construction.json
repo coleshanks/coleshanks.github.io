@@ -1,0 +1,11 @@
+{
+  "index.html": false,
+  "projects.html": false,
+  "CV.html": true,
+  "Japan_JET.html": false,
+  "Travel.html": false,
+  "Extras.html": true,
+  "testing.html": false,
+  "copy_test.html": false,
+  "copy_broken.html": false
+}
