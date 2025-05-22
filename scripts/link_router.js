@@ -1,29 +1,37 @@
 // /scripts/link_router.js
 
-// Load the under-construction list
+console.log("✅ link_router.js loaded");
+
 fetch('/under_construction.json')
   .then(res => res.json())
   .then(pages => {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.addEventListener('click', (e) => {
-        // Traverse upward from click target to find nearest <a>
-        let anchor = e.target.closest('a');
+    console.log("✅ Config loaded:", pages);
 
-        // If no anchor was found, or it has no href, ignore
+    document.addEventListener('DOMContentLoaded', () => {
+      // Use capture to catch events early
+      document.addEventListener('click', (e) => {
+        let anchor = e.target.closest('a');
         if (!anchor || !anchor.href) return;
 
-        // Get the filename (e.g., CV.html)
         const url = new URL(anchor.href);
         const filename = url.pathname.split('/').pop();
 
-        // If that filename is marked under construction...
-        if (pages[filename]) {
+        console.log("🔗 Full href:", anchor.href);
+        console.log("🧭 Extracted filename:", filename);
+
+        const filenameLower = filename.toLowerCase();
+        const isUnderConstruction = Object.keys(pages).some(key => {
+          return key.toLowerCase() === filenameLower && pages[key] === true;
+        });
+
+        if (isUnderConstruction) {
+          console.log("🚧 Under construction — redirecting to /404.html");
           e.preventDefault();
-          window.location.href = "/404.html"; // Or "/under_construction.html"
+          window.location.href = "/404.html";
         }
-      });
+      }, true); // 👈 Early phase
     });
   })
   .catch(err => {
-    console.error("Failed to load under_construction.json:", err);
+    console.error("❌ Failed to load under_construction.json:", err);
   });
