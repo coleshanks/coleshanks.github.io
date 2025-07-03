@@ -185,6 +185,7 @@
 
   <h2>📊 Daily Mode Map (7AM–9PM)</h2>
   <div class="timeline-bar" id="timeline"></div>
+  <button class="btn" onclick="exportTimelineImage()">🖼️ Save Timeline Image</button>
   <div class="legend">
     <span style="background: var(--color-ja);"></span> JA
     <span style="background: var(--color-code);"></span> CODE
@@ -194,6 +195,36 @@
   <div class="log" id="timeline-log"></div>
 
   <script>
+    function exportTimelineImage() {
+      const container = document.createElement('div');
+      container.style.background = '#353b43';
+      container.style.color = '#AFBAC4';
+      container.style.fontFamily = "'Fira Sans', sans-serif";
+      container.style.padding = '20px';
+      container.style.textAlign = 'center';
+
+      const title = document.createElement('h2');
+      title.textContent = '📊 Daily Mode Map (7AM–9PM)';
+      title.style.color = '#57cc8a';
+      container.appendChild(title);
+
+      const timelineClone = document.getElementById('timeline').cloneNode(true);
+      timelineClone.style.margin = '0 auto';
+      container.appendChild(timelineClone);
+
+      const legend = document.querySelector('.legend').cloneNode(true);
+      container.appendChild(legend);
+
+      document.body.appendChild(container);
+
+      html2canvas(container).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `timeline_${new Date().toISOString().split('T')[0]}.png`;
+        link.href = canvas.toDataURL();
+        link.click();
+        document.body.removeChild(container);
+      });
+    }
     const goals = {
       ja: 3 * 3600,
       code: 1 * 3600,
@@ -395,5 +426,6 @@
     renderTimeline();
     renderFullTimelineLog();
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </body>
 </html>
