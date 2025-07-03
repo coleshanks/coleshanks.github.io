@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
   <style>
     :root {
-      --color-ja: #ff7f9f;   /* JA = Soft red-pink */
-      --color-code: #57cc8a; /* CODE = green */
-      --color-gits: #58b4ff; /* GITS = calm blue */
+      --color-ja: #ff7f9f;
+      --color-code: #57cc8a;
+      --color-gits: #58b4ff;
     }
 
     body {
@@ -110,33 +110,77 @@
       margin-right: 4px;
       vertical-align: middle;
     }
+
+    .manual-input {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 6px;
+    }
+
+    .manual-input input,
+    .manual-input select {
+      padding: 5px;
+      font-family: 'Fira Sans', sans-serif;
+      border-radius: 5px;
+      border: none;
+      background: #2b2f36;
+      color: #AFBAC4;
+      width: 90px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <h1>Daily Tracker</h1>
 
+  <!-- JA Block -->
   <div class="tracker" id="ja">
     <h2>🇯🇵 JA (Active):Matt</h2>
     <p><span id="ja-time">0:00:00</span> / 3h goal</p>
     <div class="progress-bar"><div class="progress" id="ja-progress"></div></div>
     <button class="btn" onclick="toggleSession('ja')">Start / Stop</button>
     <div class="log" id="ja-log"></div>
+    <div class="manual-input">
+      <input type="text" id="ja-start" placeholder="Start: 6:00">
+      <select id="ja-start-ampm"><option>AM</option><option>PM</option></select>
+      <input type="text" id="ja-end" placeholder="End: 7:30">
+      <select id="ja-end-ampm"><option>AM</option><option>PM</option></select>
+      <button class="btn" onclick="manualEntry('ja')">Add Time</button>
+    </div>
   </div>
 
+  <!-- CODE Block -->
   <div class="tracker" id="code">
     <h2>🐍 Programming (Python):Carmack</h2>
     <p><span id="code-time">0:00:00</span> / 1h goal</p>
     <div class="progress-bar"><div class="progress" id="code-progress"></div></div>
     <button class="btn" onclick="toggleSession('code')">Start / Stop</button>
     <div class="log" id="code-log"></div>
+    <div class="manual-input">
+      <input type="text" id="code-start" placeholder="Start: 6:00">
+      <select id="code-start-ampm"><option>AM</option><option>PM</option></select>
+      <input type="text" id="code-end" placeholder="End: 7:30">
+      <select id="code-end-ampm"><option>AM</option><option>PM</option></select>
+      <button class="btn" onclick="manualEntry('code')">Add Time</button>
+    </div>
   </div>
 
+  <!-- GITS Block -->
   <div class="tracker" id="gits">
     <h2>🧘 GITS (Idle):Motoko</h2>
     <p><span id="gits-time">0:00:00</span> total</p>
     <div class="progress-bar"><div class="progress" id="gits-progress"></div></div>
     <button class="btn" onclick="toggleSession('gits')">Start / Stop</button>
     <div class="log" id="gits-log"></div>
+    <div class="manual-input">
+      <input type="text" id="gits-start" placeholder="Start: 6:00">
+      <select id="gits-start-ampm"><option>AM</option><option>PM</option></select>
+      <input type="text" id="gits-end" placeholder="End: 7:30">
+      <select id="gits-end-ampm"><option>AM</option><option>PM</option></select>
+      <button class="btn" onclick="manualEntry('gits')">Add Time</button>
+    </div>
   </div>
 
   <h2>📊 Daily Mode Map (7AM–9PM)</h2>
@@ -214,6 +258,48 @@
       }
     }
 
+    function manualEntry(type) {
+      const startTime = document.getElementById(`${type}-start`).value.trim();
+      const startAMPM = document.getElementById(`${type}-start-ampm`).value;
+      const endTime = document.getElementById(`${type}-end`).value.trim();
+      const endAMPM = document.getElementById(`${type}-end-ampm`).value;
+
+      const timeRegex = /^\d{1,2}:\d{2}$/;
+      if (!timeRegex.test(startTime) || !timeRegex.test(endTime)) {
+        alert("Use format HH:MM (e.g., 6:00)");
+        return;
+      }
+
+      const today = new Date().toDateString();
+      const start = new Date(`${today} ${startTime} ${startAMPM}`);
+      const end = new Date(`${today} ${endTime} ${endAMPM}`);
+
+      if (isNaN(start) || isNaN(end) || end <= start) {
+        alert("Invalid time range.");
+        return;
+      }
+
+      const duration = Math.floor((end - start) / 1000);
+      data[type].total += duration;
+
+      const entry = `• ${formatTime12(start)} → ${formatTime12(end)}\n${formatReadable(duration)}`;
+      const logEl = document.getElementById(`${type}-log`);
+      const div = document.createElement('div');
+      div.textContent = entry;
+      logEl.prepend(div);
+
+      data[type].log.unshift(entry);
+      data.timeline.push({ start: start.toISOString(), end: end.toISOString(), mode: type });
+
+      update(type);
+      renderTimeline();
+      renderFullTimelineLog();
+      save();
+
+      document.getElementById(`${type}-start`).value = "";
+      document.getElementById(`${type}-end`).value = "";
+    }
+
     function format(seconds) {
       const h = Math.floor(seconds / 3600);
       const m = Math.floor((seconds % 3600) / 60);
@@ -257,7 +343,7 @@
         });
 
         const best = Object.entries(totals).sort((a, b) => b[1] - a[1])[0];
-        if (best[1] >= 450000) blocks[i] = best[0]; // 7.5 minutes = 450,000ms
+        if (best[1] >= 450000) blocks[i] = best[0];
       }
 
       blocks.forEach(mode => {
