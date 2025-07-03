@@ -144,9 +144,9 @@
     <button class="btn" onclick="toggleSession('ja')">Start / Stop</button>
     <div class="log" id="ja-log"></div>
     <div class="manual-input">
-      <input type="text" id="ja-start" placeholder="Start: 6:00">
+      <input type="text" id="ja-start">
       <select id="ja-start-ampm"><option>AM</option><option>PM</option></select>
-      <input type="text" id="ja-end" placeholder="End: 7:30">
+      <input type="text" id="ja-end">
       <select id="ja-end-ampm"><option>AM</option><option>PM</option></select>
       <button class="btn" onclick="manualEntry('ja')">Add Time</button>
     </div>
@@ -160,9 +160,9 @@
     <button class="btn" onclick="toggleSession('code')">Start / Stop</button>
     <div class="log" id="code-log"></div>
     <div class="manual-input">
-      <input type="text" id="code-start" placeholder="Start: 6:00">
+      <input type="text" id="code-start">
       <select id="code-start-ampm"><option>AM</option><option>PM</option></select>
-      <input type="text" id="code-end" placeholder="End: 7:30">
+      <input type="text" id="code-end">
       <select id="code-end-ampm"><option>AM</option><option>PM</option></select>
       <button class="btn" onclick="manualEntry('code')">Add Time</button>
     </div>
@@ -176,9 +176,9 @@
     <button class="btn" onclick="toggleSession('gits')">Start / Stop</button>
     <div class="log" id="gits-log"></div>
     <div class="manual-input">
-      <input type="text" id="gits-start" placeholder="Start: 6:00">
+      <input type="text" id="gits-start">
       <select id="gits-start-ampm"><option>AM</option><option>PM</option></select>
-      <input type="text" id="gits-end" placeholder="End: 7:30">
+      <input type="text" id="gits-end">
       <select id="gits-end-ampm"><option>AM</option><option>PM</option></select>
       <button class="btn" onclick="manualEntry('gits')">Add Time</button>
     </div>
@@ -296,17 +296,31 @@
       const endTime = document.getElementById(`${type}-end`).value.trim();
       const endAMPM = document.getElementById(`${type}-end-ampm`).value;
 
-      const timeRegex = /^\d{1,2}:\d{2}$/;
+      const timeRegex = /^\d{1,4}$/;
       if (!timeRegex.test(startTime) || !timeRegex.test(endTime)) {
-        alert("Use format HH:MM (e.g., 6:00)");
+        alert("Use format HHMM (e.g., 600)");
         return;
       }
 
-      const today = new Date().toDateString();
-      const start = new Date(`${today} ${startTime} ${startAMPM}`);
-      const end = new Date(`${today} ${endTime} ${endAMPM}`);
+      function parseTime(raw, ampm) {
+        raw = raw.padStart(3, '0');
+        let h, m;
+        if (raw.length === 3) {
+          h = parseInt(raw[0]);
+          m = parseInt(raw.slice(1));
+        } else {
+          h = parseInt(raw.slice(0, 2));
+          m = parseInt(raw.slice(2));
+        }
+        if (isNaN(h) || isNaN(m) || h > 12 || m > 59) return null;
+        const today = new Date().toDateString();
+        return new Date(`${today} ${h}:${m.toString().padStart(2, '0')} ${ampm}`);
+      }
 
-      if (isNaN(start) || isNaN(end) || end <= start) {
+      const start = parseTime(startTime, startAMPM);
+      const end = parseTime(endTime, endAMPM);
+
+      if (!start || !end || end <= start) {
         alert("Invalid time range.");
         return;
       }
