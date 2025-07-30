@@ -92,7 +92,7 @@
                 position: relative !important;
                 height: auto !important;
             }
-            /* Profile image inside the sidebar */
+            /* Profile image inside the sidebar might be able to delete idk i didnt see a difference on mobile */
             .left-column img {
                 width: 40%;
                 height: auto;
