@@ -10,40 +10,30 @@
         }
 
         /* Flexbox styles for the main content */
-        /* .main-content {
-            display: flex;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column; /* If you want the content to stack vertically */
-            /* text-align: center; /* If you want text inside to be centered */
-        /* }  */
         .main-content {
             display: flex;
-            flex-direction: row;      /* lay out children left to right */
-            height: 100%;
-            align-items: stretch;     /* let columns expand full height */
+            flex-direction: row;
+            align-items: stretch;
+            min-height: 100%;
+            width: 100%;
         }
 
         /* Sidebar layout and appearance */
         .left-column {
-            width: 15%;
+            flex: 0 0 250px; /* Fixed base width, but can shrink if needed */
+            max-width: 300px;
             background-color: #203457;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
             overflow-y: auto;
             box-sizing: border-box;
         }
         /* Main content area */
         .right-column {
-            margin-left: 15%;
-            width: 85%;
-            height: 100%;
+            flex: 1;
+            padding: 0 10px;
+            box-sizing: border-box;
+            min-width: 0; /* Prevents overflow on small screens */
         }
 
         /* Profile image inside the sidebar */
@@ -93,20 +83,18 @@
 
         @media (max-width: 768px) {
             .main-content {
-              flex-direction: column;
+                flex-direction: column;
             }
-          
             .left-column {
-              position: relative !important;   /* Fully cancel fixed positioning */
-              width: 100% !important;
-              height: auto !important;
-              z-index: 1;
+                flex: none;
+                width: 100% !important;
+                max-width: none;
+                position: relative !important;
+                height: auto !important;
             }
-          
             .right-column {
-              margin-left: 0 !important;       /* Fully cancel left offset */
-              width: 100% !important;
-              position: relative;
-              z-index: 0;
+                flex: none;
+                width: 100% !important;
+                margin-left: 0 !important;
             }
           }
