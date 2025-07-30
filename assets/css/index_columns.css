@@ -92,6 +92,14 @@
                 position: relative !important;
                 height: auto !important;
             }
+            /* Profile image inside the sidebar */
+            .left-column img {
+                width: 40%;
+                height: auto;
+                box-sizing: border-box;
+                display: block;
+                margin: 0 auto;
+            }
             .right-column {
                 flex: none;
                 width: 100% !important;
