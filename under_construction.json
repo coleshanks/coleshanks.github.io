@@ -4,7 +4,7 @@
   "CV.html": true,
   "Japan_JET.html": false,
   "Travel.html": false,
-  "Extras.html": true,
+  "Extras.html": false,
   "testing.html": false,
   "copy_test.html": false,
   "copy_broken.html": false
