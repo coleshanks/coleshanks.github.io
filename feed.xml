@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>コール | Coleshanks</title>
+    <link>https://coleshanks.github.io</link>
+    <description>コールの人生構築・哲学・プロジェクト記録</description>
+    <language>ja</language>
+
+    <item>
+      <title>Terminal Japanese News Pipeline</title>
+      <link>https://coleshanks.github.io/posts/newsboat-ja-cli.html</link>
+      <description>A breakdown of how I use Newsboat and w3m to read Japanese news from the terminal.</description>
+      <pubDate>Fri, 01 Aug 2025 09:00:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>Motoko Project Overview</title>
+      <link>https://coleshanks.github.io/projects/motoko.html</link>
+      <description>My personal life system inspired by Ghost in the Shell. Aesthetic, daily structure, and philosophical focus.</description>
+      <pubDate>Wed, 16 Jul 2025 19:30:00 +0900</pubDate>
+    </item>
+
+    <item>
+      <title>Chiang Mai 2025 Trip Log</title>
+      <link>https://coleshanks.github.io/travel/chiang-mai-2025.html</link>
+      <description>Itinerary, highlights, and thoughts from our August 2025 trip to Chiang Mai.</description>
+      <pubDate>Mon, 28 Jul 2025 12:45:00 +0900</pubDate>
+    </item>
+
+  </channel>
+</rss>
