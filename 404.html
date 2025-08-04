@@ -13,7 +13,7 @@
         <noscript>Sorry, your browser does not support JavaScript!</noscript> <!--if no JS support-->
         <div>
             <!--Top of the page NAVBAR/directory-->
-            <ul class="navbar">
+            <ul id="navbar" class="navbar">
                 <li class="btn_on_page"><a href="/index.html" target="_self">Home</a></li>
                 <li class="nav_btn"><a href="/pages/projects.html" target="_self">Projects</a></li>
                 <li class="nav_btn"><a href="/pages/CV.html" target="_self">CV</a></li>
@@ -22,7 +22,7 @@
                 <li class="nav_btn"><a href="/pages/Extras.html" target="_self">Extras</a></li>
             </ul>   
         </div>
-        <div style="padding-top: 112px;">
+        <div id="main-content"> <!--padding-top: 112px-->
             <h1 style="font-size: large; text-align: center; background-image: url(/assets/images/space/space.jpeg); color: violet;">Page not found<br>ページが見つかりません</h1>
         </div>
         <br>
@@ -31,5 +31,21 @@
         <div>
             <a href="/index.html" target="_self" style="display: block; margin: 0 auto;">return to the home screen<br>トップページに戻る</a>
         </div>
+        <script>
+            // Dynamically adjusts padding-top of main content based on navbar height
+            function adjustContentOffset() {
+                const navbar = document.getElementById('navbar');     // Get the navbar element
+                const content = document.getElementById('main-content'); // Get the content container
+                if (!navbar || !content) return; // Safety check
+
+                const height = navbar.offsetHeight; // Get navbar's height in pixels
+                content.style.paddingTop = `${height}px`; // Set padding-top on content to match
+            }
+
+            // Run once on page load
+            window.addEventListener('load', adjustContentOffset);
+            // Update again if screen size changes (for responsiveness)
+            window.addEventListener('resize', adjustContentOffset);
+        </script>
     </body>
 </html>
