@@ -67,21 +67,8 @@
         width: 85%;
     }
 
-        /* Responsive design for smaller screens */
-        /* @media (max-width: 600px) {
-            .main-content {
-                flex-direction: column;
-            }
 
-            .left-column, .right-column {
-                flex-direction: column;
-                width: 100%;
-                height: auto;
-            }
-
-        } */
-
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
             .main-content {
                 flex-direction: column;
             }
@@ -91,9 +78,9 @@
                 max-width: none;
                 position: relative !important;
                 height: auto !important;
-            }
+            } */
             /* Profile image inside the sidebar might be able to delete idk i didnt see a difference on mobile */
-            .left-column img {
+            /* .left-column img {
                 width: 40%;
                 height: auto;
                 box-sizing: border-box;
@@ -105,4 +92,4 @@
                 width: 100% !important;
                 margin-left: 0 !important;
             }
-          }
+          } */
