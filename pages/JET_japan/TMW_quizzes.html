@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <style>
+            .delta-pos { color: #6dd47e; }
+            .delta-neg { color: #f76c6c; }
+            .delta-zero { color: #bbb; }
+        </style>
+        <title>TMW Quizzes | Cole Shanks</title>
+    </head>
+    <body style="margin-bottom: 20px; background-size: cover; padding-top: 80px;">
+        <button class="back-to-main"><a href="/pages/Japan_JET.html" target="_self">back to main</a></button>
+        <h2 style="margin-top: 10px;">The Moe Way Sunday Quizzes</h2>
+        <p>Weekly Sunday runs toward Idol ranks. One row per attempt; ranks side-by-side. Scores are out of 50 by default. Best row is auto-calculated from the attempts below.</p>
+
+        <table id="tmw-quizzes" style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 16px;">
+            <thead>
+                <tr>
+                    <th style="border-bottom: 1px solid #555; padding: 8px 6px;">Date (Sun)</th>
+                    <th style="border-bottom: 1px solid #555; padding: 8px 6px;">Debut</th>
+                    <th style="border-bottom: 1px solid #555; padding: 8px 6px;">Major</th>
+                    <th style="border-bottom: 1px solid #555; padding: 8px 6px;">Prima</th>
+                    <th style="border-bottom: 1px solid #555; padding: 8px 6px;">Divine</th>
+                    <th style="border-bottom: 1px solid #555; padding: 8px 6px;">Eternal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="best-row">
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333; font-weight: bold;">Best</td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333; font-weight: bold;"></td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333; font-weight: bold;"></td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333; font-weight: bold;"></td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333; font-weight: bold;"></td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333; font-weight: bold;"></td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">2026-01-04</td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">16</td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">1</td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">7</td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">4</td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">3</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">2026-01-11</td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
+                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            (function() {
+                const table = document.getElementById('tmw-quizzes');
+                if (!table) return;
+
+                const bestRow = table.querySelector('tbody tr.best-row');
+                if (!bestRow) return;
+
+                const dataRows = Array.from(table.querySelectorAll('tbody tr')).filter(
+                    (row) => !row.classList.contains('best-row')
+                );
+
+                const bestCells = Array.from(bestRow.querySelectorAll('td')).slice(1);
+                const bestValues = new Array(bestCells.length).fill(null);
+
+                dataRows.forEach((row) => {
+                    const cells = Array.from(row.querySelectorAll('td')).slice(1);
+                    cells.forEach((cell, idx) => {
+                        const num = parseInt(cell.textContent.trim(), 10);
+                        if (!Number.isNaN(num)) {
+                            bestValues[idx] = bestValues[idx] === null ? num : Math.max(bestValues[idx], num);
+                        }
+                    });
+                });
+
+                bestValues.forEach((val, idx) => {
+                    bestCells[idx].textContent = val !== null ? val : '';
+                });
+
+                // Add delta for the most recent filled row compared to the prior filled row
+                const filledRows = dataRows.filter((row) => {
+                    const vals = Array.from(row.querySelectorAll('td')).slice(1).map((c) => parseInt(c.textContent.trim(), 10));
+                    return vals.some((v) => !Number.isNaN(v));
+                });
+
+                if (filledRows.length >= 2) {
+                    const currentRow = filledRows[filledRows.length - 1];
+                    const prevRow = filledRows[filledRows.length - 2];
+
+                    const currentCells = Array.from(currentRow.querySelectorAll('td')).slice(1);
+                    const prevCells = Array.from(prevRow.querySelectorAll('td')).slice(1);
+
+                    currentCells.forEach((cell, idx) => {
+                        const currVal = parseInt(cell.textContent.trim(), 10);
+                        const prevVal = parseInt(prevCells[idx].textContent.trim(), 10);
+                        if (Number.isNaN(currVal) || Number.isNaN(prevVal)) return;
+
+                        const delta = currVal - prevVal;
+                        const span = document.createElement('span');
+                        span.style.marginLeft = '6px';
+
+                        if (delta > 0) {
+                            span.className = 'delta-pos';
+                            span.textContent = `(+${delta})`;
+                        } else if (delta < 0) {
+                            span.className = 'delta-neg';
+                            span.textContent = `(${delta})`;
+                        } else {
+                            span.className = 'delta-zero';
+                            span.textContent = '(0)';
+                        }
+
+                        cell.appendChild(span);
+                    });
+                }
+            })();
+        </script>
+    </body>
+</html>
