@@ -36,41 +36,58 @@
                     <td style="padding: 8px 6px; border-bottom: 1px solid #333; font-weight: bold;"></td>
                     <td style="padding: 8px 6px; border-bottom: 1px solid #333; font-weight: bold;"></td>
                 </tr>
-                <tr>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">2026-01-04</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">16</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">1</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">7</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">4</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">3</td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">2026-01-11</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">9</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">16</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">10</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">1</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">5</td>
-                </tr>
-                <tr>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;">2026-01-18</td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
-                    <td style="padding: 8px 6px; border-bottom: 1px solid #333;"></td>
-                </tr>
             </tbody>
         </table>
         <script>
-            (function() {
+            (async function() {
                 const table = document.getElementById('tmw-quizzes');
                 if (!table) return;
 
-                const bestRow = table.querySelector('tbody tr.best-row');
+                const tbody = table.querySelector('tbody');
+                if (!tbody) return;
+
+                const bestRow = tbody.querySelector('tr.best-row');
                 if (!bestRow) return;
 
-                const dataRows = Array.from(table.querySelectorAll('tbody tr')).filter(
+                // Fetch data
+                let attempts = [];
+                try {
+                    const res = await fetch('/assets/data/tmw_quizzes.json', { cache: 'no-store' });
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const json = await res.json();
+                    if (Array.isArray(json)) attempts = json;
+                } catch (err) {
+                    console.warn('Failed to load /assets/data/tmw_quizzes.json', err);
+                    // If data can't be loaded, keep the page usable with just the Best row.
+                    return;
+                }
+
+                // Render rows from JSON (same table layout as before)
+                const cellStyle = 'padding: 8px 6px; border-bottom: 1px solid #333;';
+                const toCellText = (v) => (v === null || v === undefined ? '' : String(v));
+
+                attempts.forEach((a) => {
+                    const tr = document.createElement('tr');
+
+                    const tdDate = document.createElement('td');
+                    tdDate.setAttribute('style', cellStyle);
+                    tdDate.textContent = toCellText(a.date);
+                    tr.appendChild(tdDate);
+
+                    const cols = ['debut', 'major', 'prima', 'divine', 'eternal'];
+                    cols.forEach((k) => {
+                        const td = document.createElement('td');
+                        td.setAttribute('style', cellStyle);
+                        td.textContent = toCellText(a[k]);
+                        tr.appendChild(td);
+                    });
+
+                    tbody.appendChild(tr);
+                });
+
+                // --- Existing functionality below (Best + deltas), now operating on rendered rows ---
+
+                const dataRows = Array.from(tbody.querySelectorAll('tr')).filter(
                     (row) => !row.classList.contains('best-row')
                 );
 
