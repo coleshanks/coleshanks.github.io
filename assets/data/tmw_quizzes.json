@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-01-04",
+    "debut": 16,
+    "major": 1,
+    "prima": 7,
+    "divine": 4,
+    "eternal": 3
+  },
+  {
+    "date": "2026-01-11",
+    "debut": 9,
+    "major": 16,
+    "prima": 10,
+    "divine": 1,
+    "eternal": 5
+  },
+  {
+    "date": "2026-01-18",
+    "debut": null,
+    "major": null,
+    "prima": null,
+    "divine": null,
+    "eternal": null
+  }
+]
