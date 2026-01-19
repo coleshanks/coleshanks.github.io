@@ -17,10 +17,10 @@
   },
   {
     "date": "2026-01-18",
-    "debut": null,
-    "major": null,
-    "prima": null,
-    "divine": null,
-    "eternal": null
+    "debut": 18,
+    "major": 8,
+    "prima": 6,
+    "divine": 1,
+    "eternal": 1
   }
 ]
