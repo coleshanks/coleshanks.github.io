@@ -441,3 +441,42 @@
 
         <h2>✅ Finished</h2>
         <p>All light novels complete. Nice.</p>
+
+        <script>
+            (() => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                document.querySelectorAll('.list li[data-status]').forEach((item) => {
+                    const text = item.textContent || '';
+                    const match = text.match(/^(\d{4}-\d{2}-\d{2})\b/);
+                    if (!match) return;
+
+                    const dateText = match[1];
+                    const dateValue = new Date(`${dateText}T00:00:00`);
+                    if (Number.isNaN(dateValue.getTime())) return;
+
+                    const restText = text.slice(dateText.length);
+                    item.textContent = '';
+
+                    const dateSpan = document.createElement('span');
+                    dateSpan.className = 'date-tag';
+                    dateSpan.textContent = dateText;
+                    item.appendChild(dateSpan);
+
+                    item.appendChild(document.createTextNode(restText));
+
+                    if (dateValue.getTime() === today.getTime()) {
+                        dateSpan.classList.add('date-today');
+                        return;
+                    }
+
+                    if (dateValue < today) {
+                        dateSpan.classList.add('date-past');
+                        if (item.dataset.status === 'unread') {
+                            item.classList.add('overdue');
+                        }
+                    }
+                });
+            })();
+        </script>
