@@ -108,29 +108,29 @@
                     bestCells[idx].textContent = val !== null ? val : '';
                 });
 
-                // Add delta for the most recent filled row compared to the prior filled row
+                // Add delta for the most recent filled row compared to the Best values
                 const filledRows = dataRows.filter((row) => {
                     const vals = Array.from(row.querySelectorAll('td')).slice(1).map((c) => parseInt(c.textContent.trim(), 10));
                     return vals.some((v) => !Number.isNaN(v));
                 });
 
-                if (filledRows.length >= 2) {
+                if (filledRows.length >= 1) {
                     const currentRow = filledRows[filledRows.length - 1];
-                    const prevRow = filledRows[filledRows.length - 2];
 
                     const currentCells = Array.from(currentRow.querySelectorAll('td')).slice(1);
-                    const prevCells = Array.from(prevRow.querySelectorAll('td')).slice(1);
 
                     currentCells.forEach((cell, idx) => {
                         const currVal = parseInt(cell.textContent.trim(), 10);
-                        const prevVal = parseInt(prevCells[idx].textContent.trim(), 10);
-                        if (Number.isNaN(currVal) || Number.isNaN(prevVal)) return;
+                        const bestVal = bestValues[idx];
+                        if (Number.isNaN(currVal) || bestVal === null) return;
 
-                        const delta = currVal - prevVal;
+                        const delta = currVal - bestVal;
                         const span = document.createElement('span');
                         span.style.marginLeft = '6px';
 
-                        if (delta > 0) {
+                        if (delta === 0) {
+                            return;
+                        } else if (delta > 0) {
                             span.className = 'delta-pos';
                             span.textContent = `(+${delta})`;
                         } else if (delta < 0) {
