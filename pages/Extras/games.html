@@ -5,9 +5,827 @@
   <title>Games | Cole Shanks</title>
   <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'PixelMplus10';
+      src: url('https://cdn.leafscape.be/PixelMplus/PixelMplus10-Regular_web.woff2') format('woff2');
+    }
+    body {
+      padding-top: 20px;
+      background-color: black;
+      color: #6666FF;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    h1 {
+      color: #6699FF;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.4em;
+      margin-left: 20px;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      color: #6699FF;
+      font-family: 'JetBrains Mono', monospace;
+      margin-left: 20px;
+      margin-top: 60px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1a1a2e;
+      font-size: 2em;
+    }
+
+    .gallery-wrapper {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .intro-text {
+      font-size: 1.32em;
+      margin-bottom: 10px;
+      color: #5555cc;
+    }
+
+    .gallery-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+      align-items: flex-start;
+    }
+
+    .gallery-text {
+      flex: 1 1 260px;
+      font-size: 1.32em;
+      font-weight: bold;
+      color: var(--text_green);
+    }
+
+    .gallery-label {
+      color: #FF8833;
+      font-size: 0.8em;
+      letter-spacing: 0.05em;
+    }
+
+    .gallery-year {
+      display: inline-block;
+      font-size: 0.8em;
+      font-weight: normal;
+      color: #555588;
+      margin-left: 8px;
+    }
+
+    .gallery-text span.description {
+      display: block;
+      font-size: 0.95em;
+      font-weight: normal;
+      margin-top: 6px;
+      line-height: 1.6em;
+      color: #6666FF;
+    }
+
+    .no-data {
+      font-family: 'PixelMplus10', sans-serif;
+    }
+
+    .gallery-img {
+      flex: 0 0 207px;
+    }
+
+    .gallery-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2px;
+    }
+  </style>
 </head>
 <body>
   <button class="back-to-main"><a href="/pages/Extras.html" target="_self">back to extras</a></button>
-  <p>coming soon</p>
+
+  <div class="gallery-wrapper">
+
+    <h1>games <img src="/assets/images/games/sprites/SamusBall.gif" alt="morph ball" style="image-rendering: pixelated; transform: scale(2); transform-origin: left center; vertical-align: middle;"></h1>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 24px;">
+      <div class="intro-text" style="margin: 0;">I tried to keep this spoiler free. That said, if u havent
+        played (FF, Chrono Trigger, Dragon Quest, etc) mainline series, and you wanted
+        to play those at some point without knowing anything. Then maybe bookmark this
+        for now and come back once you are finished</div>
+      <img src="/assets/images/games/sprites/SamusAranFront.png" alt="Samus" style="image-rendering: pixelated; width: auto; transform: scale(3); transform-origin: center;">
+    </div>
+
+    <!-- ======== FAMICOM / FDS ======== -->
+    <h2>Famicom / Famicom Disk System</h2>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">FAMICOM</span> Mother <span class="gallery-year">1989</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Mother (Japan).jpg" alt="Mother">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Metroid (Japan) (v1.2) [b].jpg" alt="Metroid">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">FAMICOM DISK SYSTEM</span> Metroid <span class="gallery-year">1986</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <!-- ======== GAME BOY / GBA ======== -->
+    <h2>Game Boy / Game Boy Advance</h2>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">GAME BOY COLOR</span> Pocket Monsters Yellow <span class="gallery-year">1998</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Pocket Monsters - Pikachu (Japan) (SGB Enhanced).jpg" alt="Pokemon Yellow">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Dragon Quest III - Soshite Densetsu e... (Japan).jpg" alt="Dragon Quest III GBC">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">GAME BOY COLOR</span> Dragon Quest III <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">GAME BOY COLOR</span> Pocket Monsters Crystal <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Pocket Monsters - Crystal Version (Japan).jpg" alt="Pokemon Crystal">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Hoshi no Kirby - Yume no Izumi Deluxe (Japan).jpg" alt="Kirby Nightmare in Dream Land">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">GAME BOY ADVANCE</span> Kirby: Nightmare in Dream Land <span class="gallery-year">2002</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">GAME BOY ADVANCE</span> Pocket Monsters Emerald <span class="gallery-year">2004</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Pocket Monsters - Emerald (Japan).jpg" alt="Pokemon Emerald">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/月姫.jpg" alt="Tsukihime">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">GAME BOY ADVANCE</span> 月姫 <span class="gallery-year">2000 / GBA port</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <!-- ======== NINTENDO 64 ======== -->
+    <h2>Nintendo 64</h2>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> Super Mario 64 <span class="gallery-year">1996</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Super Mario 64 (Japan).jpg" alt="Super Mario 64">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Zelda no Densetsu - Toki no Ocarina (Japan) 2.jpg" alt="Ocarina of Time">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> The Legend of Zelda: Ocarina of Time <span class="gallery-year">1998</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> The Legend of Zelda: Majora's Mask <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Zelda no Densetsu - Mujura no Kamen (Japan) (Rev A).jpg" alt="Majora's Mask">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Mario Story (Japan).jpg" alt="Paper Mario">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> Mario Story <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> Mario Kart 64 <span class="gallery-year">1996</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Mario Kart 64 (Japan) (Rev A).jpg" alt="Mario Kart 64">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Doubutsu no Mori (Japan).jpg" alt="Doubutsu no Mori N64">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> どうぶつの森 <span class="gallery-year">2001</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> F-Zero X <span class="gallery-year">1998</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/F-Zero X (Japan).jpg" alt="F-Zero X">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Perfect Dark (Japan).jpg" alt="Perfect Dark">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> Perfect Dark <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> Doom 64 <span class="gallery-year">1997</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Doom 64 (Japan).jpg" alt="Doom 64">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Donkey Kong 64 (Japan).jpg" alt="Donkey Kong 64">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> Donkey Kong 64 <span class="gallery-year">1999</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">NINTENDO 64</span> Star Wars — 帝国の影 <span class="gallery-year">1997</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Star Wars - Teikoku no Kage (Japan).jpg" alt="Star Wars Shadows of the Empire">
+      </div>
+    </div>
+
+    <!-- ======== PC ENGINE ======== -->
+    <h2>PC Engine / PC Engine CD</h2>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Dungeon Explorer (Japan).jpg" alt="Dungeon Explorer">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PC ENGINE</span> Dungeon Explorer <span class="gallery-year">1989</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PC ENGINE CD</span> Snatcher CD-ROMantic <span class="gallery-year">1992</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/スナッチャー.jpg" alt="Snatcher">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/イースIV.jpg" alt="Ys IV">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PC ENGINE CD</span> Ys IV — The Dawn of Ys <span class="gallery-year">1993</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <!-- ======== PLAYSTATION ======== -->
+    <h2>Sony PlayStation</h2>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Final Fantasy VII <span class="gallery-year">1997</span>
+        <span class="description">Really cool. Amazing open world and good trajectory
+          from Midgar's cramped corridors and kind of oppressive mechanical droning
+          music. To then out into the world, first still feeling small because of how
+          you could travel and then opening up progressively with each new vehicle.
+          Ending with the airship that let u revisit old places with a full party and
+          made the world feel complete. Materia system really fun once understood.
+          Great story. Cloud's uncertain memory and past. Compelling and tragic backstories
+          for basically all party members. Sephiroth such a cool villain. Looms over the
+          whole game like a spectre. Amazing characters and developed world. Nobuo Uematsu
+          composed one of the best soundtracks in any game ever</span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Final Fantasy VII International (Japan).jpg" alt="Final Fantasy VII">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/ファイナルファンタジーVIII.jpg" alt="Final Fantasy VIII">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Final Fantasy VIII <span class="gallery-year">1999</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Final Fantasy IX <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Final Fantasy IX (Japan, Asia).jpg" alt="Final Fantasy IX">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/クロノ・クロス.jpg" alt="Chrono Cross">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Chrono Cross <span class="gallery-year">1999</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Xenogears <span class="gallery-year">1998</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Xenogears (Japan).jpg" alt="Xenogears">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Gensou Suikoden (Japan).jpg" alt="Suikoden">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> 幻想水滸伝 <span class="gallery-year">1995</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> 幻想水滸伝II <span class="gallery-year">1998</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Gensou Suikoden II (Japan) (Rev 1).jpg" alt="Suikoden II">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Persona 2 - Tsumi - Innocent Sin (Japan) (Rev 1).jpg" alt="Persona 2 Innocent Sin">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Persona 2: Innocent Sin <span class="gallery-year">1999</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Persona 2: Eternal Punishment <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Persona 2 - Batsu - Eternal Punishment (Japan) (Disc 1).jpg" alt="Persona 2 Eternal Punishment">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Silent Hill (Japan) (Rev 2).jpg" alt="Silent Hill">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Silent Hill <span class="gallery-year">1999</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Castlevania: Symphony of the Night <span class="gallery-year">1997</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Akumajou Dracula X - Gekka no Yasoukyoku (Japan) (Rev 2).jpg" alt="Symphony of the Night">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Star Ocean - The Second Story (Japan) (Rev 1).jpg" alt="Star Ocean Second Story">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Star Ocean — The Second Story <span class="gallery-year">1998</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Dragon Quest VII エデンの戦士たち <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Dragon Quest VII - Eden no Senshi-tachi (Japan) (Rev 1).jpg" alt="Dragon Quest VII">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/ベイグラントストーリー.jpg" alt="Vagrant Story">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Vagrant Story <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> King's Field <span class="gallery-year">1994</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/キングスフィールド.jpg" alt="King's Field">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/LSD - Dream Emulator (Japan).jpg" alt="LSD Dream Emulator">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> LSD Dream Emulator <span class="gallery-year">1998</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Twilight Syndrome 探索編 <span class="gallery-year">1996</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Twilight Syndrome - Tansaku Hen (Japan).jpg" alt="Twilight Syndrome Tansaku Hen">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Twilight Syndrome - Kyuumei Hen (Japan).jpg" alt="Twilight Syndrome Kyuumei Hen">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Twilight Syndrome 究明編 <span class="gallery-year">1996</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> 学校であった怖い話S <span class="gallery-year">1996</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Gakkou de Atta Kowai Hanashi S (Japan).jpg" alt="Gakkou de Atta Kowai Hanashi S">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/コワイシャシン　心霊写真奇譚.jpg" alt="Kowai Shashin">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> コワイシャシン — 心霊写真奇譚 <span class="gallery-year">2002</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> 19時03分 上野発夜行列車 <span class="gallery-year">1999</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/19-ji 03-pun - Ueno-hatsu Yakou Ressha (Japan).jpg" alt="19:03 Ueno">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Linda^3.jpg" alt="Linda Cube Again">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> Linda³ Again <span class="gallery-year">1997</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">PLAYSTATION</span> 鈴木爆発 <span class="gallery-year">2000</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/鈴木爆発.jpg" alt="Suzuki Bakuhatsu">
+      </div>
+    </div>
+
+    <!-- ======== PSP ======== -->
+    <h2>Sony PSP</h2>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Steins_Gate_JPN_PSP-BAHAMUT.jpg" alt="Steins;Gate">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SONY PSP</span> Steins;Gate <span class="gallery-year">2009</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SONY PSP</span> Ever17 — The Out of Infinity <span class="gallery-year">2002 / PSP 2009</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Ever17_-_The_Out_of_Infinity_Premium_Edition_JPN_PSP-iND.jpg" alt="Ever17">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/428 - Fuusa Sareta Shibuya de (Japan).jpg" alt="428 Shibuya Scramble">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SONY PSP</span> 428 — Fuusa Sareta Shibuya de <span class="gallery-year">2008</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SONY PSP</span> Bakemonogatari Portable <span class="gallery-year">2012</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Bakemonogatari_Portable_JPN_PSP-PLAYASiA.jpg" alt="Bakemonogatari Portable">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Tomoyo_After_-_Its_a_Wonderful_Life_-_CS_Edition_JPN_PSP-NRP.jpg" alt="Tomoyo After">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SONY PSP</span> Tomoyo After — It's a Wonderful Life CS Edition <span class="gallery-year">2005 / CS 2007</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SONY PSP</span> Amagami (eb_Collection Plus) <span class="gallery-year">2009</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/eb_Collection_Plus_Amagami_JPN_PSP-Caravan.jpg" alt="Amagami">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Kokoro_Connect_Yochi_Random_JPN_READNFO_PSP-HR.jpg" alt="Kokoro Connect">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SONY PSP</span> Kokoro Connect — Yochi Random <span class="gallery-year">2012</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SONY PSP</span> Yarudora Portable — Sampaguita <span class="gallery-year">1998 / PSP 2005</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Yarudora_Portable_Sampaguita_JPN_PSP-Caravan.jpg" alt="Yarudora Sampaguita">
+      </div>
+    </div>
+
+    <!-- ======== SUPER FAMICOM ======== -->
+    <h2>Super Famicom</h2>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Chrono Trigger (Japan).jpg" alt="Chrono Trigger">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Chrono Trigger <span class="gallery-year">1995</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Final Fantasy IV <span class="gallery-year">1991</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Final Fantasy IV (Japan) (Rev 1).jpg" alt="Final Fantasy IV">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Final Fantasy V (Japan).jpg" alt="Final Fantasy V">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Final Fantasy V <span class="gallery-year">1992</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Final Fantasy VI <span class="gallery-year">1994</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Final Fantasy VI (Japan).jpg" alt="Final Fantasy VI">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Mother 2 - Gyiyg no Gyakushuu (Japan).jpg" alt="Mother 2 EarthBound">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> MOTHER2 ギーグの逆襲 <span class="gallery-year">1994</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Dragon Quest V 天空の花嫁 <span class="gallery-year">1992</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Dragon Quest V - Tenkuu no Hanayome (Japan).jpg" alt="Dragon Quest V">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Zelda no Densetsu - Kamigami no Triforce (Japan).jpg" alt="A Link to the Past">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> The Legend of Zelda: A Link to the Past <span class="gallery-year">1991</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Super Mario RPG <span class="gallery-year">1996</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Super Mario RPG (Japan).jpg" alt="Super Mario RPG">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Super Mario World (J).jpg" alt="Super Mario World">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Super Mario World <span class="gallery-year">1990</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Shin Megami Tensei <span class="gallery-year">1992</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Shin Megami Tensei (Japan).jpg" alt="Shin Megami Tensei">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Shin Megami Tensei II (Japan).jpg" alt="Shin Megami Tensei II">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Shin Megami Tensei II <span class="gallery-year">1994</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Star Ocean <span class="gallery-year">1996</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Star Ocean (Japan).jpg" alt="Star Ocean">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Live A Live (Japan).jpg" alt="Live A Live">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Live A Live <span class="gallery-year">1994</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> かまいたちの夜 <span class="gallery-year">1994</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+      <div class="gallery-img">
+        <img src="/assets/images/games/Kamaitachi no Yoru (Japan).jpg" alt="Kamaitachi no Yoru">
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="gallery-img">
+        <img src="/assets/images/games/Emerald Dragon (Japan).jpg" alt="Emerald Dragon">
+      </div>
+      <div class="gallery-text">
+        <span class="gallery-label">SUPER FAMICOM</span> Emerald Dragon <span class="gallery-year">1995</span>
+        <span class="description"><span class="no-data">[ データなし ]</span></span>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
