@@ -1,0 +1,8 @@
+/* School section color overrides — blue instead of green */
+h2 {
+    color: var(--text_blue);
+}
+
+hr {
+    border-color: var(--text_blue);
+}
