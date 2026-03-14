@@ -1,11 +1,10 @@
 {
   "index.html": false,
   "projects.html": false,
-  "CV.html": true,
+  "CV.html": false,
   "japan.html": false,
   "Travel.html": false,
-  "Extras.html": false,
-  "testing.html": false,
-  "copy_test.html": false,
-  "copy_broken.html": false
+  "explore.html": false,
+  "ubc.html": false,
+  "italy.html": true
 }
