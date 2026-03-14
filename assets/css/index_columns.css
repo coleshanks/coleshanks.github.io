@@ -68,7 +68,7 @@
     }
 
 
-        /* @media (max-width: 768px) {
+        @media (max-width: 400px) {
             .main-content {
                 flex-direction: column;
             }
@@ -78,18 +78,10 @@
                 max-width: none;
                 position: relative !important;
                 height: auto !important;
-            } */
-            /* Profile image inside the sidebar might be able to delete idk i didnt see a difference on mobile */
-            /* .left-column img {
-                width: 40%;
-                height: auto;
-                box-sizing: border-box;
-                display: block;
-                margin: 0 auto;
             }
             .right-column {
                 flex: none;
                 width: 100% !important;
                 margin-left: 0 !important;
             }
-          } */
+        }
