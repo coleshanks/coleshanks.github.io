@@ -66,18 +66,30 @@
             <h2>Hello</h2>
             <hr>
             <p>I'm Cole. I live in Japan. I'm interested in learning Japanese through immersion — reading, watching, and listening as much as possible. I'm a big fan of Final Fantasy, Dragon Quest, and classic <a href="/pages/Extras/games.html" target="_self">SNES games</a> among others. Look around my website, there's some cool stuff 💎</p>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <style>
+                @media (max-width: 600px) {
+                    .media-table tr { display: flex; flex-direction: column; }
+                    .media-table td { width: 100% !important; }
+                }
+            </style>
+            <table class="media-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <tr>
                     <td style="background: transparent; border: none; border-radius: 0; padding: 8px; width: 33%; vertical-align: middle; text-align: center;">
-                        <video muted loop playsinline controls style="width: 100%; border-radius: 8px;">
-                            <source src="/assets/images/my pics/IMG_2022.mp4" type="video/mp4">
-                        </video>
+                        <a href="/assets/images/my pics/IMG_2022.mp4" target="_blank">
+                            <video muted loop playsinline controls style="width: 100%; border-radius: 8px;">
+                                <source src="/assets/images/my pics/IMG_2022.mp4" type="video/mp4">
+                            </video>
+                        </a>
                     </td>
                     <td style="background: transparent; border: none; border-radius: 0; padding: 8px; width: 33%; vertical-align: middle; text-align: center;">
-                        <img src="/assets/images/my pics/IMG_3004_45.jpg" alt="photo" style="width: 100%; border-radius: 8px;">
+                        <a href="/assets/images/my pics/IMG_3004_45.jpg" target="_blank">
+                            <img src="/assets/images/my pics/IMG_3004_45.jpg" alt="photo" style="width: 100%; border-radius: 8px;">
+                        </a>
                     </td>
                     <td style="background: transparent; border: none; border-radius: 0; padding: 8px; width: 33%; vertical-align: middle; text-align: center;">
-                        <img src="/assets/images/my pics/IMG_6222.jpg" alt="photo" style="width: 100%; border-radius: 8px;">
+                        <a href="/assets/images/my pics/IMG_6222.jpg" target="_blank">
+                            <img src="/assets/images/my pics/IMG_6222.jpg" alt="photo" style="width: 100%; border-radius: 8px;">
+                        </a>
                     </td>
                 </tr>
             </table>
