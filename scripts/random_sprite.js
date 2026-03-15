@@ -185,7 +185,6 @@ const SPRITES = [
   "/assets/images/games/sprites/metroid/SamusEnding4.png",
   "/assets/images/games/sprites/metroid/SamusRunningL.gif",
   "/assets/images/games/sprites/metroid/SamusRunningR.gif",
-  "/assets/images/games/sprites/metroid/ScrewAttack.gif",
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
