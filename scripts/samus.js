@@ -28,8 +28,8 @@ const SAMUS_BOTTOM       = 16;     // px from bottom of viewport
         return el;
     }
 
-    const samus = makeSprite('/assets/images/games/sprites/SamusRunningR.gif', SAMUS_BOTTOM);
-    const ball  = makeSprite('/assets/images/games/sprites/SamusBall.gif', SAMUS_BOTTOM);
+    const samus = makeSprite('/assets/images/games/sprites/metroid/SamusRunningR.gif', SAMUS_BOTTOM);
+    const ball  = makeSprite('/assets/images/games/sprites/metroid/SamusBall.gif', SAMUS_BOTTOM);
 
     let samusX, ballX;
 
