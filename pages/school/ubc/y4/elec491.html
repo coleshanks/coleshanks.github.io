@@ -32,6 +32,16 @@
                 display: block;
                 border-radius: 8px;
             }
+            .gallery-item video:-webkit-full-screen {
+                width: 100vw;
+                height: 100vh;
+                object-fit: contain;
+            }
+            .gallery-item video:fullscreen {
+                width: 100vw;
+                height: 100vh;
+                object-fit: contain;
+            }
             @media (max-width: 700px) {
                 .gallery {
                     grid-template-columns: repeat(2, 1fr);
