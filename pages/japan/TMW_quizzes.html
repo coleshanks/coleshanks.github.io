@@ -108,37 +108,28 @@
                     bestCells[idx].textContent = val !== null ? val : '';
                 });
 
-                // Add delta for the most recent filled row compared to the Best values
-                const filledRows = dataRows.filter((row) => {
-                    const vals = Array.from(row.querySelectorAll('td')).slice(1).map((c) => parseInt(c.textContent.trim(), 10));
-                    return vals.some((v) => !Number.isNaN(v));
-                });
+                // Add delta for each row compared to the row above it
+                for (let i = 1; i < dataRows.length; i++) {
+                    const prevCells = Array.from(dataRows[i - 1].querySelectorAll('td')).slice(1);
+                    const currCells = Array.from(dataRows[i].querySelectorAll('td')).slice(1);
 
-                if (filledRows.length >= 1) {
-                    const currentRow = filledRows[filledRows.length - 1];
-
-                    const currentCells = Array.from(currentRow.querySelectorAll('td')).slice(1);
-
-                    currentCells.forEach((cell, idx) => {
+                    currCells.forEach((cell, idx) => {
                         const currVal = parseInt(cell.textContent.trim(), 10);
-                        const bestVal = bestValues[idx];
-                        if (Number.isNaN(currVal) || bestVal === null) return;
+                        const prevVal = parseInt(prevCells[idx].textContent.trim(), 10);
+                        if (Number.isNaN(currVal) || Number.isNaN(prevVal)) return;
 
-                        const delta = currVal - bestVal;
+                        const delta = currVal - prevVal;
+                        if (delta === 0) return;
+
                         const span = document.createElement('span');
                         span.style.marginLeft = '6px';
 
-                        if (delta === 0) {
-                            return;
-                        } else if (delta > 0) {
+                        if (delta > 0) {
                             span.className = 'delta-pos';
-                            span.textContent = `(+${delta})`;
-                        } else if (delta < 0) {
-                            span.className = 'delta-neg';
-                            span.textContent = `(${delta})`;
+                            span.textContent = `↑${delta}`;
                         } else {
-                            span.className = 'delta-zero';
-                            span.textContent = '(0)';
+                            span.className = 'delta-neg';
+                            span.textContent = `↓${Math.abs(delta)}`;
                         }
 
                         cell.appendChild(span);

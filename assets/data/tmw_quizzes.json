@@ -24,28 +24,12 @@
     "eternal": 1
   },
   {
-    "date": "2026-01-25",
-    "debut": 0,
-    "major": 0,
-    "prima": 0,
-    "divine": 0,
-    "eternal": 0
-  },
-  {
     "date": "2026-02-01",
     "debut": 17,
     "major": 9,
     "prima": 8,
     "divine": 7,
     "eternal": 4
-  },
-  {
-    "date": "2026-02-08",
-    "debut": 0,
-    "major": 0,
-    "prima": 0,
-    "divine": 0,
-    "eternal": 0
   },
   {
     "date": "2026-02-15",
@@ -62,13 +46,5 @@
     "prima": 6,
     "divine": 0,
     "eternal": 1
-  },
-  {
-    "date": "2026-03-01",
-    "debut": 0,
-    "major": 0,
-    "prima": 0,
-    "divine": 0,
-    "eternal": 0
   }
 ]
