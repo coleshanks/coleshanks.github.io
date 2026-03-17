@@ -85,7 +85,7 @@ const SPRITES = [
   "/assets/images/games/sprites/final_fantasy_vi/Terra/Terra - Walk (Left).gif",
   "/assets/images/games/sprites/metroid/Metroid.gif",
   "/assets/images/games/sprites/metroid/SamusAranFront.png",
-  "/assets/images/games/sprites/metroid/SamusRunningR.gif",
+  "/assets/images/games/sprites/metroid/Samus.gif",
   // SamusBall.gif is intentionally excluded — used elsewhere
 ];
 
