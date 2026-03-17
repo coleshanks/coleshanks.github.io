@@ -39,12 +39,6 @@ body {
     font-size: 18px; /* Default font size */
 }
 
-@media (max-width: 600px) {
-    body {
-        padding-top: 200px;
-    }
-}
-
 .content {
     text-decoration: none;
     /* display: flex; */
