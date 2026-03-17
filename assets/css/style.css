@@ -36,7 +36,7 @@ body {
     background-color: var(--primary_dark);
     text-align: center;
     margin-top: 0;
-    font-size: 16px; /* Default font size */
+    font-size: 18px; /* Default font size */
 }
 
 .content {
