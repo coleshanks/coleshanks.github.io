@@ -9,6 +9,67 @@
         <script defer src="/scripts/navbar.js"></script>
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
         <script src="/scripts/link_router.js" defer></script>
+        <style>
+            .country-list {
+                max-width: 50%;
+                margin: 40px auto;
+                padding: 0 10px;
+            }
+            .country-row {
+                display: flex;
+                align-items: flex-start;
+                background: #242930;
+                border-radius: 8px;
+                overflow: hidden;
+                margin-bottom: 12px;
+            }
+            .country-info {
+                flex: 1;
+                padding: 24px 28px;
+            }
+            .country-info h2 {
+                margin: 0 0 8px 0;
+            }
+            .country-info h2 a {
+                color: var(--text_green);
+                text-decoration: none;
+            }
+            .country-info h2 a:hover {
+                text-decoration: underline;
+            }
+            .country-info p {
+                margin: 0;
+                color: var(--text_grey);
+                font-size: 15px;
+            }
+            .country-img {
+                position: relative;
+                flex-shrink: 0;
+                width: 280px;
+                border-left: 3px solid #26e679;
+                overflow: hidden;
+                align-self: stretch;
+            }
+            .country-img a {
+                position: absolute;
+                inset: 0;
+            }
+            .country-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                display: block;
+            }
+            .country-img.no-img {
+                display: none;
+            }
+            @media (max-width: 600px) {
+                .country-img {
+                    width: 140px;
+                }
+            }
+        </style>
     </head>
     <body>
         <div>
@@ -22,100 +83,136 @@
         <div>
             <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">Travel</h1>
         </div>
-        <div style="max-width: 95%; margin: 40px auto; padding: 0 10px;">
-            <table style="width: 100%; border-collapse: collapse; border-radius: 10px; overflow: hidden;">
-                <tr>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/japan.html" target="_self">Japan</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;">
-                        Travels across Japan during my time on the JET Programme.
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/vietnam.html" target="_self">Vietnam</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                </tr>
-                <tr>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                </tr>
-                <tr>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/singapore.html" target="_self">Singapore</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/thailand.html" target="_self">Thailand</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                </tr>
-                <tr>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                </tr>
-                <tr>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/philippines.html" target="_self">Philippines</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/indonesia.html" target="_self">Indonesia</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                </tr>
-                <tr>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                </tr>
-                <tr>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/korea.html" target="_self">Korea</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle; white-space: nowrap;">
-                        <h2><a href="/pages/Travel/hongkong.html" target="_self">Hong Kong</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                </tr>
-                <tr>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                </tr>
-                <tr>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/taiwan.html" target="_self">Taiwan</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/cambodia.html" target="_self">Cambodia</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                </tr>
-                <tr>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(38, 230, 121, 0.4); border: none; border-left: 3px solid #26e679; border-radius: 0;"></td>
-                </tr>
-                <tr>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/Travel/china.html" target="_self">China</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                    <td style="background: #242930; border: none; border-left: 3px solid #26e679; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;"></td>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                </tr>
-            </table>
+
+        <div class="country-list">
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/japan.html">Japan</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/japan.html"><img data-images="[]" alt="Japan"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/singapore.html">Singapore</a></h2>
+                    <p style="max-width: 80%;">🏙️ marina bay sands<br>🎆 new year's fireworks<br>🌿 gardens by the bay<br>🥟 xiaolongbao<br>🍜 chinatown food complex<br>🎢 USS</p>
+                </div>
+                <div class="country-img">
+                    <a href="/pages/Travel/singapore.html"><img data-images='[
+                        "/assets/images/travel/sg/IMG_5752.webp",
+                        "/assets/images/travel/sg/IMG_5754.webp",
+                        "/assets/images/travel/sg/IMG_5770.webp",
+                        "/assets/images/travel/sg/IMG_5783.webp",
+                        "/assets/images/travel/sg/IMG_5825.webp",
+                        "/assets/images/travel/sg/IMG_5826.webp",
+                        "/assets/images/travel/sg/IMG_5835.webp",
+                        "/assets/images/travel/sg/IMG_5840.webp",
+                        "/assets/images/travel/sg/IMG_5848.webp",
+                        "/assets/images/travel/sg/IMG_5853.webp",
+                        "/assets/images/travel/sg/IMG_5854.webp",
+                        "/assets/images/travel/sg/IMG_5855.webp",
+                        "/assets/images/travel/sg/IMG_5861.webp",
+                        "/assets/images/travel/sg/IMG_5863.webp",
+                        "/assets/images/travel/sg/IMG_5884.webp",
+                        "/assets/images/travel/sg/IMG_5923.webp",
+                        "/assets/images/travel/sg/IMG_5926.webp",
+                        "/assets/images/travel/sg/IMG_5927.webp"
+                    ]' alt="Singapore"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/vietnam.html">Vietnam</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/vietnam.html"><img data-images="[]" alt="Vietnam"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/thailand.html">Thailand</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/thailand.html"><img data-images="[]" alt="Thailand"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/philippines.html">Philippines</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/philippines.html"><img data-images="[]" alt="Philippines"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/indonesia.html">Indonesia</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/indonesia.html"><img data-images="[]" alt="Indonesia"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/korea.html">Korea</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/korea.html"><img data-images="[]" alt="Korea"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/hongkong.html">Hong Kong</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/hongkong.html"><img data-images="[]" alt="Hong Kong"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/taiwan.html">Taiwan</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/taiwan.html"><img data-images="[]" alt="Taiwan"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/cambodia.html">Cambodia</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/cambodia.html"><img data-images="[]" alt="Cambodia"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/pages/Travel/china.html">China</a></h2>
+                </div>
+                <div class="country-img no-img">
+                    <a href="/pages/Travel/china.html"><img data-images="[]" alt="China"></a>
+                </div>
+            </div>
+
         </div>
 
+        <script>
+            document.querySelectorAll('.country-img img[data-images]').forEach(img => {
+                const images = JSON.parse(img.dataset.images);
+                if (images.length === 0) return;
+                img.src = images[Math.floor(Math.random() * images.length)];
+            });
+        </script>
     </body>
 </html>
