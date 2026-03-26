@@ -1,0 +1,8 @@
+/* Travel section color overrides — orange instead of green */
+h2 {
+    color: var(--text_orange);
+}
+
+hr {
+    border-color: var(--text_orange);
+}

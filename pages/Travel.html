@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
         <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/assets/css/travel.css" type="text/css">
         <title>Travel | Cole Shanks</title>
         <!--Scripts-->
         <script defer src="/scripts/navbar.js"></script>
@@ -30,9 +31,10 @@
             }
             .country-info h2 {
                 margin: 0 0 8px 0;
+                width: fit-content;
             }
             .country-info h2 a {
-                color: var(--text_green);
+                color: var(--text_orange);
                 text-decoration: none;
             }
             .country-info h2 a:hover {
@@ -40,6 +42,7 @@
             }
             .country-info p {
                 margin: 0;
+                width: 100%;
                 color: var(--text_grey);
                 font-size: 15px;
             }
@@ -47,7 +50,7 @@
                 position: relative;
                 flex-shrink: 0;
                 width: 280px;
-                border-left: 3px solid #26e679;
+                border-left: 3px solid var(--text_orange);
                 overflow: hidden;
                 align-self: stretch;
             }
