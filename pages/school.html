@@ -21,39 +21,84 @@
         <div>
             <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">School</h1>
         </div>
-        <div style="max-width: 95%; margin: 40px auto; padding: 0 10px;">
-            <table style="width: 100%; border-collapse: collapse; border-radius: 10px; overflow: hidden;">
-                <tr>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/school/ubc.html" target="_self">UBC</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid var(--text_blue); border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;">
-                        Bachelor of Applied Science in Electrical Engineering, University of British Columbia.
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid var(--text_blue); border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/school/capu.html" target="_self">CapU</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid var(--text_blue); border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;">
-                        Pre-engineering studies at Capilano University before transferring to UBC.
-                    </td>
-                </tr>
-                <tr>
-                    <td style="height: 3px; padding: 0; background: rgba(69, 147, 250, 0.4); border: none; border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(69, 147, 250, 0.4); border: none; border-left: 3px solid var(--text_blue); border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(69, 147, 250, 0.4); border: none; border-left: 3px solid var(--text_blue); border-radius: 0;"></td>
-                    <td style="height: 3px; padding: 0; background: rgba(69, 147, 250, 0.4); border: none; border-left: 3px solid var(--text_blue); border-radius: 0;"></td>
-                </tr>
-                <tr>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;">
-                        <h2><a href="/pages/school/uoft.html" target="_self">UofT</a></h2>
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid var(--text_blue); border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;">
-                        Exchange year courses taken at the University of Toronto.
-                    </td>
-                    <td style="background: #242930; border: none; border-left: 3px solid var(--text_blue); border-radius: 0; padding: 18px 24px; width: 15%; vertical-align: middle;"></td>
-                    <td style="background: #242930; border: none; border-radius: 0; padding: 18px 24px; width: 35%; vertical-align: middle;"></td>
-                </tr>
-            </table>
+        <style>
+            .school-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                width: 80%;
+                max-width: 80%;
+                margin: 40px auto;
+                padding: 0 10px;
+            }
+            .school-row {
+                display: flex;
+                align-items: center;
+                background: #242930;
+                border-radius: 8px;
+                overflow: hidden;
+                min-height: 120px;
+                box-shadow: 4px 4px 8px rgba(69, 147, 250, 0.32);
+            }
+            .school-name {
+                padding: 24px 28px;
+                min-width: 120px;
+            }
+            .school-name h2 {
+                margin: 0;
+            }
+            .school-name h2 a {
+                color: var(--text_blue);
+                text-decoration: none;
+            }
+            .school-name h2 a:hover {
+                text-decoration: underline;
+            }
+            .school-desc {
+                border-left: 3px solid var(--text_blue);
+                padding: 24px 28px;
+                color: var(--text_grey);
+                font-size: 15px;
+                flex: 1;
+            }
+            @media (max-width: 750px) {
+                .school-list {
+                    grid-template-columns: 1fr;
+                    max-width: 100%;
+                    padding: 0 12px;
+                }
+            }
+        </style>
+
+        <div class="school-list">
+
+            <div class="school-row">
+                <div class="school-name">
+                    <h2><a href="/pages/school/ubc.html" target="_self">UBC</a></h2>
+                </div>
+                <div class="school-desc">
+                    Bachelor of Applied Science in Electrical Engineering, University of British Columbia.
+                </div>
+            </div>
+
+            <div class="school-row">
+                <div class="school-name">
+                    <h2><a href="/pages/school/capu.html" target="_self">CapU</a></h2>
+                </div>
+                <div class="school-desc">
+                    Pre-engineering studies at Capilano University before transferring to UBC.
+                </div>
+            </div>
+
+            <div class="school-row">
+                <div class="school-name">
+                    <h2><a href="/pages/school/uoft.html" target="_self">UofT</a></h2>
+                </div>
+                <div class="school-desc">
+                    Exchange year courses taken at the University of Toronto.
+                </div>
+            </div>
+
         </div>
     </body>
 </html>

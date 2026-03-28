@@ -6,3 +6,71 @@ h2 {
 hr {
     border-color: var(--text_blue);
 }
+
+/* Course card grid */
+.course-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 80%;
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.course-row {
+    display: flex;
+    align-items: center;
+    background: #242930;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 80px;
+    box-shadow: 4px 4px 8px rgba(69, 147, 250, 0.32);
+}
+
+.course-code {
+    padding: 14px 20px;
+    min-width: 110px;
+}
+
+.course-code h2 {
+    margin: 0;
+}
+
+.course-desc {
+    border-left: 3px solid var(--text_blue);
+    padding: 14px 20px;
+    color: var(--text_grey);
+    font-size: 15px;
+    flex: 1;
+}
+
+.year-header {
+    width: 80%;
+    max-width: 80%;
+    margin: 40px auto 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.year-header h2 {
+    margin: 0 0 8px 0;
+}
+
+.year-header hr {
+    margin: 0;
+    width: 100%;
+}
+
+@media (max-width: 750px) {
+    .course-list {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        padding: 0 12px;
+    }
+    .year-header {
+        max-width: 100%;
+        padding: 0 12px;
+    }
+}
