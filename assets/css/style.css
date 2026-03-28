@@ -18,8 +18,10 @@
     /* --text_green: #57cc8a; */
     --text_green: #26e679;
     --text_orange: #fa7d45;
-    --text_blue: #4593fa;
-    --text_purple: #7070f0;
+    /* --text_blue: #4593fa;
+    --text_purple: #7070f0; */
+    --text_blue: #2e89ff;
+    --text_purple: #4d4dff;
     --text_grey: #AFBAC4;
 
     /* extra */
