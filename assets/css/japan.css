@@ -1,0 +1,22 @@
+/* Japan section color overrides — purple */
+h2 {
+    color: var(--text_purple);
+}
+
+hr {
+    border-color: var(--text_purple);
+}
+
+a:link,
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: var(--text_purple);
+}
+
+.nav_btn a:hover,
+.btn_on_page a:hover {
+    color: var(--text_green);
+}

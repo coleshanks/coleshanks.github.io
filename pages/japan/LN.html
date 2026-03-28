@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
         <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/assets/css/japan.css" type="text/css">
         <style>
             .list {
                 margin: 8px 30px;
@@ -14,29 +15,13 @@
             .list li {
                 margin: 4px 0;
             }
-            .list li.done {
+            .list li[data-date]:not([data-date=""]) {
                 color: var(--text_green);
             }
-            .list li[data-status="read"] {
-                color: var(--text_green);
-            }
-            .list li.overdue {
-                color: #d06c6c;
-            }
-            .date-tag {
-                font-weight: 600;
-            }
-            .date-past {
-                color: #c6864b;
-            }
-            .list li[data-status="read"] .date-past {
-                color: var(--text_green);
-            }
-            .list li[data-status="read"] .date-today {
-                color: var(--text_green);
-            }
-            .date-today {
-                color: #8d7bd6;
+            .list li[data-date]:not([data-date=""])::after {
+                content: " — " attr(data-date);
+                font-size: 0.82em;
+                opacity: 0.65;
             }
         </style>
         <title>LN Schedule | Cole Shanks</title>
@@ -44,198 +29,157 @@
     <body style="margin-bottom: 20px; background-size: cover; padding-top: 80px;">
         <button class="back-to-main"><a href="../" target="_self">back</a></button>
         <h1>2026 Light Novel Schedule</h1>
-        <p>Start: 2026-03-28 &nbsp;|&nbsp; Finish: 2026-11-26 &nbsp;|&nbsp; Total: 116 vols</p>
-        <p>Pace: <strong>0.5 vol/day</strong></p>
 
         <h2>とある飛空士への誓約 (Vol 1–5)</h2>
         <ul class="list">
-        <li data-status="unread">2026-03-28: とある飛空士への誓約 Vol 1</li>
-        <li data-status="unread">2026-03-30: とある飛空士への誓約 Vol 2</li>
-        <li data-status="unread">2026-04-01: とある飛空士への誓約 Vol 3</li>
-        <li data-status="unread">2026-04-03: とある飛空士への誓約 Vol 4</li>
-        <li data-status="unread">2026-04-05: とある飛空士への誓約 Vol 5</li>
+            <li data-date="4/01/26">とある飛空士への誓約 Vol 1</li>
+            <li data-date="">とある飛空士への誓約 Vol 2</li>
+            <li data-date="">とある飛空士への誓約 Vol 3</li>
+            <li data-date="">とある飛空士への誓約 Vol 4</li>
+            <li data-date="">とある飛空士への誓約 Vol 5</li>
         </ul>
 
         <h2>やはり俺の青春ラブコメはまちがっている。(Vol 1–13)</h2>
         <ul class="list">
-        <li data-status="unread">2026-04-07: やはり俺の青春ラブコメはまちがっている。Vol 1</li>
-        <li data-status="unread">2026-04-09: やはり俺の青春ラブコメはまちがっている。Vol 2</li>
-        <li data-status="unread">2026-04-11: やはり俺の青春ラブコメはまちがっている。Vol 3</li>
-        <li data-status="unread">2026-04-13: やはり俺の青春ラブコメはまちがっている。Vol 4</li>
-        <li data-status="unread">2026-04-15: やはり俺の青春ラブコメはまちがっている。Vol 5</li>
-        <li data-status="unread">2026-04-17: やはり俺の青春ラブコメはまちがっている。Vol 6</li>
-        <li data-status="unread">2026-04-19: やはり俺の青春ラブコメはまちがっている。Vol 6.5</li>
-        <li data-status="unread">2026-04-21: やはり俺の青春ラブコメはまちがっている。Vol 7</li>
-        <li data-status="unread">2026-04-23: やはり俺の青春ラブコメはまちがっている。Vol 7.5</li>
-        <li data-status="unread">2026-04-25: やはり俺の青春ラブコメはまちがっている。Vol 8</li>
-        <li data-status="unread">2026-04-27: やはり俺の青春ラブコメはまちがっている。Vol 9</li>
-        <li data-status="unread">2026-04-29: やはり俺の青春ラブコメはまちがっている。Vol 10</li>
-        <li data-status="unread">2026-05-01: やはり俺の青春ラブコメはまちがっている。Vol 10.5</li>
-        <li data-status="unread">2026-05-03: やはり俺の青春ラブコメはまちがっている。Vol 11</li>
-        <li data-status="unread">2026-05-05: やはり俺の青春ラブコメはまちがっている。Vol 12</li>
-        <li data-status="unread">2026-05-07: やはり俺の青春ラブコメはまちがっている。Vol 13</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 1</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 2</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 3</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 4</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 5</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 6</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 6.5</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 7</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 7.5</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 8</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 9</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 10</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 10.5</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 11</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 12</li>
+            <li data-date="">やはり俺の青春ラブコメはまちがっている。Vol 13</li>
         </ul>
 
         <h2>この素晴らしい世界に祝福を！(Vol 1–15)</h2>
         <ul class="list">
-        <li data-status="unread">2026-05-09: この素晴らしい世界に祝福を！Vol 1</li>
-        <li data-status="unread">2026-05-11: この素晴らしい世界に祝福を！Vol 2</li>
-        <li data-status="unread">2026-05-13: この素晴らしい世界に祝福を！Vol 3</li>
-        <li data-status="unread">2026-05-15: この素晴らしい世界に祝福を！Vol 4</li>
-        <li data-status="unread">2026-05-17: この素晴らしい世界に祝福を！Vol 5</li>
-        <li data-status="unread">2026-05-19: この素晴らしい世界に祝福を！Vol 6</li>
-        <li data-status="unread">2026-05-21: この素晴らしい世界に祝福を！Vol 7</li>
-        <li data-status="unread">2026-05-23: この素晴らしい世界に祝福を！Vol 8</li>
-        <li data-status="unread">2026-05-25: この素晴らしい世界に祝福を！Vol 9</li>
-        <li data-status="unread">2026-05-29: この素晴らしい世界に祝福を！Vol 10</li>
-        <li data-status="unread">2026-05-31: この素晴らしい世界に祝福を！Vol 11</li>
-        <li data-status="unread">2026-06-02: この素晴らしい世界に祝福を！Vol 12</li>
-        <li data-status="unread">2026-06-04: この素晴らしい世界に祝福を！Vol 13</li>
-        <li data-status="unread">2026-06-06: この素晴らしい世界に祝福を！Vol 14</li>
-        <li data-status="unread">2026-06-08: この素晴らしい世界に祝福を！Vol 15</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 1</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 2</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 3</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 4</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 5</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 6</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 7</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 8</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 9</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 10</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 11</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 12</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 13</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 14</li>
+            <li data-date="">この素晴らしい世界に祝福を！Vol 15</li>
         </ul>
 
         <h2>NO.6 (Vol 1–9)</h2>
         <ul class="list">
-        <li data-status="unread">2026-06-10: NO.6 Vol 1</li>
-        <li data-status="unread">2026-06-12: NO.6 Vol 2</li>
-        <li data-status="unread">2026-06-14: NO.6 Vol 3</li>
-        <li data-status="unread">2026-06-16: NO.6 Vol 4</li>
-        <li data-status="unread">2026-06-18: NO.6 Vol 5</li>
-        <li data-status="unread">2026-06-20: NO.6 Vol 6</li>
-        <li data-status="unread">2026-06-22: NO.6 Vol 7</li>
-        <li data-status="unread">2026-06-24: NO.6 Vol 8</li>
-        <li data-status="unread">2026-06-26: NO.6 Vol 9</li>
+            <li data-date="">NO.6 Vol 1</li>
+            <li data-date="">NO.6 Vol 2</li>
+            <li data-date="">NO.6 Vol 3</li>
+            <li data-date="">NO.6 Vol 4</li>
+            <li data-date="">NO.6 Vol 5</li>
+            <li data-date="">NO.6 Vol 6</li>
+            <li data-date="">NO.6 Vol 7</li>
+            <li data-date="">NO.6 Vol 8</li>
+            <li data-date="">NO.6 Vol 9</li>
         </ul>
 
         <h2>とらドラ！(Vol 1–10)</h2>
         <ul class="list">
-        <li data-status="unread">2026-06-28: とらドラ！Vol 1</li>
-        <li data-status="unread">2026-06-30: とらドラ！Vol 2</li>
-        <li data-status="unread">2026-07-02: とらドラ！Vol 3</li>
-        <li data-status="unread">2026-07-04: とらドラ！Vol 4</li>
-        <li data-status="unread">2026-07-06: とらドラ！Vol 5</li>
-        <li data-status="unread">2026-07-08: とらドラ！Vol 6</li>
-        <li data-status="unread">2026-07-10: とらドラ！Vol 7</li>
-        <li data-status="unread">2026-07-12: とらドラ！Vol 8</li>
-        <li data-status="unread">2026-07-14: とらドラ！Vol 9</li>
-        <li data-status="unread">2026-07-16: とらドラ！Vol 10</li>
+            <li data-date="">とらドラ！Vol 1</li>
+            <li data-date="">とらドラ！Vol 2</li>
+            <li data-date="">とらドラ！Vol 3</li>
+            <li data-date="">とらドラ！Vol 4</li>
+            <li data-date="">とらドラ！Vol 5</li>
+            <li data-date="">とらドラ！Vol 6</li>
+            <li data-date="">とらドラ！Vol 7</li>
+            <li data-date="">とらドラ！Vol 8</li>
+            <li data-date="">とらドラ！Vol 9</li>
+            <li data-date="">とらドラ！Vol 10</li>
         </ul>
 
         <h2>ここロコネクト (Vol 1–11)</h2>
         <ul class="list">
-        <li data-status="unread">2026-07-18: ここロコネクト Vol 1</li>
-        <li data-status="unread">2026-07-20: ここロコネクト Vol 2</li>
-        <li data-status="unread">2026-07-22: ここロコネクト Vol 3</li>
-        <li data-status="unread">2026-07-24: ここロコネクト Vol 4</li>
-        <li data-status="unread">2026-07-26: ここロコネクト Vol 5</li>
-        <li data-status="unread">2026-07-28: ここロコネクト Vol 6</li>
-        <li data-status="unread">2026-07-30: ここロコネクト Vol 7</li>
-        <li data-status="unread">2026-08-01: ここロコネクト Vol 8</li>
-        <li data-status="unread">2026-08-03: ここロコネクト Vol 9</li>
-        <li data-status="unread">2026-08-05: ここロコネクト Vol 10</li>
-        <li data-status="unread">2026-08-07: ここロコネクト Vol 11</li>
+            <li data-date="">ここロコネクト Vol 1</li>
+            <li data-date="">ここロコネクト Vol 2</li>
+            <li data-date="">ここロコネクト Vol 3</li>
+            <li data-date="">ここロコネクト Vol 4</li>
+            <li data-date="">ここロコネクト Vol 5</li>
+            <li data-date="">ここロコネクト Vol 6</li>
+            <li data-date="">ここロコネクト Vol 7</li>
+            <li data-date="">ここロコネクト Vol 8</li>
+            <li data-date="">ここロコネクト Vol 9</li>
+            <li data-date="">ここロコネクト Vol 10</li>
+            <li data-date="">ここロコネクト Vol 11</li>
         </ul>
 
         <h2>狼と香辛料 (Vol 1–19)</h2>
         <ul class="list">
-        <li data-status="unread">2026-08-09: 狼と香辛料 Vol 1</li>
-        <li data-status="unread">2026-08-11: 狼と香辛料 Vol 2</li>
-        <li data-status="unread">2026-08-13: 狼と香辛料 Vol 3</li>
-        <li data-status="unread">2026-08-15: 狼と香辛料 Vol 4</li>
-        <li data-status="unread">2026-08-17: 狼と香辛料 Vol 5</li>
-        <li data-status="unread">2026-08-19: 狼と香辛料 Vol 6</li>
-        <li data-status="unread">2026-08-21: 狼と香辛料 Vol 7</li>
-        <li data-status="unread">2026-08-23: 狼と香辛料 Vol 8</li>
-        <li data-status="unread">2026-08-25: 狼と香辛料 Vol 9</li>
-        <li data-status="unread">2026-08-27: 狼と香辛料 Vol 10</li>
-        <li data-status="unread">2026-08-29: 狼と香辛料 Vol 11</li>
-        <li data-status="unread">2026-08-31: 狼と香辛料 Vol 12</li>
-        <li data-status="unread">2026-09-02: 狼と香辛料 Vol 13</li>
-        <li data-status="unread">2026-09-04: 狼と香辛料 Vol 14</li>
-        <li data-status="unread">2026-09-06: 狼と香辛料 Vol 15</li>
-        <li data-status="unread">2026-09-08: 狼と香辛料 Vol 16</li>
-        <li data-status="unread">2026-09-10: 狼と香辛料 Vol 17</li>
-        <li data-status="unread">2026-09-12: 狼と香辛料 Vol 18</li>
-        <li data-status="unread">2026-09-14: 狼と香辛料 Vol 19</li>
+            <li data-date="">狼と香辛料 Vol 1</li>
+            <li data-date="">狼と香辛料 Vol 2</li>
+            <li data-date="">狼と香辛料 Vol 3</li>
+            <li data-date="">狼と香辛料 Vol 4</li>
+            <li data-date="">狼と香辛料 Vol 5</li>
+            <li data-date="">狼と香辛料 Vol 6</li>
+            <li data-date="">狼と香辛料 Vol 7</li>
+            <li data-date="">狼と香辛料 Vol 8</li>
+            <li data-date="">狼と香辛料 Vol 9</li>
+            <li data-date="">狼と香辛料 Vol 10</li>
+            <li data-date="">狼と香辛料 Vol 11</li>
+            <li data-date="">狼と香辛料 Vol 12</li>
+            <li data-date="">狼と香辛料 Vol 13</li>
+            <li data-date="">狼と香辛料 Vol 14</li>
+            <li data-date="">狼と香辛料 Vol 15</li>
+            <li data-date="">狼と香辛料 Vol 16</li>
+            <li data-date="">狼と香辛料 Vol 17</li>
+            <li data-date="">狼と香辛料 Vol 18</li>
+            <li data-date="">狼と香辛料 Vol 19</li>
         </ul>
 
         <h2>Re:ゼロから始める異世界生活 (Vol 1–19)</h2>
         <ul class="list">
-        <li data-status="unread">2026-09-16: Re:ゼロから始める異世界生活 Vol 1</li>
-        <li data-status="unread">2026-09-18: Re:ゼロから始める異世界生活 Vol 2</li>
-        <li data-status="unread">2026-09-26: Re:ゼロから始める異世界生活 Vol 3</li>
-        <li data-status="unread">2026-09-28: Re:ゼロから始める異世界生活 Vol 4</li>
-        <li data-status="unread">2026-09-30: Re:ゼロから始める異世界生活 Vol 5</li>
-        <li data-status="unread">2026-10-02: Re:ゼロから始める異世界生活 Vol 6</li>
-        <li data-status="unread">2026-10-04: Re:ゼロから始める異世界生活 Vol 7</li>
-        <li data-status="unread">2026-10-06: Re:ゼロから始める異世界生活 Vol 8</li>
-        <li data-status="unread">2026-10-08: Re:ゼロから始める異世界生活 Vol 9</li>
-        <li data-status="unread">2026-10-10: Re:ゼロから始める異世界生活 Vol 10</li>
-        <li data-status="unread">2026-10-12: Re:ゼロから始める異世界生活 Vol 11</li>
-        <li data-status="unread">2026-10-14: Re:ゼロから始める異世界生活 Vol 12</li>
-        <li data-status="unread">2026-10-16: Re:ゼロから始める異世界生活 Vol 13</li>
-        <li data-status="unread">2026-10-18: Re:ゼロから始める異世界生活 Vol 14</li>
-        <li data-status="unread">2026-10-20: Re:ゼロから始める異世界生活 Vol 15</li>
-        <li data-status="unread">2026-10-22: Re:ゼロから始める異世界生活 Vol 16</li>
-        <li data-status="unread">2026-10-24: Re:ゼロから始める異世界生活 Vol 17</li>
-        <li data-status="unread">2026-10-26: Re:ゼロから始める異世界生活 Vol 18</li>
-        <li data-status="unread">2026-10-28: Re:ゼロから始める異世界生活 Vol 19</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 1</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 2</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 3</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 4</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 5</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 6</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 7</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 8</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 9</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 10</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 11</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 12</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 13</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 14</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 15</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 16</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 17</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 18</li>
+            <li data-date="">Re:ゼロから始める異世界生活 Vol 19</li>
         </ul>
 
         <h2>物語シリーズ (Vol 1–12)</h2>
         <ul class="list">
-        <li data-status="unread">2026-11-04: 物語シリーズ Vol 1</li>
-        <li data-status="unread">2026-11-06: 物語シリーズ Vol 2</li>
-        <li data-status="unread">2026-11-08: 物語シリーズ Vol 3</li>
-        <li data-status="unread">2026-11-10: 物語シリーズ Vol 4</li>
-        <li data-status="unread">2026-11-12: 物語シリーズ Vol 5</li>
-        <li data-status="unread">2026-11-14: 物語シリーズ Vol 6</li>
-        <li data-status="unread">2026-11-16: 物語シリーズ Vol 7</li>
-        <li data-status="unread">2026-11-18: 物語シリーズ Vol 8</li>
-        <li data-status="unread">2026-11-20: 物語シリーズ Vol 9</li>
-        <li data-status="unread">2026-11-22: 物語シリーズ Vol 10</li>
-        <li data-status="unread">2026-11-24: 物語シリーズ Vol 11</li>
-        <li data-status="unread">2026-11-26: 物語シリーズ Vol 12</li>
+            <li data-date="">物語シリーズ Vol 1</li>
+            <li data-date="">物語シリーズ Vol 2</li>
+            <li data-date="">物語シリーズ Vol 3</li>
+            <li data-date="">物語シリーズ Vol 4</li>
+            <li data-date="">物語シリーズ Vol 5</li>
+            <li data-date="">物語シリーズ Vol 6</li>
+            <li data-date="">物語シリーズ Vol 7</li>
+            <li data-date="">物語シリーズ Vol 8</li>
+            <li data-date="">物語シリーズ Vol 9</li>
+            <li data-date="">物語シリーズ Vol 10</li>
+            <li data-date="">物語シリーズ Vol 11</li>
+            <li data-date="">物語シリーズ Vol 12</li>
         </ul>
-
-        <script>
-            (() => {
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-
-                document.querySelectorAll('.list li[data-status]').forEach((item) => {
-                    const text = item.textContent || '';
-                    const match = text.match(/^(\d{4}-\d{2}-\d{2})\b/);
-                    if (!match) return;
-
-                    const dateText = match[1];
-                    const dateValue = new Date(`${dateText}T00:00:00`);
-                    if (Number.isNaN(dateValue.getTime())) return;
-
-                    const restText = text.slice(dateText.length);
-                    item.textContent = '';
-
-                    const dateSpan = document.createElement('span');
-                    dateSpan.className = 'date-tag';
-                    dateSpan.textContent = dateText;
-                    item.appendChild(dateSpan);
-
-                    item.appendChild(document.createTextNode(restText));
-
-                    if (dateValue.getTime() === today.getTime()) {
-                        dateSpan.classList.add('date-today');
-                        return;
-                    }
-
-                    if (dateValue < today) {
-                        dateSpan.classList.add('date-past');
-                        if (item.dataset.status === 'unread') {
-                            item.classList.add('overdue');
-                        }
-                    }
-                });
-            })();
-        </script>
     </body>
 </html>

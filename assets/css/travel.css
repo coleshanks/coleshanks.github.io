@@ -6,3 +6,17 @@ h2 {
 hr {
     border-color: var(--text_orange);
 }
+
+a:link,
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: var(--text_orange);
+}
+
+.nav_btn a:hover,
+.btn_on_page a:hover {
+    color: var(--text_green);
+}

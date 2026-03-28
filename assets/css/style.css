@@ -19,6 +19,7 @@
     --text_green: #26e679;
     --text_orange: #fa7d45;
     --text_blue: #4593fa;
+    --text_purple: #7070f0;
     --text_grey: #AFBAC4;
 
     /* extra */
@@ -179,7 +180,7 @@ td {
 .btn_on_page {
     border: 0.5px solid var(--tertiary_dark);
     border-radius: 6px;
-    padding: 2.4px 9.6px 0;
+    padding: 0;
     margin: 4px;
     display: inline-block;
     text-align: center;
@@ -189,11 +190,16 @@ td {
     transition: background-color var(--btn_transition_speed), color var(--btn_transition_speed);
 }
 
+.btn_on_page a {
+    display: block;
+    padding: 2.4px 9.6px 0;
+}
+
 .nav_btn {
     font-family: var(--hf2); /* Use Roboto for nav buttons */
     border: 0.5px solid var(--tertiary_dark);
     border-radius: 6px;
-    padding: 2.4px 9.6px 0;
+    padding: 0;
     margin: 4px;
     display: inline-block;
     text-align: center;
@@ -201,6 +207,11 @@ td {
     background-color: var(--tertiary_dark);
     box-shadow: 2px 2px var(--shadow);
     transition: background-color var(--btn_transition_speed), color var(--btn_transition_speed);
+}
+
+.nav_btn a {
+    display: block;
+    padding: 2.4px 9.6px 0;
 }
 
 .ja-button {

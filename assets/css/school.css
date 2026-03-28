@@ -7,6 +7,20 @@ hr {
     border-color: var(--text_blue);
 }
 
+a:link,
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: var(--text_blue);
+}
+
+.nav_btn a:hover,
+.btn_on_page a:hover {
+    color: var(--text_green);
+}
+
 /* Course card grid */
 .course-list {
     display: grid;

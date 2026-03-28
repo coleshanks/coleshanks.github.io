@@ -4,11 +4,75 @@
         <meta charset="utf-8">
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
         <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/assets/css/japan.css" type="text/css">
         <title>Japan | Cole Shanks</title>
         <!--Scripts-->
         <script defer src="/scripts/navbar.js"></script>
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
         <script src="/scripts/link_router.js" defer></script>
+        <style>
+            .japan-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                width: 80%;
+                max-width: 80%;
+                margin: 40px auto;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+            .japan-row {
+                display: flex;
+                align-items: stretch;
+                background: #242930;
+                border-radius: 8px;
+                overflow: hidden;
+                min-height: 100px;
+                box-shadow: 4px 4px 8px rgba(112, 112, 240, 0.32);
+            }
+            .japan-name {
+                flex: 1;
+                padding: 18px 24px;
+                display: flex;
+                align-items: center;
+            }
+            .japan-name h2 {
+                margin: 0;
+            }
+            .japan-name h2 a {
+                color: var(--text_purple);
+                text-decoration: none;
+            }
+            .japan-name h2 a:hover {
+                text-decoration: underline;
+            }
+            .japan-desc {
+                border-left: 3px solid var(--text_purple);
+                padding: 18px 24px;
+                color: var(--text_grey);
+                font-size: 15px;
+                width: 50%;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            @media (max-width: 900px) {
+                .japan-list {
+                    width: 90%;
+                    max-width: 90%;
+                }
+            }
+            @media (max-width: 750px) {
+                .japan-list {
+                    grid-template-columns: 1fr;
+                    width: 100%;
+                    max-width: 100%;
+                    padding: 0 12px;
+                }
+            }
+        </style>
     </head>
     <body>
         <div>
@@ -17,16 +81,38 @@
                 <li class="nav_btn"><a href="/pages/projects.html" target="_self">Projects</a></li>
                 <li class="nav_btn"><a href="/pages/CV.html" target="_self">CV</a></li>
                 <li class="nav_btn"><a href="/pages/explore.html" target="_self">Explore</a></li>
-            </ul>   
+            </ul>
         </div>
         <div>
             <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">immersion</h1>
         </div>
-        <a href="/pages/japan/Jet_journal.html" target="_self"><h2>Japan Journal</h2></a>
-        <a href="/pages/japan/subtitle_reading.html" target="_self"><h2>Subs</h2></a>
-        <a href="/pages/japan/TMW_quizzes.html" target="_self"><h2>TMW Quizzes</h2></a>
-        <a href="/pages/japan/manga.md" target="_self"><h2>manga md</h2></a>
-        <a href="/pages/japan/LN.html" target="_self"><h2>LN</h2></a>
+
+        <div class="japan-list">
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/LN.html" target="_self">LN</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/manga.html" target="_self">Manga</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/anime.html" target="_self">Anime</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/TMW_quizzes.html" target="_self">TMW</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/subtitle_reading.html" target="_self">Subs</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/kanji list.html" target="_self">Kanji List</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+        </div>
         <!-- <a href="/pages/404.html" target="_self"><h2>trackers</h2></a> -->
     </body>
 </html>
