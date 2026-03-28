@@ -12,8 +12,11 @@
         <script src="/scripts/link_router.js" defer></script>
         <style>
             .country-list {
-                width: 600px;
-                max-width: 600px;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                width: 90%;
+                max-width: 90%;
                 margin: 40px auto;
                 padding: 0 10px;
             }
@@ -23,8 +26,14 @@
                 background: #242930;
                 border-radius: 8px;
                 overflow: hidden;
-                margin-bottom: 12px;
                 min-height: 180px;
+            }
+            @media (max-width: 750px) {
+                .country-list {
+                    grid-template-columns: 1fr;
+                    max-width: 100%;
+                    padding: 0 12px;
+                }
             }
             .country-info {
                 flex: 1;
@@ -50,7 +59,7 @@
             .country-img {
                 position: relative;
                 flex-shrink: 0;
-                width: 280px;
+                width: 50%;
                 border-left: 3px solid var(--text_orange);
                 overflow: hidden;
                 align-self: stretch;
@@ -68,11 +77,6 @@
             }
             .country-img.no-img {
                 display: none;
-            }
-            @media (max-width: 600px) {
-                .country-img {
-                    width: 140px;
-                }
             }
         </style>
     </head>
