@@ -61,9 +61,16 @@
                 font-size: 15px;
                 flex: 1;
             }
+            @media (max-width: 900px) {
+                .school-list {
+                    width: 90%;
+                    max-width: 90%;
+                }
+            }
             @media (max-width: 750px) {
                 .school-list {
                     grid-template-columns: 1fr;
+                    width: 100%;
                     max-width: 100%;
                     padding: 0 12px;
                 }
