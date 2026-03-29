@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/assets/css/school.css" type="text/css">
+        <title>ELEC 291 | Cole Shanks</title>
+        <script defer src="/scripts/navbar.js"></script>
+        <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
+        <script src="/scripts/link_router.js" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/x86asm.min.js"></script>
+        <style>
+            .section-header {
+                margin: 32px 30px 0;
+            }
+            .section-header h2 {
+                margin-bottom: 6px;
+            }
+            .section-header hr {
+                width: 100%;
+                margin: 0 0 10px;
+            }
+            .code-block {
+                margin: 8px 30px;
+                border-radius: 8px;
+                overflow: hidden;
+                background: #0d1117;
+                border: 1px solid #30363d;
+            }
+            .code-block summary {
+                padding: 10px 16px;
+                cursor: pointer;
+                font-family: 'Fira Mono', 'Courier New', monospace;
+                font-size: 14px;
+                color: #4593fa;
+                background: #161b22;
+                border-bottom: 1px solid #30363d;
+                user-select: none;
+                list-style: none;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .code-block summary::-webkit-details-marker { display: none; }
+            .code-block summary::before {
+                content: '▶';
+                font-size: 10px;
+                color: #8b949e;
+                transition: transform 0.15s;
+                display: inline-block;
+            }
+            .code-block[open] summary::before {
+                transform: rotate(90deg);
+            }
+            .code-block summary:hover {
+                background: #1c2128;
+            }
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                max-width: 93%;
+                margin: 20px auto;
+                padding: 0 10px;
+            }
+            .gallery-item {
+                border-radius: 8px;
+                overflow: hidden;
+                background: #242930;
+            }
+            .gallery-item img,
+            .gallery-item video {
+                width: 100%;
+                aspect-ratio: 4/3;
+                object-fit: cover;
+                display: block;
+                border-radius: 8px;
+            }
+            .gallery-item video:-webkit-full-screen {
+                width: 100vw;
+                height: 100vh;
+                object-fit: contain;
+            }
+            .gallery-item video:fullscreen {
+                width: 100vw;
+                height: 100vh;
+                object-fit: contain;
+            }
+            @media (max-width: 750px) {
+                .gallery {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            @media (max-width: 450px) {
+                .gallery {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .code-block pre {
+                margin: 0;
+                overflow-x: auto;
+                border-radius: 0;
+            }
+            .code-block pre code {
+                font-size: 13px;
+                line-height: 1.55;
+                border-radius: 0;
+            }
+            .code-loading {
+                padding: 16px;
+                color: #8b949e;
+                font-family: monospace;
+                font-size: 13px;
+            }
+            .code-subsection {
+                margin: 0 30px 4px;
+                font-size: 14px;
+                color: #8b949e;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                margin-top: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <ul class="navbar">
+                <li class="nav_btn"><a href="/index.html" target="_self">Home</a></li>
+                <li class="nav_btn"><a href="/pages/projects.html" target="_self">Projects</a></li>
+                <li class="nav_btn"><a href="/pages/CV.html" target="_self">CV</a></li>
+                <li class="nav_btn"><a href="/pages/explore.html" target="_self">Explore</a></li>
+            </ul>
+        </div>
+        <div>
+            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">ELEC 291</h1>
+        </div>
+        <h2>Microcomputer Design Studio</h2>
+        <hr>
+
+        <!-- Lectures -->
+        <div class="section-header">
+            <h2>Lectures</h2>
+            <hr>
+        </div>
+        <ul style="text-align: left; margin: 12px 30px; padding: 0 20px; font-size: 18px;">
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L12 - Introduction to 8051 Assembly I.pdf" target="_blank">L12 - Introduction to 8051 Assembly I.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L13 - Introduction to 8051 Assembly II.pdf" target="_blank">L13 - Introduction to 8051 Assembly II.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L14 - Microcomputer Integer Arithmetic I.pdf" target="_blank">L14 - Microcomputer Integer Arithmetic I.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L15 - Microcomputer Integer Arithmetic II.pdf" target="_blank">L15 - Microcomputer Integer Arithmetic II.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L16 - Memory in the 8051.pdf" target="_blank">L16 - Memory in the 8051.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L17 - IO ports in the 8051.pdf" target="_blank">L17 - IO ports in the 8051.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L18 - Timers and Counters in the 8051.pdf" target="_blank">L18 - Timers and Counters in the 8051.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L19 - Interrupts.pdf" target="_blank">L19 - Interrupts.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L20 - Serial Port.pdf" target="_blank">L20 - Serial Port.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/L21 - SPI.pdf" target="_blank">L21 - SPI.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/Lecture - Microcomputer Interfacing using transistors(4) (1).pdf" target="_blank">Lecture - Microcomputer Interfacing using transistors.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/Module6-Microcomputer Interfacing using transistors(6).pdf" target="_blank">Module 6 - Microcomputer Interfacing using transistors.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/Timers, Interrupts, and Pushbuttons.pdf" target="_blank">Timers, Interrupts, and Pushbuttons.pdf</a></li>
+        </ul>
+
+        <!-- References -->
+        <div class="section-header">
+            <h2>References</h2>
+            <hr>
+        </div>
+        <ul style="text-align: left; margin: 12px 30px; padding: 0 20px; font-size: 18px;">
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/The EFM8 Microcontroller System (1).pdf" target="_blank">The EFM8 Microcontroller System.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/The AVR Microcontroller System.pdf" target="_blank">The AVR Microcontroller System.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/The LPC824 Microcontroller System.pdf" target="_blank">The LPC824 Microcontroller System.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/The MSP430 Microcontroller System (1).pdf" target="_blank">The MSP430 Microcontroller System.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/The PIC32 Microcontroller System (3).pdf" target="_blank">The PIC32 Microcontroller System.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/The STM32F051 Microcontroller System.pdf" target="_blank">The STM32F051 Microcontroller System.pdf</a></li>
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/FT93C66A (1).pdf" target="_blank">FT93C66A Datasheet.pdf</a></li>
+        </ul>
+
+        <!-- Project -->
+        <div class="section-header">
+            <h2>Project</h2>
+            <hr>
+        </div>
+        <ul style="text-align: left; margin: 12px 30px; padding: 0 20px; font-size: 18px;">
+            <li><a href="/assets/School/UBC/Year 2/ELEC 291/ELEC291_Project_2_Coin_Picking_Robot_2019 (3).pdf" target="_blank">ELEC 291 Project 2 — Coin Picking Robot.pdf</a></li>
+        </ul>
+
+        <!-- Code -->
+        <div class="section-header">
+            <h2>Code</h2>
+            <hr>
+        </div>
+
+        <div class="code-subsection">Assembly</div>
+
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/Blinky_EFM8.asm" data-lang="x86asm">
+            <summary>Blinky_EFM8.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/blinky.asm" data-lang="x86asm">
+            <summary>blinky.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/EEPROM_Test_Menu(1).asm" data-lang="x86asm">
+            <summary>EEPROM_Test_Menu.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/EEPROM_Test(2).asm" data-lang="x86asm">
+            <summary>EEPROM_Test.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/Hello(3).asm" data-lang="x86asm">
+            <summary>Hello.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/ISR_example.asm" data-lang="x86asm">
+            <summary>ISR_example.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/LCD_test_4bit.asm" data-lang="x86asm">
+            <summary>LCD_test_4bit.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/mathtest(3).asm" data-lang="x86asm">
+            <summary>mathtest.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/Non_Blocking_FSM_example.asm" data-lang="x86asm">
+            <summary>Non_Blocking_FSM_example.asm</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+
+        <div class="code-subsection">C</div>
+
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/EFM8_ADC.c" data-lang="c">
+            <summary>EFM8_ADC.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/EFM8_autotest(1).c" data-lang="c">
+            <summary>EFM8_autotest.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/EFM8_LCD_4bit(1).c" data-lang="c">
+            <summary>EFM8_LCD_4bit.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/EFM8HelloWorld(1).c" data-lang="c">
+            <summary>EFM8HelloWorld.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/FreqEFM8(1).c" data-lang="c">
+            <summary>FreqEFM8.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/PeriodEFM8(1).c" data-lang="c">
+            <summary>PeriodEFM8.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/Project2_Demo_Code.c" data-lang="c">
+            <summary>Project2_Demo_Code.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/Project2_Two_Wheels_Working.c" data-lang="c">
+            <summary>Project2_Two_Wheels_Working.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+        <details class="code-block" data-src="/assets/School/UBC/Year 2/ELEC 291/square(1).c" data-lang="c">
+            <summary>square.c</summary>
+            <pre><code class="code-loading">Loading...</code></pre>
+        </details>
+
+        <div style="height: 40px;"></div>
+
+        <h2 style="margin-top: 30px;">Gallery</h2>
+        <hr style="width: 93%;">
+        <div class="gallery">
+            <div class="gallery-item">
+                <a href="/assets/School/img and videos/IMG_4070.jpeg" target="_blank">
+                    <img src="/assets/School/img and videos/IMG_4070.jpeg" alt="ELEC 291 photo">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="/assets/School/img and videos/IMG_4199.jpeg" target="_blank">
+                    <img src="/assets/School/img and videos/IMG_4199.jpeg" alt="ELEC 291 photo">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="/assets/School/img and videos/IMG_4214.jpeg" target="_blank">
+                    <img src="/assets/School/img and videos/IMG_4214.jpeg" alt="ELEC 291 photo">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="/assets/School/img and videos/IMG_4215.jpeg" target="_blank">
+                    <img src="/assets/School/img and videos/IMG_4215.jpeg" alt="ELEC 291 photo">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <video muted loop playsinline controls>
+                    <source src="/assets/School/img and videos/IMG_4223.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="gallery-item">
+                <a href="/assets/School/img and videos/IMG_4236.jpeg" target="_blank">
+                    <img src="/assets/School/img and videos/IMG_4236.jpeg" alt="ELEC 291 photo">
+                </a>
+            </div>
+            <div class="gallery-item">
+                <a href="/assets/School/img and videos/IMG_4237.jpeg" target="_blank">
+                    <img src="/assets/School/img and videos/IMG_4237.jpeg" alt="ELEC 291 photo">
+                </a>
+            </div>
+        </div>
+
+        <div style="height: 40px;"></div>
+
+        <script>
+            document.querySelectorAll('details.code-block').forEach(function(details) {
+                details.addEventListener('toggle', async function() {
+                    if (!this.open || this.dataset.loaded) return;
+                    const codeEl = this.querySelector('pre code');
+                    const lang = this.dataset.lang;
+                    try {
+                        const res = await fetch(this.dataset.src);
+                        if (!res.ok) throw new Error(res.status);
+                        const text = await res.text();
+                        codeEl.classList.remove('code-loading');
+                        codeEl.classList.add('language-' + lang);
+                        codeEl.textContent = text;
+                        hljs.highlightElement(codeEl);
+                        this.dataset.loaded = 'true';
+                    } catch(e) {
+                        codeEl.textContent = 'Failed to load file.';
+                        codeEl.classList.remove('code-loading');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
