@@ -24,7 +24,8 @@
                 margin: 0 0 10px;
             }
             .code-block {
-                margin: 8px 30px;
+                margin: 8px auto;
+                width: 60%;
                 border-radius: 8px;
                 overflow: hidden;
                 background: #0d1117;
@@ -93,6 +94,9 @@
                 .gallery {
                     grid-template-columns: repeat(2, 1fr);
                 }
+                .code-block, .code-subsection {
+                    width: 90%;
+                }
             }
             @media (max-width: 450px) {
                 .gallery {
@@ -108,6 +112,8 @@
                 font-size: 13px;
                 line-height: 1.55;
                 border-radius: 0;
+                text-align: left;
+                padding: 12px 12px 12px 40px !important;
             }
             .code-loading {
                 padding: 16px;
@@ -116,7 +122,8 @@
                 font-size: 13px;
             }
             .code-subsection {
-                margin: 0 30px 4px;
+                margin: 0 auto 4px;
+                width: 60%;
                 font-size: 14px;
                 color: #8b949e;
                 text-transform: uppercase;
@@ -299,7 +306,7 @@
                 </a>
             </div>
             <div class="gallery-item">
-                <video muted loop playsinline controls>
+                <video muted loop playsinline controls poster="/assets/School/img and videos/IMG_4223_poster.jpeg">
                     <source src="/assets/School/img and videos/IMG_4223.mp4" type="video/mp4">
                 </video>
             </div>

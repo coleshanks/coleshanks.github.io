@@ -44,11 +44,24 @@
                 text-decoration: underline;
             }
             .explore-desc {
-                border-left: 3px solid #26e679;
-                padding: 18px 24px;
+                position: relative;
+                padding: 18px 24px 18px 27px;
                 color: var(--text_grey);
                 font-size: 15px;
                 flex: 1;
+                align-self: stretch;
+                display: flex;
+                align-items: center;
+            }
+            .explore-desc::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background: #26e679;
+                border-radius: 2px;
             }
             @media (max-width: 900px) {
                 .explore-list {

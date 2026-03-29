@@ -58,11 +58,24 @@
                 text-decoration: underline;
             }
             .school-desc {
-                border-left: 3px solid var(--text_blue);
-                padding: 24px 28px;
+                position: relative;
+                padding: 24px 28px 24px 31px;
                 color: var(--text_grey);
                 font-size: 15px;
                 flex: 1;
+                align-self: stretch;
+                display: flex;
+                align-items: center;
+            }
+            .school-desc::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background: var(--text_blue);
+                border-radius: 2px;
             }
             @media (max-width: 900px) {
                 .school-list {

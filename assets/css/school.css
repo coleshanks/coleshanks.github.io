@@ -45,7 +45,8 @@ a:hover {
 
 .course-code {
     padding: 14px 20px;
-    min-width: 110px;
+    width: 150px;
+    flex-shrink: 0;
 }
 
 .course-code h2 {
@@ -53,11 +54,25 @@ a:hover {
 }
 
 .course-desc {
-    border-left: 3px solid var(--text_blue);
-    padding: 14px 20px;
+    position: relative;
+    padding: 14px 20px 14px 23px;
     color: var(--text_grey);
     font-size: 15px;
     flex: 1;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+.course-desc::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--text_blue);
+    border-radius: 2px;
 }
 
 .year-header {
