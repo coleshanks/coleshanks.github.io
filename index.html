@@ -207,6 +207,12 @@
                     padding: 0 !important;
                     line-height: 1.4;
                 }
+                @media (max-width: 900px) {
+                    .media-row tr { display: flex; flex-direction: column; align-items: flex-start; }
+                    .media-row td { width: 90% !important; }
+                    .media-row td video, .media-row td img { width: 100%; }
+                    .playground-block { margin: 12px auto 0; width: 90%; }
+                }
             </style>
             <div>
                 <ul class="profile_navbar">
