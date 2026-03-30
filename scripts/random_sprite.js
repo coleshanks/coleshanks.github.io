@@ -6,7 +6,6 @@ const SPRITES = [
   "/assets/images/games/sprites/chrono_trigger/crono/Crono - Walk (Right).gif",
   "/assets/images/games/sprites/chrono_trigger/Frog/Frog - Walk (Front).gif",
   "/assets/images/games/sprites/chrono_trigger/Frog/Frog - Walk (Right).gif",
-  "/assets/images/games/sprites/chrono_trigger/Lucca/Lucca - Mallet (Front).gif",
   "/assets/images/games/sprites/chrono_trigger/Lucca/Lucca - Status.gif",
   "/assets/images/games/sprites/chrono_trigger/Lucca/Lucca - Walk (Front).gif",
   "/assets/images/games/sprites/chrono_trigger/Lucca/Lucca - Walk (Right).gif",
@@ -17,7 +16,6 @@ const SPRITES = [
   "/assets/images/games/sprites/chrono_trigger/Magus/Magus - Walk (Right).gif",
   "/assets/images/games/sprites/chrono_trigger/Marle/Marle - Spell (Front).gif",
   "/assets/images/games/sprites/chrono_trigger/Marle/Marle - Status.gif",
-  "/assets/images/games/sprites/chrono_trigger/Marle/Marle - Victory.gif",
   "/assets/images/games/sprites/chrono_trigger/Marle/Marle - Walk (Front).gif",
   "/assets/images/games/sprites/earthbound/Ness/Ness - Walk (Right).gif",
   "/assets/images/games/sprites/final_fantasy_iv/Cecil/Cecil1-Status.gif",
@@ -37,14 +35,10 @@ const SPRITES = [
   "/assets/images/games/sprites/final_fantasy_iv/Tellah/Tellah-Status.gif",
   "/assets/images/games/sprites/final_fantasy_iv/Tellah/Tellah-Walk-Right.gif",
   "/assets/images/games/sprites/final_fantasy_v/Earth/Dragoon1 - Walk.gif",
-  "/assets/images/games/sprites/final_fantasy_v/Earth/Dragoon1.gif",
-  "/assets/images/games/sprites/final_fantasy_v/Fire/Ninja1 - Defend.gif",
   "/assets/images/games/sprites/final_fantasy_v/Fire/Ninja1 - Walk.gif",
   "/assets/images/games/sprites/final_fantasy_v/Wind/Black Mage1 - Cast.gif",
   "/assets/images/games/sprites/final_fantasy_v/Wind/Black Mage1 - Walk.gif",
-  "/assets/images/games/sprites/final_fantasy_v/Wind/Black Mage1.gif",
   "/assets/images/games/sprites/final_fantasy_v/Wind/Knight1 - Walk.gif",
-  "/assets/images/games/sprites/final_fantasy_v/Wind/Knight1.gif",
   "/assets/images/games/sprites/final_fantasy_v/Wind/White Mage1 - Walk.gif",
   "/assets/images/games/sprites/final_fantasy_vi/Celes/Celes - Walk (Front).gif",
   "/assets/images/games/sprites/final_fantasy_vi/Celes/Celes - Walk (Right).gif",
@@ -68,7 +62,6 @@ const SPRITES = [
   // Only Metroid.gif is included here. SamusAranFront.png, Samus.gif, and SamusBall.gif
   // are used elsewhere on the site and are intentionally excluded from the random sprite picker.
   // mario — Super Mario World (SNES)
-  "/assets/images/games/sprites/mario/ani_4flyguy.gif",
   "/assets/images/games/sprites/mario/ani_4ghost3.gif",
   "/assets/images/games/sprites/mario/ani_4ghosthouse.gif",
   "/assets/images/games/sprites/mario/ani_4goomba2.gif",
@@ -76,12 +69,9 @@ const SPRITES = [
   "/assets/images/games/sprites/mario/ani_4luigismall.gif",
   "/assets/images/games/sprites/mario/ani_4morton.gif",
   "/assets/images/games/sprites/mario/ani_4redfly.gif",
-  "/assets/images/games/sprites/mario/ani_smwberrypink.gif",
-  "/assets/images/games/sprites/mario/ani_smwkoopatroopablue.gif",
   "/assets/images/games/sprites/mario/ani_smwkoopatroopagreen.gif",
   "/assets/images/games/sprites/mario/ani_smwmariosmall.gif",
   "/assets/images/games/sprites/mario/ani_smwmontymole.gif",
-  "/assets/images/games/sprites/mario/ani_smwrex.gif",
 ];
 
 document.addEventListener('DOMContentLoaded', function () {

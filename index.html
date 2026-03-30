@@ -59,21 +59,23 @@
 
         <div class="right-column">
             <style>
-                .section-row {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 24px;
-                    margin: 12px 100px 20px 30px;
+                .media-row {
+                    width: 90%;
+                    border-collapse: collapse;
+                    margin: 16px 0 20px 30px;
                 }
-                .section-row p {
-                    margin: 0;
-                    max-width: 260px;
-                    padding-left: 12px;
+                .media-row td {
+                    background: transparent;
+                    border: none;
+                    border-radius: 0;
+                    padding: 3px;
+                    width: 33%;
+                    vertical-align: middle;
+                    text-align: center;
                 }
-                .section-media {
-                    flex-shrink: 0;
-                    width: 165px;
+                .media-row td video,
+                .media-row td img {
+                    width: 90%;
                     border-radius: 8px;
                 }
                 /* Programming section orange overrides */
@@ -128,9 +130,14 @@
                     white-space: pre-wrap;
                     word-break: break-all;
                 }
+                .playground-block pre code span,
+                .playground-block pre code i,
+                .output-block span,
+                .playground-header span {
+                    font-size: inherit !important;
+                    padding: 0 !important;
+                }
                 .playground-block pre code {
-                    font-size: 13px;
-                    line-height: 1.55;
                     border-radius: 0;
                     text-align: left;
                     padding: 12px 12px 12px 20px !important;
@@ -159,6 +166,9 @@
                     transition: border-color 0.15s;
                 }
                 .stdin-input:focus { border-color: var(--text_orange); }
+                .stdin-input::-webkit-outer-spin-button,
+                .stdin-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+                .stdin-input[type=number] { -moz-appearance: textfield; }
                 .output-block {
                     border-top: 1px solid #30363d;
                     padding: 14px 20px;
@@ -211,38 +221,36 @@
             <!-- Hello -->
             <h2>Hello</h2>
             <hr>
-            <div class="section-row">
-                <p>I'm Cole! Welcome to my website. I am currently living in Japan.</p>
-                <video class="section-media" muted loop playsinline controls poster="/assets/images/my pics/propbot-thumb.jpg">
-                    <source src="/assets/images/my pics/propbot.mp4" type="video/mp4">
-                </video>
-            </div>
+            <p>I'm Cole! I'm a graduate of <a href="https://engineering.ubc.ca/programs/undergraduate/electrical-engineering" target="_blank">Electrical Engineering</a> from the <a href="https://www.ubc.ca" target="_blank">University of British Columbia</a>, currently living in Japan. I'm passionate about learning Japanese, exploring history and culture, and reading — particularly sci-fi and fantasy. Look around, there's some cool stuff 💎</p>
 
-            <!-- About -->
-            <h2>About</h2>
-            <hr>
-            <div class="section-row">
-                <p>I'm a graduate of <a href="https://engineering.ubc.ca/programs/undergraduate/electrical-engineering" target="_blank">Electrical Engineering</a> from the <a href="https://www.ubc.ca" target="_blank">University of British Columbia</a>, currently living in Japan. I'm passionate about learning Japanese, exploring history and culture, and reading — particularly sci-fi and fantasy.</p>
-                <a href="/assets/images/my pics/fuji-hike.jpg" target="_blank">
-                    <img class="section-media" src="/assets/images/my pics/fuji-hike.jpg" alt="Fuji hike">
-                </a>
-            </div>
-
-            <!-- Travel -->
-            <h2>Travel</h2>
-            <hr>
-            <div class="section-row">
-                <p>placeholder travel text</p>
-                <a href="/assets/images/my pics/thailand-bike.jpg" target="_blank">
-                    <img class="section-media" src="/assets/images/my pics/thailand-bike.jpg" alt="Thailand motorbike">
-                </a>
-            </div>
+            <table class="media-row">
+                <tr>
+                    <td>
+                        <video muted loop playsinline controls poster="/assets/images/my pics/propbot-thumb.jpg" style="width: 90%; border-radius: 8px;">
+                            <source src="/assets/images/my pics/propbot.mp4" type="video/mp4">
+                        </video>
+                    </td>
+                    <td>
+                        <a href="/assets/images/my pics/fuji-hike.jpg" target="_blank">
+                            <img src="/assets/images/my pics/fuji-hike.jpg" alt="Fuji hike" style="width: 90%; border-radius: 8px;">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/assets/images/my pics/thailand-bike.jpg" target="_blank">
+                            <img src="/assets/images/my pics/thailand-bike.jpg" alt="Thailand motorbike" style="width: 90%; border-radius: 8px;">
+                        </a>
+                    </td>
+                </tr>
+            </table>
 
             <!-- Programming -->
-            <h2 class="programming-h2">Programming 🦀</h2>
+            <h2 class="programming-h2">Programming 🦀 <span style="color: var(--text_grey); font-size: 18px; font-weight: 400;">(currently learning Rust)</span></h2>
             <hr class="programming-hr">
-            <div class="section-row" style="align-items: flex-start; justify-content: flex-start; margin-right: 0;">
-                <p>I'm currently learning Rust. placeholder.</p>
+            <div style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 40px; margin: 10px 0 8px 30px;">
+                <div>
+                    <p style="margin: 0 0 4px 0; font-size: 16px; color: var(--text_orange); font-family: 'Fira Mono', 'Courier New', monospace; white-space: nowrap;">Fibonacci Sequence Generator</p>
+                    <p style="margin: 0; font-size: 15px; max-width: 260px;">Generates the nth <a href="https://en.wikipedia.org/wiki/Fibonacci_sequence" target="_blank">Fibonacci</a> number. Enter a value for n and run it directly in the browser.</p>
+                </div>
                 <img src="/assets/images/math/Fibonacci_Spiral.webp" alt="Fibonacci Spiral" style="width: 160px; flex-shrink: 0; border-radius: 6px; opacity: 0.85;">
             </div>
             <div class="fib-table">
@@ -263,6 +271,10 @@
                 <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>14</sub></span><span style="color: var(--text_grey);">377</span></div>
                 <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>15</sub></span><span style="color: var(--text_grey);">610</span></div>
                 <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>16</sub></span><span style="color: var(--text_grey);">987</span></div>
+                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>17</sub></span><span style="color: var(--text_grey);">1597</span></div>
+                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>18</sub></span><span style="color: var(--text_grey);">2584</span></div>
+                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>19</sub></span><span style="color: var(--text_grey);">4181</span></div>
+                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>20</sub></span><span style="color: var(--text_grey);">6765</span></div>
             </div>
             <div class="playground-block">
                 <details>
