@@ -4,13 +4,28 @@
         <meta charset="utf-8">
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
         <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
-        <title>Projects | Cole Shanks</title>
+        <title>Rust 🦀 | Cole Shanks</title>
         <!--Scripts-->
         <script defer src="/scripts/navbar.js"></script>
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
         <script src="/scripts/link_router.js" defer></script>
         <style>
-            .projects-list {
+            /* Orange overrides */
+            h2 {
+                color: var(--text_orange);
+            }
+            hr {
+                border-color: var(--text_orange);
+            }
+            a:hover {
+                color: var(--text_orange);
+            }
+            .nav_btn a:hover,
+            .btn_on_page a:hover {
+                color: var(--text_green);
+            }
+
+            .rust-list {
                 display: flex;
                 flex-direction: column;
                 gap: 12px;
@@ -20,30 +35,30 @@
                 padding: 0 10px;
                 box-sizing: border-box;
             }
-            .project-row {
+            .rust-row {
                 display: flex;
                 align-items: center;
                 background: #242930;
                 border-radius: 8px;
                 overflow: hidden;
                 min-height: 100px;
-                box-shadow: 4px 4px 8px rgba(38, 230, 121, 0.32);
+                box-shadow: 4px 4px 8px rgba(250, 125, 69, 0.32);
             }
-            .project-name {
+            .rust-name {
                 padding: 18px 24px;
                 min-width: 200px;
             }
-            .project-name h2 {
+            .rust-name h2 {
                 margin: 0;
             }
-            .project-name h2 a {
-                color: var(--text_green);
+            .rust-name h2 a {
+                color: var(--text_orange);
                 text-decoration: none;
             }
-            .project-name h2 a:hover {
+            .rust-name h2 a:hover {
                 text-decoration: underline;
             }
-            .project-desc {
+            .rust-desc {
                 position: relative;
                 padding: 18px 24px 18px 27px;
                 color: var(--text_grey);
@@ -53,14 +68,14 @@
                 display: flex;
                 align-items: center;
             }
-            .project-desc::before {
+            .rust-desc::before {
                 content: '';
                 position: absolute;
                 left: 0;
                 top: 0;
                 bottom: 0;
                 width: 3px;
-                background: #26e679;
+                background: var(--text_orange);
                 border-radius: 2px;
             }
             .section-header {
@@ -76,23 +91,54 @@
                 margin: 0;
                 width: 100%;
             }
+            .playground-block {
+                margin: 32px auto;
+                width: 80%;
+                border-radius: 8px;
+                overflow: hidden;
+                background: #0d1117;
+                border: 1px solid #30363d;
+            }
+            .playground-header {
+                padding: 10px 16px;
+                font-family: 'Fira Mono', 'Courier New', monospace;
+                font-size: 14px;
+                color: var(--text_orange);
+                background: #161b22;
+                border-bottom: 1px solid #30363d;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                user-select: none;
+            }
+            .playground-block iframe {
+                width: 100%;
+                height: 550px;
+                border: none;
+                display: block;
+            }
             @media (max-width: 900px) {
-                .projects-list,
-                .section-header {
+                .rust-list,
+                .section-header,
+                .playground-block {
                     width: 90%;
                     max-width: 90%;
                 }
             }
             @media (max-width: 750px) {
-                .projects-list {
+                .rust-list {
                     width: 100%;
                     max-width: 100%;
                     padding: 0 12px;
                 }
-                .section-header {
+                .section-header,
+                .playground-block {
                     width: 100%;
                     max-width: 100%;
-                    padding: 0 22px;
+                    padding: 0;
+                }
+                .playground-block iframe {
+                    height: 480px;
                 }
             }
         </style>
@@ -107,38 +153,35 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">Projects</h1>
+            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg); color: var(--text_orange);">Rust 🦀</h1>
         </div>
 
-        <div class="projects-list">
-            <div class="project-row">
-                <div class="project-name"><h2><a href="/pages/rust.html">Rust 🦀</a></h2></div>
-                <div class="project-desc">Description of project one.</div>
+        <div class="rust-list">
+            <div class="rust-row">
+                <div class="rust-name"><h2><a href="#">Project One</a></h2></div>
+                <div class="rust-desc">Description.</div>
             </div>
-            <div class="project-row">
-                <div class="project-name"><h2><a href="#">Project Two</a></h2></div>
-                <div class="project-desc">Description of project two.</div>
-            </div>
-            <div class="project-row">
-                <div class="project-name"><h2><a href="#">Project Three</a></h2></div>
-                <div class="project-desc">Description of project three.</div>
+            <div class="rust-row">
+                <div class="rust-name"><h2><a href="#">Project Two</a></h2></div>
+                <div class="rust-desc">Description.</div>
             </div>
         </div>
 
-        <div class="section-header">
-            <h2>uni / archive <span style="color: var(--text_grey); font-size: 18px; font-weight: 400;">(older stuff)</span></h2>
+        <div class="section-header" style="width: 80%; margin: 48px auto 0;">
+            <h2>Playground</h2>
             <hr>
         </div>
 
-        <div class="projects-list">
-            <div class="project-row">
-                <div class="project-name"><h2><a href="#">Archived One</a></h2></div>
-                <div class="project-desc">Description of archived project one.</div>
-            </div>
-            <div class="project-row">
-                <div class="project-name"><h2><a href="#">Archived Two</a></h2></div>
-                <div class="project-desc">Description of archived project two.</div>
-            </div>
+        <div class="playground-block">
+            <div class="playground-header">🦀 run it yourself</div>
+            <iframe
+                src="https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=9a73cb1155622e4f5823a31fce337592"
+                title="Rust Playground"
+                allow="clipboard-write"
+                loading="lazy">
+            </iframe>
         </div>
+
+        <div style="height: 40px;"></div>
     </body>
 </html>
