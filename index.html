@@ -14,6 +14,7 @@
         <!--CSS styling-->
         <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
         <link rel="stylesheet" href="/assets/css/index_columns.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 
         <!--Appears in the title bar (tab bar)-->
@@ -89,6 +90,7 @@
                     overflow: hidden;
                     background: #0d1117;
                     border: 1px solid #30363d;
+                    text-align: left;
                 }
                 .playground-header {
                     padding: 10px 16px;
@@ -149,7 +151,7 @@
                     padding: 10px 20px;
                     background: #161b22;
                     border-top: 1px solid #30363d;
-                    font-family: 'Fira Mono', 'Courier New', monospace;
+                    font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
                     font-size: 13px;
                 }
                 .stdin-row label { color: #8b949e; white-space: nowrap; }
@@ -159,7 +161,7 @@
                     border: 1px solid #30363d;
                     border-radius: 4px;
                     color: var(--text_grey);
-                    font-family: 'Fira Mono', 'Courier New', monospace;
+                    font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
                     font-size: 13px;
                     padding: 4px 10px;
                     outline: none;
@@ -173,10 +175,13 @@
                     border-top: 1px solid #30363d;
                     padding: 14px 20px;
                     background: #0d1117;
-                    font-family: 'Fira Mono', 'Courier New', monospace;
+                    font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
                     font-size: 13px;
                     color: #c9d1d9;
                     text-align: left;
+                }
+                #output-text {
+                    display: block;
                     white-space: pre-wrap;
                     word-break: break-all;
                 }
