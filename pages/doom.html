@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <title>DOOM | Cole Shanks</title>
+        <!--Scripts-->
+        <script defer src="/scripts/navbar.js"></script>
+        <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
+        <script src="/scripts/link_router.js" defer></script>
+        <style>
+            body {
+                background-image: url(/assets/images/games/sprites/doom/E3M1-noHUD.webp);
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                background-color: #0a0a0a;
+            }
+            body::before {
+                content: '';
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.72);
+                z-index: 0;
+                pointer-events: none;
+            }
+            .doom-sprite-scatter {
+                position: fixed;
+                inset: 0;
+                z-index: 1;
+                pointer-events: none;
+                overflow: hidden;
+            }
+            .doom-sprite-scatter img {
+                position: absolute;
+                image-rendering: pixelated;
+            }
+            .doom-container, body > div:not(.doom-sprite-scatter) {
+                position: relative;
+                z-index: 2;
+            }
+
+            /* Orange overrides */
+            h2 { color: var(--text_orange); }
+            hr { border-color: var(--text_orange); }
+            a:hover { color: var(--text_orange); }
+            .nav_btn a:hover,
+            .btn_on_page a:hover { color: var(--text_green); }
+
+            .doom-container {
+                width: 80%;
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+            .doom-embed {
+                margin-top: 24px;
+                display: flex;
+                justify-content: center;
+            }
+            .doom-embed iframe {
+                border: none;
+                display: block;
+            }
+
+            /* Controls grid */
+            .doom-controls {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .ctrl-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background: #242930;
+                border: 1px solid #1e1e32;
+                border-left: 3px solid var(--text_orange);
+                border-radius: 4px;
+                padding: 10px 16px;
+            }
+            .ctrl-item.empty {
+                background: transparent;
+                border: none;
+            }
+            .ctrl-keys {
+                display: flex;
+                gap: 4px;
+                flex-shrink: 0;
+            }
+            .key {
+                display: inline-block;
+                background: #1e1e32;
+                color: var(--text_orange);
+                font-family: monospace;
+                font-size: 12px;
+                font-weight: bold;
+                padding: 3px 7px;
+                border-radius: 3px;
+                border: 1px solid #3a3a5c;
+                white-space: nowrap;
+            }
+            .ctrl-label {
+                color: var(--text_grey);
+                font-size: 13px;
+            }
+
+            /* Doomguy face next to h2 */
+            .doom-title {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+            .doom-title img {
+                height: 48px;
+                width: auto;
+                image-rendering: pixelated;
+                flex-shrink: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="doom-sprite-scatter">
+            <!-- left edge -->
+            <img src="/assets/images/games/sprites/doom/Cacodemon_sprite.webp" style="width:140px; top:4%;    left:-10px; opacity:0.5;  transform:rotate(-12deg);">
+            <img src="/assets/images/games/sprites/doom/27878.png"             style="width:220px; top:28%;   left:1%;    opacity:0.55; transform:rotate(22deg);">
+            <img src="/assets/images/games/sprites/doom/234240.png"            style="width:140px; top:60%;   left:2%;    opacity:0.5;  transform:rotate(18deg);">
+            <img src="/assets/images/games/sprites/doom/de01.gif"              style="width:140px; bottom:2%; left:3%;    opacity:0.45; transform:rotate(6deg);">
+            <!-- right edge -->
+            <img src="/assets/images/games/sprites/doom/de01.gif"              style="width:140px; top:3%;    right:-5px; opacity:0.5;  transform:rotate(10deg);">
+            <img src="/assets/images/games/sprites/doom/27876.png"             style="width:140px; top:30%;   right:1%;   opacity:0.45; transform:rotate(-20deg);">
+            <img src="/assets/images/games/sprites/doom/Cacodemon_sprite.webp" style="width:140px; top:55%;   right:-8px; opacity:0.5;  transform:rotate(14deg);">
+            <img src="/assets/images/games/sprites/doom/27878.png"             style="width:220px; bottom:3%; right:4%;   opacity:0.4;  transform:rotate(-8deg);">
+            <!-- scattered mid-background -->
+            <img src="/assets/images/games/sprites/doom/234240.png"            style="width:140px; top:8%;    left:22%;   opacity:0.3;  transform:rotate(30deg);">
+            <img src="/assets/images/games/sprites/doom/27876.png"             style="width:140px; top:12%;   right:20%;  opacity:0.25; transform:rotate(-18deg);">
+            <img src="/assets/images/games/sprites/doom/234240.png"            style="width:140px; bottom:8%; left:18%;   opacity:0.3;  transform:rotate(-14deg);">
+        </div>
+        <button class="back-to-main"><a href="/pages/explore.html" target="_self">back</a></button>
+
+        <div class="doom-container">
+            <div class="doom-title">
+                <img src="/assets/images/games/sprites/doom/27876.png" alt="Doomguy">
+                <h2 style="margin: 0; font-size: 42px;">Doom (1993) <span style="color: var(--text_grey); font-size: 18px; font-weight: 400;">shareware — Episode 1 released free by <a href="https://en.wikipedia.org/wiki/Id_Software" target="_blank" style="color: var(--text_grey); text-decoration: underline;">id Software</a></span></h2>
+            </div>
+            <hr>
+            <div class="doom-embed">
+                <iframe
+                    src="https://archive.org/embed/DoomsharewareEpisode"
+                    width="560"
+                    height="384"
+                    frameborder="0"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+            <div class="doom-controls">
+                <div class="ctrl-item">
+                    <div class="ctrl-keys"><span class="key">Arrow keys</span></div>
+                    <span class="ctrl-label">Move</span>
+                </div>
+                <div class="ctrl-item">
+                    <div class="ctrl-keys"><span class="key">Ctrl</span></div>
+                    <span class="ctrl-label">Shoot</span>
+                </div>
+                <div class="ctrl-item">
+                    <div class="ctrl-keys"><span class="key">Space</span></div>
+                    <span class="ctrl-label">Open doors / use</span>
+                </div>
+                <div class="ctrl-item">
+                    <div class="ctrl-keys"><span class="key">Shift</span></div>
+                    <span class="ctrl-label">Run</span>
+                </div>
+                <div class="ctrl-item">
+                    <div class="ctrl-keys"><span class="key">Alt</span><span class="key">+ arrows</span></div>
+                    <span class="ctrl-label">Strafe</span>
+                </div>
+                <div class="ctrl-item">
+                    <div class="ctrl-keys"><span class="key">1</span><span class="key">–</span><span class="key">7</span></div>
+                    <span class="ctrl-label">Select weapon</span>
+                </div>
+                <div class="ctrl-item">
+                    <div class="ctrl-keys"><span class="key">Tab</span></div>
+                    <span class="ctrl-label">Automap</span>
+                </div>
+                <div class="ctrl-item">
+                    <div class="ctrl-keys"><span class="key">Esc</span></div>
+                    <span class="ctrl-label">Menu</span>
+                </div>
+                <div class="ctrl-item empty"></div>
+            </div>
+        </div>
+    </body>
+</html>
