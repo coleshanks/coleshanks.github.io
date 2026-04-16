@@ -9,6 +9,7 @@
         <script defer src="/scripts/navbar.js"></script>
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
         <script src="/scripts/link_router.js" defer></script>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/rust.min.js"></script>
@@ -79,12 +80,13 @@
 
             /* Playground */
             .playground-block {
-                margin: 12px auto 0;
                 width: 80%;
+                margin: 12px auto 0;
                 border-radius: 8px;
                 overflow: hidden;
                 background: #0d1117;
                 border: 1px solid #30363d;
+                text-align: left;
             }
             .playground-header {
                 padding: 10px 16px;
@@ -138,6 +140,13 @@
                 text-align: left;
                 padding: 12px 12px 12px 20px !important;
             }
+            .playground-block pre code span,
+            .playground-block pre code i,
+            .output-block span,
+            .playground-header span {
+                font-size: inherit !important;
+                padding: 0 !important;
+            }
             .stdin-row {
                 display: flex;
                 align-items: center;
@@ -145,7 +154,7 @@
                 padding: 10px 20px;
                 background: #161b22;
                 border-top: 1px solid #30363d;
-                font-family: 'Fira Mono', 'Courier New', monospace;
+                font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
                 font-size: 13px;
             }
             .stdin-row label {
@@ -158,7 +167,7 @@
                 border: 1px solid #30363d;
                 border-radius: 4px;
                 color: var(--text_grey);
-                font-family: 'Fira Mono', 'Courier New', monospace;
+                font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
                 font-size: 13px;
                 padding: 4px 10px;
                 outline: none;
@@ -172,13 +181,15 @@
                 border-top: 1px solid #30363d;
                 padding: 14px 20px;
                 background: #0d1117;
-                font-family: 'Fira Mono', 'Courier New', monospace;
+                font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
                 font-size: 13px;
                 color: #c9d1d9;
                 text-align: left;
+            }
+            #output-text {
+                display: block;
                 white-space: pre-wrap;
                 word-break: break-all;
-                min-height: 40px;
             }
             .output-block.error { color: #f85149; }
             .output-label {
@@ -190,11 +201,11 @@
             }
 
             @media (max-width: 900px) {
-                .rust-list, .section-header, .playground-block { width: 90%; }
+                .rust-list, .section-header { width: 90%; }
             }
             @media (max-width: 750px) {
                 .rust-list { width: 100%; padding: 0 12px; }
-                .section-header, .playground-block { width: 100%; }
+                .section-header { width: 100%; }
             }
         </style>
     </head>
@@ -215,14 +226,15 @@
             <h2>Fibonacci Sequence Generator</h2>
             <hr>
         </div>
-        <div style="display: flex; align-items: center; justify-content: flex-start; gap: 24px; width: 80%; margin: 10px auto; padding: 0 10px 0 30px; box-sizing: border-box;">
-            <p style="margin: 0; font-size: 15px; text-align: left; max-width: 260px;">
-                Generates the nth <a href="https://en.wikipedia.org/wiki/Fibonacci_sequence" target="_blank">Fibonacci</a> number. Enter a value for n and run it directly in the browser.
-            </p>
+        <div style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 40px; width: 80%; margin: 10px auto 8px; padding: 0 10px 0 20px; box-sizing: border-box;">
+            <div>
+                <p style="margin: 0 0 4px 0; font-size: 16px; color: var(--text_orange); font-family: 'Fira Mono', 'Courier New', monospace; white-space: nowrap;">Fibonacci Sequence Generator</p>
+                <p style="margin: 0; font-size: 15px; max-width: 260px;">Generates the nth <a href="https://en.wikipedia.org/wiki/Fibonacci_sequence" target="_blank">Fibonacci</a> number. Enter a value for n and run it directly in the browser.</p>
+            </div>
             <img src="/assets/images/math/Fibonacci_Spiral.webp" alt="Fibonacci Spiral" style="width: 160px; flex-shrink: 0; border-radius: 6px; opacity: 0.85;">
         </div>
 
-        <div style="width: 80%; margin: 8px auto; padding: 0 10px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 4px 0; font-family: 'Fira Mono', 'Courier New', monospace; font-size: 13px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 0; font-family: 'Fira Mono', 'Courier New', monospace; font-size: 13px; width: 80%; margin: 8px auto; padding: 0 10px 0 20px; box-sizing: border-box;">
             <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>0</sub></span><span style="color: var(--text_grey);">0</span></div>
             <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>1</sub></span><span style="color: var(--text_grey);">1</span></div>
             <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>2</sub></span><span style="color: var(--text_grey);">1</span></div>
@@ -359,6 +371,7 @@
                     }
                 })
                 .catch(err => {
+                    outputBlock.style.display = 'block';
                     outputBlock.classList.add('error');
                     outputText.textContent = 'Error: ' + err.message;
                 })

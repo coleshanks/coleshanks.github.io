@@ -26,9 +26,6 @@
         <script src="/scripts/link_router.js" defer></script>
         <script src="/scripts/samus.js" defer></script>
         <script src="/scripts/random_sprite.js" defer></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/rust.min.js"></script>
     </head>
 <body>
     <noscript>Sorry, your browser does not support JavaScript!</noscript> <!--if no JS support-->
@@ -79,144 +76,12 @@
                     width: 90%;
                     border-radius: 8px;
                 }
-                /* Programming section orange overrides */
-                .programming-h2 { color: var(--text_orange) !important; }
-                .programming-hr { border-color: var(--text_orange) !important; }
-
-                /* Playground styles (mirrored from rust.html) */
-                .playground-block {
-                    margin: 12px 30px 0;
-                    border-radius: 8px;
-                    overflow: hidden;
-                    background: #0d1117;
-                    border: 1px solid #30363d;
-                    text-align: left;
-                }
-                .playground-header {
-                    padding: 10px 16px;
-                    font-family: 'Fira Mono', 'Courier New', monospace;
-                    font-size: 14px;
-                    color: var(--text_orange);
-                    background: #161b22;
-                    border-bottom: 1px solid #30363d;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    cursor: pointer;
-                    list-style: none;
-                    user-select: none;
-                }
-                .playground-header::-webkit-details-marker { display: none; }
-                .playground-header:hover { background: #1c2128; }
-                .run-btn {
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
-                    padding: 5px 14px;
-                    background: var(--text_orange);
-                    color: #0d1117;
-                    border: none;
-                    border-radius: 5px;
-                    font-family: 'Fira Mono', 'Courier New', monospace;
-                    font-size: 13px;
-                    font-weight: 700;
-                    cursor: pointer;
-                    transition: opacity 0.15s;
-                }
-                .run-btn:hover { opacity: 0.85; }
-                .run-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-                .playground-block pre {
-                    margin: 0;
-                    overflow-x: auto;
-                    border-radius: 0;
-                    white-space: pre-wrap;
-                    word-break: break-all;
-                }
-                .playground-block pre code span,
-                .playground-block pre code i,
-                .output-block span,
-                .playground-header span {
-                    font-size: inherit !important;
-                    padding: 0 !important;
-                }
-                .playground-block pre code {
-                    border-radius: 0;
-                    text-align: left;
-                    padding: 12px 12px 12px 20px !important;
-                }
-                .stdin-row {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    padding: 10px 20px;
-                    background: #161b22;
-                    border-top: 1px solid #30363d;
-                    font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
-                    font-size: 13px;
-                }
-                .stdin-row label { color: #8b949e; white-space: nowrap; }
-                .stdin-input {
-                    flex: 1;
-                    background: #0d1117;
-                    border: 1px solid #30363d;
-                    border-radius: 4px;
-                    color: var(--text_grey);
-                    font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
-                    font-size: 13px;
-                    padding: 4px 10px;
-                    outline: none;
-                    transition: border-color 0.15s;
-                }
-                .stdin-input:focus { border-color: var(--text_orange); }
-                .stdin-input::-webkit-outer-spin-button,
-                .stdin-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-                .stdin-input[type=number] { -moz-appearance: textfield; }
-                .output-block {
-                    border-top: 1px solid #30363d;
-                    padding: 14px 20px;
-                    background: #0d1117;
-                    font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
-                    font-size: 13px;
-                    color: #c9d1d9;
-                    text-align: left;
-                }
-                #output-text {
-                    display: block;
-                    white-space: pre-wrap;
-                    word-break: break-all;
-                }
-                .output-block.error { color: #f85149; }
-                .output-label {
-                    font-size: 11px;
-                    color: #8b949e;
-                    text-transform: uppercase;
-                    letter-spacing: 0.08em;
-                    margin-bottom: 6px;
-                }
-                .fib-table {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 4px 0;
-                    font-family: 'Fira Mono', 'Courier New', monospace;
-                    font-size: 13px;
-                    margin: 8px 30px;
-                }
-                .fib-cell {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    padding: 4px 10px;
-                }
-                .fib-cell span, .fib-cell i {
-                    font-size: 13px !important;
-                    padding: 0 !important;
-                    line-height: 1.4;
-                }
+                .rust-link { color: white; }
+                .rust-link:hover { color: var(--text_orange); }
                 @media (max-width: 900px) {
                     .media-row tr { display: flex; flex-direction: column; align-items: flex-start; }
                     .media-row td { width: 90% !important; }
                     .media-row td video, .media-row td img { width: 100%; }
-                    .playground-block { margin: 12px auto 0; width: 90%; }
                 }
             </style>
             <div>
@@ -233,6 +98,7 @@
             <h2>Hello</h2>
             <hr>
             <p>I'm Cole! I'm a graduate of <a href="https://engineering.ubc.ca/programs/undergraduate/electrical-engineering" target="_blank">Electrical Engineering</a> from the <a href="https://www.ubc.ca" target="_blank">University of British Columbia</a>, currently living in Japan. I'm passionate about learning Japanese, exploring history and culture, and reading — particularly sci-fi and fantasy. Look around, there's some cool stuff 💎</p>
+            <p>Currently learning Rust 🦀 — <a href="/pages/rust.html" class="rust-link">try this out, you can run it directly in your browser</a></p>
 
             <table class="media-row">
                 <tr>
@@ -254,145 +120,10 @@
                 </tr>
             </table>
 
-            <!-- Programming -->
-            <h2 class="programming-h2">Programming 🦀 <span style="color: var(--text_grey); font-size: 18px; font-weight: 400;">(currently learning Rust)</span></h2>
-            <hr class="programming-hr">
-            <div style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 40px; margin: 10px 0 8px 30px;">
-                <div>
-                    <p style="margin: 0 0 4px 0; font-size: 16px; color: var(--text_orange); font-family: 'Fira Mono', 'Courier New', monospace; white-space: nowrap;">Fibonacci Sequence Generator</p>
-                    <p style="margin: 0; font-size: 15px; max-width: 260px;">Generates the nth <a href="https://en.wikipedia.org/wiki/Fibonacci_sequence" target="_blank">Fibonacci</a> number. Enter a value for n and run it directly in the browser.</p>
-                </div>
-                <img src="/assets/images/math/Fibonacci_Spiral.webp" alt="Fibonacci Spiral" style="width: 160px; flex-shrink: 0; border-radius: 6px; opacity: 0.85;">
-            </div>
-            <div class="fib-table">
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>0</sub></span><span style="color: var(--text_grey);">0</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>1</sub></span><span style="color: var(--text_grey);">1</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>2</sub></span><span style="color: var(--text_grey);">1</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>3</sub></span><span style="color: var(--text_grey);">2</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>4</sub></span><span style="color: var(--text_grey);">3</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>5</sub></span><span style="color: var(--text_grey);">5</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>6</sub></span><span style="color: var(--text_grey);">8</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>7</sub></span><span style="color: var(--text_grey);">13</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>8</sub></span><span style="color: var(--text_grey);">21</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>9</sub></span><span style="color: var(--text_grey);">34</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>10</sub></span><span style="color: var(--text_grey);">55</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>11</sub></span><span style="color: var(--text_grey);">89</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>12</sub></span><span style="color: var(--text_grey);">144</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>13</sub></span><span style="color: var(--text_grey);">233</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>14</sub></span><span style="color: var(--text_grey);">377</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>15</sub></span><span style="color: var(--text_grey);">610</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>16</sub></span><span style="color: var(--text_grey);">987</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>17</sub></span><span style="color: var(--text_grey);">1597</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>18</sub></span><span style="color: var(--text_grey);">2584</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>19</sub></span><span style="color: var(--text_grey);">4181</span></div>
-                <div class="fib-cell"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>20</sub></span><span style="color: var(--text_grey);">6765</span></div>
-            </div>
-            <div class="playground-block">
-                <details>
-                <summary class="playground-header">
-                    <span>fibonacci.rs</span>
-                    <button class="run-btn" id="run-btn">▶ Run</button>
-                </summary>
-                <pre><code class="language-rust" id="rust-code">Loading...</code></pre>
-                <div class="stdin-row">
-                    <label for="stdin-input">n =</label>
-                    <input class="stdin-input" id="stdin-input" type="number" min="1" placeholder="please enter a number..." autocomplete="off">
-                </div>
-                <div class="output-block" id="output-block" style="display:none;">
-                    <div class="output-label">output</div>
-                    <span id="output-text"></span>
-                </div>
-                </details>
-            </div>
-
             <footer style="padding-top: 20px; margin: 0 30px;">
                 <p><a href="https://creativecommons.org/licenses/by-nc/4.0" target="_blank"><img src="/assets/images/license/by-nc.png" alt="CC BY-NC 4.0" style="padding-right: 10px;">Cole Shanks 2026</a></p>
             </footer>
         </div>
     </div>
-    <script>
-        const GIST_ID = '80170dcfd72e4625f956ef9f65958666';
-        const codeEl = document.getElementById('rust-code');
-        const runBtn = document.getElementById('run-btn');
-        const stdinInput = document.getElementById('stdin-input');
-        const outputBlock = document.getElementById('output-block');
-        const outputText = document.getElementById('output-text');
-        const detailsEl = document.querySelector('.playground-block details');
-        let rustCode = '';
-
-        fetch('https://api.github.com/gists/' + GIST_ID)
-            .then(r => r.json())
-            .then(data => {
-                const file = Object.values(data.files)[0];
-                rustCode = file.content;
-                codeEl.textContent = rustCode;
-                hljs.highlightElement(codeEl);
-            })
-            .catch(() => { codeEl.textContent = 'Failed to load code.'; });
-
-        runBtn.addEventListener('click', e => {
-            e.preventDefault();
-            e.stopPropagation();
-            runCode();
-        });
-        stdinInput.addEventListener('keydown', e => { if (e.key === 'Enter') runCode(); });
-
-        function runCode() {
-            if (!rustCode) return;
-            if (!detailsEl.open) {
-                detailsEl.open = true;
-                stdinInput.focus();
-                stdinInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
-            }
-            const raw = stdinInput.value.trim();
-            const n = parseInt(raw, 10);
-            if (!raw || isNaN(n) || n <= 0) {
-                stdinInput.focus();
-                stdinInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
-            }
-            const execCode = rustCode.replace(
-                /let n: usize = loop \{[\s\S]*?\};/,
-                `let n: usize = ${n};`
-            );
-            runBtn.disabled = true;
-            runBtn.textContent = '⏳ Running...';
-            outputBlock.style.display = 'none';
-            outputBlock.classList.remove('error');
-            outputText.textContent = '';
-
-            fetch('https://play.rust-lang.org/execute', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    channel: 'stable', mode: 'debug', edition: '2024',
-                    crateType: 'bin', tests: false, cratesIo: false, backtrace: false,
-                    code: execCode,
-                }),
-            })
-            .then(r => r.json())
-            .then(data => {
-                const out = (data.stdout || '').trim();
-                const err = (data.stderr || '').trim();
-                outputBlock.style.display = 'block';
-                if (!data.success) {
-                    outputBlock.classList.add('error');
-                    outputText.textContent = err || JSON.stringify(data);
-                } else {
-                    outputText.textContent = out || '(no output)';
-                }
-            })
-            .catch(err => {
-                outputBlock.style.display = 'block';
-                outputBlock.classList.add('error');
-                outputText.textContent = 'Error: ' + err.message;
-            })
-            .finally(() => {
-                runBtn.disabled = false;
-                runBtn.textContent = '▶ Run';
-            });
-        }
-    </script>
 </body>
 </html>
