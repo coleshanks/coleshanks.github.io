@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/assets/css/japan.css" type="text/css">
+        <style>
+            .list {
+                margin: 8px 30px;
+                padding-left: 0;
+                list-style: none;
+                text-align: left;
+                color: var(--text_grey);
+            }
+            .list li {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                margin: 10px 0;
+            }
+            .list li:has(.done) {
+                color: var(--text_green);
+            }
+            .list li[data-date]:not([data-date=""]) {
+                color: var(--text_green);
+            }
+            .list li[data-date]:not([data-date=""])::after {
+                content: " — " attr(data-date);
+                font-size: 0.82em;
+                opacity: 0.65;
+            }
+            .done {
+                font-size: 0.82em;
+                opacity: 0.5;
+                margin-left: 6px;
+            }
+            .movie-poster {
+                width: 50px;
+                height: 72px;
+                background: #2a2f38;
+                border: 1px solid #3a3f48;
+                border-radius: 3px;
+                overflow: hidden;
+                flex-shrink: 0;
+            }
+            .movie-poster img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .movie-label {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+            .movie-label .title {
+                font-size: 0.95em;
+            }
+            .movie-year {
+                font-size: 0.8em;
+                font-weight: normal;
+                color: #555588;
+                margin-left: 6px;
+            }
+        </style>
+        <title>Movies | Cole Shanks</title>
+    </head>
+    <body style="margin-bottom: 20px; background-size: cover; padding-top: 80px;">
+        <button class="back-to-main"><a href="/pages/japan.html" target="_self">back</a></button>
+        <h1 style="font-size: 50px;">movies</h1>
+
+        <ul class="list">
+            <li data-date="">
+                <div class="movie-poster"><img src="/assets/images/japan/movies/kimi_no_na_wa.png" alt="君の名は"></div>
+                <div class="movie-label"><span class="title">君の名は <span class="movie-year">2016</span><span class="done">済</span></span></div>
+            </li>
+            <li data-date="">
+                <div class="movie-poster"><img src="/assets/images/japan/movies/mononoke.png" alt="もののけ姫"></div>
+                <div class="movie-label"><span class="title">もののけ姫 <span class="movie-year">1997</span><span class="done">済</span></span></div>
+            </li>
+            <li data-date="">
+                <div class="movie-poster"><img src="/assets/images/japan/movies/ghost_in_the_shell.png" alt="攻殻機動隊"></div>
+                <div class="movie-label"><span class="title">攻殻機動隊 <span class="movie-year">1995</span></span></div>
+            </li>
+        </ul>
+
+    </body>
+</html>

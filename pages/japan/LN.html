@@ -23,6 +23,30 @@
                 font-size: 0.82em;
                 opacity: 0.65;
             }
+            details {
+                margin: 0;
+            }
+            details > summary {
+                list-style: none;
+                cursor: pointer;
+                font-family: var(--hf2);
+                font-size: 1.5em;
+                font-weight: bold;
+                color: var(--text_purple);
+                margin: 20px 0 8px 30px;
+                padding: 4px 0;
+                user-select: none;
+                text-align: left;
+            }
+            details > summary::-webkit-details-marker { display: none; }
+            details > summary::before {
+                content: '▸ ';
+                font-size: 0.75em;
+                opacity: 0.5;
+            }
+            details[open] > summary::before {
+                content: '▾ ';
+            }
         </style>
         <title>LN Schedule | Cole Shanks</title>
     </head>
@@ -30,7 +54,8 @@
         <button class="back-to-main"><a href="/pages/japan.html" target="_self">back</a></button>
         <h1 style="font-size: 50px;">light novels</h1>
 
-        <h2>やはり俺の青春ラブコメはまちがっている</h2>
+        <details open>
+        <summary>やはり俺の青春ラブコメはまちがっている</summary>
         <ul class="list">
             <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 1</li>
             <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 2</li>
@@ -49,5 +74,23 @@
             <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 12</li>
             <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 13</li>
         </ul>
+        </details>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function isDone(li) {
+                return li.querySelector('.done') !== null ||
+                       (li.dataset.date && li.dataset.date !== '');
+            }
+
+            document.querySelectorAll('details').forEach(function (details) {
+                const items = [...details.querySelectorAll('li')];
+                const summary = details.querySelector('summary');
+                if (summary && items.length && items.every(isDone)) {
+                    summary.style.color = 'var(--text_green)';
+                }
+            });
+        });
+    </script>
     </body>
 </html>

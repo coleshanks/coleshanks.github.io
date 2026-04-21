@@ -38,12 +38,39 @@
                 opacity: 0.5;
                 margin-left: 6px;
             }
+            details {
+                margin: 0;
+            }
+            details > summary {
+                list-style: none;
+                cursor: pointer;
+                font-family: var(--hf2);
+                font-size: 1.5em;
+                font-weight: bold;
+                color: var(--text_purple);
+                margin: 20px 0 8px 30px;
+                padding: 4px 0;
+                user-select: none;
+                text-align: left;
+            }
+            details > summary::-webkit-details-marker { display: none; }
+            details > summary::before {
+                content: '▸ ';
+                font-size: 0.75em;
+                opacity: 0.5;
+            }
+            details[open] > summary::before {
+                content: '▾ ';
+            }
         </style>
         <title>Manga Schedule | Cole Shanks</title>
     </head>
     <body style="margin-bottom: 20px; background-size: cover; padding-top: 80px;">
         <button class="back-to-main"><a href="/pages/japan.html" target="_self">back</a></button>
         <h1 style="font-size: 50px;">manga</h1>
+
+        <details open>
+        <summary>ベルセルク</summary>
 
         <h2>黒い剣士篇</h2>
 
@@ -629,6 +656,8 @@
             <li data-date="">383 — 無明無始</li>
         </ul>
 
+        </details>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             function isDone(li) {
@@ -644,6 +673,15 @@
                 if (items.length && items.every(isDone)) {
                     h3.style.color = 'var(--text_green)';
                     h3.style.opacity = '1';
+                }
+            });
+
+            // details summary — green when all li items inside are done
+            document.querySelectorAll('details').forEach(function (details) {
+                const items = [...details.querySelectorAll('li')];
+                const summary = details.querySelector('summary');
+                if (summary && items.length && items.every(isDone)) {
+                    summary.style.color = 'var(--text_green)';
                 }
             });
 

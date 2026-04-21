@@ -31,6 +31,30 @@
                 opacity: 0.5;
                 margin-left: 6px;
             }
+            details {
+                margin: 0;
+            }
+            details > summary {
+                list-style: none;
+                cursor: pointer;
+                font-family: var(--hf2);
+                font-size: 1.5em;
+                font-weight: bold;
+                color: var(--text_purple);
+                margin: 20px 0 8px 30px;
+                padding: 4px 0;
+                user-select: none;
+                text-align: left;
+            }
+            details > summary::-webkit-details-marker { display: none; }
+            details > summary::before {
+                content: '▸ ';
+                font-size: 0.75em;
+                opacity: 0.5;
+            }
+            details[open] > summary::before {
+                content: '▾ ';
+            }
         </style>
         <title>Anime Schedule | Cole Shanks</title>
     </head>
@@ -39,7 +63,9 @@
         <h1 style="font-size: 50px;">anime</h1>
 
         <p style="margin: 0 30px 0; font-size: 0.85em; color: var(--text_green); opacity: 0.6;">ドラゴンボール (153話) 済</p>
-        <h2 style="margin-top: 4px;">ドラゴンボールZ</h2>
+
+        <details open>
+        <summary>ドラゴンボールZ</summary>
 
         <h2>サイヤ人編</h2>
         <ul class="list">
@@ -364,6 +390,8 @@
             <li data-date="">291 — もっと強く!!悟空の夢は超でっけえ</li>
         </ul>
 
+        </details>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             function isDone(li) {
@@ -383,6 +411,15 @@
                 }
                 if (items.length && items.every(isDone)) {
                     h2.style.color = 'var(--text_green)';
+                }
+            });
+
+            // details summary — green when all li items inside are done
+            document.querySelectorAll('details').forEach(function (details) {
+                const items = [...details.querySelectorAll('li')];
+                const summary = details.querySelector('summary');
+                if (summary && items.length && items.every(isDone)) {
+                    summary.style.color = 'var(--text_green)';
                 }
             });
         });
