@@ -15,50 +15,53 @@
             }
             .list li {
                 display: flex;
-                align-items: center;
-                gap: 14px;
-                margin: 10px 0;
+                align-items: flex-start;
+                gap: 20px;
+                margin: 18px 0;
             }
-            .list li:has(.done) {
+            .list li:has(.done) .game-info {
                 color: var(--text_green);
-            }
-            .list li[data-date]:not([data-date=""]) {
-                color: var(--text_green);
-            }
-            .list li[data-date]:not([data-date=""])::after {
-                content: " — " attr(data-date);
-                font-size: 0.82em;
-                opacity: 0.65;
             }
             .done {
                 font-size: 0.82em;
                 opacity: 0.5;
                 margin-left: 6px;
             }
-            .movie-poster {
-                width: 50px;
-                height: 72px;
-                background: #2a2f38;
-                border: 1px solid #3a3f48;
+            .now {
+                font-size: 0.82em;
+                opacity: 0.5;
+                margin-left: 6px;
+            }
+            .game-poster {
+                width: 130px;
+                flex-shrink: 0;
                 border-radius: 3px;
                 overflow: hidden;
-                flex-shrink: 0;
+                border: 1px solid #3a3f48;
             }
-            .movie-poster img {
+            .game-poster img {
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
+                height: auto;
                 display: block;
             }
-            .movie-label {
+            .game-info {
                 display: flex;
                 flex-direction: column;
-                gap: 2px;
+                gap: 4px;
+                padding-top: 4px;
             }
-            .movie-label .title {
-                font-size: 0.95em;
+            .game-label {
+                color: var(--text_orange);
+                font-size: 0.75em;
+                letter-spacing: 0.05em;
+                font-family: 'Roboto', sans-serif;
             }
-            .movie-year {
+            .game-title {
+                font-size: 1.05em;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+            }
+            .game-year {
                 font-size: 0.8em;
                 font-weight: normal;
                 color: #555588;
@@ -68,23 +71,31 @@
         <title>Movies | Cole Shanks</title>
     </head>
     <body style="margin-bottom: 20px; background-size: cover; padding-top: 80px;">
-        <button class="back-to-main"><a href="/pages/japan.html" target="_self">back</a></button>
+        <button class="back-to-main"><a href="/pages/japan/immersion.html" target="_self">back</a></button>
         <h1 style="font-size: 50px;">movies</h1>
 
         <ul class="list">
-            <li data-date="">
-                <div class="movie-poster"><img src="/assets/images/japan/movies/kimi_no_na_wa.png" alt="君の名は"></div>
-                <div class="movie-label"><span class="title">君の名は <span class="movie-year">2016</span><span class="done">済</span></span></div>
+            <li>
+                <div class="game-poster"><img src="/assets/images/immersion/movies/kimi_no_na_wa.png" alt="君の名は"></div>
+                <div class="game-info">
+                    <span class="game-label">新海誠</span>
+                    <span class="game-title">君の名は <span class="game-year">2016</span><span class="done">済</span></span>
+                </div>
             </li>
-            <li data-date="">
-                <div class="movie-poster"><img src="/assets/images/japan/movies/mononoke.png" alt="もののけ姫"></div>
-                <div class="movie-label"><span class="title">もののけ姫 <span class="movie-year">1997</span><span class="done">済</span></span></div>
+            <li>
+                <div class="game-poster"><img src="/assets/images/immersion/movies/mononoke.png" alt="もののけ姫"></div>
+                <div class="game-info">
+                    <span class="game-label">宮崎駿</span>
+                    <span class="game-title">もののけ姫 <span class="game-year">1997</span><span class="done">済</span></span>
+                </div>
             </li>
-            <li data-date="">
-                <div class="movie-poster"><img src="/assets/images/japan/movies/ghost_in_the_shell.png" alt="攻殻機動隊"></div>
-                <div class="movie-label"><span class="title">攻殻機動隊 <span class="movie-year">1995</span></span></div>
+            <li>
+                <div class="game-poster"><img src="/assets/images/immersion/movies/ghost_in_the_shell.png" alt="攻殻機動隊"></div>
+                <div class="game-info">
+                    <span class="game-label">押井守</span>
+                    <span class="game-title">攻殻機動隊 <span class="game-year">1995</span><span class="now">今</span></span>
+                </div>
             </li>
         </ul>
-
     </body>
 </html>

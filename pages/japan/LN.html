@@ -8,89 +8,80 @@
         <style>
             .list {
                 margin: 8px 30px;
-                padding-left: 20px;
+                padding-left: 0;
+                list-style: none;
                 text-align: left;
                 color: var(--text_grey);
             }
             .list li {
-                margin: 4px 0;
+                display: flex;
+                align-items: flex-start;
+                gap: 20px;
+                margin: 18px 0;
             }
-            .list li[data-date]:not([data-date=""]) {
+            .list li:has(.done) .game-info {
                 color: var(--text_green);
             }
-            .list li[data-date]:not([data-date=""])::after {
-                content: " — " attr(data-date);
+            .done {
                 font-size: 0.82em;
-                opacity: 0.65;
-            }
-            details {
-                margin: 0;
-            }
-            details > summary {
-                list-style: none;
-                cursor: pointer;
-                font-family: var(--hf2);
-                font-size: 1.5em;
-                font-weight: bold;
-                color: var(--text_purple);
-                margin: 20px 0 8px 30px;
-                padding: 4px 0;
-                user-select: none;
-                text-align: left;
-            }
-            details > summary::-webkit-details-marker { display: none; }
-            details > summary::before {
-                content: '▸ ';
-                font-size: 0.75em;
                 opacity: 0.5;
+                margin-left: 6px;
             }
-            details[open] > summary::before {
-                content: '▾ ';
+            .now {
+                font-size: 0.82em;
+                opacity: 0.5;
+                margin-left: 6px;
+            }
+            .game-poster {
+                width: 130px;
+                flex-shrink: 0;
+                border-radius: 3px;
+                overflow: hidden;
+                border: 1px solid #3a3f48;
+            }
+            .game-poster img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            .game-info {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                padding-top: 4px;
+            }
+            .game-label {
+                color: var(--text_orange);
+                font-size: 0.75em;
+                letter-spacing: 0.05em;
+                font-family: 'Roboto', sans-serif;
+            }
+            .game-title {
+                font-size: 1.05em;
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+            }
+            .game-year {
+                font-size: 0.8em;
+                font-weight: normal;
+                color: #555588;
+                margin-left: 6px;
             }
         </style>
-        <title>LN Schedule | Cole Shanks</title>
+        <title>Light Novels | Cole Shanks</title>
     </head>
     <body style="margin-bottom: 20px; background-size: cover; padding-top: 80px;">
-        <button class="back-to-main"><a href="/pages/japan.html" target="_self">back</a></button>
+        <button class="back-to-main"><a href="/pages/japan/immersion.html" target="_self">back</a></button>
         <h1 style="font-size: 50px;">light novels</h1>
 
-        <details open>
-        <summary>やはり俺の青春ラブコメはまちがっている</summary>
         <ul class="list">
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 1</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 2</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 3</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 4</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 5</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 6</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 6.5</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 7</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 7.5</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 8</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 9</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 10</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 10.5</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 11</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 12</li>
-            <li data-date="">やはり俺の青春ラブコメはまちがっている Vol 13</li>
+            <li>
+                <div class="game-poster"><img src="/assets/images/immersion/ln/oregairu.png" alt="やはり俺の青春ラブコメはまちがっている"></div>
+                <div class="game-info">
+                    <span class="game-label">渡航</span>
+                    <span class="game-title">やはり俺の青春ラブコメはまちがっている <span class="game-year">2011</span><span class="now">今</span></span>
+                </div>
+            </li>
         </ul>
-        </details>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function isDone(li) {
-                return li.querySelector('.done') !== null ||
-                       (li.dataset.date && li.dataset.date !== '');
-            }
-
-            document.querySelectorAll('details').forEach(function (details) {
-                const items = [...details.querySelectorAll('li')];
-                const summary = details.querySelector('summary');
-                if (summary && items.length && items.every(isDone)) {
-                    summary.style.color = 'var(--text_green)';
-                }
-            });
-        });
-    </script>
     </body>
 </html>

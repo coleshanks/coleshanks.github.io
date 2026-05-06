@@ -4,12 +4,13 @@
         <meta charset="utf-8">
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
         <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
-        <title>Extras | Cole Shanks</title>
+        <link rel="stylesheet" href="/assets/css/japan.css" type="text/css">
+        <title>Immersion | Cole Shanks</title>
         <script defer src="/scripts/navbar.js"></script>
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
         <script src="/scripts/link_router.js" defer></script>
         <style>
-            .explore-list {
+            .japan-list {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
@@ -19,57 +20,52 @@
                 padding: 0 10px;
                 box-sizing: border-box;
             }
-            .explore-row {
+            .japan-row {
                 display: flex;
-                align-items: center;
+                align-items: stretch;
                 background: #242930;
                 border-radius: 8px;
                 overflow: hidden;
                 min-height: 100px;
-                box-shadow: 4px 4px 8px rgba(38, 230, 121, 0.32);
+                box-shadow: 4px 4px 8px rgba(112, 112, 240, 0.32);
             }
-            .explore-name {
+            .japan-name {
+                width: 130px;
+                flex-shrink: 0;
                 padding: 18px 24px;
-                min-width: 120px;
-            }
-            .explore-name h2 {
-                margin: 0;
-            }
-            .explore-name h2 a {
-                color: var(--text_green);
-                text-decoration: none;
-            }
-            .explore-name h2 a:hover {
-                text-decoration: underline;
-            }
-            .explore-desc {
-                position: relative;
-                padding: 18px 24px 18px 27px;
-                color: var(--text_grey);
-                font-size: 15px;
-                flex: 1;
-                align-self: stretch;
                 display: flex;
                 align-items: center;
             }
-            .explore-desc::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 3px;
-                background: #26e679;
-                border-radius: 2px;
+            .japan-name h2 {
+                margin: 0;
+            }
+            .japan-name h2 a {
+                color: var(--text_purple);
+                text-decoration: none;
+            }
+            .japan-name h2 a:hover {
+                text-decoration: underline;
+            }
+            .japan-desc {
+                border-left: 3px solid var(--text_purple);
+                padding: 18px 24px;
+                color: var(--text_grey);
+                font-size: 15px;
+                width: 50%;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
             }
             @media (max-width: 900px) {
-                .explore-list {
+                .japan-list {
                     width: 90%;
                     max-width: 90%;
                 }
             }
             @media (max-width: 750px) {
-                .explore-list {
+                .japan-list {
                     grid-template-columns: 1fr;
                     width: 100%;
                     max-width: 100%;
@@ -88,17 +84,29 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">Extras</h1>
+            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">immersion</h1>
         </div>
 
-        <div class="explore-list">
-            <div class="explore-row">
-                <div class="explore-name"><h2><a href="/pages/doom.html" target="_self">DOOM</a></h2></div>
-                <div class="explore-desc">Doom shareware (Episode 1) running in the browser via DOSBox emulation.</div>
+        <div class="japan-list">
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/LN.html" target="_self">LN</a></h2></div>
+                <div class="japan-desc">TBD</div>
             </div>
-            <div class="explore-row">
-                <div class="explore-name"><h2><a href="/pages/net.html" target="_self">ネット</a></h2></div>
-                <div class="explore-desc">TBD</div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/manga.html" target="_self">Manga</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/anime.html" target="_self">Anime</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/movies.html" target="_self">Movies</a></h2></div>
+                <div class="japan-desc">TBD</div>
+            </div>
+            <div class="japan-row">
+                <div class="japan-name"><h2><a href="/pages/japan/games.html" target="_self">Games</a></h2></div>
+                <div class="japan-desc">TBD</div>
             </div>
         </div>
     </body>
