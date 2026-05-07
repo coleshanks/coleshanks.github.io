@@ -185,6 +185,7 @@
                 if (queueIndex >= queue.length) {
                     shuffle(queue);
                     queueIndex = 0;
+                    return null;
                 }
                 return queue[queueIndex++];
             }
