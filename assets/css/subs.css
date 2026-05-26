@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap');
+
+body {
+  color: #bcbdd0;
+  background-color: hsl(226, 23%, 11%);
+  font-size: 1.25em;
+  line-height: 200%;
+  margin: 5%;
+  font-family: "Noto Sans JP", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+@media (max-width: 430px) {
+  body {
+    font-size: 3.2em;
+  }
+}
+
+.timestamp {
+  color: #5a5f7a;
+  font-size: 0.75em;
+  margin-bottom: 0.1em;
+}
+
+.line {
+  margin-bottom: 1em;
+}
