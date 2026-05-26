@@ -9,11 +9,6 @@ body {
   font-family: "Noto Sans JP", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
-@media (max-width: 400px) {
-  body {
-    font-size: 1.25em;
-  }
-}
 
 .timestamp {
   color: #5a5f7a;
