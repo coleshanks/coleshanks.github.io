@@ -9,6 +9,28 @@
         <script defer src="/scripts/navbar.js"></script>
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
         <script src="/scripts/link_router.js" defer></script>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            .neo-wrap { display: flex; justify-content: flex-start; padding: 24px 30px 40px; }
+            .neo-window { background: #16161e; border: 1px solid #292e42; border-top: 2px solid #7dcfff; border-radius: 4px; overflow: hidden; box-shadow: 0 0 32px rgba(125, 207, 255, 0.07); }
+            .neo-titlebar { background: #1f2335; border-bottom: 1px solid #1a1b26; padding: 8px 14px; display: flex; align-items: center; gap: 7px; }
+            .neo-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; background: #2a2f45; }
+            .neo-title { color: #565f89; font-size: 12px; font-family: 'JetBrains Mono', monospace; margin-left: 4px; }
+            @keyframes neo-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+            .neo-prompt-line { font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace; font-size: 16px; padding: 16px 32px 4px; white-space: nowrap; text-align: left; }
+            .neo-prompt-prefix { color: #5fdfff; }
+            .neo-prompt-cmd { color: #c0caf5; }
+            .neo-cursor { color: #5fdfff; animation: neo-blink 1s step-end infinite; }
+            .neo-fetch { display: flex; gap: 48px; padding: 24px 32px; align-items: flex-start; }
+            .neo-art { color: #7dcfff; font-size: 6px; line-height: 1.1; white-space: pre; flex-shrink: 0; user-select: none; font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace; margin: 0; }
+            .neo-info { font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace; font-size: 18px; line-height: 1.5; color: #c0caf5; text-align: left; }
+            .neo-username { color: #7dcfff; font-size: 18px; }
+            .neo-sep { color: #565f89; margin-bottom: 2px; }
+            .neo-line { display: flex; white-space: nowrap; }
+            .neo-key { color: #7dcfff; font-weight: 700; min-width: 19ch; flex-shrink: 0; }
+            .neo-colon { color: #565f89; margin-right: 8px; }
+            .neo-val { color: #c0caf5; }
+        </style>
     </head>
     <body>
         <div>
@@ -21,6 +43,74 @@
         </div>
         <div>
             <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">CV</h1>
+        </div>
+        <div class="neo-wrap">
+            <div class="neo-window">
+                <div class="neo-titlebar">
+                    <span class="neo-title">cole@shanks</span>
+                </div>
+                <div class="neo-prompt-line"><span class="neo-prompt-prefix">~ ❯ </span><span class="neo-prompt-cmd"></span><span class="neo-cursor">█</span></div>
+                <div class="neo-fetch">
+                    <pre class="neo-art">⣿⣿⡇⠀⢸⣿⣿⣿⣟⠀⣿⣿⣿⣿⠀⠈⣿⣿⣿⡯⠁⢸⣿⠿⠛⠛⠃⠛⠿⠿⠛⠛⠀⠿⠿⣿⡟⠀⠀⣿⣿⣯⡉⠀⢸⣿⣿⣿⠉⠀⣿⣿⣿⡋⠁⢸⣿⣿⣿⡿
+⣿⣿⡷⠀⢸⣿⣿⣿⣿⠀⣿⣿⣿⣿⡆⠀⣿⣿⣿⣯⠀⠘⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡧⠀⢸⣿⣿⣿⠄⠀⣿⣿⣿⡆⠀⢸⣿⣿⣿⡇
+⣿⠿⠷⠄⢸⡿⠿⠿⠿⠄⢿⡿⠿⣿⠧⠠⣿⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠩⠽⠧⠄⢼⣿⢿⡿⠧⠤⡿⠯⠤⠤⠤⠸⠯⠭⠥⠤
+⣿⠀⠀⠀⢸⣷⣰⡖⠚⠀⣾⣧⡀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⡀⠀⠀⠈⣿⣏⠀⠀⠀⢹⣿⡗⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⢀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⡄⠀⠀⠀⣿⣇⠀⠀⠀⢸⣿⡇⠀⠀⠀⠀⢀⣠⣴⣶⣶⣶⣶⣿⣿⣶⣤⣦⣴⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣷⠄⠀⠀⣿⣿⡶⠀⠀⢸⣿⣿⠦⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀⠀⣿⣻⠆⠀⠀⠀⣎⡶⠀⠀⠀⠠⣈⠶⠀
+⣿⠏⠀⠀⠀⣿⡏⠉⠀⠀⢘⣿⠋⠁⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⣟⠉⠁⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠁⠀
+⣿⡄⠀⠀⠀⣿⡇⠀⠀⠀⢸⡏⠂⠀⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣟⠁⠈⣿⣿⡏⠉⠁⢹⣿⣿⠁⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⣿⣿⣿⣿⣇⠀⠀⠀⠀⢹⣿⣿⡏⠉⢸⣿⣿⣿⠟⠁⢸⣿⣿⡭⠉
+⣿⣿⡧⠄⠠⣿⣿⣧⣦⠄⢼⣿⣿⠄⣾⣿⣫⣽⣛⣋⣉⣙⡻⣿⣿⣿⣿⣿⣿⣯⣤⣤⣴⣤⣤⣄⡉⣿⣿⣿⡆⠀⠀⠀⢼⣿⣿⣥⡤⢸⣿⣿⣿⣧⠀⢼⣿⣯⣭⠤
+⣛⣂⣀⣀⣀⣋⣀⣀⣀⣀⣘⣃⣀⠀⣿⣿⣿⣿⡿⡿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⡛⢻⢿⣿⣿⣿⣿⣿⡇⠀⠀⠀⣘⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣯⣾⣷⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣴⣿⣦⣿⣿⣿⣿⣿⡇⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⠙⠁⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣲⡀⠀⠀
+⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢰⣿⣿⣿⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢸⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣀⣀⣀⣀⡀⣀⣀⡀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⢸⣿⣿⣿⡟⠀⣻⣿⣿⠛⠀⠀⢹⢿⠿⣿⣿⣿⣿⣿⣷⣽⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⡀⢻⡿⡿⠷⠗⠀⢸⣿⠟⠂⠀⠀⢻⠿⠗⠀⠀⠀
+⠀⢸⣿⣿⣿⣦⠀⣻⣿⣿⣤⠀⠀⢺⠂⣦⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣡⡄⢠⡄⢼⣿⣿⣏⡀⠀⢸⣿⡷⠆⠀⠀⢸⠀⣰⠄⠀⠀
+⠀⣸⣿⣿⣿⡟⠀⣿⣿⣿⠉⠀⠀⣿⣐⣿⡃⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣷⣽⣿⣿⠛⠀⠀⢸⣿⡏⠁⠀⠀⠐⠀⠛⠁⠀⠀
+⠀⣚⣿⣿⣟⣛⠀⣿⣿⣟⣛⡃⠀⣿⣿⣟⡃⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡓⢂⠀⣻⣿⣛⠒⠀⠀⣿⣛⣛⣂⡀⠀
+⠀⠠⣿⣿⣿⣀⠀⣿⣿⣿⣇⡀⠀⣿⣿⣿⡆⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠳⠆⠀⠀⣿⣿⣷⡂⠀⠀⣿⣏⡖⠆⠀⠀
+⠀⠘⣿⣿⣿⡭⠀⣿⣿⣿⣩⡁⠀⣿⣿⣿⡥⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠈⠀⣿⣿⣯⠭⠀⠀⡿⣭⣭⠁⠀⠀
+⠀⣸⣿⣿⡿⠂⠀⣿⣿⣿⠓⠀⠀⣿⣿⣷⠤⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⠦⠂⠀⠀⠇⠰⠄⠀⠀⠀
+⠀⣛⣻⣟⣓⣒⠀⣿⣟⣛⣂⡀⠀⣻⣿⣟⣂⠀⠀⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣒⣒⣒⣂⠀⠀
+⠀⣸⣿⣿⣿⠉⠀⣿⣿⣿⠉⠁⠀⣿⠩⡉⠁⠀⠀⠉⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠁⠀⠀
+⠀⢼⣿⣿⣿⠂⡀⣿⣿⣿⡗⠀⠀⣿⢟⠟⠃⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡤⠤⠤⠤⢀⣀⠀⠀
+⠀⣼⣿⣿⣧⡄⠀⣿⣿⣧⡄⠀⢀⠜⠁⠀⠀⠀⠀⠀⠀⡿⠋⠘⠉⠻⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡴⠚⠉⠀⠀⠀⠀⠀⠀⠈⠉⠀
+⠀⢶⣿⣿⡯⠄⠀⣿⡿⠋⠀⡰⠋⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠘⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠈⣿⣿⣧⡄⠀⠋⠀⠀⡜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⡧⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣋⣤⣴⣶⣶⣶⣶⣿⣿⣿⣷⠄⠀⠀⠀⠀⠀</pre>
+                    <div class="neo-info">
+                        <div class="neo-username">coleshanks@Coles-MacBook-Pro</div>
+                        <div class="neo-sep">----------------------------</div>
+                        <div class="neo-line"><span class="neo-key">OS</span><span class="neo-colon">:</span><span class="neo-val">EVA-00 SYSTEM // 0号機 [arm64] ONLINE</span></div>
+                        <div class="neo-line"><span class="neo-key">Host</span><span class="neo-colon">:</span><span class="neo-val">MacBook Pro (14-inch, 2023)</span></div>
+                        <div class="neo-line"><span class="neo-key">Kernel</span><span class="neo-colon">:</span><span class="neo-val">Darwin 25.5.0</span></div>
+                        <div class="neo-line"><span class="neo-key">Uptime</span><span class="neo-colon">:</span><span class="neo-val">1 day, 5 hours, 53 mins</span></div>
+                        <div class="neo-line"><span class="neo-key">Packages</span><span class="neo-colon">:</span><span class="neo-val">238 (brew), 16 (brew-cask)</span></div>
+                        <div class="neo-line"><span class="neo-key">Shell</span><span class="neo-colon">:</span><span class="neo-val">fish 4.7.1</span></div>
+                        <div class="neo-line"><span class="neo-key">Display (Color LCD)</span><span class="neo-colon">:</span><span class="neo-val">3600x2338 @ 2x in 14", 120 Hz [Built-in]</span></div>
+                        <div class="neo-line"><span class="neo-key">WM</span><span class="neo-colon">:</span><span class="neo-val">Quartz Compositor 1.600.0</span></div>
+                        <div class="neo-line"><span class="neo-key">WM Theme</span><span class="neo-colon">:</span><span class="neo-val">Multicolor (Dark)</span></div>
+                        <div class="neo-line"><span class="neo-key">Theme</span><span class="neo-colon">:</span><span class="neo-val">Liquid Glass</span></div>
+                        <div class="neo-line"><span class="neo-key">Font</span><span class="neo-colon">:</span><span class="neo-val">.AppleSystemUIFont [System], Helvetica [User]</span></div>
+                        <div class="neo-line"><span class="neo-key">Cursor</span><span class="neo-colon">:</span><span class="neo-val">Fill - Black, Outline - White (32px)</span></div>
+                        <div class="neo-line"><span class="neo-key">Terminal</span><span class="neo-colon">:</span><span class="neo-val">Apple Terminal 470.2</span></div>
+                        <div class="neo-line"><span class="neo-key">Terminal Font</span><span class="neo-colon">:</span><span class="neo-val">JetBrainsMono-Regular (24pt)</span></div>
+                        <div class="neo-line"><span class="neo-key">CPU</span><span class="neo-colon">:</span><span class="neo-val">Apple M2 Pro (10) @ 3.50 GHz</span></div>
+                        <div class="neo-line"><span class="neo-key">GPU</span><span class="neo-colon">:</span><span class="neo-val">Apple M2 Pro (16) @ 1.40 GHz [Integrated]</span></div>
+                        <div class="neo-line"><span class="neo-key">Memory</span><span class="neo-colon">:</span><span class="neo-val">9.55 GiB / 16.00 GiB (60%)</span></div>
+                        <div class="neo-line"><span class="neo-key">Swap</span><span class="neo-colon">:</span><span class="neo-val">Unused</span></div>
+                        <div class="neo-line"><span class="neo-key">Disk (/)</span><span class="neo-colon">:</span><span class="neo-val">422.24 GiB / 460.43 GiB (92%) - apfs [Read-only]</span></div>
+                        <div class="neo-line"><span class="neo-key">Local IP (en0)</span><span class="neo-colon">:</span><span class="neo-val">192.168.128.196/24</span></div>
+                        <div class="neo-line"><span class="neo-key">Battery (bq40z651)</span><span class="neo-colon">:</span><span class="neo-val">100% [Discharging]</span></div>
+                        <div class="neo-line"><span class="neo-key">Locale</span><span class="neo-colon">:</span><span class="neo-val">en_US.UTF-8</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--about section-->
         <h2>about</h2>
@@ -35,5 +125,27 @@
         <p style="margin-bottom: 2px;">Bachelor of Applied Science (BASc) in Electrical Engineering</p>
         <p style="margin-top: 2px; margin-bottom: 2px;">Minor in Commerce</p>
         <p style="margin-top: 2px;">Graduated with distinction</p>
+    <script>
+        (function() {
+            var cmdEl = document.querySelector('.neo-prompt-cmd');
+            var cursorEl = document.querySelector('.neo-cursor');
+            var fetchEl = document.querySelector('.neo-fetch');
+            fetchEl.style.display = 'none';
+            var cmd = 'neofetch';
+            var i = 0;
+            function type() {
+                if (i < cmd.length) {
+                    cmdEl.textContent += cmd[i++];
+                    setTimeout(type, 140);
+                } else {
+                    setTimeout(function() {
+                        cursorEl.style.display = 'none';
+                        fetchEl.style.display = 'flex';
+                    }, 150);
+                }
+            }
+            setTimeout(type, 500);
+        })();
+    </script>
     </body>
 </html>
