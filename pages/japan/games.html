@@ -19,19 +19,6 @@
                 gap: 20px;
                 margin: 18px 0;
             }
-            .list li:has(.done) .game-info {
-                color: var(--text_green);
-            }
-            .done {
-                font-size: 0.82em;
-                opacity: 0.5;
-                margin-left: 6px;
-            }
-            .now {
-                font-size: 0.82em;
-                opacity: 0.5;
-                margin-left: 6px;
-            }
             .game-poster {
                 width: 130px;
                 flex-shrink: 0;
@@ -57,6 +44,7 @@
                 font-family: 'Roboto', sans-serif;
             }
             .game-title {
+                color: var(--text_green);
                 font-size: 1.05em;
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
@@ -74,10 +62,6 @@
                 color: var(--text_grey);
                 opacity: 0.85;
             }
-            .list li:has(.done) .game-desc {
-                color: var(--text_grey);
-                opacity: 0.85;
-            }
         </style>
         <title>Games | Cole Shanks</title>
     </head>
@@ -90,14 +74,14 @@
                 <div class="game-poster"><img src="/assets/images/immersion/games/Final Fantasy VII International (Japan).jpg" alt="Final Fantasy VII"></div>
                 <div class="game-info">
                     <span class="game-label">PLAYSTATION</span>
-                    <span class="game-title">Final Fantasy VII <span class="game-year">1997</span><span class="done">済</span></span>
+                    <span class="game-title">Final Fantasy VII <span class="game-year">1997</span></span>
                 </div>
             </li>
             <li>
                 <div class="game-poster"><img src="/assets/images/immersion/games/Chrono Trigger (Japan).jpg" alt="Chrono Trigger"></div>
                 <div class="game-info">
                     <span class="game-label">SUPER FAMICOM</span>
-                    <span class="game-title">Chrono Trigger <span class="game-year">1995</span><span class="now">今</span></span>
+                    <span class="game-title">Chrono Trigger <span class="game-year">1995</span></span>
                 </div>
             </li>
         </ul>
