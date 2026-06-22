@@ -1,10 +1,10 @@
 /* Japan section color overrides — purple */
 h2 {
-    color: var(--text_purple);
+    color: var(--text_cyan);
 }
 
 hr {
-    border-color: var(--text_purple);
+    border-color: var(--text_cyan);
 }
 
 a:link,
@@ -13,7 +13,7 @@ a:visited {
 }
 
 a:hover {
-    color: var(--text_purple);
+    color: var(--text_cyan);
 }
 
 .nav_btn a:hover,
