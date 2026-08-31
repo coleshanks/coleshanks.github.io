@@ -10,7 +10,7 @@ const SAMUS_BOTTOM       = 16;     // px from bottom of viewport
 
 (function () {
     // Don't run on small screens where sidebar is stacked
-    if (window.innerWidth <= 400) return;
+    if (window.innerWidth <= 600) return;
 
     function makeSprite(src, bottom) {
         const el = document.createElement('img');

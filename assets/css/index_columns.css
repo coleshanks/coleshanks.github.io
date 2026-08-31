@@ -68,7 +68,7 @@
     }
 
 
-        @media (max-width: 400px) {
+        @media (max-width: 600px) and (hover: none) {
             .main-content {
                 flex-direction: column;
             }
