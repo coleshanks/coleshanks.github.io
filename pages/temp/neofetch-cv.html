@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <title>neofetch (stashed from CV) | Cole Shanks</title>
+        <!-- Stashed 2026-08-31: pulled off the live CV page (roadmap Phase 1, Item 3).
+             Kept intact here so it can be dropped back in later. Not linked from the site. -->
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            .neo-wrap { display: flex; justify-content: flex-start; padding: 24px 30px 40px; }
+            .neo-window { background: #16161e; border: 1px solid #292e42; border-top: 2px solid #7dcfff; border-radius: 4px; overflow: hidden; box-shadow: 0 0 32px rgba(125, 207, 255, 0.07); }
+            .neo-titlebar { background: #1f2335; border-bottom: 1px solid #1a1b26; padding: 8px 14px; display: flex; align-items: center; gap: 7px; }
+.neo-title { color: #565f89; font-size: 12px; font-family: 'JetBrains Mono', monospace; margin-left: 4px; }
+            @keyframes neo-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+            .neo-prompt-line { font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace; font-size: 16px; padding: 16px 32px 4px; white-space: nowrap; text-align: left; }
+            .neo-prompt-prefix { color: #5fdfff; }
+            .neo-prompt-cmd { color: #c0caf5; }
+            .neo-cursor { color: #5fdfff; animation: neo-blink 1s step-end infinite; font-size: 16px; }
+            .neo-art { color: #7dcfff; font-size: 16px; line-height: 1.1; white-space: pre; user-select: none; font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace; margin: 0; padding: 8px 32px 12px; }
+            .neo-info { font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace; font-size: 18px; line-height: 1.5; color: #c0caf5; text-align: left; padding: 16px 32px 24px; }
+            .neo-username { color: #7dcfff; font-size: 18px; }
+            .neo-sep { color: #565f89; margin-bottom: 2px; }
+            .neo-line { display: flex; }
+            .neo-key { color: #7dcfff; font-weight: 700; min-width: 19ch; flex-shrink: 0; }
+            .neo-colon { color: #565f89; margin-right: 8px; }
+            .neo-val { color: #c0caf5; flex: 1; min-width: 0; }
+            a.neo-link { color: #c0caf5; text-decoration: none; }
+            a.neo-link:hover { color: #78e4ff; text-decoration: underline; }
+            .info-cursor { color: #7dcfff; font-family: 'JetBrains Mono', monospace; font-size: 18px; animation: neo-blink 0.7s step-end infinite; display: block; }
+        </style>
+    </head>
+    <body>
+        <div class="neo-wrap">
+            <div class="neo-window">
+                <div class="neo-titlebar">
+                    <span class="neo-title">cole@shanks</span>
+                </div>
+                <div class="neo-prompt-line"><span class="neo-prompt-prefix">~ ❯ </span><span class="neo-prompt-cmd"></span><span class="neo-cursor">█</span></div>
+                    <pre class="neo-art">⣿⣿⡇⠀⢸⣿⣿⣿⣟⠀⣿⣿⣿⣿⠀⠈⣿⣿⣿⡯⠁⢸⣿⠿⠛⠛⠃⠛⠿⠿⠛⠛⠀⠿⠿⣿⡟⠀⠀⣿⣿⣯⡉⠀⢸⣿⣿⣿⠉⠀⣿⣿⣿⡋⠁⢸⣿⣿⣿⡿
+⣿⣿⡷⠀⢸⣿⣿⣿⣿⠀⣿⣿⣿⣿⡆⠀⣿⣿⣿⣯⠀⠘⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡧⠀⢸⣿⣿⣿⠄⠀⣿⣿⣿⡆⠀⢸⣿⣿⣿⡇
+⣿⠿⠷⠄⢸⡿⠿⠿⠿⠄⢿⡿⠿⣿⠧⠠⣿⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠩⠽⠧⠄⢼⣿⢿⡿⠧⠤⡿⠯⠤⠤⠤⠸⠯⠭⠥⠤
+⣿⠀⠀⠀⢸⣷⣰⡖⠚⠀⣾⣧⡀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⡀⠀⠀⠈⣿⣏⠀⠀⠀⢹⣿⡗⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⢀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⡄⠀⠀⠀⣿⣇⠀⠀⠀⢸⣿⡇⠀⠀⠀⠀⢀⣠⣴⣶⣶⣶⣶⣿⣿⣶⣤⣦⣴⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣷⠄⠀⠀⣿⣿⡶⠀⠀⢸⣿⣿⠦⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀⠀⣿⣻⠆⠀⠀⠀⣎⡶⠀⠀⠀⠠⣈⠶⠀
+⣿⠏⠀⠀⠀⣿⡏⠉⠀⠀⢘⣿⠋⠁⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⣟⠉⠁⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠁⠀
+⣿⡄⠀⠀⠀⣿⡇⠀⠀⠀⢸⡏⠂⠀⠠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣟⠁⠈⣿⣿⡏⠉⠁⢹⣿⣿⠁⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⣿⣿⣿⣿⣇⠀⠀⠀⠀⢹⣿⣿⡏⠉⢸⣿⣿⣿⠟⠁⢸⣿⣿⡭⠉
+⣿⣿⡧⠄⠠⣿⣿⣧⣦⠄⢼⣿⣿⠄⣾⣿⣫⣽⣛⣋⣉⣙⡻⣿⣿⣿⣿⣿⣿⣯⣤⣤⣴⣤⣤⣄⡉⣿⣿⣿⡆⠀⠀⠀⢼⣿⣿⣥⡤⢸⣿⣿⣿⣧⠀⢼⣿⣯⣭⠤
+⣛⣂⣀⣀⣀⣋⣀⣀⣀⣀⣘⣃⣀⠀⣿⣿⣿⣿⡿⡿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⡛⢻⢿⣿⣿⣿⣿⣿⡇⠀⠀⠀⣘⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣿⣿⣿⣯⣾⣷⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣴⣿⣦⣿⣿⣿⣿⣿⡇⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⠙⠁⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣲⡀⠀⠀
+⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢰⣿⣿⣿⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢸⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠙⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣀⣀⣀⣀⡀⣀⣀⡀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⢸⣿⣿⣿⡟⠀⣻⣿⣿⠛⠀⠀⢹⢿⠿⣿⣿⣿⣿⣿⣷⣽⣿⣿⣿⣿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⡀⢻⡿⡿⠷⠗⠀⢸⣿⠟⠂⠀⠀⢻⠿⠗⠀⠀⠀
+⠀⢸⣿⣿⣿⣦⠀⣻⣿⣿⣤⠀⠀⢺⠂⣦⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣡⡄⢠⡄⢼⣿⣿⣏⡀⠀⢸⣿⡷⠆⠀⠀⢸⠀⣰⠄⠀⠀
+⠀⣸⣿⣿⣿⡟⠀⣿⣿⣿⠉⠀⠀⣿⣐⣿⡃⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣿⣷⣽⣿⣿⠛⠀⠀⢸⣿⡏⠁⠀⠀⠐⠀⠛⠁⠀⠀
+⠀⣚⣿⣿⣟⣛⠀⣿⣿⣟⣛⡃⠀⣿⣿⣟⡃⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡓⢂⠀⣻⣿⣛⠒⠀⠀⣿⣛⣛⣂⡀⠀
+⠀⠠⣿⣿⣿⣀⠀⣿⣿⣿⣇⡀⠀⣿⣿⣿⡆⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠳⠆⠀⠀⣿⣿⣷⡂⠀⠀⣿⣏⡖⠆⠀⠀
+⠀⠘⣿⣿⣿⡭⠀⣿⣿⣿⣩⡁⠀⣿⣿⣿⡥⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠈⠀⣿⣿⣯⠭⠀⠀⡿⣭⣭⠁⠀⠀
+⠀⣸⣿⣿⡿⠂⠀⣿⣿⣿⠓⠀⠀⣿⣿⣷⠤⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⠦⠂⠀⠀⠇⠰⠄⠀⠀⠀
+⠀⣛⣻⣟⣓⣒⠀⣿⣟⣛⣂⡀⠀⣻⣿⣟⣂⠀⠀⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣒⣒⣒⣂⠀⠀
+⠀⣸⣿⣿⣿⠉⠀⣿⣿⣿⠉⠁⠀⣿⠩⡉⠁⠀⠀⠉⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠁⠀⠀
+⠀⢼⣿⣿⣿⠂⡀⣿⣿⣿⡗⠀⠀⣿⢟⠟⠃⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡤⠤⠤⠤⢀⣀⠀⠀
+⠀⣼⣿⣿⣧⡄⠀⣿⣿⣧⡄⠀⢀⠜⠁⠀⠀⠀⠀⠀⠀⡿⠋⠘⠉⠻⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡴⠚⠉⠀⠀⠀⠀⠀⠀⠈⠉⠀
+⠀⢶⣿⣿⡯⠄⠀⣿⡿⠋⠀⡰⠋⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠘⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠈⣿⣿⣧⡄⠀⠋⠀⠀⡜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⣿⣿⡧⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣋⣤⣴⣶⣶⣶⣶⣿⣿⣿⣷⠄⠀⠀⠀⠀⠀</pre>
+                    <div class="neo-info">
+                        <div class="neo-username">coleshanks</div>
+                        <div class="neo-sep">----------</div>
+                        <div class="neo-line"><span class="neo-key">Location</span><span class="neo-colon">:</span><span class="neo-val">Kure, Hiroshima, Japan</span></div>
+                        <div class="neo-line"><span class="neo-key">Status</span><span class="neo-colon">:</span><span class="neo-val">looking for work</span></div>
+                        <div class="neo-line"><span class="neo-key">Email</span><span class="neo-colon">:</span><a href="mailto:cshanks223@gmail.com" class="neo-link neo-val">cshanks223@gmail.com</a></div>
+                        <div class="neo-line"><span class="neo-key">Links</span><span class="neo-colon">:</span><a href="https://github.com/coleshanks" class="neo-link" target="_blank">GitHub</a><span class="neo-colon"> / </span><a href="https://www.linkedin.com/in/coleshanks" class="neo-link" target="_blank">LinkedIn</a><span class="neo-colon"> / </span><a href="https://www.youtube.com/channel/UCBnMNXII3b3Jwa0ZQ--wF0w" class="neo-link neo-val" target="_blank">YouTube</a></div>
+                        <div class="neo-line"><span class="neo-key">Education</span><span class="neo-colon">:</span><span class="neo-val">BASc <a href="https://engineering.ubc.ca/programs/undergraduate/electrical-engineering" class="neo-link" target="_blank">Electrical Engineering</a>, <a href="https://www.ubc.ca" class="neo-link" target="_blank">University of British Columbia</a> — Graduated with Distinction, Minor in Commerce</span></div>
+                        <div class="neo-line"><span class="neo-key">Languages</span><span class="neo-colon">:</span><span class="neo-val">English (native), Japanese (intermediate)</span></div>
+                        <div class="neo-line"><span class="neo-key">Programming</span><span class="neo-colon">:</span><span class="neo-val">Rust, C++, C, HTML/CSS</span></div>
+                        <div class="neo-line"><span class="neo-key">Technologies</span><span class="neo-colon">:</span><span class="neo-val">Verilog, VHDL, FPGA, embedded systems</span></div>
+                        <div style="height: 6px;"></div>
+                        <div class="neo-sep">----------</div>
+                        <div style="height: 2px;"></div>
+                        <div class="neo-line"><span class="neo-key">OS</span><span class="neo-colon">:</span><span class="neo-val">H.Sapien v11.2k</span></div>
+                        <div class="neo-line"><span class="neo-key">Host</span><span class="neo-colon">:</span><span class="neo-val">Human (71-inch, 1998)</span></div>
+                        <div class="neo-line"><span class="neo-key">Kernel</span><span class="neo-colon">:</span><span class="neo-val">DNA 3.2b base pairs</span></div>
+                        <div class="neo-line"><span class="neo-key">Uptime</span><span class="neo-colon">:</span><span class="neo-val" id="uptime-val">calculating...</span></div>
+                        <div class="neo-line"><span class="neo-key">CPU</span><span class="neo-colon">:</span><span class="neo-val">Neural Processor (86bn) @ ~200Hz</span></div>
+                        <div class="neo-line"><span class="neo-key">GPU</span><span class="neo-colon">:</span><span class="neo-val">Visual Cortex @ ~60Hz [Integrated]</span></div>
+                        <div class="neo-line"><span class="neo-key">Memory</span><span class="neo-colon">:</span><span class="neo-val">~7 ± 2</span></div>
+                        <div class="neo-line"><span class="neo-key">Disk (/)</span><span class="neo-colon">:</span><span class="neo-val">~1 PB</span></div>
+                        <div class="neo-line"><span class="neo-key">Processes</span><span class="neo-colon">:</span><span class="neo-val">~8.6bn</span></div>
+                        <div class="neo-line" id="battery-line"><span class="neo-key">Battery</span><span class="neo-colon">:</span><span class="neo-val" id="battery-val">calculating...</span></div>
+                        <div class="neo-line"><span class="neo-key">Locale</span><span class="neo-colon">:</span><span class="neo-val" id="locale-val">ja_JP</span></div>
+                    </div>
+            </div>
+        </div>
+    <script>
+        (function() {
+            var cmdEl = document.querySelector('.neo-prompt-cmd');
+            var cursorEl = document.querySelector('.neo-cursor');
+            var promptEl = document.querySelector('.neo-prompt-line');
+            var infoEl = document.querySelector('.neo-info');
+            var artEl = document.querySelector('.neo-art');
+            var artLines = artEl.textContent.split('\n');
+            artEl.textContent = '';
+            infoEl.style.display = 'none';
+
+            // 1. type "neofetch"
+            var i = 0;
+            function type() {
+                if (i < cmd.length) {
+                    cmdEl.textContent += cmd[i++];
+                    setTimeout(type, 140);
+                } else {
+                    cursorEl.style.display = 'none';
+                    setTimeout(loadArt, 150);
+                }
+            }
+            var cmd = 'neofetch';
+
+            // 2. load braille line by line
+            var lineIdx = 0;
+            function loadArt() {
+                if (lineIdx < artLines.length) {
+                    artEl.textContent += (lineIdx > 0 ? '\n' : '') + artLines[lineIdx++];
+                    setTimeout(loadArt, 75);
+                } else {
+                    var c = document.createElement('div');
+                    c.className = 'info-cursor';
+                    c.textContent = '█';
+                    artEl.insertAdjacentElement('afterend', c);
+                    // 3. cursor blinks below art, then cls
+                    setTimeout(function() {
+                        c.remove();
+                        artEl.style.display = 'none';
+                        promptEl.style.display = 'none';
+                        showInfo();
+                    }, 1700);
+                }
+            }
+
+            // 4. type info line by line, char by char
+            function showInfo() {
+                var children = Array.from(infoEl.children);
+                children.forEach(function(el) { el.style.display = 'none'; });
+                var cursor = document.createElement('span');
+                cursor.className = 'neo-cursor';
+                cursor.textContent = '█';
+                infoEl.style.display = '';
+                var idx = 0;
+                function nextLine() {
+                    if (idx >= children.length) {
+                        cursor.remove();
+                        return;
+                    }
+                    typeLine(children[idx], cursor, 30, function() {
+                        idx++;
+                        setTimeout(nextLine, 60);
+                    });
+                }
+                nextLine();
+            }
+
+            function typeLine(el, cursor, speed, callback) {
+                var segments = [];
+                el.childNodes.forEach(function(n) {
+                    var text = n.nodeType === 3 ? n.nodeValue : n.textContent;
+                    if (n.nodeType === 3) {
+                        n.nodeValue = '';
+                        segments.push({ node: n, container: el, text: text });
+                    } else {
+                        var savedHTML = n.children.length > 0 ? n.innerHTML : null;
+                        n.textContent = '';
+                        var tn = document.createTextNode('');
+                        n.appendChild(tn);
+                        segments.push({ node: tn, container: n, text: text, savedHTML: savedHTML, el: n });
+                    }
+                });
+                el.style.display = '';
+                if (segments.length === 0) { if (callback) callback(); return; }
+                // reveal all but last instantly (key, colon)
+                for (var i = 0; i < segments.length - 1; i++) {
+                    if (segments[i].savedHTML) segments[i].el.innerHTML = segments[i].savedHTML;
+                    else segments[i].node.nodeValue = segments[i].text;
+                }
+                // type only the last segment (value) with cursor
+                var last = segments[segments.length - 1];
+                last.container.appendChild(cursor);
+                var ci = 0;
+                function tick() {
+                    if (ci < last.text.length) {
+                        last.node.nodeValue += last.text[ci++];
+                        setTimeout(tick, speed);
+                    } else {
+                        if (last.savedHTML) last.el.innerHTML = last.savedHTML;
+                        if (callback) callback();
+                    }
+                }
+                tick();
+            }
+
+            setTimeout(type, 500);
+        })();
+
+        (function() {
+            var now = new Date();
+            var jstH = (now.getUTCHours() + 9) % 24;
+            var jstM = now.getUTCMinutes();
+            var h = jstH + jstM / 60;
+
+            // Uptime from 7am JST
+            var uptimeTotalMins = jstH * 60 + jstM - 7 * 60;
+            if (uptimeTotalMins < 0) uptimeTotalMins += 24 * 60;
+            var uptimeDays = Math.floor(uptimeTotalMins / 1440);
+            var uptimeHrs = Math.floor((uptimeTotalMins % 1440) / 60);
+            var uptimeMins = uptimeTotalMins % 60;
+            var uptimeStr = '';
+            if (uptimeDays > 0) uptimeStr += uptimeDays + ' day' + (uptimeDays > 1 ? 's' : '') + ', ';
+            if (uptimeDays > 0 || uptimeHrs > 0) uptimeStr += uptimeHrs + ' hour' + (uptimeHrs !== 1 ? 's' : '') + ', ';
+            uptimeStr += uptimeMins + ' min' + (uptimeMins !== 1 ? 's' : '');
+            document.getElementById('uptime-val').textContent = uptimeStr;
+
+            // Battery: only show 7am–11am (charging window)
+            if (h >= 7 && h < 11) {
+                var pct = Math.round(80 + ((h - 7) / 4) * 20);
+                document.getElementById('battery-val').textContent = pct + '% [Charging — coffee]';
+            } else {
+                document.getElementById('battery-line').remove();
+            }
+
+            var hh = String(jstH).padStart(2, '0');
+            var mm = String(jstM).padStart(2, '0');
+            document.getElementById('locale-val').textContent = 'ja_JP — ' + hh + ':' + mm + ' JST';
+        })();
+    </script>
+    </body>
+</html>
