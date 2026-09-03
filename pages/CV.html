@@ -57,12 +57,15 @@
             .cv-line .cv-yr { color: var(--shadow-dark); }
             .cv-line .cv-desc { color: var(--shadow-dark); }
 
-            /* ---- Save-as-PDF button (screen only) ---- */
-            .cv-pdf-btn {
+            /* ---- PDF-version button (screen only) ---- */
+            a.cv-pdf-btn,
+            a.cv-pdf-btn:link,
+            a.cv-pdf-btn:visited {
                 position: fixed;
                 top: 130px;
                 right: 24px;
                 z-index: 900;
+                display: inline-block;
                 font-family: var(--hf2);
                 font-size: 14px;
                 padding: 7px 14px;
@@ -73,14 +76,18 @@
                 cursor: pointer;
                 transition: background-color var(--btn_transition_speed), color var(--btn_transition_speed);
             }
-            .cv-pdf-btn:hover { background-color: var(--primary_dark); color: white; }
+            a.cv-pdf-btn:hover { background-color: var(--primary_dark); color: white; }
             @media (max-width: 768px) {
-                .cv-pdf-btn { top: auto; bottom: 16px; right: 16px; }
+                a.cv-pdf-btn,
+                a.cv-pdf-btn:link,
+                a.cv-pdf-btn:visited { top: auto; bottom: 16px; right: 16px; }
             }
 
-            /* ---- Print / PDF layout: formal black & white ---- */
+            /* ---- Print / PDF layout: formal black & white ----
+               Sizing follows standard resume norms: 0.75in margins,
+               10.5pt body, 12pt section headings, ~19pt name, 1.3 line-height. */
             @media print {
-                @page { size: letter; margin: 0.5in 0.55in; }
+                @page { size: Letter; margin: 0.75in; }
 
                 .navbar,
                 .cv-page-title,
@@ -95,51 +102,58 @@
                     display: block !important;
                     font-family: 'Open Sans', Arial, sans-serif !important;
                     font-size: 10.5pt !important;
+                    line-height: 1.3 !important;
                 }
 
                 .cv { max-width: none; margin: 0; padding: 0; }
 
-                .cv-name { color: #000 !important; font-size: 21pt !important; margin: 0 0 2pt !important; }
+                .cv-name { color: #000 !important; font-size: 19pt !important; line-height: 1.1 !important; margin: 0 0 3pt !important; }
                 .cv h2 {
                     color: #000 !important;
-                    font-size: 11pt !important;
+                    font-size: 12pt !important;
+                    font-weight: 700 !important;
                     text-transform: uppercase;
-                    letter-spacing: 0.06em;
-                    margin: 14pt 0 2pt !important;
+                    letter-spacing: 0.05em;
+                    margin: 12pt 0 2pt !important;
                     break-after: avoid;
                     page-break-after: avoid;
                 }
 
                 .cv-summary,
-                .cv-contact,
                 .cv-line,
                 ul.cv-work li,
                 .cv-entry-head .cv-org,
                 .cv-entry-head .cv-role { color: #000 !important; }
+                .cv-summary { font-size: 10pt !important; margin: 3pt 0 !important; }
                 .cv-meta,
                 .cv-line .cv-yr,
-                .cv-line .cv-desc { color: #333 !important; }
+                .cv-line .cv-desc { color: #333 !important; font-size: 9.5pt !important; }
 
-                .cv-contact { font-size: 9.5pt !important; margin-top: 4pt !important; }
+                .cv-contact { color: #000 !important; font-size: 9pt !important; margin-top: 4pt !important; }
                 .cv-contact i { display: none !important; }
                 .cv-contact .cv-sep { color: #999 !important; }
 
-                .cv hr { border: none !important; border-top: 0.75pt solid #000 !important; margin: 2pt 0 6pt !important; }
+                .cv hr { border: none !important; border-top: 0.75pt solid #000 !important; margin: 2pt 0 5pt !important; }
                 .cv-entry {
                     border-top: 0.5pt dotted #bbb !important;
-                    padding-top: 5pt !important;
-                    margin-top: 6pt !important;
+                    padding-top: 4pt !important;
+                    margin-top: 5pt !important;
                     break-inside: avoid;
                     page-break-inside: avoid;
                 }
                 .cv-entry:first-of-type { border-top: none !important; }
                 .cv-entry-head { font-size: 10.5pt !important; }
                 .cv-entry-head .cv-role { font-weight: 700 !important; }
+                .cv-meta { margin: 1pt 0 3pt !important; }
+
+                ul.cv-work { margin-top: 2pt !important; }
+                ul.cv-work li { font-size: 10pt !important; margin-bottom: 2pt !important; }
                 ul.cv-work li::before { color: #000 !important; }
+                .cv-line { font-size: 10pt !important; margin: 2pt 0 !important; }
 
                 .cv a:link, .cv a:visited { color: #000 !important; text-decoration: none !important; }
 
-                .cv-grid { gap: 1.6em !important; margin-top: 8pt !important; }
+                .cv-grid { gap: 1.4em !important; margin-top: 6pt !important; }
             }
         </style>
     </head>
@@ -157,8 +171,8 @@
         </div>
 
         <div class="cv">
-            <button type="button" class="cv-pdf-btn" onclick="window.print()"
-                title="Opens the print dialog — choose 'Save as PDF', keep margins on Default">Save as PDF</button>
+            <a class="cv-pdf-btn" href="/assets/cv.pdf" target="_blank" rel="noopener"
+                title="Opens the PDF version in a new tab — download from there">PDF version</a>
             <div class="cv-header">
                 <h2 class="cv-name">Cole Shanks</h2>
                 <p class="cv-summary">
