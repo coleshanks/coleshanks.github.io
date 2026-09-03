@@ -56,6 +56,91 @@
             .cv-line { margin: 0.35em 0; color: var(--text_grey); }
             .cv-line .cv-yr { color: var(--shadow-dark); }
             .cv-line .cv-desc { color: var(--shadow-dark); }
+
+            /* ---- Save-as-PDF button (screen only) ---- */
+            .cv-pdf-btn {
+                position: fixed;
+                top: 130px;
+                right: 24px;
+                z-index: 900;
+                font-family: var(--hf2);
+                font-size: 14px;
+                padding: 7px 14px;
+                color: var(--text_green);
+                background-color: var(--tertiary_dark);
+                border: 0.5px solid var(--shadow-dark);
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background-color var(--btn_transition_speed), color var(--btn_transition_speed);
+            }
+            .cv-pdf-btn:hover { background-color: var(--primary_dark); color: white; }
+            @media (max-width: 768px) {
+                .cv-pdf-btn { top: auto; bottom: 16px; right: 16px; }
+            }
+
+            /* ---- Print / PDF layout: formal black & white ---- */
+            @media print {
+                @page { size: letter; margin: 0.5in 0.55in; }
+
+                .navbar,
+                .cv-page-title,
+                .cv-pdf-btn,
+                footer { display: none !important; }
+
+                html, body {
+                    background: #fff !important;
+                    color: #000 !important;
+                    margin: 0 !important;
+                    padding-top: 0 !important;
+                    display: block !important;
+                    font-family: 'Open Sans', Arial, sans-serif !important;
+                    font-size: 10.5pt !important;
+                }
+
+                .cv { max-width: none; margin: 0; padding: 0; }
+
+                .cv-name { color: #000 !important; font-size: 21pt !important; margin: 0 0 2pt !important; }
+                .cv h2 {
+                    color: #000 !important;
+                    font-size: 11pt !important;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                    margin: 14pt 0 2pt !important;
+                    break-after: avoid;
+                    page-break-after: avoid;
+                }
+
+                .cv-summary,
+                .cv-contact,
+                .cv-line,
+                ul.cv-work li,
+                .cv-entry-head .cv-org,
+                .cv-entry-head .cv-role { color: #000 !important; }
+                .cv-meta,
+                .cv-line .cv-yr,
+                .cv-line .cv-desc { color: #333 !important; }
+
+                .cv-contact { font-size: 9.5pt !important; margin-top: 4pt !important; }
+                .cv-contact i { display: none !important; }
+                .cv-contact .cv-sep { color: #999 !important; }
+
+                .cv hr { border: none !important; border-top: 0.75pt solid #000 !important; margin: 2pt 0 6pt !important; }
+                .cv-entry {
+                    border-top: 0.5pt dotted #bbb !important;
+                    padding-top: 5pt !important;
+                    margin-top: 6pt !important;
+                    break-inside: avoid;
+                    page-break-inside: avoid;
+                }
+                .cv-entry:first-of-type { border-top: none !important; }
+                .cv-entry-head { font-size: 10.5pt !important; }
+                .cv-entry-head .cv-role { font-weight: 700 !important; }
+                ul.cv-work li::before { color: #000 !important; }
+
+                .cv a:link, .cv a:visited { color: #000 !important; text-decoration: none !important; }
+
+                .cv-grid { gap: 1.6em !important; margin-top: 8pt !important; }
+            }
         </style>
     </head>
     <body>
@@ -67,11 +152,13 @@
                 <li class="nav_btn"><a href="/pages/explore.html" target="_self">Explore</a></li>
             </ul>
         </div>
-        <div>
+        <div class="cv-page-title">
             <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">CV</h1>
         </div>
 
         <div class="cv">
+            <button type="button" class="cv-pdf-btn" onclick="window.print()"
+                title="Opens the print dialog — choose 'Save as PDF', keep margins on Default">Save as PDF</button>
             <div class="cv-header">
                 <h2 class="cv-name">Cole Shanks</h2>
                 <p class="cv-summary">
