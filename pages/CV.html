@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-CA">
     <head>
+        <!-- ⚠ If you edit this file or assets/css/style.css, the linked PDF
+             (assets/cv.pdf) is now out of date. Regenerate + commit it:
+                 scripts/build-cv-pdf.sh
+             There is no CI for this — it's a manual step. -->
         <meta charset="utf-8">
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
         <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
@@ -57,14 +61,23 @@
             .cv-line .cv-yr { color: var(--shadow-dark); }
             .cv-line .cv-desc { color: var(--shadow-dark); }
 
-            /* ---- PDF-version button (screen only) ---- */
+            /* ---- Banner buttons (screen only) ----
+               Stacked at the top-right of the CV banner. position:absolute
+               (not fixed) so they scroll away with the page. Anchored from the
+               top so more buttons can be added below (e.g. rirekisho gen). */
+            .cv-page-title { position: relative; }
+            .cv-banner-btns {
+                position: absolute;
+                top: 10px;
+                right: 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 6px;
+            }
             a.cv-pdf-btn,
             a.cv-pdf-btn:link,
             a.cv-pdf-btn:visited {
-                position: fixed;
-                top: 130px;
-                right: 24px;
-                z-index: 900;
                 display: inline-block;
                 font-family: var(--hf2);
                 font-size: 14px;
@@ -78,9 +91,10 @@
             }
             a.cv-pdf-btn:hover { background-color: var(--primary_dark); color: white; }
             @media (max-width: 768px) {
+                .cv-banner-btns { top: 6px; right: 12px; }
                 a.cv-pdf-btn,
                 a.cv-pdf-btn:link,
-                a.cv-pdf-btn:visited { top: auto; bottom: 16px; right: 16px; }
+                a.cv-pdf-btn:visited { font-size: 12px; padding: 5px 10px; }
             }
 
             /* ---- Print / PDF layout: formal black & white ----
@@ -168,11 +182,13 @@
         </div>
         <div class="cv-page-title">
             <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">CV</h1>
+            <div class="cv-banner-btns">
+                <a class="cv-pdf-btn" href="/assets/cv.pdf" target="_blank" rel="noopener"
+                    title="Opens the PDF version in a new tab — download from there">PDF version</a>
+            </div>
         </div>
 
         <div class="cv">
-            <a class="cv-pdf-btn" href="/assets/cv.pdf" target="_blank" rel="noopener"
-                title="Opens the PDF version in a new tab — download from there">PDF version</a>
             <div class="cv-header">
                 <h2 class="cv-name">Cole Shanks</h2>
                 <p class="cv-summary">
@@ -203,21 +219,21 @@
                                 <span class="cv-org">University of British Columbia</span>
                             </div>
                             <p class="cv-line">Graduated with distinction &middot; Minor in Commerce<br>
-                            Main degree &mdash; digital systems design, microcomputers, signals &amp; systems, control systems, electronics, and a year-long capstone. Full <a href="/pages/school/ubc.html">course list</a>.</p>
+                            <a href="/pages/school/ubc.html">Main degree</a> &mdash; digital systems design, microcomputers, signals &amp; systems, control systems, electronics, and a year-long capstone.</p>
                         </div>
                         <div class="cv-entry">
                             <div class="cv-entry-head">
                                 <span class="cv-role">BASc Engineering Transfer Program, 2017&ndash;2018</span>
                                 <span class="cv-org">Capilano University</span>
                             </div>
-                            <p class="cv-line">First-year engineering transfer &mdash; calculus, physics, and chemistry foundations before transferring to UBC. <a href="/pages/school/capu.html">Courses</a>.</p>
+                            <p class="cv-line"><a href="/pages/school/capu.html">First-year engineering transfer</a> &mdash; calculus, physics, and chemistry foundations before transferring to UBC.</p>
                         </div>
                         <div class="cv-entry">
                             <div class="cv-entry-head">
                                 <span class="cv-role">BCom Accounting and Finance, 2016&ndash;2017</span>
                                 <span class="cv-org">University of Toronto</span>
                             </div>
-                            <p class="cv-line">First year of Rotman Commerce before switching into electrical engineering. <a href="/pages/school/uoft.html">Course</a>.</p>
+                            <p class="cv-line"><a href="/pages/school/uoft.html">First year of Rotman Commerce</a> before switching into electrical engineering.</p>
                         </div>
                     </section>
 
@@ -282,5 +298,17 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            // PDF build (scripts/build-cv-pdf.sh loads this page with ?pdf) flattens
+            // every link in the CV to plain text, so the generated PDF carries no
+            // embedded hyperlinks and reads identically on paper and on screen.
+            // On the live site the links are untouched and work normally.
+            if (new URLSearchParams(location.search).has('pdf')) {
+                document.querySelectorAll('.cv a').forEach(function (a) {
+                    a.replaceWith(document.createTextNode(a.textContent));
+                });
+            }
+        </script>
     </body>
 </html>

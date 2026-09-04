@@ -13,8 +13,9 @@ SERVER_PID=$!
 trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
 sleep 1.5
 
+# ?pdf tells CV.html to flatten its links to plain text (no embedded hyperlinks).
 "$CHROME" --headless --disable-gpu --no-pdf-header-footer \
   --print-to-pdf="$REPO/assets/cv.pdf" \
-  "http://127.0.0.1:$PORT/pages/CV.html"
+  "http://127.0.0.1:$PORT/pages/CV.html?pdf"
 
 echo "wrote $REPO/assets/cv.pdf"
