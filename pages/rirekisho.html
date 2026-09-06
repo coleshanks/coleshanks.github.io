@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <!-- ⚠ If you edit this file or assets/css/style.css, the linked PDF
+             (assets/rirekisho.pdf) is now out of date. Regenerate + commit it:
+                 scripts/build-rirekisho-pdf.sh
+             There is no CI for this — it's a manual step.
+             Format: 厚生労働省 履歴書様式例 (MHLW). Dates in 西暦.
+             現住所 / 電話 are redacted to 市区町村 level — this file deploys to a
+             public site. Un-redacted values + submission-PDF steps live in
+             cmd: Career/profile/rirekisho-private.md -->
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <title>履歴書 | Cole Shanks</title>
+        <!--Scripts-->
+        <script defer src="/scripts/navbar.js"></script>
+        <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
+        <script src="/scripts/link_router.js" defer></script>
+        <style>
+            /* ============================================================
+               履歴書 — 厚生労働省 様式例 layout
+               Screen : dark theme, grey rules (matches the site)
+               Print  : white A4, black rules, Noto Sans JP
+               ============================================================ */
+
+            .rireki {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 0 24px 60px;
+                font-family: var(--f2);
+                color: var(--text_grey);
+                text-align: left;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .rireki-title-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin: 0 0 8px;
+            }
+            .rireki-title-row h2 {
+                font-family: var(--hf2);
+                color: var(--text_green);
+                font-size: 26px;
+                letter-spacing: 0.35em;
+                margin: 0;
+            }
+            .rireki-date { color: var(--shadow); font-size: 14px; letter-spacing: 0.15em; }
+
+            /* --- shared table rules --- */
+            .rireki table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 0 0 12px;
+            }
+            .rireki td,
+            .rireki th {
+                border: 1px solid var(--shadow-dark);
+                border-radius: 0;               /* kill global th/td radius */
+                background: transparent;         /* kill global th/td black   */
+                padding: 6px 9px;
+                vertical-align: top;
+                text-align: left;
+                font-weight: 400;
+            }
+            .rireki .cell-label {
+                background: var(--secondary_dark);
+                white-space: nowrap;
+                width: 1%;
+                color: var(--text_grey);
+            }
+            .rireki .furigana {
+                font-size: 11px;
+                color: var(--shadow-dark);
+                display: block;
+                margin-bottom: 2px;
+            }
+            .rireki .placeholder { color: var(--text_orange); }
+
+            /* --- identity block --- */
+            .rireki-id-table td { padding: 7px 10px; }
+            .rireki-id-table .field-name { font-size: 24px; color: #fff; }
+            .rireki-id-table .r-furi-row { height: 0; }
+            .rireki-id-table .r-furi-row td { padding-top: 2px; padding-bottom: 2px; }
+            .rireki-id-table .r-name-row td { padding-top: 12px; padding-bottom: 12px; }
+            .rireki-id-table .sei-label { width: 1%; white-space: nowrap; background: var(--secondary_dark); }
+            .rireki-photo-cell {
+                width: 113px;   /* 30mm */
+                text-align: center;
+                vertical-align: top;
+                padding: 6px !important;
+            }
+            .rireki-photo {
+                display: block;
+                width: 100%;
+                height: 150px;  /* 40mm */
+                border: 1px dashed var(--shadow-dark);
+                object-fit: cover;
+                background: var(--secondary_dark);
+            }
+
+            /* --- contact block --- */
+            .rireki-contact .r-right {
+                width: 34%;
+                white-space: nowrap;
+            }
+            .rireki-contact .r-right .r-sub {
+                color: var(--shadow-dark);
+                margin-right: 6px;
+            }
+
+            /* --- 学歴・職歴 / 免許・資格 --- */
+            .rireki-hist col.col-year { width: 76px; }
+            .rireki-hist col.col-month { width: 48px; }
+            .rireki-hist thead th {
+                background: var(--secondary_dark);
+                color: var(--text_grey);
+                text-align: center;
+                letter-spacing: 0.15em;
+                border-bottom: 2px solid var(--shadow);
+            }
+            .rireki-hist td.col-year,
+            .rireki-hist td.col-month { text-align: center; white-space: nowrap; }
+            .rireki-hist td.hist-center {
+                text-align: center;
+                color: var(--text_green);
+                letter-spacing: 0.6em;
+            }
+            .rireki-hist td.hist-end { text-align: right; letter-spacing: 0.35em; }
+
+            /* --- free-text boxes --- */
+            .rireki-box-label {
+                font-size: 13px;
+                color: var(--shadow);
+                border: 1.5px solid var(--shadow-dark);
+                border-bottom: none;
+                padding: 6px 9px;
+                margin: 14px 0 0;
+            }
+            .rireki-freebox {
+                border: 1.5px solid var(--shadow-dark);
+                min-height: 150px;
+                padding: 10px 12px;
+            }
+            .rireki-freebox.small { min-height: 96px; }
+
+            /* --- footnote --- */
+            .rireki-note {
+                font-size: 12px;
+                color: var(--shadow-dark);
+                margin-top: 22px;
+                border-top: 1px dotted var(--shadow-dark);
+                padding-top: 10px;
+            }
+
+            /* --- banner button (screen only) --- */
+            .rireki-page-title { position: relative; }
+            .rireki-banner-btns {
+                position: absolute;
+                top: 50%;
+                right: 24px;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 6px;
+            }
+            a.cv-pdf-btn,
+            a.cv-pdf-btn:link,
+            a.cv-pdf-btn:visited {
+                display: inline-block;
+                font-family: var(--hf2);
+                font-size: 14px;
+                padding: 7px 14px;
+                color: var(--text_green);
+                background-color: var(--tertiary_dark);
+                border: 0.5px solid var(--shadow-dark);
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background-color var(--btn_transition_speed), color var(--btn_transition_speed);
+            }
+            a.cv-pdf-btn:hover { background-color: var(--primary_dark); color: #fff; }
+            @media (max-width: 768px) {
+                .rireki-banner-btns { right: 12px; }
+                a.cv-pdf-btn,
+                a.cv-pdf-btn:link,
+                a.cv-pdf-btn:visited { font-size: 12px; padding: 5px 10px; }
+                .rireki-photo-cell { width: 90px; }
+                .rireki-photo { height: 120px; }
+                .rireki-contact .r-right { white-space: normal; }
+            }
+
+            /* ============================================================
+               Print / PDF — 白黒 A4, 厚労省様式
+               ============================================================ */
+            @media print {
+                @page { size: A4; margin: 12mm; }
+
+                .navbar,
+                .rireki-page-title,
+                .cv-pdf-btn,
+                footer { display: none !important; }
+
+                html, body {
+                    background: #fff !important;
+                    color: #000 !important;
+                    margin: 0 !important;
+                    padding-top: 0 !important;
+                    display: block !important;
+                    font-family: 'Noto Sans JP', 'Open Sans', sans-serif !important;
+                    font-size: 9pt !important;
+                    line-height: 1.3 !important;
+                }
+
+                .rireki { max-width: none; margin: 0; padding: 0 1.5pt; font-size: 9pt; color: #000; }
+
+                .rireki-title-row { margin-bottom: 5pt; }
+                .rireki-title-row h2 { color: #000 !important; font-size: 17pt !important; letter-spacing: 0.35em; }
+                .rireki-date { color: #000 !important; font-size: 9pt !important; }
+
+                .rireki table { margin-bottom: 8pt; }
+                .rireki td,
+                .rireki th {
+                    border: 0.7pt solid #000 !important;
+                    border-radius: 0 !important;
+                    padding: 2.5pt 4pt !important;
+                    background: #fff !important;
+                    color: #000 !important;
+                }
+                .rireki .cell-label,
+                .rireki-id-table .sei-label { background: #fff !important; color: #000 !important; }
+                .rireki .furigana { color: #333 !important; font-size: 7pt !important; }
+                .rireki-id-table .field-name { color: #000 !important; font-size: 16pt !important; white-space: nowrap; }
+                .rireki-id-table .r-furi-row { height: 0 !important; }
+                .rireki-id-table .r-furi-row td { padding-top: 1pt !important; padding-bottom: 1pt !important; }
+                .rireki-id-table .r-name-row td { padding-top: 8pt !important; padding-bottom: 8pt !important; }
+                .rireki-photo-cell { width: 30mm !important; padding: 2pt !important; }
+                .rireki .placeholder { color: #000 !important; }
+
+                .rireki-photo {
+                    border: 0.6pt solid #000 !important;
+                    background: #fff !important;
+                    width: 30mm !important;
+                    height: 40mm !important;
+                }
+
+                .rireki-contact .r-right .r-sub { color: #000 !important; }
+
+                .rireki-hist thead th {
+                    background: #fff !important;
+                    color: #000 !important;
+                    border-bottom: 1.4pt solid #000 !important;
+                }
+                .rireki-hist td.hist-center { color: #000 !important; }
+                .rireki-hist td.hist-end { color: #000 !important; }
+
+                .rireki-box-label {
+                    color: #000 !important;
+                    font-size: 8.5pt !important;
+                    border: 1pt solid #000 !important;
+                    border-bottom: none !important;
+                    padding: 3pt 4pt !important;
+                    margin-top: 9pt !important;
+                }
+                .rireki-freebox { border: 1pt solid #000 !important; min-height: 34mm !important; }
+                .rireki-freebox.small { min-height: 24mm !important; }
+
+                .rireki-note {
+                    color: #000 !important;
+                    font-size: 7.5pt !important;
+                    border-top: none !important;
+                    margin: 3pt 0 0 !important;
+                    padding: 0 !important;
+                    text-indent: 0 !important;
+                }
+
+                table, .rireki-freebox { break-inside: avoid; page-break-inside: avoid; }
+                .rireki-page-2 { break-before: page; page-break-before: always; }
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <ul class="navbar">
+                <li class="nav_btn"><a href="/index.html" target="_self">Home</a></li>
+                <li class="nav_btn"><a href="/pages/projects.html" target="_self">Projects</a></li>
+                <li class="btn_on_page"><a href="/pages/CV.html" target="_self">CV</a></li>
+                <li class="nav_btn"><a href="/pages/explore.html" target="_self">Explore</a></li>
+            </ul>
+        </div>
+        <div class="rireki-page-title">
+            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">履歴書</h1>
+            <div class="rireki-banner-btns">
+                <a class="cv-pdf-btn" href="/assets/rirekisho.pdf" target="_blank" rel="noopener"
+                    title="PDF版を新しいタブで開きます">PDF版</a>
+            </div>
+        </div>
+
+        <div class="rireki">
+            <div class="rireki-title-row">
+                <h2>履 歴 書</h2>
+                <span class="rireki-date" id="rireki-date"></span>
+            </div>
+
+            <!-- ===== 本人情報 ===== -->
+            <table class="rireki-id-table">
+                <tr class="r-furi-row">
+                    <td class="cell-label">ふりがな</td>
+                    <td>しゃんくす　こーる　ぶらうん</td>
+                    <td class="rireki-photo-cell" rowspan="2">
+                        <img class="rireki-photo" src="/assets/images/pfp-me/blue-rireki-official-size.jpeg" alt="証明写真">
+                    </td>
+                </tr>
+                <tr class="r-name-row">
+                    <td class="cell-label">氏　名</td>
+                    <td class="field-name">シャンクス　コール　ブラウン（Cole Brown Shanks）</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="padding: 0;">
+                        <table style="border: none; margin: 0;">
+                            <tr>
+                                <td style="border: none;">1998年　1月　20日生　（満 <span id="rireki-age">28</span> 歳）</td>
+                                <td class="sei-label" style="border-top: none; border-bottom: none;">性別</td>
+                                <td style="width: 12%; border-top: none; border-bottom: none; border-right: none;">男</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="rireki-contact">
+                <tr>
+                    <td class="cell-label">ふりがな</td>
+                    <td>ひろしまけん　くれし</td>
+                    <td class="r-right"><span class="r-sub">電話</span></td>
+                </tr>
+                <tr>
+                    <td class="cell-label">現住所　〒</td>
+                    <td>広島県呉市</td>
+                    <td class="r-right"><span class="r-sub">E-mail</span>cshanks223@gmail.com</td>
+                </tr>
+                <tr>
+                    <td class="cell-label">ふりがな</td>
+                    <td>&nbsp;</td>
+                    <td class="r-right"><span class="r-sub">電話</span></td>
+                </tr>
+                <tr>
+                    <td class="cell-label">連絡先　〒</td>
+                    <td>同上</td>
+                    <td class="r-right"><span class="r-sub">E-mail</span></td>
+                </tr>
+            </table>
+
+            <!-- ===== 学歴・職歴 ===== -->
+            <table class="rireki-hist">
+                <colgroup>
+                    <col class="col-year">
+                    <col class="col-month">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>年</th>
+                        <th>月</th>
+                        <th>学　歴　・　職　歴　（各項目ごとにまとめて書く）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="3" class="hist-center">学　歴</td></tr>
+                    <tr>
+                        <td class="col-year">2016年</td><td class="col-month">6月</td>
+                        <td>カナダ・ブリティッシュコロンビア州ノースバンクーバー市　ハンズワース高等学校　卒業</td>
+                    </tr>
+                    <tr>
+                        <td class="col-year">2016年</td><td class="col-month">9月</td>
+                        <td>トロント大学　商学部（ロットマン・コマース）　入学</td>
+                    </tr>
+                    <tr>
+                        <td class="col-year">2017年</td><td class="col-month">4月</td>
+                        <td>トロント大学　中途退学（電気工学へ専攻変更のため）</td>
+                    </tr>
+                    <tr>
+                        <td class="col-year">2017年</td><td class="col-month">9月</td>
+                        <td>キャピラノ大学　工学系大学編入プログラム　入学</td>
+                    </tr>
+                    <tr>
+                        <td class="col-year">2018年</td><td class="col-month">4月</td>
+                        <td>キャピラノ大学　工学系大学編入プログラム　修了</td>
+                    </tr>
+                    <tr>
+                        <td class="col-year">2018年</td><td class="col-month">9月</td>
+                        <td>ブリティッシュコロンビア大学　応用科学部　電気工学科　編入学</td>
+                    </tr>
+                    <tr>
+                        <td class="col-year">2022年</td><td class="col-month">5月</td>
+                        <td>ブリティッシュコロンビア大学　応用科学部　電気工学科　卒業（優等、副専攻：商学）</td>
+                    </tr>
+
+                    <tr><td colspan="3" class="hist-center">職　歴</td></tr>
+                    <tr>
+                        <td class="col-year">2020年</td><td class="col-month">6月</td>
+                        <td>マキシム・インテグレーテッド（現：アナログ・デバイセズ）　アプリケーションエンジニア（コーオプ実習生）として入社</td>
+                    </tr>
+                    <tr>
+                        <td class="col-year">2020年</td><td class="col-month">12月</td>
+                        <td>マキシム・インテグレーテッド　実習期間満了により退社</td>
+                    </tr>
+                    <tr>
+                        <td class="col-year">2022年</td><td class="col-month">8月</td>
+                        <td>JETプログラム（語学指導等を行う外国青年招致事業）により来日、呉市教育委員会に外国語指導助手（ALT）として採用（会計年度任用職員）</td>
+                    </tr>
+                    <tr><td></td><td></td><td>現在に至る</td></tr>
+                    <tr><td></td><td></td><td class="hist-end">以上</td></tr>
+                </tbody>
+            </table>
+
+            <!-- ===== ページ2 ===== -->
+            <div class="rireki-page-2">
+                <table class="rireki-hist">
+                    <colgroup>
+                        <col class="col-year">
+                        <col class="col-month">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>年</th>
+                            <th>月</th>
+                            <th>免　許　・　資　格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-year">2023年</td><td class="col-month">9月</td>
+                            <td>普通自動車第一種運転免許　取得</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2024年</td><td class="col-month">9月</td>
+                            <td>普通自動二輪車運転免許　取得</td>
+                        </tr>
+                        <tr>
+                            <td class="col-year">2026年</td><td class="col-month">7月</td>
+                            <td>日本語能力試験（JLPT）N3　合格</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="rireki-box-label">志望の動機、特技、好きな学科、アピールポイントなど</div>
+                <div class="rireki-freebox">カナダの大学で電気工学を専攻し、組込みシステムとデジタルハードウェアを中心に学びました。C言語によるファームウェア開発、VerilogによるFPGA設計、ハードウェアの立ち上げ・検証に取り組み、卒業研究では自律型フィールドロボットの制御ファームウェアを開発しました。マキシム・インテグレーテッドでのコーオプ実習では、USB／DisplayPort機器の信頼性試験と周辺機器の互換性検証を担当しました。<br><br>2022年より広島県呉市で外国語指導助手として勤務し、日本語環境の職場で働きながら日本語を学び、日本語能力試験（JLPT）N3に合格しました。現在はRustを中心に組込み分野の学習を続けており、日本で組込み・ソフトウェアエンジニアとして長期的にキャリアを築くことを目指しています。</div>
+
+                <div class="rireki-box-label">本人希望記入欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）</div>
+                <div class="rireki-freebox small">職種：組込みエンジニア、ファームウェアエンジニア、ソフトウェアエンジニア<br>勤務地：東京を希望<br>就労ビザのスポンサーシップを希望いたします。<br>その他の条件につきましては貴社の規定に従います。</div>
+            </div>
+
+            <p class="rireki-note">
+                ※ 電話番号・住所の詳細は、プライバシー保護のため本ページには記載していません。必要な場合はお問い合わせください。
+            </p>
+        </div>
+
+        <script>
+            // Stamp today's date (西暦) and compute 満年齢 on load, so the
+            // headless-Chrome PDF build (scripts/build-rirekisho-pdf.sh) captures
+            // current values too. Birth date: 1998-01-20.
+            (function () {
+                var now = new Date();
+                var dateEl = document.getElementById('rireki-date');
+                if (dateEl) {
+                    dateEl.textContent = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日';
+                }
+                var ageEl = document.getElementById('rireki-age');
+                if (ageEl) {
+                    var birth = new Date(1998, 0, 20);
+                    var age = now.getFullYear() - birth.getFullYear();
+                    var m = now.getMonth() - birth.getMonth();
+                    if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) age--;
+                    ageEl.textContent = age;
+                }
+            })();
+        </script>
+    </body>
+</html>
