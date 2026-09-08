@@ -62,7 +62,7 @@
     }
 
     hr {
-        border: 1px solid #57cc8a;
+        border: 1px solid var(--text_green);
         margin: 0 30px;
         width: 85%;
     }

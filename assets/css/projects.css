@@ -1,0 +1,22 @@
+/* Projects section color overrides — teal instead of green (H1 space banner stays green) */
+h2 {
+    color: var(--text_cyan);
+}
+
+hr {
+    border-color: var(--text_cyan);
+}
+
+a:link,
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: var(--text_cyan);
+}
+
+.nav_btn a:hover,
+.btn_on_page a:hover {
+    color: var(--text_green);
+}

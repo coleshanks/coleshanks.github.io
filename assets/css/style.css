@@ -17,13 +17,14 @@
     --shadow: #bbb;
     --shadow-dark: #666;
     /* --text_green: #57cc8a; */
-    --text_green: #26e679;
+    --text_green: #2eff89;
     --text_orange: #fa7d45;
     /* --text_blue: #4593fa;
     --text_cyan: #7070f0; */
     --text_blue: #2c99ff;
     /* --text_cyan: rgb(70, 70, 255); */
-    --text_cyan: #1adac7;
+    --text_cyan: #23ffe9;
+    --text_red: #ff6f79;
     --text_grey: #AFBAC4;
 
     /* extra */
@@ -128,7 +129,7 @@ p {
 }
 
 hr {
-    border: 1px solid #57cc8a;
+    border: 1px solid var(--text_green);
     margin: 0 30px;
     width: 85%;
 }
