@@ -166,6 +166,7 @@
             let queueIndex = 0;
             let history = [];
             let historyIndex = -1;
+            let errorRetry = false;
 
             function extractId(url) {
                 const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
@@ -196,6 +197,7 @@
 
             function playVideo(videoId) {
                 currentVideoId = videoId;
+                errorRetry = false;
                 document.getElementById('yt-link-btn').href = 'https://www.youtube.com/watch?v=' + videoId;
                 if (player) {
                     player.loadVideoById(videoId);
@@ -249,10 +251,33 @@
                     width: '854',
                     height: '610',
                     videoId: videoId,
-                    playerVars: { autoplay: 1, rel: 0, controls: 0, iv_load_policy: 3 },
+                    playerVars: { autoplay: 1, rel: 0, controls: 0, iv_load_policy: 3, playsinline: 1, cc_load_policy: 0 },
                     events: {
+                        onApiChange: function(e) {
+                            // captions module just loaded — force it off (no param reliably does this)
+                            try { e.target.unloadModule('captions'); } catch (_) {}
+                        },
+                        onError: function(e) {
+                            // 100 = removed/private, 101/150 = embedding disabled -> skip
+                            if (e.data === 100 || e.data === 101 || e.data === 150) {
+                                goNext();
+                                return;
+                            }
+                            // transient failure (common on first load) -> retry same video once
+                            if (!errorRetry && currentVideoId) {
+                                errorRetry = true;
+                                setTimeout(function () {
+                                    if (player) player.loadVideoById(currentVideoId);
+                                }, 400);
+                            } else {
+                                goNext();
+                            }
+                        },
                         onStateChange: function(e) {
-                            if (e.data === YT.PlayerState.PLAYING) startProgressUpdate();
+                            if (e.data === YT.PlayerState.PLAYING) {
+                                startProgressUpdate();
+                                try { e.target.unloadModule('captions'); } catch (_) {}
+                            }
                             if (e.data === YT.PlayerState.ENDED) {
                                 const next = nextFromQueue();
                                 if (next) {
