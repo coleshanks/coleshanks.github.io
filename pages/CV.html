@@ -27,6 +27,8 @@
             .cv hr { width: 100%; margin: 0.25em 0 0.9em; }
             .cv a:link, .cv a:visited { color: var(--text_blue); }
             .cv a:hover { color: var(--text_green); }
+            .cv a.cv-link-white:link, .cv a.cv-link-white:visited { color: white; }
+            .cv a.cv-link-white:hover { color: var(--text_green); }
 
             .cv-name { font-family: var(--hf2); color: var(--text_green); font-size: 34px; margin: 0.2em 0 0.3em; }
             .cv-summary { color: var(--text_grey); }
@@ -102,7 +104,7 @@
                Sizing follows standard resume norms: 0.75in margins,
                10.5pt body, 12pt section headings, ~19pt name, 1.3 line-height. */
             @media print {
-                @page { size: Letter; margin: 0.75in; }
+                @page { size: Letter; margin: 0.6in; }
 
                 .navbar,
                 .cv-page-title,
@@ -117,7 +119,7 @@
                     display: block !important;
                     font-family: 'Open Sans', Arial, sans-serif !important;
                     font-size: 10.5pt !important;
-                    line-height: 1.3 !important;
+                    line-height: 1.2 !important;
                 }
 
                 .cv { max-width: none; margin: 0; padding: 0; }
@@ -129,7 +131,7 @@
                     font-weight: 700 !important;
                     text-transform: uppercase;
                     letter-spacing: 0.05em;
-                    margin: 12pt 0 2pt !important;
+                    margin: 7pt 0 2pt !important;
                     break-after: avoid;
                     page-break-after: avoid;
                 }
@@ -144,15 +146,15 @@
                 .cv-line .cv-yr,
                 .cv-line .cv-desc { color: #333 !important; font-size: 9.5pt !important; }
 
-                .cv-contact { color: #000 !important; font-size: 9pt !important; margin-top: 4pt !important; }
+                .cv-contact { color: #000 !important; font-size: 9pt !important; margin-top: 2pt !important; }
                 .cv-contact i { display: none !important; }
                 .cv-contact .cv-sep { color: #999 !important; }
 
                 .cv hr { border: none !important; border-top: 0.75pt solid #000 !important; margin: 2pt 0 5pt !important; }
                 .cv-entry {
                     border-top: 0.5pt dotted #bbb !important;
-                    padding-top: 4pt !important;
-                    margin-top: 5pt !important;
+                    padding-top: 3pt !important;
+                    margin-top: 4pt !important;
                     break-inside: avoid;
                     page-break-inside: avoid;
                 }
@@ -161,14 +163,14 @@
                 .cv-entry-head .cv-role { font-weight: 700 !important; }
                 .cv-meta { margin: 1pt 0 3pt !important; }
 
-                ul.cv-work { margin-top: 2pt !important; }
-                ul.cv-work li { font-size: 10pt !important; margin-bottom: 2pt !important; }
+                ul.cv-work { margin-top: 1pt !important; }
+                ul.cv-work li { font-size: 10pt !important; margin-bottom: 1pt !important; }
                 ul.cv-work li::before { color: #000 !important; }
-                .cv-line { font-size: 10pt !important; margin: 2pt 0 !important; }
+                .cv-line { font-size: 10pt !important; margin: 1pt 0 !important; }
 
                 .cv a:link, .cv a:visited { color: #000 !important; text-decoration: none !important; }
 
-                .cv-grid { gap: 1.4em !important; margin-top: 6pt !important; }
+                .cv-grid { gap: 0 !important; margin-top: 4pt !important; }
             }
         </style>
     </head>
@@ -195,9 +197,9 @@
             <div class="cv-header">
                 <h2 class="cv-name">Cole Shanks</h2>
                 <p class="cv-summary">
-                    Electrical engineering graduate from UBC, focused on embedded systems and
-                    digital hardware &mdash; firmware in C, FPGA and Verilog, and hands-on hardware
-                    bring-up and validation, including a capstone building the control firmware for
+                    <a href="https://engineering.ubc.ca/programs/undergraduate/electrical-engineering" target="_blank" class="cv-link-white">Electrical engineering</a> graduate from <a href="https://www.ubc.ca" target="_blank" class="cv-link-white">UBC</a> with hands-on experience in embedded
+                    systems and digital hardware &mdash; firmware in C and digital design in Verilog
+                    (FPGA), including a capstone project building the control firmware for
                     an autonomous field robot. Based in Japan, native English speaker with
                     functional Japanese (JLPT N3 / CEFR B1), looking for embedded or
                     software roles, with a current focus on Rust.
@@ -222,7 +224,7 @@
                                 <span class="cv-org">University of British Columbia</span>
                             </div>
                             <p class="cv-line">Graduated with distinction &middot; Minor in Commerce<br>
-                            <a href="/pages/school/ubc.html">Main degree</a> &mdash; digital systems design, microcomputers, signals &amp; systems, control systems, electronics, and a year-long capstone.</p>
+                            <a href="/pages/school/ubc.html">Main degree</a> &mdash; digital systems design, microcomputers, signals &amp; systems, control systems, electronics, and a year-long capstone project.</p>
                         </div>
                         <div class="cv-entry">
                             <div class="cv-entry-head">
@@ -236,7 +238,7 @@
                                 <span class="cv-role">BCom Accounting and Finance, 2016&ndash;2017</span>
                                 <span class="cv-org">University of Toronto</span>
                             </div>
-                            <p class="cv-line"><a href="/pages/school/uoft.html">First year of Rotman Commerce</a> before switching into electrical engineering.</p>
+                            <p class="cv-line"><a href="/pages/school/uoft.html">First year of Rotman Commerce</a> &mdash; economics, financial accounting, and marketing fundamentals &mdash; before switching into electrical engineering.</p>
                         </div>
                     </section>
 
@@ -251,10 +253,10 @@
                             </div>
                             <p class="cv-meta">Aug 2022&ndash;Present, Kure, Hiroshima, Japan</p>
                             <ul class="cv-work">
-                                <li>Plan and deliver English lessons, teaching and presenting in front of classes.</li>
-                                <li>Coordinate daily with Japanese teaching staff; coach students for English speech contests.</li>
-                                <li>Take part in school life &mdash; sports day, culture festival, and other events.</li>
-                                <li>Developed working Japanese (JLPT N3 / CEFR B1) in a full-time Japanese-language office environment.</li>
+                                <li>Planned and delivered English lessons, teaching and presenting in front of classes.</li>
+                                <li>Coached students for English speech contests.</li>
+                                <li>Took part in school life &mdash; sports day, culture festival, and other events.</li>
+                                <li>Developed working Japanese in a full-time Japanese-language office environment.</li>
                             </ul>
                         </div>
 
@@ -265,9 +267,9 @@
                             </div>
                             <p class="cv-meta">Jun 2020&ndash;Dec 2020, Burnaby, BC, Canada</p>
                             <ul class="cv-work">
-                                <li>Reliability and soak testing of USB/DisplayPort extension hardware &mdash; power-cycle, hot-plug, and multi-day endurance runs with pass/fail and error logging.</li>
-                                <li>Ran a peripheral compatibility matrix (conferencing cameras, speakerphones, mics, storage) across multiple host setups.</li>
-                                <li>Validated links in live video calls; measured throughput and data integrity with iperf3 and PassMark BurnInTest.</li>
+                                <li>Soak-tested USB/DisplayPort extension hardware &mdash; power-cycle, hot-plug, and multi-day endurance runs with pass/fail and error logging.</li>
+                                <li>Ran a peripheral compatibility matrix (conference cameras, speakerphones, mics) across multiple host setups.</li>
+                                <li>Validated links in live video calls and measured throughput and data integrity with iperf3 and PassMark BurnInTest.</li>
                             </ul>
                         </div>
                     </section>
@@ -276,10 +278,9 @@
                         <h2>projects</h2>
                         <hr>
                         <p class="cv-line"><a href="/pages/projects.html">monojiten</a> <span class="cv-desc">&mdash; command-line monolingual Japanese dictionary, built in Rust (2026, ongoing)</span></p>
-                        <p class="cv-line"><a href="/pages/projects.html">Propbot &mdash; Autonomous Data-Collection Robot</a> <span class="cv-desc">&mdash; ECE capstone: a self-driving robot that collects wireless-signal data in the field (2022)</span></p>
-                        <p class="cv-line"><a href="/pages/projects.html">Simple RISC Machine</a> <span class="cv-desc">&mdash; a CPU designed from scratch in Verilog and run on an FPGA (2019)</span></p>
-                        <p class="cv-line"><a href="/pages/projects.html">ELEC 291 &mdash; Coin-Picking Robot</a> <span class="cv-desc">&mdash; a battery-powered robot that finds and collects coins while staying inside a marked perimeter (2019)</span></p>
-                        <p class="cv-line"><a href="/pages/projects.html">ELEC 291 &mdash; Reflow Oven Controller</a> <span class="cv-desc">&mdash; 8051-assembly firmware that runs a solder-reflow oven through a set temperature profile, with an LCD and button interface (2019)</span></p>
+                        <p class="cv-line"><a href="/pages/projects.html">Propbot &mdash; Autonomous Data-Collection Robot</a> <span class="cv-desc">&mdash; ECE capstone: a self-driving robot that collects wireless-signal data (2022)</span></p>
+                        <p class="cv-line"><a href="/pages/projects.html">Simple RISC Machine</a> <span class="cv-desc">&mdash; a RISC (Reduced Instruction Set Computer) CPU built in Verilog and run on an FPGA (2019)</span></p>
+                        <p class="cv-line"><a href="/pages/projects.html">Reflow Oven Controller</a> <span class="cv-desc">&mdash; 8051-assembly firmware controlling a solder-reflow oven's temperature profile via LCD and button interface (2019)</span></p>
                     </section>
                 </div>
 
@@ -287,8 +288,8 @@
                     <section>
                         <h2>skills</h2>
                         <hr>
-                        <p class="cv-line">Rust &middot; Low-level (C, 8051 assembly) &middot; OOP (C++, C#) &middot; HDL / FPGA (Verilog) &middot; Web (HTML, CSS)</p>
-                        <p class="cv-line">git / GitHub &middot; Unix / CLI (fish, WSL) &middot; VS Code / Vim / Visual Studio &middot; PlatformIO</p>
+                        <p class="cv-line">Rust &middot; Low-level (C, 8051 assembly) &middot; OOP (C++, C#) &middot; FPGA / HDL (Verilog) &middot; Web (HTML, CSS)</p>
+                        <p class="cv-line">git / GitHub &middot; Linux / Unix (fish) &middot; VS Code / Vim / Visual Studio &middot; PlatformIO</p>
                         <p class="cv-line">UART &middot; Quartus / ModelSim &middot; MATLAB / Simulink &middot; Oscilloscope / Function Generator</p>
                     </section>
 
