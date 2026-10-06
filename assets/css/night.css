@@ -1,0 +1,150 @@
+/* Night mode: press N anywhere, or the moon on the home page.
+   scripts/night.js sets html.night and draws the sky; screen only, so
+   printing and the PDF builds always look normal. */
+
+@media screen {
+    html.night {
+        --primary_dark: #0b1022;
+        --secondary_dark: #141a33;
+        --text_grey: #9aa3c2;
+        --star: #dbe4ff;
+    }
+
+    html.night body {
+        /* solid navy under the glow, for browsers that don't do fixed backgrounds (iPhone) */
+        background: radial-gradient(ellipse at top, #1b2347 0%, var(--primary_dark) 70%) fixed var(--primary_dark);
+    }
+
+    /* The navbar and the home sidebar keep their day colours */
+    html.night .navbar,
+    html.night .profile_navbar,
+    html.night .left-column {
+        --primary_dark: #353b43;
+        --secondary_dark: #242930;
+        --text_grey: #AFBAC4;
+    }
+
+    /* Trial: the navbar and home sidebar show a night-sky photo.
+       Alternative: url(/assets/images/space/black_star.jpg) (the Milky Way) */
+    html.night .navbar,
+    html.night .profile_navbar,
+    html.night .left-column {
+        background: url(/assets/images/space/night.jpg) center / cover;
+    }
+
+    /* Sky: fixed behind the page content */
+    .sky {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .star {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--star);
+        box-shadow: 0 0 4px var(--star);
+        animation: star-twinkle ease-in-out infinite;
+    }
+
+    @keyframes star-twinkle {
+        0%, 100% { opacity: 0.9; }
+        50% { opacity: 0.15; }
+    }
+
+    /* Drifters: small blinking stars; night.js moves each one after every blink */
+    @keyframes star-fizzle {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 0.85; }
+    }
+
+    /* One crossing per animation; night.js picks a new path and wait each time */
+    .meteor {
+        position: absolute;
+        width: var(--length, 130px);
+        height: 3px;
+        border-radius: 3px;
+        background: linear-gradient(to right, transparent, var(--star));
+        filter: drop-shadow(0 0 5px var(--star));
+        opacity: 0;
+    }
+
+    @keyframes meteor-cross {
+        0% { opacity: 0; transform: rotate(25deg) translateX(0); }
+        12% { opacity: 0.85; }
+        100% { opacity: 0; transform: rotate(25deg) translateX(var(--distance, 360px)); }
+    }
+
+    /* Easter egg (scripts/flyby.js): a spacecraft drifting through the sky */
+    .flyby {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0.9;
+        pointer-events: none;
+    }
+
+    .flyby div {
+        position: absolute;
+        inset: 0;
+        background-repeat: no-repeat;
+    }
+
+    /* Moon / sun toggle in the home page banner */
+    .night-banner {
+        position: relative;
+    }
+
+    .night-toggle {
+        position: absolute;
+        top: 50%;
+        right: 24px;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        padding: 4px;
+        color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        transition: color var(--btn_transition_speed), opacity var(--btn_transition_speed);
+    }
+
+    .night-toggle:hover {
+        color: var(--accent);
+        opacity: 1;
+    }
+
+    .night-toggle i {
+        font-size: 24px;
+        padding: 0;
+    }
+
+    .night-toggle .fa-sun,
+    html.night .night-toggle .fa-moon {
+        display: none;
+    }
+
+    html.night .night-toggle .fa-sun {
+        display: inline-block;
+    }
+
+    /* Phones: the title wraps, so keep it clear of the moon */
+    @media (max-width: 600px) {
+        .night-banner .banner {
+            padding-left: 52px;
+            padding-right: 52px;
+        }
+        .night-toggle {
+            right: 12px;
+        }
+    }
+}
+
+@media print {
+    .sky,
+    .night-toggle {
+        display: none !important;
+    }
+}
