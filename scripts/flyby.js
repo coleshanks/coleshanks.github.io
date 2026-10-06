@@ -4,16 +4,18 @@ const FLYBY_WAIT     = 4000;   // ms after the page loads before it appears
 const FLYBY_DURATION = 28000;  // ms to cross the screen
 const FLYBY_ARC      = 0.25;   // how high the arc bows, as a share of the screen height
 const FLYBY_SPIN     = [14000, 22000]; // ms for one full 3D turn, picked at random in this range
-const FLYBY_SHOW_ALL = true;   // debug: fly every craft in turn instead of one at random
+const FLYBY_SHOW_ALL = true;   // debug: fly every craft in turn (shuffled) instead of one at random
 const FLYBY_ALL_GAP  = 2000;   // ms between them when showing all
 // --------------------------
 
 // Easter egg for night mode (only the CV page loads it for now): now and then a
-// NASA spacecraft (or asteroid Bennu) drifts across the sky behind the page on an
-// arc, slowly tumbling. Each sheet holds 600 frames of one loop that turns the
-// model a full circle about two axes at once, rendered in Blender from NASA 3D
-// Resources models (public domain). Neighbouring frames are blended so the turn
-// looks continuous.
+// NASA craft drifts across the sky behind the page on an arc, slowly tumbling:
+// Deep Space 1, CALIPSO, Apollo–Soyuz, asteroid Bennu, a Z2 spacesuit, Gateway,
+// the Apollo Lunar Module or an Agena target vehicle. Each sheet holds 600 frames
+// of one loop that turns the model a full circle about two axes at once, rendered
+// in Blender from NASA 3D Resources models (public domain) with the tools in
+// scripts/flyby-render/. Neighbouring frames are blended so the turn looks
+// continuous.
 (function () {
     const SHEET = { frames: 600, cols: 25 };
     const CRAFT = [ // frameW/frameH: one frame in the sheet; width: how big it shows
@@ -21,6 +23,10 @@ const FLYBY_ALL_GAP  = 2000;   // ms between them when showing all
         { src: '/assets/images/space/nasa/calipso-spin.webp',      frameW: 159, frameH: 160, width: 150 },
         { src: '/assets/images/space/nasa/apollo-soyuz-spin.webp', frameW: 160, frameH: 148, width: 140 },
         { src: '/assets/images/space/nasa/bennu-spin.webp',        frameW: 158, frameH: 160, width: 70 },
+        { src: '/assets/images/space/nasa/z2-spacesuit-spin.webp', frameW: 138, frameH: 160, width: 80 },
+        { src: '/assets/images/space/nasa/gateway-core-spin.webp', frameW: 104, frameH: 160, width: 110 },
+        { src: '/assets/images/space/nasa/apollo-lunar-module-spin.webp', frameW: 117, frameH: 160, width: 100 },
+        { src: '/assets/images/space/nasa/agena-spin.webp',        frameW: 160, frameH: 144, width: 140 },
     ];
 
     let visits;
@@ -33,16 +39,29 @@ const FLYBY_ALL_GAP  = 2000;   // ms between them when showing all
     if (visits % FLYBY_EVERY !== 0) return;
 
     const rand = (min, max) => min + Math.random() * (max - min);
-    const queue = FLYBY_SHOW_ALL ? CRAFT.slice() : [CRAFT[Math.floor(Math.random() * CRAFT.length)]];
-    const sheets = queue.map(function (c) { // start loading now so they're ready when the wait is over
-        const img = new Image();
-        img.src = c.src;
-        return img;
-    });
+    const shuffled = CRAFT.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) { // Fisher–Yates: a fresh random order each load
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const queue = FLYBY_SHOW_ALL ? shuffled : shuffled.slice(0, 1);
+    // sheets are 1.4-2.4 MB, so each one loads just before its turn (the next one
+    // while the current one flies) and is let go once it has crossed
+    const sheets = [];
+    function sheet(i) {
+        if (i < queue.length && !sheets[i]) {
+            sheets[i] = new Image();
+            sheets[i].src = queue[i].src;
+        }
+        return sheets[i];
+    }
+    sheet(0); // start now, so it's ready when the wait is over
 
     function next(i) {
         if (i >= queue.length) return;
-        fly(queue[i], sheets[i], function () {
+        sheet(i + 1);
+        fly(queue[i], sheet(i), function () {
+            sheets[i] = null;
             setTimeout(function () { next(i + 1); }, FLYBY_ALL_GAP);
         });
     }
