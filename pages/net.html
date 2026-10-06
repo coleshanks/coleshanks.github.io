@@ -121,6 +121,16 @@
                 height: calc(100vh + 130px) !important;
                 top: -65px !important;
             }
+            /* Shorts: 9:16 box at the same 480px height */
+            .yt-wrapper.vertical {
+                width: 270px;
+            }
+            .yt-wrapper.vertical:fullscreen iframe,
+            .yt-wrapper.vertical:-webkit-full-screen iframe {
+                width: calc(100vh * 9 / 16) !important;
+                left: 50% !important;
+                transform: translateX(-50%);
+            }
         </style>
     </head>
     <body>
@@ -167,10 +177,22 @@
             let history = [];
             let historyIndex = -1;
             let errorRetry = false;
+            const verticalIds = new Set();
 
             function extractId(url) {
-                const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
-                return m ? m[1] : null;
+                const m = url.match(/(?:v=|youtu\.be\/|shorts\/)([A-Za-z0-9_-]{11})/);
+                if (!m) return null;
+                if (url.includes('/shorts/')) verticalIds.add(m[1]);
+                return m[1];
+            }
+
+            function playerWidth(videoId) {
+                return verticalIds.has(videoId) ? 270 : 854;
+            }
+
+            function applyShape(videoId) {
+                document.querySelector('.yt-wrapper').classList.toggle('vertical', verticalIds.has(videoId));
+                if (player) player.setSize(playerWidth(videoId), 610);
             }
 
             function shuffle(arr) {
@@ -199,6 +221,7 @@
                 currentVideoId = videoId;
                 errorRetry = false;
                 document.getElementById('yt-link-btn').href = 'https://www.youtube.com/watch?v=' + videoId;
+                applyShape(videoId);
                 if (player) {
                     player.loadVideoById(videoId);
                 } else if (ytReady) {
@@ -248,7 +271,7 @@
 
             function createPlayer(videoId) {
                 player = new YT.Player('yt-player', {
-                    width: '854',
+                    width: playerWidth(videoId),
                     height: '610',
                     videoId: videoId,
                     playerVars: { autoplay: 1, rel: 0, controls: 0, iv_load_policy: 3, playsinline: 1, cc_load_policy: 0 },
