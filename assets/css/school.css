@@ -1,24 +1,6 @@
 /* School section color overrides — blue instead of green */
-h2 {
-    color: var(--text_blue);
-}
-
-hr {
-    border-color: var(--text_blue);
-}
-
-a:link,
-a:visited {
-    color: white;
-}
-
-a:hover {
-    color: var(--text_blue);
-}
-
-.nav_btn a:hover,
-.btn_on_page a:hover {
-    color: var(--text_green);
+:root {
+    --accent: var(--text_blue);
 }
 
 /* Course card grid */
@@ -36,11 +18,11 @@ a:hover {
 .course-row {
     display: flex;
     align-items: center;
-    background: #242930;
+    background: var(--secondary_dark);
     border-radius: 8px;
     overflow: hidden;
     min-height: 80px;
-    box-shadow: 4px 4px 8px rgba(69, 147, 250, 0.32);
+    box-shadow: 4px 4px 8px color-mix(in srgb, var(--accent) 32%, transparent);
 }
 
 .course-code {
@@ -71,8 +53,16 @@ a:hover {
     top: 0;
     bottom: 0;
     width: 3px;
-    background: var(--text_blue);
+    background: var(--accent);
     border-radius: 2px;
+}
+
+/* File lists on the course pages */
+.file-list {
+    text-align: left;
+    margin: 12px 30px;
+    padding: 0 20px;
+    font-size: 18px;
 }
 
 .year-header {

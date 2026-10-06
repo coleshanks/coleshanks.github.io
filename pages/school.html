@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
         <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/assets/css/school.css" type="text/css">
         <title>School | Cole Shanks</title>
         <script defer src="/scripts/navbar.js"></script>
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
@@ -19,105 +20,34 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">School</h1>
+            <h1 class="banner">School</h1>
         </div>
-        <style>
-            a:link, a:visited { color: white; }
-            a:hover { color: var(--text_blue); }
-            .nav_btn a:hover, .btn_on_page a:hover { color: var(--text_green); }
-            .school-list {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-                width: 80%;
-                max-width: 80%;
-                margin: 40px auto;
-                padding: 0 10px;
-            }
-            .school-row {
-                display: flex;
-                align-items: center;
-                background: #242930;
-                border-radius: 8px;
-                overflow: hidden;
-                min-height: 120px;
-                box-shadow: 4px 4px 8px rgba(69, 147, 250, 0.32);
-            }
-            .school-name {
-                padding: 24px 28px;
-                min-width: 120px;
-            }
-            .school-name h2 {
-                margin: 0;
-            }
-            .school-name h2 a {
-                color: var(--text_blue);
-                text-decoration: none;
-            }
-            .school-name h2 a:hover {
-                text-decoration: underline;
-            }
-            .school-desc {
-                position: relative;
-                padding: 24px 28px 24px 31px;
-                color: var(--text_grey);
-                font-size: 15px;
-                flex: 1;
-                align-self: stretch;
-                display: flex;
-                align-items: center;
-            }
-            .school-desc::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 3px;
-                background: var(--text_blue);
-                border-radius: 2px;
-            }
-            @media (max-width: 900px) {
-                .school-list {
-                    width: 90%;
-                    max-width: 90%;
-                }
-            }
-            @media (max-width: 750px) {
-                .school-list {
-                    grid-template-columns: 1fr;
-                    width: 100%;
-                    max-width: 100%;
-                    padding: 0 12px;
-                }
-            }
-        </style>
 
-        <div class="school-list">
+        <div class="card-list">
 
-            <div class="school-row">
-                <div class="school-name">
+            <div class="card">
+                <div class="card-name">
                     <h2><a href="/pages/school/ubc.html" target="_self">UBC</a></h2>
                 </div>
-                <div class="school-desc">
+                <div class="card-desc">
                     Electrical engineering notes / projects
                 </div>
             </div>
 
-            <div class="school-row">
-                <div class="school-name">
+            <div class="card">
+                <div class="card-name">
                     <h2><a href="/pages/school/capu.html" target="_self">CapU</a></h2>
                 </div>
-                <div class="school-desc">
+                <div class="card-desc">
                     1st year eng transfer program
                 </div>
             </div>
 
-            <div class="school-row">
-                <div class="school-name">
+            <div class="card">
+                <div class="card-name">
                     <h2><a href="/pages/school/uoft.html" target="_self">UofT</a></h2>
                 </div>
-                <div class="school-desc">
+                <div class="card-desc">
                     1st year Rotman commerce. Later switched to elec
                 </div>
             </div>

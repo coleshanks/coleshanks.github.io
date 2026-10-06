@@ -10,43 +10,6 @@
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
         <script src="/scripts/link_router.js" defer></script>
         <script src="/scripts/shuffle_gallery.js" defer></script>
-        <style>
-            .gallery {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 12px;
-                max-width: 93%;
-                margin: 20px auto;
-                padding: 0 10px;
-            }
-            .gallery-item {
-                border-radius: 8px;
-                overflow: hidden;
-                background: #242930;
-            }
-            .gallery-item img {
-                width: 100%;
-                aspect-ratio: 4/3;
-                object-fit: cover;
-                display: block;
-                border-radius: 8px;
-            }
-            @media (max-width: 1100px) {
-                .gallery {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
-            @media (max-width: 750px) {
-                .gallery {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-            }
-            @media (max-width: 450px) {
-                .gallery {
-                    grid-template-columns: 1fr;
-                }
-            }
-        </style>
     </head>
     <body>
         <div>
@@ -58,10 +21,10 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">Cambodia</h1>
+            <h1 class="banner">Cambodia</h1>
         </div>
         <h2>Gallery</h2>
-        <hr style="width: 93%; border-color: var(--text_orange);">
+        <hr class="wide">
         <div class="gallery">
             <div class="gallery-item">
                 <a href="/assets/images/travel/cambodia/IMG_9866.webp" target="_blank">

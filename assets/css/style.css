@@ -26,6 +26,19 @@
     --text_cyan: #23ffe9;
     --text_red: #ff6f79;
     --text_grey: #AFBAC4;
+    --sidebar_blue: #203457;
+
+    /* section accent: green by default, each section's css file sets its own */
+    --accent: var(--text_green);
+
+    /* code blocks: GitHub dark, to match the highlight.js github-dark theme */
+    --code_bg: #0d1117;
+    --code_header: #161b22;
+    --code_hover: #1c2128;
+    --code_border: #30363d;
+    --code_muted: #8b949e;
+    --code_text: #c9d1d9;
+    --code_error: #f85149;
 
     /* extra */
     --nav_margin: 6px;
@@ -97,7 +110,7 @@ h1 {
     text-align: left;
 }
 h2 {
-    color: var(--text_green);
+    color: var(--accent);
     font-family: var(--hf2); /* Use Roboto for headers */
     font-size: 28px; /* Default font size */
     margin: 8px 30px;
@@ -129,7 +142,7 @@ p {
 }
 
 hr {
-    border: 1px solid var(--text_green);
+    border: 1px solid var(--accent);
     margin: 0 30px;
     width: 85%;
 }
@@ -141,7 +154,7 @@ a:visited {
 }
 
 a:hover {
-    color: var(--text_green);
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -190,6 +203,7 @@ td {
 /* }  */
 
 .btn_on_page {
+    font-family: var(--hf2); /* same font as .nav_btn so the navbar keeps its height */
     border: 0.5px solid var(--tertiary_dark);
     border-radius: 6px;
     padding: 0;
@@ -311,6 +325,136 @@ footer img {
 
 footer:hover a {
     color: white;
+}
+
+/* Page title on the space banner */
+.banner {
+    font-size: 50px;
+    text-align: center;
+    background-image: url(/assets/images/space/space.jpeg);
+}
+
+/* Card list on the hub pages (Explore, Extras, School, Japanese, Projects) */
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 80%;
+    max-width: 80%;
+    margin: 40px auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.card-list.single {
+    display: flex;
+    flex-direction: column;
+}
+.card {
+    display: flex;
+    align-items: center;
+    background: var(--secondary_dark);
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 100px;
+    box-shadow: 4px 4px 8px color-mix(in srgb, var(--accent) 32%, transparent);
+}
+.card-name {
+    padding: 18px 24px;
+    min-width: 120px;
+}
+.card-list.single .card-name {
+    min-width: 200px;
+}
+.card-name h2 {
+    margin: 0;
+}
+.card-name h2 a {
+    color: var(--accent);
+    text-decoration: none;
+}
+.card-name h2 a:hover {
+    text-decoration: underline;
+}
+.card-desc {
+    position: relative;
+    padding: 18px 24px 18px 27px;
+    color: var(--text_grey);
+    font-size: 15px;
+    flex: 1;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+.card-desc::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+@media (max-width: 900px) {
+    .card-list {
+        width: 90%;
+        max-width: 90%;
+    }
+}
+@media (max-width: 750px) {
+    .card-list {
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 12px;
+    }
+}
+
+/* Photo and video galleries (Travel countries, ELEC 291 and 491) */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 93%;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--secondary_dark);
+}
+.gallery-item img,
+.gallery-item video {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+.gallery-item video:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+}
+.gallery-item video:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+}
+/* Rule as wide as the gallery or image below it */
+hr.wide {
+    width: 93%;
+}
+@media (max-width: 750px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 450px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
 }
 
 

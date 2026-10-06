@@ -22,7 +22,7 @@
         .left-column {
             flex: 0 0 250px; /* Fixed base width, but can shrink if needed */
             max-width: 300px;
-            background-color: #203457;
+            background-color: var(--sidebar_blue);
             display: flex;
             flex-direction: column;
             overflow-y: auto;

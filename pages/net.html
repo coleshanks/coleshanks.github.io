@@ -19,7 +19,7 @@
                 margin-top: 48px;
             }
             .net-btn {
-                background: #242930;
+                background: var(--secondary_dark);
                 color: var(--text_green);
                 border: 2px solid var(--text_green);
                 border-radius: 6px;
@@ -88,7 +88,7 @@
                 height: 4px;
                 appearance: none;
                 -webkit-appearance: none;
-                background: #353b43;
+                background: var(--primary_dark);
                 border-radius: 2px;
                 cursor: pointer;
                 outline: none;
@@ -144,7 +144,7 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">ネット</h1>
+            <h1 class="banner">ネット</h1>
         </div>
 
         <div class="net-container">
@@ -359,7 +359,7 @@
                     if (dur > 0) {
                         const pct = (player.getCurrentTime() / dur) * 100;
                         seekBar.value = pct;
-                        seekBar.style.background = `linear-gradient(to right, var(--text_green) ${pct}%, #353b43 ${pct}%)`;
+                        seekBar.style.background = `linear-gradient(to right, var(--text_green) ${pct}%, var(--primary_dark) ${pct}%)`;
                     }
                 }, 500);
             }
@@ -367,7 +367,7 @@
             seekBar.addEventListener('mousedown', () => { isSeeking = true; });
             seekBar.addEventListener('input', function() {
                 const pct = this.value;
-                this.style.background = `linear-gradient(to right, var(--text_green) ${pct}%, #353b43 ${pct}%)`;
+                this.style.background = `linear-gradient(to right, var(--text_green) ${pct}%, var(--primary_dark) ${pct}%)`;
             });
             seekBar.addEventListener('change', function() {
                 if (!player) return;

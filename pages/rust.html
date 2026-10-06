@@ -15,11 +15,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/rust.min.js"></script>
         <style>
             /* Orange overrides */
-            h2 { color: var(--text_orange); }
-            hr { border-color: var(--text_orange); }
-            a:hover { color: var(--text_orange); }
-            .nav_btn a:hover,
-            .btn_on_page a:hover { color: var(--text_green); }
+            :root { --accent: var(--text_orange); }
+            .banner { color: var(--text_orange); }
 
             .rust-list {
                 display: flex;
@@ -34,11 +31,11 @@
             .rust-row {
                 display: flex;
                 align-items: center;
-                background: #242930;
+                background: var(--secondary_dark);
                 border-radius: 8px;
                 overflow: hidden;
                 min-height: 100px;
-                box-shadow: 4px 4px 8px rgba(250, 125, 69, 0.32);
+                box-shadow: 4px 4px 8px color-mix(in srgb, var(--accent) 32%, transparent);
             }
             .rust-name {
                 padding: 18px 24px;
@@ -78,14 +75,69 @@
             .section-header h2 { margin: 0 0 8px 0; }
             .section-header hr { margin: 0; width: 100%; }
 
+            /* Fibonacci intro and table */
+            .fib-intro {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: 40px;
+                width: 80%;
+                margin: 10px auto 8px;
+                padding: 0 10px 0 20px;
+                box-sizing: border-box;
+            }
+            .fib-title {
+                margin: 0 0 4px 0;
+                font-size: 16px;
+                color: var(--accent);
+                font-family: 'Fira Mono', 'Courier New', monospace;
+                white-space: nowrap;
+            }
+            .fib-blurb {
+                margin: 0;
+                font-size: 15px;
+                max-width: 260px;
+            }
+            .fib-intro img {
+                width: 160px;
+                flex-shrink: 0;
+                border-radius: 6px;
+                opacity: 0.85;
+            }
+            .fib-table {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 0;
+                font-family: 'Fira Mono', 'Courier New', monospace;
+                font-size: 13px;
+                width: 80%;
+                margin: 8px auto;
+                padding: 0 10px 0 20px;
+                box-sizing: border-box;
+            }
+            .fib-table div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 4px 10px;
+            }
+            .fib-n {
+                color: var(--accent);
+                font-style: italic;
+            }
+            .fib-value {
+                color: var(--text_grey);
+            }
+
             /* Playground */
             .playground-block {
                 width: 80%;
                 margin: 12px auto 0;
                 border-radius: 8px;
                 overflow: hidden;
-                background: #0d1117;
-                border: 1px solid #30363d;
+                background: var(--code_bg);
+                border: 1px solid var(--code_border);
                 text-align: left;
             }
             .playground-header {
@@ -93,8 +145,8 @@
                 font-family: 'Fira Mono', 'Courier New', monospace;
                 font-size: 14px;
                 color: var(--text_orange);
-                background: #161b22;
-                border-bottom: 1px solid #30363d;
+                background: var(--code_header);
+                border-bottom: 1px solid var(--code_border);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -104,7 +156,7 @@
             }
             .playground-header::-webkit-details-marker { display: none; }
             .playground-header:hover {
-                background: #1c2128;
+                background: var(--code_hover);
             }
             .playground-header span {
                 display: flex;
@@ -117,7 +169,7 @@
                 gap: 6px;
                 padding: 5px 14px;
                 background: var(--text_orange);
-                color: #0d1117;
+                color: var(--code_bg);
                 border: none;
                 border-radius: 5px;
                 font-family: 'Fira Mono', 'Courier New', monospace;
@@ -152,19 +204,19 @@
                 align-items: center;
                 gap: 10px;
                 padding: 10px 20px;
-                background: #161b22;
-                border-top: 1px solid #30363d;
+                background: var(--code_header);
+                border-top: 1px solid var(--code_border);
                 font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
                 font-size: 13px;
             }
             .stdin-row label {
-                color: #8b949e;
+                color: var(--code_muted);
                 white-space: nowrap;
             }
             .stdin-input {
                 flex: 1;
-                background: #0d1117;
-                border: 1px solid #30363d;
+                background: var(--code_bg);
+                border: 1px solid var(--code_border);
                 border-radius: 4px;
                 color: var(--text_grey);
                 font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
@@ -178,12 +230,12 @@
             .stdin-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
             .stdin-input[type=number] { -moz-appearance: textfield; }
             .output-block {
-                border-top: 1px solid #30363d;
+                border-top: 1px solid var(--code_border);
                 padding: 14px 20px;
-                background: #0d1117;
+                background: var(--code_bg);
                 font-family: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
                 font-size: 13px;
-                color: #c9d1d9;
+                color: var(--code_text);
                 text-align: left;
             }
             #output-text {
@@ -191,10 +243,10 @@
                 white-space: pre-wrap;
                 word-break: break-all;
             }
-            .output-block.error { color: #f85149; }
+            .output-block.error { color: var(--code_error); }
             .output-label {
                 font-size: 11px;
-                color: #8b949e;
+                color: var(--code_muted);
                 text-transform: uppercase;
                 letter-spacing: 0.08em;
                 margin-bottom: 6px;
@@ -219,43 +271,43 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg); color: var(--text_orange);">Rust 🦀</h1>
+            <h1 class="banner">Rust 🦀</h1>
         </div>
 
         <div class="section-header">
             <h2>Fibonacci Sequence Generator</h2>
             <hr>
         </div>
-        <div style="display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 40px; width: 80%; margin: 10px auto 8px; padding: 0 10px 0 20px; box-sizing: border-box;">
+        <div class="fib-intro">
             <div>
-                <p style="margin: 0 0 4px 0; font-size: 16px; color: var(--text_orange); font-family: 'Fira Mono', 'Courier New', monospace; white-space: nowrap;">Fibonacci Sequence Generator</p>
-                <p style="margin: 0; font-size: 15px; max-width: 260px;">Generates the nth <a href="https://en.wikipedia.org/wiki/Fibonacci_sequence" target="_blank">Fibonacci</a> number. Enter a value for n and run it directly in the browser.</p>
+                <p class="fib-title">Fibonacci Sequence Generator</p>
+                <p class="fib-blurb">Generates the nth <a href="https://en.wikipedia.org/wiki/Fibonacci_sequence" target="_blank">Fibonacci</a> number. Enter a value for n and run it directly in the browser.</p>
             </div>
-            <img src="/assets/images/math/Fibonacci_Spiral.webp" alt="Fibonacci Spiral" style="width: 160px; flex-shrink: 0; border-radius: 6px; opacity: 0.85;">
+            <img src="/assets/images/math/Fibonacci_Spiral.webp" alt="Fibonacci Spiral">
         </div>
 
-        <div style="display: flex; flex-wrap: wrap; gap: 4px 0; font-family: 'Fira Mono', 'Courier New', monospace; font-size: 13px; width: 80%; margin: 8px auto; padding: 0 10px 0 20px; box-sizing: border-box;">
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>0</sub></span><span style="color: var(--text_grey);">0</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>1</sub></span><span style="color: var(--text_grey);">1</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>2</sub></span><span style="color: var(--text_grey);">1</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>3</sub></span><span style="color: var(--text_grey);">2</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>4</sub></span><span style="color: var(--text_grey);">3</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>5</sub></span><span style="color: var(--text_grey);">5</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>6</sub></span><span style="color: var(--text_grey);">8</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>7</sub></span><span style="color: var(--text_grey);">13</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>8</sub></span><span style="color: var(--text_grey);">21</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>9</sub></span><span style="color: var(--text_grey);">34</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>10</sub></span><span style="color: var(--text_grey);">55</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>11</sub></span><span style="color: var(--text_grey);">89</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>12</sub></span><span style="color: var(--text_grey);">144</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>13</sub></span><span style="color: var(--text_grey);">233</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>14</sub></span><span style="color: var(--text_grey);">377</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>15</sub></span><span style="color: var(--text_grey);">610</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>16</sub></span><span style="color: var(--text_grey);">987</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>17</sub></span><span style="color: var(--text_grey);">1597</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>18</sub></span><span style="color: var(--text_grey);">2584</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>19</sub></span><span style="color: var(--text_grey);">4181</span></div>
-            <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 10px;"><span style="color: var(--text_orange); font-style: italic;"><i>F</i><sub>20</sub></span><span style="color: var(--text_grey);">6765</span></div>
+        <div class="fib-table">
+            <div><span class="fib-n"><i>F</i><sub>0</sub></span><span class="fib-value">0</span></div>
+            <div><span class="fib-n"><i>F</i><sub>1</sub></span><span class="fib-value">1</span></div>
+            <div><span class="fib-n"><i>F</i><sub>2</sub></span><span class="fib-value">1</span></div>
+            <div><span class="fib-n"><i>F</i><sub>3</sub></span><span class="fib-value">2</span></div>
+            <div><span class="fib-n"><i>F</i><sub>4</sub></span><span class="fib-value">3</span></div>
+            <div><span class="fib-n"><i>F</i><sub>5</sub></span><span class="fib-value">5</span></div>
+            <div><span class="fib-n"><i>F</i><sub>6</sub></span><span class="fib-value">8</span></div>
+            <div><span class="fib-n"><i>F</i><sub>7</sub></span><span class="fib-value">13</span></div>
+            <div><span class="fib-n"><i>F</i><sub>8</sub></span><span class="fib-value">21</span></div>
+            <div><span class="fib-n"><i>F</i><sub>9</sub></span><span class="fib-value">34</span></div>
+            <div><span class="fib-n"><i>F</i><sub>10</sub></span><span class="fib-value">55</span></div>
+            <div><span class="fib-n"><i>F</i><sub>11</sub></span><span class="fib-value">89</span></div>
+            <div><span class="fib-n"><i>F</i><sub>12</sub></span><span class="fib-value">144</span></div>
+            <div><span class="fib-n"><i>F</i><sub>13</sub></span><span class="fib-value">233</span></div>
+            <div><span class="fib-n"><i>F</i><sub>14</sub></span><span class="fib-value">377</span></div>
+            <div><span class="fib-n"><i>F</i><sub>15</sub></span><span class="fib-value">610</span></div>
+            <div><span class="fib-n"><i>F</i><sub>16</sub></span><span class="fib-value">987</span></div>
+            <div><span class="fib-n"><i>F</i><sub>17</sub></span><span class="fib-value">1597</span></div>
+            <div><span class="fib-n"><i>F</i><sub>18</sub></span><span class="fib-value">2584</span></div>
+            <div><span class="fib-n"><i>F</i><sub>19</sub></span><span class="fib-value">4181</span></div>
+            <div><span class="fib-n"><i>F</i><sub>20</sub></span><span class="fib-value">6765</span></div>
         </div>
 
         <div class="playground-block">

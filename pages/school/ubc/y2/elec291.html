@@ -28,8 +28,8 @@
                 width: 60%;
                 border-radius: 8px;
                 overflow: hidden;
-                background: #0d1117;
-                border: 1px solid #30363d;
+                background: var(--code_bg);
+                border: 1px solid var(--code_border);
             }
             .code-block summary {
                 padding: 10px 16px;
@@ -37,8 +37,8 @@
                 font-family: 'Fira Mono', 'Courier New', monospace;
                 font-size: 14px;
                 color: #4593fa;
-                background: #161b22;
-                border-bottom: 1px solid #30363d;
+                background: var(--code_header);
+                border-bottom: 1px solid var(--code_border);
                 user-select: none;
                 list-style: none;
                 display: flex;
@@ -49,7 +49,7 @@
             .code-block summary::before {
                 content: '▶';
                 font-size: 10px;
-                color: #8b949e;
+                color: var(--code_muted);
                 transition: transform 0.15s;
                 display: inline-block;
             }
@@ -57,50 +57,11 @@
                 transform: rotate(90deg);
             }
             .code-block summary:hover {
-                background: #1c2128;
-            }
-            .gallery {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-                max-width: 93%;
-                margin: 20px auto;
-                padding: 0 10px;
-            }
-            .gallery-item {
-                border-radius: 8px;
-                overflow: hidden;
-                background: #242930;
-            }
-            .gallery-item img,
-            .gallery-item video {
-                width: 100%;
-                aspect-ratio: 4/3;
-                object-fit: cover;
-                display: block;
-                border-radius: 8px;
-            }
-            .gallery-item video:-webkit-full-screen {
-                width: 100vw;
-                height: 100vh;
-                object-fit: contain;
-            }
-            .gallery-item video:fullscreen {
-                width: 100vw;
-                height: 100vh;
-                object-fit: contain;
+                background: var(--code_hover);
             }
             @media (max-width: 750px) {
-                .gallery {
-                    grid-template-columns: repeat(2, 1fr);
-                }
                 .code-block, .code-subsection {
                     width: 90%;
-                }
-            }
-            @media (max-width: 450px) {
-                .gallery {
-                    grid-template-columns: 1fr;
                 }
             }
             .code-block pre {
@@ -117,7 +78,7 @@
             }
             .code-loading {
                 padding: 16px;
-                color: #8b949e;
+                color: var(--code_muted);
                 font-family: monospace;
                 font-size: 13px;
             }
@@ -125,7 +86,7 @@
                 margin: 0 auto 4px;
                 width: 60%;
                 font-size: 14px;
-                color: #8b949e;
+                color: var(--code_muted);
                 text-transform: uppercase;
                 letter-spacing: 0.08em;
                 margin-top: 16px;
@@ -142,7 +103,7 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">ELEC 291</h1>
+            <h1 class="banner">ELEC 291</h1>
         </div>
         <h2>Microcomputer Design Studio</h2>
 
@@ -151,7 +112,7 @@
             <h2>References</h2>
             <hr>
         </div>
-        <ul style="text-align: left; margin: 12px 30px; padding: 0 20px; font-size: 18px;">
+        <ul class="file-list">
             <li><a href="/assets/School/UBC/Year 2/ELEC 291/FT93C66A%20Datasheet.pdf" target="_blank">FT93C66A Datasheet</a></li>
         </ul>
 
@@ -206,7 +167,7 @@
         <div style="height: 40px;"></div>
 
         <h2 style="margin-top: 30px;">Gallery</h2>
-        <hr style="width: 93%;">
+        <hr class="wide">
         <div class="gallery">
             <div class="gallery-item">
                 <a href="/assets/School/img and videos/IMG_4070.jpeg" target="_blank">

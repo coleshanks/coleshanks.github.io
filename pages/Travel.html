@@ -23,11 +23,11 @@
             .country-row {
                 display: flex;
                 align-items: flex-start;
-                background: #242930;
+                background: var(--secondary_dark);
                 border-radius: 8px;
                 overflow: hidden;
                 min-height: 180px;
-                box-shadow: 4px 4px 8px rgba(250, 125, 69, 0.32);
+                box-shadow: 4px 4px 8px color-mix(in srgb, var(--accent) 32%, transparent);
             }
             @media (max-width: 900px) {
                 .country-list {
@@ -53,7 +53,7 @@
                 width: fit-content;
             }
             .country-info h2 a {
-                color: var(--text_orange);
+                color: var(--accent);
                 text-decoration: none;
             }
             .country-info h2 a:hover {
@@ -62,13 +62,14 @@
             .country-info p {
                 margin: 0;
                 width: 100%;
+                max-width: 80%;
                 color: var(--text_grey);
                 font-size: 15px;
             }
             .country-img {
                 position: relative;
                 flex: 1;
-                border-left: 3px solid var(--text_orange);
+                border-left: 3px solid var(--accent);
                 overflow: hidden;
                 align-self: stretch;
             }
@@ -98,7 +99,7 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">Travel</h1>
+            <h1 class="banner">Travel</h1>
         </div>
 
         <div class="country-list">
@@ -106,7 +107,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/japan.html">Japan</a></h2>
-                    <p style="max-width: 80%;">🗼 tokyo&nbsp;&nbsp;⛩️ kyoto&nbsp;&nbsp;🦌 nara&nbsp;&nbsp;🏙️ osaka&nbsp;&nbsp;🗿 kamakura&nbsp;&nbsp;🗻 fuji hike&nbsp;&nbsp;🏝️ miyakojima</p>
+                    <p>🗼 tokyo&nbsp;&nbsp;⛩️ kyoto&nbsp;&nbsp;🦌 nara&nbsp;&nbsp;🏙️ osaka&nbsp;&nbsp;🗿 kamakura&nbsp;&nbsp;🗻 fuji hike&nbsp;&nbsp;🏝️ miyakojima</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/japan.html"><img data-images='[
@@ -127,7 +128,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/singapore.html">Singapore</a></h2>
-                    <p style="max-width: 80%;">🌆 marina bay skyline&nbsp;&nbsp;🎆 new year's fireworks&nbsp;&nbsp;🌳 supertree grove&nbsp;&nbsp;🥟 xiaolongbao&nbsp;&nbsp;🍜 chinatown food complex&nbsp;&nbsp;🎢 USS</p>
+                    <p>🌆 marina bay skyline&nbsp;&nbsp;🎆 new year's fireworks&nbsp;&nbsp;🌳 supertree grove&nbsp;&nbsp;🥟 xiaolongbao&nbsp;&nbsp;🍜 chinatown food complex&nbsp;&nbsp;🎢 USS</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/singapore.html"><img data-images='[
@@ -156,7 +157,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/vietnam.html">Vietnam</a></h2>
-                    <p style="max-width: 80%;">🌃 saigon&nbsp;&nbsp;🌊 vung tau&nbsp;&nbsp;🚤 mekong&nbsp;&nbsp;🍺 tiger&nbsp;&nbsp;🥖 banh mi&nbsp;&nbsp;🍲 com tam&nbsp;&nbsp;🐍 cobra wine</p>
+                    <p>🌃 saigon&nbsp;&nbsp;🌊 vung tau&nbsp;&nbsp;🚤 mekong&nbsp;&nbsp;🍺 tiger&nbsp;&nbsp;🥖 banh mi&nbsp;&nbsp;🍲 com tam&nbsp;&nbsp;🐍 cobra wine</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/vietnam.html"><img data-images='[
@@ -177,7 +178,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/thailand.html">Thailand</a></h2>
-                    <p style="max-width: 80%;">🐘 elephant&nbsp;&nbsp;⛰️ chiang mai&nbsp;&nbsp;🥡 pad thai&nbsp;&nbsp;🌸 mon jam&nbsp;&nbsp;🥥 coconut&nbsp;&nbsp;🍺 chang&nbsp;&nbsp;🐟 snakehead fish</p>
+                    <p>🐘 elephant&nbsp;&nbsp;⛰️ chiang mai&nbsp;&nbsp;🥡 pad thai&nbsp;&nbsp;🌸 mon jam&nbsp;&nbsp;🥥 coconut&nbsp;&nbsp;🍺 chang&nbsp;&nbsp;🐟 snakehead fish</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/thailand.html"><img data-images='[
@@ -198,7 +199,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/philippines.html">Philippines</a></h2>
-                    <p style="max-width: 80%;">🌋 taal volcano&nbsp;&nbsp;🏙️ manila&nbsp;&nbsp;🏞️ tagaytay&nbsp;&nbsp;🏔️ people's palace in the sky</p>
+                    <p>🌋 taal volcano&nbsp;&nbsp;🏙️ manila&nbsp;&nbsp;🏞️ tagaytay&nbsp;&nbsp;🏔️ people's palace in the sky</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/philippines.html"><img data-images='[
@@ -219,7 +220,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/indonesia.html">Indonesia</a></h2>
-                    <p style="max-width: 80%;">🌊 nusa penida cliffs&nbsp;&nbsp;🐾 kopi luwak civet&nbsp;&nbsp;☕ luwak coffee&nbsp;&nbsp;🌿 rice fields&nbsp;&nbsp;🎎 balinese procession&nbsp;&nbsp;🍺 bintang</p>
+                    <p>🌊 nusa penida cliffs&nbsp;&nbsp;🐾 kopi luwak civet&nbsp;&nbsp;☕ luwak coffee&nbsp;&nbsp;🌿 rice fields&nbsp;&nbsp;🎎 balinese procession&nbsp;&nbsp;🍺 bintang</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/indonesia.html"><img data-images='[
@@ -241,7 +242,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/hongkong.html">Hong Kong</a></h2>
-                    <p style="max-width: 80%;">🌃 kowloon&nbsp;&nbsp;🍳 HK breakfast&nbsp;&nbsp;🏮 night market</p>
+                    <p>🌃 kowloon&nbsp;&nbsp;🍳 HK breakfast&nbsp;&nbsp;🏮 night market</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/hongkong.html"><img data-images='[
@@ -262,7 +263,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/taiwan.html">Taiwan</a></h2>
-                    <p style="max-width: 80%;">🏛️ chiang kai-shek memorial&nbsp;&nbsp;🥟 dumplings&nbsp;&nbsp;🫓 sesame flatbread&nbsp;&nbsp;⛰️ jiufen&nbsp;&nbsp;🛕 night market&nbsp;&nbsp;🪨 yehliu geopark</p>
+                    <p>🏛️ chiang kai-shek memorial&nbsp;&nbsp;🥟 dumplings&nbsp;&nbsp;🫓 sesame flatbread&nbsp;&nbsp;⛰️ jiufen&nbsp;&nbsp;🛕 night market&nbsp;&nbsp;🪨 yehliu geopark</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/taiwan.html"><img data-images='[
@@ -283,7 +284,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/cambodia.html">Cambodia</a></h2>
-                    <p style="max-width: 80%;">🛕 angkor wat&nbsp;&nbsp;🏙️ phnom penh&nbsp;&nbsp;🌆 siem reap&nbsp;&nbsp;🏫 floating school&nbsp;&nbsp;🚤 river market</p>
+                    <p>🛕 angkor wat&nbsp;&nbsp;🏙️ phnom penh&nbsp;&nbsp;🌆 siem reap&nbsp;&nbsp;🏫 floating school&nbsp;&nbsp;🚤 river market</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/cambodia.html"><img data-images='[
@@ -301,7 +302,7 @@
             <div class="country-row">
                 <div class="country-info">
                     <h2><a href="/pages/Travel/china.html">China</a></h2>
-                    <p style="max-width: 80%;">🏯 great wall&nbsp;&nbsp;🐱 neko&nbsp;&nbsp;🦆 peking duck&nbsp;&nbsp;🏙️ beijing</p>
+                    <p>🏯 great wall&nbsp;&nbsp;🐱 neko&nbsp;&nbsp;🦆 peking duck&nbsp;&nbsp;🏙️ beijing</p>
                 </div>
                 <div class="country-img">
                     <a href="/pages/Travel/china.html"><img data-images='[

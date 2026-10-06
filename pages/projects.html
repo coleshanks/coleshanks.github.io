@@ -11,59 +11,6 @@
         <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
         <script src="/scripts/link_router.js" defer></script>
         <style>
-            .projects-list {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                width: 80%;
-                max-width: 80%;
-                margin: 40px auto;
-                padding: 0 10px;
-                box-sizing: border-box;
-            }
-            .project-row {
-                display: flex;
-                align-items: center;
-                background: #242930;
-                border-radius: 8px;
-                overflow: hidden;
-                min-height: 100px;
-                box-shadow: 4px 4px 8px rgba(26, 218, 199, 0.32);
-            }
-            .project-name {
-                padding: 18px 24px;
-                min-width: 200px;
-            }
-            .project-name h2 {
-                margin: 0;
-            }
-            .project-name h2 a {
-                color: var(--text_cyan);
-                text-decoration: none;
-            }
-            .project-name h2 a:hover {
-                text-decoration: underline;
-            }
-            .project-desc {
-                position: relative;
-                padding: 18px 24px 18px 27px;
-                color: var(--text_grey);
-                font-size: 15px;
-                flex: 1;
-                align-self: stretch;
-                display: flex;
-                align-items: center;
-            }
-            .project-desc::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                width: 3px;
-                background: var(--text_cyan);
-                border-radius: 2px;
-            }
             .section-header {
                 width: 80%;
                 margin: 48px auto 0;
@@ -78,18 +25,12 @@
                 width: 100%;
             }
             @media (max-width: 900px) {
-                .projects-list,
                 .section-header {
                     width: 90%;
                     max-width: 90%;
                 }
             }
             @media (max-width: 750px) {
-                .projects-list {
-                    width: 100%;
-                    max-width: 100%;
-                    padding: 0 12px;
-                }
                 .section-header {
                     width: 100%;
                     max-width: 100%;
@@ -108,21 +49,21 @@
             </ul>
         </div>
         <div>
-            <h1 style="font-size: 50px; text-align: center; background-image: url(/assets/images/space/space.jpeg);">Projects</h1>
+            <h1 class="banner">Projects</h1>
         </div>
 
-        <div class="projects-list">
-            <div class="project-row">
-                <div class="project-name"><h2><a href="/pages/rust.html">Rust 🦀</a></h2></div>
-                <div class="project-desc">Small rust stuff with embedded code in the browser that you can try! Mostly leftover small exercises from rust-lang book</div>
+        <div class="card-list single">
+            <div class="card">
+                <div class="card-name"><h2><a href="/pages/rust.html">Rust 🦀</a></h2></div>
+                <div class="card-desc">Small rust stuff with embedded code in the browser that you can try! Mostly leftover small exercises from rust-lang book</div>
             </div>
-            <div class="project-row">
-                <div class="project-name"><h2><a href="#">Project Two</a></h2></div>
-                <div class="project-desc">Project 2 TBD. Probably monojiten once finished</div>
+            <div class="card">
+                <div class="card-name"><h2><a href="#">Project Two</a></h2></div>
+                <div class="card-desc">Project 2 TBD. Probably monojiten once finished</div>
             </div>
-            <div class="project-row">
-                <div class="project-name"><h2><a href="#">Project Three</a></h2></div>
-                <div class="project-desc">Project 3 TBD</div>
+            <div class="card">
+                <div class="card-name"><h2><a href="#">Project Three</a></h2></div>
+                <div class="card-desc">Project 3 TBD</div>
             </div>
         </div>
 
@@ -131,14 +72,14 @@
             <hr>
         </div>
 
-        <div class="projects-list">
-            <div class="project-row">
-                <div class="project-name"><h2><a href="#">Archived One</a></h2></div>
-                <div class="project-desc">Capstone project: Propbot</div>
+        <div class="card-list single">
+            <div class="card">
+                <div class="card-name"><h2><a href="#">Archived One</a></h2></div>
+                <div class="card-desc">Capstone project: Propbot</div>
             </div>
-            <div class="project-row">
-                <div class="project-name"><h2><a href="#">Archived Two</a></h2></div>
-                <div class="project-desc">ELEC 291 microcontroller oven pcb heater project</div>
+            <div class="card">
+                <div class="card-name"><h2><a href="#">Archived Two</a></h2></div>
+                <div class="card-desc">ELEC 291 microcontroller oven pcb heater project</div>
             </div>
         </div>
     </body>
