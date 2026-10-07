@@ -1,21 +1,33 @@
 // --- Tweakable settings ---
-const FLYBY_EVERY    = 1;      // fly by on every Nth page load (1 while debugging on the CV page)
-const FLYBY_WAIT     = 4000;   // ms after the page loads before it appears
+const FLYBY_LAUNCH   = '/pages/CV'; // the page whose first flyby starts each visit (path, no .html)
+const FLYBY_EVERY    = 8;      // night-mode jumps from one flyby to the next
+const FLYBY_WAIT     = 4000;   // ms after the page loads (or night mode comes on) before it appears
 const FLYBY_DURATION = 28000;  // ms to cross the screen
 const FLYBY_ARC      = 0.25;   // how high the arc bows, as a share of the screen height
 const FLYBY_SPIN     = [14000, 22000]; // ms for one full 3D turn, picked at random in this range
-const FLYBY_SHOW_ALL = true;   // debug: fly every craft in turn (shuffled) instead of one at random
-const FLYBY_ALL_GAP  = 2000;   // ms between them when showing all
+const FLYBY_ALL_GAP  = 2000;   // ms between craft when showing them all (?flyby)
 // --------------------------
 
-// Easter egg for night mode (only the CV page loads it for now): now and then a
-// NASA craft drifts across the sky behind the page on an arc, slowly tumbling:
-// Deep Space 1, CALIPSO, Apollo–Soyuz, asteroid Bennu, a Z2 spacesuit, Gateway,
-// the Apollo Lunar Module or an Agena target vehicle. Each sheet holds 600 frames
-// of one loop that turns the model a full circle about two axes at once, rendered
-// in Blender from NASA 3D Resources models (public domain) with the tools in
-// scripts/flyby-render/. Neighbouring frames are blended so the turn looks
-// continuous.
+// Easter egg for night mode: now and then a NASA craft drifts across the sky
+// behind the page on a random arc, slowly tumbling: Deep Space 1, CALIPSO,
+// Apollo–Soyuz, asteroid Bennu, a Z2 spacesuit, Gateway, the Apollo Lunar Module
+// or an Agena target vehicle. Each sheet holds 600 frames of one loop that turns
+// the model a full circle about two axes at once, rendered in Blender from NASA
+// 3D Resources models (public domain) with the tools in scripts/flyby-render/.
+// Neighbouring frames are blended so the turn looks continuous.
+//
+// When: each visit (until the browser is closed) starts quiet. The first flyby
+// comes on the CV page in night mode, and once it has flown the visit is
+// launched: from then on one comes every FLYBY_EVERY-th night-mode jump (any
+// page load, back and forward included), and switching night mode on sends one.
+// Never on the home page, which is Samus's: it counts as a jump, but a flyby due
+// there waits for the next page. A due flyby stays due until it actually
+// starts, so leaving a page early doesn't lose it, and a page opened in a
+// background tab keeps it until the tab is looked at.
+// Which: craft are dealt like cards from a shuffled deck kept in localStorage
+// across visits, so all eight turn up before any repeats, and never the same
+// one twice in a row.
+// Add ?flyby to a page's URL to fly every craft in turn, in a shuffled order.
 (function () {
     const SHEET = { frames: 600, cols: 25 };
     const CRAFT = [ // frameW/frameH: one frame in the sheet; width: how big it shows
@@ -29,52 +41,109 @@ const FLYBY_ALL_GAP  = 2000;   // ms between them when showing all
         { src: '/assets/images/space/nasa/agena-spin.webp',        frameW: 160, frameH: 144, width: 140 },
     ];
 
-    let visits;
-    try {
-        visits = (parseInt(localStorage.getItem('flyby_visits'), 10) || 0) + 1;
-        localStorage.setItem('flyby_visits', visits);
-    } catch (e) {
-        return;
-    }
-    if (visits % FLYBY_EVERY !== 0) return;
-
     const rand = (min, max) => min + Math.random() * (max - min);
-    const shuffled = CRAFT.slice();
-    for (let i = shuffled.length - 1; i > 0; i--) { // Fisher–Yates: a fresh random order each load
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    const queue = FLYBY_SHOW_ALL ? shuffled : shuffled.slice(0, 1);
-    // sheets are 1.4-2.4 MB, so each one loads just before its turn (the next one
-    // while the current one flies) and is let go once it has crossed
-    const sheets = [];
-    function sheet(i) {
-        if (i < queue.length && !sheets[i]) {
-            sheets[i] = new Image();
-            sheets[i].src = queue[i].src;
+    const showAll = new URLSearchParams(location.search).has('flyby');
+    const page = location.pathname.replace(/\.html$/, '');
+    const onHome = page === '/' || page === '/index';
+    const onLaunch = page === FLYBY_LAUNCH;
+    let run = 0; // each start bumps this, so timers left from an earlier start give up
+
+    function shuffle(list) { // Fisher–Yates: a fresh random order
+        const out = list.slice();
+        for (let i = out.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [out[i], out[j]] = [out[j], out[i]];
         }
-        return sheets[i];
+        return out;
     }
-    sheet(0); // start now, so it's ready when the wait is over
 
-    function next(i) {
-        if (i >= queue.length) return;
-        sheet(i + 1);
-        fly(queue[i], sheet(i), function () {
-            sheets[i] = null;
-            setTimeout(function () { next(i + 1); }, FLYBY_ALL_GAP);
-        });
-    }
-    setTimeout(function () { next(0); }, FLYBY_WAIT);
+    // night.js calls this once a page is in night mode: fresh is false for a page
+    // view (a load, or back and forward), and true when night mode has just been
+    // switched on
+    window.flyby = function (fresh) {
+        const thisRun = ++run;
+        // back from memory (back and forward): drop a craft left mid-flight
+        document.querySelectorAll('.sky .flyby').forEach(function (el) { el.remove(); });
+        let queue = shuffle(CRAFT); // ?flyby: all of them
+        let deal = function () {};
+        if (!showAll) {
+            try {
+                let due;
+                if (sessionStorage.getItem('flyby_launched') !== '1') {
+                    due = onLaunch; // nothing counts until the first flyby on the CV this visit
+                } else if (fresh) {
+                    due = !onHome;
+                } else {
+                    // night-mode jumps since the last flyby this visit
+                    const since = (parseInt(sessionStorage.getItem('flyby_since'), 10) || 0) + 1;
+                    sessionStorage.setItem('flyby_since', since);
+                    due = since >= FLYBY_EVERY && !onHome;
+                }
+                if (!due) return;
+                // the deck: srcs still to deal, top card last; a new shuffle once it's empty
+                let deck = (JSON.parse(localStorage.getItem('flyby_deck')) || [])
+                    .filter(src => CRAFT.some(c => c.src === src));
+                if (!deck.length) deck = shuffle(CRAFT).map(c => c.src);
+                queue = [CRAFT.find(c => c.src === deck[deck.length - 1])];
+                deal = function (flew) { // take the top card; once one flies, the visit is launched and the count restarts
+                    try {
+                        let rest = deck.slice(0, -1);
+                        if (!rest.length) { // that was the last card: a new shuffle, never starting with the same craft
+                            rest = shuffle(CRAFT).map(c => c.src);
+                            if (rest[rest.length - 1] === deck[deck.length - 1]) rest.unshift(rest.pop());
+                        }
+                        localStorage.setItem('flyby_deck', JSON.stringify(rest));
+                        if (flew) {
+                            sessionStorage.setItem('flyby_launched', '1');
+                            sessionStorage.setItem('flyby_since', 0);
+                        }
+                    } catch (e) { /* private mode etc. */ }
+                };
+            } catch (e) {
+                return; // no storage, no flyby
+            }
+        }
 
-    function fly(craft, sheet, done) {
+        // sheets are 1.4-2.4 MB, so each one loads just before its turn (the next one
+        // while the current one flies) and is let go once it has crossed
+        const sheets = [];
+        function sheet(i) {
+            if (i < queue.length && !sheets[i]) {
+                sheets[i] = new Image();
+                sheets[i].src = queue[i].src;
+            }
+            return sheets[i];
+        }
+        sheet(0); // start now, so it's ready when the wait is over
+
+        function next(i) {
+            if (i >= queue.length || thisRun !== run) return;
+            sheet(i + 1);
+            fly(queue[i], sheet(i), thisRun, deal, function () {
+                sheets[i] = null;
+                setTimeout(function () { next(i + 1); }, FLYBY_ALL_GAP);
+            });
+        }
+        setTimeout(function () { next(0); }, FLYBY_WAIT);
+    };
+
+    function fly(craft, sheet, thisRun, deal, done) {
         const sky = document.querySelector('.sky'); // only there in night mode
-        if (!sky) return;
-        if (!sheet.complete) { // still downloading: go once it's in
-            sheet.onload = function () { fly(craft, sheet, done); };
+        if (!sky || thisRun !== run) return; // back to day mode, or started again since
+        if (document.hidden) { // in a background tab: wait until it's looked at, then the usual few seconds
+            document.addEventListener('visibilitychange', function shown() {
+                if (document.hidden) return;
+                document.removeEventListener('visibilitychange', shown);
+                setTimeout(function () { fly(craft, sheet, thisRun, deal, done); }, FLYBY_WAIT);
+            });
             return;
         }
-        if (!sheet.naturalWidth) { done(); return; } // failed to load
+        if (!sheet.complete) { // still downloading: go once it's in (or has failed)
+            sheet.onload = sheet.onerror = function () { fly(craft, sheet, thisRun, deal, done); };
+            return;
+        }
+        if (!sheet.naturalWidth) { deal(false); done(); return; } // failed to load: skip that card
+        deal(true);
 
         const w = craft.width;
         const h = Math.round(w * craft.frameH / craft.frameW);

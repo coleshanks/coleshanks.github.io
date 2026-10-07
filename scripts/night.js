@@ -94,21 +94,45 @@
         if (sky) sky.remove();
     }
 
-    function show(on) {
+    // The flyby easter egg (scripts/flyby.js) only flies at night, so it's only
+    // fetched once a page is in night mode. fresh: night mode was just switched
+    // on, which always sends one
+    let flybyFresh = null; // set while flyby.js is still loading
+    function startFlyby(fresh) {
+        if (window.flyby) {
+            window.flyby(fresh);
+        } else if (flybyFresh !== null) {
+            flybyFresh = flybyFresh || fresh;
+        } else {
+            flybyFresh = fresh;
+            const script = document.createElement('script');
+            script.src = '/scripts/flyby.js';
+            script.onload = function () { window.flyby(flybyFresh); };
+            document.head.appendChild(script);
+        }
+    }
+
+    function show(on, fresh) {
         root.classList.toggle('night', on);
-        if (on) drawSky(); else clearSky();
+        if (on) {
+            drawSky();
+            startFlyby(fresh);
+        } else {
+            clearSky();
+        }
         const btn = document.querySelector('.night-toggle');
         if (btn) btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     }
 
     function toggle() {
         const on = !root.classList.contains('night');
-        show(on);
+        show(on, true);
         save(on);
     }
 
     document.addEventListener('keydown', function (e) {
         if (e.key !== 'n' && e.key !== 'N') return;
+        if (e.repeat) return; // holding N down would flick back and forth
         if (e.metaKey || e.ctrlKey || e.altKey) return; // Cmd+N etc. stay the browser's
         const t = e.target;
         if (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return; // typing
@@ -121,6 +145,17 @@
             toggle();
             btn.blur();
         });
-        show(root.classList.contains('night')); // the <head> script may have set it
+        show(root.classList.contains('night'), false); // the <head> script may have set it
+    });
+
+    // The back and forward buttons often bring a page back from memory instead of
+    // reloading it: catch up with the choice saved since, and count it as a new
+    // page view for the flyby
+    window.addEventListener('pageshow', function (e) {
+        if (!e.persisted) return;
+        let on = false;
+        try { on = localStorage.getItem(KEY) === '1'; } catch (err) { /* private mode etc. */ }
+        if (on !== root.classList.contains('night')) show(on, false);
+        else if (on) startFlyby(false);
     });
 })();
