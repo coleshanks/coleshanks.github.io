@@ -346,9 +346,9 @@
         if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
         else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
         else if (e.key === 'Enter') { e.preventDefault(); run(rows[active]); }
-        else if (e.key === 'ArrowRight' && empty) {
-            const r = rows[active];
-            if (r && r.kind === 'page' && r.node.k) { e.preventDefault(); enter(r.node); }
+        else if (e.key === 'ArrowRight' && input.selectionStart === input.value.length) {
+            e.preventDefault(); // works like Enter, unless the cursor is mid-text, where → moves it
+            run(rows[active]);
         } else if ((e.key === 'ArrowLeft' || e.key === 'Backspace') && empty && stack.length) {
             e.preventDefault();
             back();
