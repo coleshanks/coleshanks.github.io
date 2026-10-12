@@ -1,0 +1,226 @@
+/* The / menu (scripts/menu.js), loaded on first open. Built from the page's
+   tokens, so it follows the section's --accent and day or night. */
+
+.site-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 10000; /* over everything, Samus (9999) included */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 14vh 16px 0;
+    background: color-mix(in srgb, var(--primary_dark) 55%, transparent);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: left;
+    color: var(--text_grey);
+}
+
+/* pages style bare elements (the home page gives every i and span 30px and side
+   padding), so the menu's own elements start clean; :where keeps this weaker
+   than the classes below */
+.site-menu :where(div, span, i, kbd, mark, button, input) {
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.site-menu[hidden] {
+    display: none;
+}
+
+.site-menu-box {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    max-width: 100%;
+    max-height: 70vh;
+    box-sizing: border-box;
+    padding: 14px;
+    background: var(--secondary_dark);
+    border: 2px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    border-radius: 12px;
+    box-shadow: 0 16px 48px rgb(0 0 0 / 0.45);
+}
+
+/* the Go… field, with the submenu's name and a back arrow in front of it */
+.site-menu-prompt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 12px 12px;
+    border-bottom: 1px solid color-mix(in srgb, var(--text_grey) 15%, transparent);
+    margin-bottom: 8px;
+}
+
+.site-menu-back,
+.site-menu-crumb {
+    display: none;
+}
+
+.site-menu-prompt.in-submenu .site-menu-back,
+.site-menu-prompt.in-submenu .site-menu-crumb {
+    display: inline-block;
+}
+
+.site-menu-back {
+    padding: 0;
+    margin-left: -2px;
+    border: 0;
+    background: none;
+    color: color-mix(in srgb, var(--text_grey) 70%, transparent);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.site-menu-back:hover {
+    color: var(--accent);
+}
+
+.site-menu-crumb {
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.site-menu-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    font: inherit;
+    color: var(--text_grey);
+    caret-color: var(--accent);
+}
+
+.site-menu-input::placeholder {
+    color: var(--accent);
+    opacity: 0.75;
+}
+
+.site-menu-list {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--text_grey) 25%, transparent) transparent;
+}
+
+.site-menu-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 38px;
+    padding: 0 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.site-menu-row.is-active {
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    color: var(--accent);
+}
+
+.site-menu-row.is-empty {
+    cursor: default;
+    color: color-mix(in srgb, var(--text_grey) 60%, transparent);
+}
+
+.site-menu-icon {
+    width: 16px;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 12px;
+}
+
+.site-menu-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.site-menu-hint,
+.site-menu-key,
+.site-menu-more {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: color-mix(in srgb, var(--text_grey) 60%, transparent);
+}
+
+.site-menu-hint {
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.site-menu-hint + .site-menu-more {
+    margin-left: 0;
+}
+
+.site-menu-more {
+    font-size: 10px;
+}
+
+.site-menu-key {
+    min-width: 10px;
+    padding: 1px 6px;
+    border: 1px solid color-mix(in srgb, var(--text_grey) 30%, transparent);
+    border-radius: 4px;
+    font: inherit;
+    font-size: 11px;
+    text-align: center;
+}
+
+.site-menu-row.is-active .site-menu-hint,
+.site-menu-row.is-active .site-menu-more,
+.site-menu-row.is-active .site-menu-key {
+    color: color-mix(in srgb, var(--accent) 75%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/* a text match: title and where it is, then a line or two around the match */
+.site-menu-row.is-hit {
+    display: block;
+    padding: 8px 12px;
+}
+
+.site-menu-hit-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.site-menu-snippet {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-top: 3px;
+    font-size: 12px;
+    color: color-mix(in srgb, var(--text_grey) 75%, transparent);
+}
+
+.site-menu mark {
+    background: transparent;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.site-menu-live {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}

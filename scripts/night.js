@@ -129,14 +129,49 @@
         show(on, true);
         save(on);
     }
+    window.nightToggle = toggle; // for the / menu
 
+    // The / menu (scripts/menu.js) is fetched the first time it's opened, like flyby.js
+    let menuLoading = false;
+    function toggleMenu() {
+        if (window.siteMenu) {
+            window.siteMenu.toggle();
+        } else if (!menuLoading) {
+            menuLoading = true;
+            const script = document.createElement('script');
+            script.src = '/scripts/menu.js';
+            script.onload = function () { window.siteMenu.toggle(); };
+            script.onerror = function () { menuLoading = false; };
+            document.head.appendChild(script);
+        }
+    }
+
+    // Keys that work anywhere: N night mode, / the menu, F send a flyby (flyby.js,
+    // once unlocked), S send Samus (samus.js), C next sprite (random_sprite.js).
+    // The last three do nothing on pages without them. Cmd/Ctrl+K opens the menu too
     document.addEventListener('keydown', function (e) {
-        if (e.key !== 'n' && e.key !== 'N') return;
+        if ((e.metaKey || e.ctrlKey) && !e.altKey && !e.shiftKey && e.key.toLowerCase() === 'k') {
+            e.preventDefault(); // the browser's own search bar
+            toggleMenu();
+            return;
+        }
         if (e.repeat) return; // holding N down would flick back and forth
         if (e.metaKey || e.ctrlKey || e.altKey) return; // Cmd+N etc. stay the browser's
         const t = e.target;
         if (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return; // typing
-        toggle();
+        const key = e.key.toLowerCase();
+        if (key === '/') {
+            e.preventDefault(); // Firefox's quick find
+            toggleMenu();
+        } else if (key === 'n') {
+            toggle();
+        } else if (key === 'f' && window.flybySend) {
+            window.flybySend();
+        } else if (key === 's' && window.samusRun) {
+            window.samusRun();
+        } else if (key === 'c' && window.nextSprite) {
+            window.nextSprite();
+        }
     });
 
     document.addEventListener('DOMContentLoaded', function () {

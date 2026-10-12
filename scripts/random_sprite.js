@@ -70,3 +70,27 @@ document.addEventListener('DOMContentLoaded', function () {
     img.src = src;
     container.appendChild(img);
 });
+
+// C or the / menu (scripts/menu.js): the next sprite, dealt from a shuffled deck
+// kept in localStorage key sprite_deck (top card last), so every sprite turns
+// up before any repeats. Skips the one already showing.
+window.nextSprite = function () {
+    const img = document.querySelector('#random-sprite-container img');
+    if (!img) return false;
+    const showing = img.getAttribute('src');
+    let deck = [];
+    try { deck = (JSON.parse(localStorage.getItem('sprite_deck')) || []).filter(s => SPRITES.includes(s)); } catch (e) { /* private mode etc. */ }
+    if (!deck.length || (deck.length === 1 && deck[0] === showing)) {
+        deck = SPRITES.slice();
+        for (let i = deck.length - 1; i > 0; i--) { // Fisher–Yates
+            const j = Math.floor(Math.random() * (i + 1));
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+    }
+    let i = deck.length - 1;
+    if (deck[i] === showing) i--;
+    const src = deck.splice(i, 1)[0];
+    try { localStorage.setItem('sprite_deck', JSON.stringify(deck)); } catch (e) { /* private mode etc. */ }
+    img.src = src; // the onload above rescales it
+    return true;
+};

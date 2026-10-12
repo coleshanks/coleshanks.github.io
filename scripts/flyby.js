@@ -6,6 +6,7 @@ const FLYBY_DURATION = 28000;  // ms to cross the screen
 const FLYBY_ARC      = 0.25;   // how high the arc bows, as a share of the screen height
 const FLYBY_SPIN     = [14000, 22000]; // ms for one full 3D turn, picked at random in this range
 const FLYBY_ALL_GAP  = 2000;   // ms between craft when showing them all (?flyby)
+const FLYBY_SEND_WAIT = 500;   // ms before a craft sent by F or the / menu appears
 // --------------------------
 
 // Easter egg for night mode: now and then a NASA craft drifts across the sky
@@ -28,6 +29,11 @@ const FLYBY_ALL_GAP  = 2000;   // ms between craft when showing them all (?flyby
 // across visits, so all eight turn up before any repeats, and never the same
 // one twice in a row.
 // Add ?flyby to a page's URL to fly every craft in turn, in a shuffled order.
+// Sending: once a visitor has seen a flyby (so after the CV launch), F or the
+// / menu sends one at night (window.flybySend). The unlock is saved in
+// localStorage key flyby_unlocked, so it lasts across visits. Each send is the
+// next card, skipping craft already in the sky, so all eight can be up at once
+// and never two the same; a send also restarts the count.
 (function () {
     const SHEET = { frames: 600, cols: 25 };
     const CRAFT = [ // frameW/frameH: one frame in the sheet; width: how big it shows
@@ -57,6 +63,50 @@ const FLYBY_ALL_GAP  = 2000;   // ms between craft when showing them all (?flyby
         return out;
     }
 
+    // The deck: srcs still to deal, top card last
+    function saveDeck(deck) {
+        localStorage.setItem('flyby_deck', JSON.stringify(deck));
+    }
+    function newDeck(avoid) { // a fresh shuffle that doesn't start with avoid
+        const deck = shuffle(CRAFT).map(c => c.src);
+        if (deck[deck.length - 1] === avoid) deck.unshift(deck.pop());
+        return deck;
+    }
+    function readDeck() { // an empty deck becomes a fresh shuffle
+        let deck = (JSON.parse(localStorage.getItem('flyby_deck')) || [])
+            .filter(src => CRAFT.some(c => c.src === src));
+        if (!deck.length) {
+            deck = newDeck();
+            saveDeck(deck);
+        }
+        return deck;
+    }
+    function removeCard(src) { // once it's dealt; taking the last card brings a new shuffle
+        let deck = readDeck().filter(s => s !== src);
+        if (!deck.length) deck = newDeck(src);
+        saveDeck(deck);
+    }
+    const reserved = new Map(); // src -> run: dealt and about to fly, not in the sky yet
+    function busy() { // craft in the sky or about to be
+        const srcs = new Set();
+        document.querySelectorAll('.sky .flyby').forEach(el => srcs.add(el.dataset.src));
+        reserved.forEach(function (r, src) {
+            if (r === run) srcs.add(src);
+            else reserved.delete(src); // from before a restart, which cancels it
+        });
+        return srcs;
+    }
+    function topCard(skip) { // the top card that isn't in skip
+        let deck = readDeck();
+        let src = deck.slice().reverse().find(s => !skip.has(s));
+        if (!src) { // everything left is in the sky: start the next shuffle early
+            deck = newDeck().filter(s => !skip.has(s));
+            saveDeck(deck);
+            src = deck[deck.length - 1];
+        }
+        return src;
+    }
+
     // night.js calls this once a page is in night mode: fresh is false for a page
     // view (a load, or back and forward), and true when night mode has just been
     // switched on
@@ -80,22 +130,17 @@ const FLYBY_ALL_GAP  = 2000;   // ms between craft when showing them all (?flyby
                     due = since >= FLYBY_EVERY && !onHome;
                 }
                 if (!due) return;
-                // the deck: srcs still to deal, top card last; a new shuffle once it's empty
-                let deck = (JSON.parse(localStorage.getItem('flyby_deck')) || [])
-                    .filter(src => CRAFT.some(c => c.src === src));
-                if (!deck.length) deck = shuffle(CRAFT).map(c => c.src);
-                queue = [CRAFT.find(c => c.src === deck[deck.length - 1])];
-                deal = function (flew) { // take the top card; once one flies, the visit is launched and the count restarts
+                const src = topCard(busy()); // reserved, so a send in the meantime skips it
+                queue = [CRAFT.find(c => c.src === src)];
+                reserved.set(src, thisRun);
+                deal = function (flew) { // once one flies, the visit is launched, sending unlocks and the count restarts
+                    reserved.delete(src);
                     try {
-                        let rest = deck.slice(0, -1);
-                        if (!rest.length) { // that was the last card: a new shuffle, never starting with the same craft
-                            rest = shuffle(CRAFT).map(c => c.src);
-                            if (rest[rest.length - 1] === deck[deck.length - 1]) rest.unshift(rest.pop());
-                        }
-                        localStorage.setItem('flyby_deck', JSON.stringify(rest));
+                        removeCard(src);
                         if (flew) {
                             sessionStorage.setItem('flyby_launched', '1');
                             sessionStorage.setItem('flyby_since', 0);
+                            localStorage.setItem('flyby_unlocked', '1');
                         }
                     } catch (e) { /* private mode etc. */ }
                 };
@@ -127,6 +172,34 @@ const FLYBY_ALL_GAP  = 2000;   // ms between craft when showing them all (?flyby
         setTimeout(function () { next(0); }, FLYBY_WAIT);
     };
 
+    // F or the / menu: send the next craft now. False when it can't: day mode,
+    // not unlocked yet, or all eight already in the sky
+    window.flybySend = function () {
+        if (!document.querySelector('.sky')) return false;
+        try {
+            if (localStorage.getItem('flyby_unlocked') !== '1') return false;
+            const skip = busy();
+            if (skip.size >= CRAFT.length) return false;
+            const src = topCard(skip);
+            const thisRun = run;
+            reserved.set(src, thisRun);
+            const sheet = new Image();
+            sheet.src = src;
+            setTimeout(function () {
+                fly(CRAFT.find(c => c.src === src), sheet, thisRun, function (flew) {
+                    reserved.delete(src);
+                    try {
+                        removeCard(src);
+                        if (flew) sessionStorage.setItem('flyby_since', 0);
+                    } catch (e) { /* private mode etc. */ }
+                }, function () {});
+            }, FLYBY_SEND_WAIT);
+            return true;
+        } catch (e) {
+            return false; // no storage, no sending
+        }
+    };
+
     function fly(craft, sheet, thisRun, deal, done) {
         const sky = document.querySelector('.sky'); // only there in night mode
         if (!sky || thisRun !== run) return; // back to day mode, or started again since
@@ -150,6 +223,7 @@ const FLYBY_ALL_GAP  = 2000;   // ms between craft when showing them all (?flyby
         const rows = Math.ceil(SHEET.frames / SHEET.cols);
         const el = document.createElement('div');
         el.className = 'flyby';
+        el.dataset.src = craft.src;
         el.style.width = w + 'px';
         el.style.height = h + 'px';
         const layers = [0, 1].map(function () { // current frame, and the next one fading in on top

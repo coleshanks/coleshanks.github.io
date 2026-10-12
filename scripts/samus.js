@@ -109,5 +109,13 @@ const SAMUS_BOTTOM       = 16;     // px from bottom of viewport
         if (e.persisted) schedule(false);
     });
 
+    // S or the / menu: send him now (light mode only), unless he's already running.
+    // Counts as a run, so the next one is SAMUS_EVERY loads away
+    window.samusRun = function () {
+        if (root.classList.contains('night') || samus.style.visibility === 'visible') return false;
+        start(++run);
+        return true;
+    };
+
     schedule(false);
 })();
