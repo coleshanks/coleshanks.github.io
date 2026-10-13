@@ -31,7 +31,6 @@
     const root = document.documentElement;
     const here = decodeURI(location.pathname === '/' ? '/index.html' : location.pathname);
     let index = null;          // { tree, entries } once loaded
-    let underConstruction = {};
     let box, input, list, live, prompt, crumb; // the DOM, built on first open
     let stack = [];            // open submenus, innermost last: { title, nodes }
     let rows = [];             // what's listed: see row()
@@ -64,11 +63,8 @@
         }
         const font = document.fonts ? document.fonts.load('13px "JetBrains Mono"').catch(function () {}) : null;
         const data = fetch(INDEX).then(r => r.json()).then(function (d) { index = d; }).catch(function () {});
-        // the same list link_router.js uses: those pages go to the duck page
-        const uc = fetch('/under_construction.json').then(r => r.json())
-            .then(function (d) { underConstruction = d; }).catch(function () {});
         const wait = new Promise(resolve => setTimeout(resolve, READY_WAIT));
-        ready = Promise.race([Promise.all([css, font, data, uc]), wait]);
+        ready = Promise.race([Promise.all([css, font, data]), wait]);
         return ready;
     }
 
@@ -315,8 +311,8 @@
     // --- doing things ---
 
     function go(url) {
-        const file = url.split('/').pop().toLowerCase();
-        const duck = Object.keys(underConstruction).some(k => k.toLowerCase() === file && underConstruction[k] === true);
+        // under construction (link_router.js decides): straight to the duck page
+        const duck = window.isUnderConstruction && window.isUnderConstruction(url);
         close();
         location.href = duck ? '/under_construction.html' : url;
     }

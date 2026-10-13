@@ -1,10 +1,9 @@
 {
-  "index.html": false,
-  "projects.html": true,
-  "CV.html": false,
-  "japan.html": false,
-  "Travel.html": false,
-  "explore.html": false,
-  "ubc.html": false,
-  "italy.html": true
+  "/index.html": false,
+  "/projects.html": true,
+  "/cv.html": false,
+  "/explore.html": false,
+  "/explore/japanese.html": false,
+  "/explore/travel.html": false,
+  "/explore/school/ubc.html": false
 }
