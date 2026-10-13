@@ -60,6 +60,16 @@
                 border: none;
                 display: block;
             }
+            .doom-credits {
+                margin: 10px auto 0;
+                max-width: 560px;
+                font-size: 13px;
+                color: var(--text_grey);
+            }
+            .doom-credits a {
+                color: var(--text_grey);
+                text-decoration: underline;
+            }
 
             /* Controls grid */
             .doom-controls {
@@ -145,13 +155,16 @@
             <hr>
             <div class="doom-embed">
                 <iframe
-                    src="https://archive.org/embed/DoomsharewareEpisode"
+                    src="/assets/doom/player.html"
                     width="560"
                     height="384"
                     frameborder="0"
+                    allow="fullscreen; autoplay"
                     allowfullscreen
+                    title="DOOM"
                 ></iframe>
             </div>
+            <p class="doom-credits">DOOM shareware © 1993 id Software, shared as id intended: complete and unmodified. It runs here in <a href="https://js-dos.com" target="_blank">js-dos</a>, a build of <a href="https://www.dosbox.com" target="_blank">DOSBox</a> (both GPL-2.0), served from this site. These aren't covered by the site's licence; <a href="/assets/doom/LICENSES.md" target="_blank">credits and licences</a>.</p>
 
             <div class="doom-controls">
                 <div class="ctrl-item">

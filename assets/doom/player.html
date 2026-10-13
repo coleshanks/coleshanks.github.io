@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+    The DOOM player, framed by /explore/extras/doom.html. It runs id's shareware
+    Episode 1 (doom.jsdos) in js-dos, all from this site. It lives in its own
+    page because js-dos's stylesheet resets plain elements (*, :root), which
+    would restyle the DOOM page around it. The frame is same-origin, so the DOOM
+    page can reach window.doomCi (js-dos's controller, once it's running) to send
+    keys from the phone gamepad. Credits and licences: LICENSES.md.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>DOOM player</title>
+        <link rel="stylesheet" href="/assets/doom/js-dos/js-dos.css">
+        <script>
+            // js-dos asks for the keyboard lock (for Esc in fullscreen), which a frame is
+            // never given; answer it quietly instead of letting it throw on every start
+            if (navigator.keyboard) navigator.keyboard.lock = function () { return Promise.resolve(); };
+        </script>
+        <script src="/assets/doom/js-dos/js-dos.js"></script>
+        <style>
+            html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+            #dos { width: 100%; height: 100%; }
+        </style>
+    </head>
+    <body>
+        <div id="dos"></div>
+        <script>
+            Dos(document.getElementById('dos'), {
+                url: '/assets/doom/doom.jsdos',
+                pathPrefix: '/assets/doom/js-dos/emulators/', // the emulator files, from this site
+                kiosk: true,   // no js-dos sidebar or menus, just the game
+                noCloud: true, // no js-dos account or cloud saves
+                onEvent: function (event, ci) {
+                    if (event === 'ci-ready') window.doomCi = ci; // for the DOOM page's gamepad
+                },
+            });
+        </script>
+    </body>
+</html>
