@@ -1,5 +1,5 @@
 // --- Tweakable settings ---
-const FLYBY_LAUNCH   = '/pages/CV'; // the page whose first flyby starts each visit (path, no .html)
+const FLYBY_LAUNCH   = '/cv'; // the page whose first flyby starts each visit (path, no .html)
 const FLYBY_EVERY    = 8;      // night-mode jumps from one flyby to the next
 const FLYBY_WAIT     = 4000;   // ms after the page loads (or night mode comes on) before it appears
 const FLYBY_DURATION = 28000;  // ms to cross the screen
