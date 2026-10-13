@@ -13,7 +13,7 @@
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     font-family: 'JetBrains Mono', ui-monospace, Menlo, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', monospace;
-    font-size: 13px;
+    font-size: 18px; /* everything in the menu was scaled up together from 13px (×1.38) on 2026-10-13 */
     font-weight: 400;
     line-height: 1.4;
     letter-spacing: normal;
@@ -37,11 +37,11 @@
 .site-menu-box {
     display: flex;
     flex-direction: column;
-    width: 380px;
+    width: 525px;
     max-width: 100%;
     max-height: 70vh;
     box-sizing: border-box;
-    padding: 14px;
+    padding: 19px;
     background: var(--secondary_dark);
     border: 2px solid color-mix(in srgb, var(--accent) 50%, transparent);
     border-radius: 12px;
@@ -52,10 +52,10 @@
 .site-menu-prompt {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 2px 12px 12px;
+    gap: 11px;
+    padding: 3px 17px 17px;
     border-bottom: 1px solid color-mix(in srgb, var(--text_grey) 15%, transparent);
-    margin-bottom: 8px;
+    margin-bottom: 11px;
 }
 
 .site-menu-back,
@@ -70,11 +70,11 @@
 
 .site-menu-back {
     padding: 0;
-    margin-left: -2px;
+    margin-left: -3px;
     border: 0;
     background: none;
     color: color-mix(in srgb, var(--text_grey) 70%, transparent);
-    font-size: 12px;
+    font-size: 17px;
     cursor: pointer;
 }
 
@@ -104,7 +104,7 @@
        emoji, which ignores the colour) stays at full strength */
     color: color-mix(in srgb, var(--accent) 75%, transparent);
     opacity: 1;
-    font-size: 20px; /* for the 🛸; a placeholder is one run of text, so the … grows too */
+    font-size: 28px; /* for the 🛸; a placeholder is one run of text, so the … grows too */
 }
 
 .site-menu-list {
@@ -117,10 +117,10 @@
 .site-menu-row {
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-height: 38px;
-    padding: 0 12px;
-    border-radius: 6px;
+    gap: 17px;
+    min-height: 53px;
+    padding: 0 17px;
+    border-radius: 8px;
     cursor: pointer;
     user-select: none;
 }
@@ -136,10 +136,10 @@
 }
 
 .site-menu-icon {
-    width: 16px;
+    width: 22px;
     flex-shrink: 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 17px;
 }
 
 .site-menu-label {
@@ -162,7 +162,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 10px;
+    font-size: 14px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
@@ -172,16 +172,16 @@
 }
 
 .site-menu-more {
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .site-menu-key {
-    min-width: 10px;
-    padding: 1px 6px;
+    min-width: 14px;
+    padding: 1px 8px;
     border: 1px solid color-mix(in srgb, var(--text_grey) 30%, transparent);
-    border-radius: 4px;
+    border-radius: 6px;
     font: inherit;
-    font-size: 11px;
+    font-size: 15px;
     text-align: center;
 }
 
@@ -195,13 +195,13 @@
 /* a text match: title and where it is, then a line or two around the match */
 .site-menu-row.is-hit {
     display: block;
-    padding: 8px 12px;
+    padding: 11px 17px;
 }
 
 .site-menu-hit-head {
     display: flex;
     align-items: baseline;
-    gap: 12px;
+    gap: 17px;
 }
 
 .site-menu-snippet {
@@ -209,8 +209,8 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-    margin-top: 3px;
-    font-size: 12px;
+    margin-top: 4px;
+    font-size: 17px;
     color: color-mix(in srgb, var(--text_grey) 75%, transparent);
 }
 
