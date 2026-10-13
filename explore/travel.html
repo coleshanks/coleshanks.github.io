@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <script>try { if (localStorage.getItem('night') === '1') document.documentElement.classList.add('night'); } catch (e) {}</script>
+        <link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/assets/css/travel.css" type="text/css">
+        <link rel="stylesheet" href="/assets/css/night.css" type="text/css">
+        <script defer src="/scripts/night.js"></script>
+        <title>Travel | Cole Shanks</title>
+        <!--Scripts-->
+        <script defer src="/scripts/navbar.js"></script>
+        <script src='https://kit.fontawesome.com/65ce51f689.js' crossorigin='anonymous'></script>
+        <script src="/scripts/link_router.js" defer></script>
+        <style>
+            .country-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                width: 80%;
+                max-width: 80%;
+                margin: 40px auto;
+                padding: 0 10px;
+            }
+            .country-row {
+                display: flex;
+                align-items: flex-start;
+                background: var(--secondary_dark);
+                border-radius: 8px;
+                overflow: hidden;
+                min-height: 180px;
+                box-shadow: 4px 4px 8px color-mix(in srgb, var(--accent) 32%, transparent);
+            }
+            @media (max-width: 900px) {
+                .country-list {
+                    width: 90%;
+                    max-width: 90%;
+                }
+            }
+            @media (max-width: 750px) {
+                .country-list {
+                    grid-template-columns: 1fr;
+                    width: 100%;
+                    max-width: 100%;
+                    padding: 0 12px;
+                }
+            }
+            .country-info {
+                width: 140px;
+                flex-shrink: 0;
+                padding: 24px 28px;
+            }
+            .country-info h2 {
+                margin: 0 0 8px 0;
+                width: fit-content;
+            }
+            .country-info h2 a {
+                color: var(--accent);
+                text-decoration: none;
+            }
+            .country-info h2 a:hover {
+                text-decoration: underline;
+            }
+            .country-info p {
+                margin: 0;
+                width: 100%;
+                max-width: 80%;
+                color: var(--text_grey);
+                font-size: 15px;
+            }
+            .country-img {
+                position: relative;
+                flex: 1;
+                border-left: 3px solid var(--accent);
+                overflow: hidden;
+                align-self: stretch;
+            }
+            .country-img a {
+                position: absolute;
+                inset: 0;
+            }
+            .country-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                display: block;
+            }
+            .country-img.no-img {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <ul class="navbar">
+                <li class="nav_btn"><a href="/index.html" target="_self">Home</a></li>
+                <li class="nav_btn"><a href="/projects.html" target="_self">Projects</a></li>
+                <li class="nav_btn"><a href="/cv.html" target="_self">CV</a></li>
+                <li class="nav_btn"><a href="/explore.html" target="_self">Explore</a></li>
+            </ul>
+        </div>
+        <div>
+            <h1 class="banner">Travel</h1>
+        </div>
+
+        <div class="country-list">
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/japan.html">Japan</a></h2>
+                    <p>🗼 tokyo&nbsp;&nbsp;⛩️ kyoto&nbsp;&nbsp;🦌 nara&nbsp;&nbsp;🏙️ osaka&nbsp;&nbsp;🗿 kamakura&nbsp;&nbsp;🗻 fuji hike&nbsp;&nbsp;🏝️ miyakojima</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/japan.html"><img data-images='[
+                        "/assets/images/travel/jpn/IMG_0179.webp",
+                        "/assets/images/travel/jpn/IMG_0331.webp",
+                        "/assets/images/travel/jpn/IMG_0678.webp",
+                        "/assets/images/travel/jpn/IMG_1157.webp",
+                        "/assets/images/travel/jpn/IMG_5177.webp",
+                        "/assets/images/travel/jpn/IMG_6634.webp",
+                        "/assets/images/travel/jpn/IMG_7504.webp",
+                        "/assets/images/travel/jpn/IMG_8436.webp",
+                        "/assets/images/travel/jpn/IMG_9602.webp",
+                        "/assets/images/travel/jpn/IMG_9804.webp"
+                    ]' alt="Japan"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/singapore.html">Singapore</a></h2>
+                    <p>🌆 marina bay skyline&nbsp;&nbsp;🎆 new year's fireworks&nbsp;&nbsp;🌳 supertree grove&nbsp;&nbsp;🥟 xiaolongbao&nbsp;&nbsp;🍜 chinatown food complex&nbsp;&nbsp;🎢 USS</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/singapore.html"><img data-images='[
+                        "/assets/images/travel/sg/IMG_5752.webp",
+                        "/assets/images/travel/sg/IMG_5754.webp",
+                        "/assets/images/travel/sg/IMG_5770.webp",
+                        "/assets/images/travel/sg/IMG_5783.webp",
+                        "/assets/images/travel/sg/IMG_5825.webp",
+                        "/assets/images/travel/sg/IMG_5826.webp",
+                        "/assets/images/travel/sg/IMG_5835.webp",
+                        "/assets/images/travel/sg/IMG_5840.webp",
+                        "/assets/images/travel/sg/IMG_5848.webp",
+                        "/assets/images/travel/sg/IMG_5853.webp",
+                        "/assets/images/travel/sg/IMG_5854.webp",
+                        "/assets/images/travel/sg/IMG_5855.webp",
+                        "/assets/images/travel/sg/IMG_5861.webp",
+                        "/assets/images/travel/sg/IMG_5863.webp",
+                        "/assets/images/travel/sg/IMG_5884.webp",
+                        "/assets/images/travel/sg/IMG_5923.webp",
+                        "/assets/images/travel/sg/IMG_5926.webp",
+                        "/assets/images/travel/sg/IMG_5927.webp"
+                    ]' alt="Singapore"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/vietnam.html">Vietnam</a></h2>
+                    <p>🌃 saigon&nbsp;&nbsp;🌊 vung tau&nbsp;&nbsp;🚤 mekong&nbsp;&nbsp;🍺 tiger&nbsp;&nbsp;🥖 banh mi&nbsp;&nbsp;🍲 com tam&nbsp;&nbsp;🐍 cobra wine</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/vietnam.html"><img data-images='[
+                        "/assets/images/travel/vn/IMG_5433.webp",
+                        "/assets/images/travel/vn/IMG_5502.webp",
+                        "/assets/images/travel/vn/IMG_5547.webp",
+                        "/assets/images/travel/vn/IMG_5591.webp",
+                        "/assets/images/travel/vn/IMG_6322.webp",
+                        "/assets/images/travel/vn/IMG_6452.webp",
+                        "/assets/images/travel/vn/IMG_6528.webp",
+                        "/assets/images/travel/vn/IMG_6607.webp",
+                        "/assets/images/travel/vn/IMG_6564.webp",
+                        "/assets/images/travel/vn/IMG_6590.webp"
+                    ]' alt="Vietnam"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/thailand.html">Thailand</a></h2>
+                    <p>🐘 elephant&nbsp;&nbsp;⛰️ chiang mai&nbsp;&nbsp;🥡 pad thai&nbsp;&nbsp;🌸 mon jam&nbsp;&nbsp;🥥 coconut&nbsp;&nbsp;🍺 chang&nbsp;&nbsp;🐟 snakehead fish</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/thailand.html"><img data-images='[
+                        "/assets/images/travel/thai/IMG_0902.webp",
+                        "/assets/images/travel/thai/IMG_0920.webp",
+                        "/assets/images/travel/thai/IMG_0946.webp",
+                        "/assets/images/travel/thai/IMG_1014.webp",
+                        "/assets/images/travel/thai/IMG_1044.webp",
+                        "/assets/images/travel/thai/IMG_1055.webp",
+                        "/assets/images/travel/thai/IMG_1080.webp",
+                        "/assets/images/travel/thai/IMG_0004.webp",
+                        "/assets/images/travel/thai/IMG_0013.webp",
+                        "/assets/images/travel/thai/IMG_9998.webp"
+                    ]' alt="Thailand"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/philippines.html">Philippines</a></h2>
+                    <p>🌋 taal volcano&nbsp;&nbsp;🏙️ manila&nbsp;&nbsp;🏞️ tagaytay&nbsp;&nbsp;🏔️ people's palace in the sky</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/philippines.html"><img data-images='[
+                        "/assets/images/travel/ph/IMG_6851.webp",
+                        "/assets/images/travel/ph/IMG_6853.webp",
+                        "/assets/images/travel/ph/IMG_6867.webp",
+                        "/assets/images/travel/ph/IMG_6872.webp",
+                        "/assets/images/travel/ph/IMG_6880.webp",
+                        "/assets/images/travel/ph/IMG_6887.webp",
+                        "/assets/images/travel/ph/IMG_6904.webp",
+                        "/assets/images/travel/ph/IMG_6913.webp",
+                        "/assets/images/travel/ph/IMG_6929.webp",
+                        "/assets/images/travel/ph/IMG_6960.webp"
+                    ]' alt="Philippines"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/indonesia.html">Indonesia</a></h2>
+                    <p>🌊 nusa penida cliffs&nbsp;&nbsp;🐾 kopi luwak civet&nbsp;&nbsp;☕ luwak coffee&nbsp;&nbsp;🌿 rice fields&nbsp;&nbsp;🎎 balinese procession&nbsp;&nbsp;🍺 bintang</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/indonesia.html"><img data-images='[
+                        "/assets/images/travel/indo/IMG_7032.webp",
+                        "/assets/images/travel/indo/IMG_7035.webp",
+                        "/assets/images/travel/indo/IMG_7036.webp",
+                        "/assets/images/travel/indo/IMG_7039.webp",
+                        "/assets/images/travel/indo/IMG_7056.webp",
+                        "/assets/images/travel/indo/IMG_7060.webp",
+                        "/assets/images/travel/indo/IMG_7068.webp",
+                        "/assets/images/travel/indo/IMG_7069.webp",
+                        "/assets/images/travel/indo/IMG_7080.webp",
+                        "/assets/images/travel/indo/IMG_7085.webp"
+                    ]' alt="Indonesia"></a>
+                </div>
+            </div>
+
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/hongkong.html">Hong Kong</a></h2>
+                    <p>🌃 kowloon&nbsp;&nbsp;🍳 HK breakfast&nbsp;&nbsp;🏮 night market</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/hongkong.html"><img data-images='[
+                        "/assets/images/travel/HK/IMG_8982.webp",
+                        "/assets/images/travel/HK/IMG_8988.webp",
+                        "/assets/images/travel/HK/IMG_8989.webp",
+                        "/assets/images/travel/HK/IMG_8990.webp",
+                        "/assets/images/travel/HK/IMG_8993.webp",
+                        "/assets/images/travel/HK/IMG_9029.webp",
+                        "/assets/images/travel/HK/IMG_9056.webp",
+                        "/assets/images/travel/HK/IMG_9122.webp",
+                        "/assets/images/travel/HK/IMG_9174.webp",
+                        "/assets/images/travel/HK/IMG_9177.webp"
+                    ]' alt="Hong Kong"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/taiwan.html">Taiwan</a></h2>
+                    <p>🏛️ chiang kai-shek memorial&nbsp;&nbsp;🥟 dumplings&nbsp;&nbsp;🫓 sesame flatbread&nbsp;&nbsp;⛰️ jiufen&nbsp;&nbsp;🛕 night market&nbsp;&nbsp;🪨 yehliu geopark</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/taiwan.html"><img data-images='[
+                        "/assets/images/travel/taiwan/IMG_0449.webp",
+                        "/assets/images/travel/taiwan/IMG_9300.webp",
+                        "/assets/images/travel/taiwan/IMG_9264.webp",
+                        "/assets/images/travel/taiwan/IMG_9415.webp",
+                        "/assets/images/travel/taiwan/IMG_9347.webp",
+                        "/assets/images/travel/taiwan/IMG_0510.webp",
+                        "/assets/images/travel/taiwan/IMG_0563.webp",
+                        "/assets/images/travel/taiwan/IMG_9390.webp",
+                        "/assets/images/travel/taiwan/IMG_0654.webp",
+                        "/assets/images/travel/taiwan/IMG_9451.webp"
+                    ]' alt="Taiwan"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/cambodia.html">Cambodia</a></h2>
+                    <p>🛕 angkor wat&nbsp;&nbsp;🏙️ phnom penh&nbsp;&nbsp;🌆 siem reap&nbsp;&nbsp;🏫 floating school&nbsp;&nbsp;🚤 river market</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/cambodia.html"><img data-images='[
+                        "/assets/images/travel/cambodia/IMG_9866.webp",
+                        "/assets/images/travel/cambodia/IMG_9934.webp",
+                        "/assets/images/travel/cambodia/IMG_9948.webp",
+                        "/assets/images/travel/cambodia/IMG_9954.webp",
+                        "/assets/images/travel/cambodia/IMG_9973.webp",
+                        "/assets/images/travel/cambodia/IMG_9975.webp",
+                        "/assets/images/travel/cambodia/IMG_9976.webp"
+                    ]' alt="Cambodia"></a>
+                </div>
+            </div>
+
+            <div class="country-row">
+                <div class="country-info">
+                    <h2><a href="/explore/travel/china.html">China</a></h2>
+                    <p>🏯 great wall&nbsp;&nbsp;🐱 neko&nbsp;&nbsp;🦆 peking duck&nbsp;&nbsp;🏙️ beijing</p>
+                </div>
+                <div class="country-img">
+                    <a href="/explore/travel/china.html"><img data-images='[
+                        "/assets/images/travel/ch/IMG_0043.webp",
+                        "/assets/images/travel/ch/IMG_0049.webp",
+                        "/assets/images/travel/ch/IMG_0079.webp",
+                        "/assets/images/travel/ch/IMG_0083.webp",
+                        "/assets/images/travel/ch/IMG_0094.webp",
+                        "/assets/images/travel/ch/IMG_0096.webp",
+                        "/assets/images/travel/ch/IMG_0100.webp"
+                    ]' alt="China"></a>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            document.querySelectorAll('.country-img img[data-images]').forEach(img => {
+                const images = JSON.parse(img.dataset.images);
+                if (images.length === 0) return;
+                img.src = images[Math.floor(Math.random() * images.length)];
+            });
+        </script>
+    </body>
+</html>
