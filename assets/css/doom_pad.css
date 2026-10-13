@@ -1,0 +1,107 @@
+/* The DOOM gamepad (scripts/doom_pad.js), on touch screens only, in the key
+   table's place under the game. Sizes are in vw, because the page keeps its
+   desktop-width layout and a phone shrinks it to fit: a vw is the same share of
+   any phone's width, so the buttons stay thumb sized, and the title, game and
+   pad fit on one phone screen. Not position: fixed, which lands partway up the
+   screen on a shrunk desktop layout. Colours follow the page's key boxes. */
+
+html.has-doom-pad .doom-controls { display: none; } /* the key table is for keyboards */
+
+.doom-pad {
+    box-sizing: border-box;
+    margin-top: 3vw;
+    padding: 3vw;
+    border-radius: 3vw;
+    background: rgb(10 10 10 / 0.85);
+    font-family: var(--hf2);
+    touch-action: none;           /* presses never scroll or zoom */
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.doom-pad.is-waiting .pad-top,
+.doom-pad.is-waiting .pad-main { opacity: 0.35; }
+
+.pad-hint {
+    display: none;
+    text-align: center;
+    color: var(--text_grey);
+    font-size: 3.4vw;
+    margin-bottom: 2vw;
+}
+.doom-pad.is-waiting .pad-hint { display: block; }
+
+.pad-btn,
+.pad-dpad {
+    background: #1e1e32;
+    border: 0.4vw solid #3a3a5c;
+    color: var(--text_orange);
+    font-weight: bold;
+}
+
+.pad-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2vw;
+    font-size: 3.6vw;
+}
+
+.pad-btn.is-down,
+.pad-arrow.is-down {
+    background: var(--text_orange);
+    color: #0a0a0f;
+    border-color: var(--text_orange);
+}
+
+/* top strip: Menu, Map, Enter, Y, then weapons 1–7 */
+.pad-top {
+    display: flex;
+    gap: 1.4vw;
+    margin-bottom: 3vw;
+}
+.pad-top .pad-btn { flex: 1; height: 9vw; }
+.pad-top .pad-weapon { flex: 0.7; }
+
+.pad-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* left thumb: the D-pad */
+.pad-dpad {
+    position: relative;
+    width: 40vw;
+    height: 40vw;
+    border-radius: 50%;
+}
+.pad-arrow {
+    position: absolute;
+    width: 12vw;
+    height: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2vw;
+    font-size: 5vw;
+}
+.pad-arrow.up    { top: 2vw;    left: 50%; transform: translateX(-50%); }
+.pad-arrow.down  { bottom: 2vw; left: 50%; transform: translateX(-50%); }
+.pad-arrow.left  { left: 2vw;   top: 50%;  transform: translateY(-50%); }
+.pad-arrow.right { right: 2vw;  top: 50%;  transform: translateY(-50%); }
+
+/* right thumb: Fire big, Use beside it, Run and Strafe above */
+.pad-right {
+    display: grid;
+    grid-template-columns: 17vw 21vw;
+    grid-template-rows: 11vw 21vw;
+    gap: 2.5vw;
+    align-items: end;
+}
+.pad-run    { grid-column: 1; grid-row: 1; height: 11vw; }
+.pad-strafe { grid-column: 2; grid-row: 1; height: 11vw; }
+.pad-use    { grid-column: 1; grid-row: 2; height: 17vw; border-radius: 50%; }
+.pad-fire   { grid-column: 2; grid-row: 2; height: 21vw; border-radius: 50%; font-size: 4.4vw; }
