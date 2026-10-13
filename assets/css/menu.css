@@ -224,3 +224,41 @@
     overflow: hidden;
     clip: rect(0 0 0 0);
 }
+
+/* A text match's words, flashed where they are on the page it went to
+   (siteMenu.find): white, which shows on any colour of text (blue code,
+   accent links), with the cards' glow in the accent. menu.js unwraps them once
+   the flash ends. box-shadow, not padding, so the text doesn't move */
+mark.site-find {
+    background: transparent;
+    color: inherit;
+    border-radius: 3px;
+}
+
+mark.site-find.is-on {
+    animation: site-find-flash 2.4s ease-in-out;
+}
+
+@keyframes site-find-flash {
+    0%, 100% {
+        background: transparent;
+        box-shadow: none;
+    }
+    12%, 70% {
+        color: #fff;
+        background: color-mix(in srgb, var(--accent) 18%, transparent);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent),
+                    0 0 8px 2px color-mix(in srgb, var(--accent) 32%, transparent);
+    }
+}
+
+/* the same for an image, when the words are only in its alt text */
+img.site-find-img {
+    animation: site-find-glow 2.4s ease-in-out;
+}
+
+@keyframes site-find-glow {
+    0%, 100% { box-shadow: none; }
+    12%, 70% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 50%, transparent),
+                           0 0 16px 4px color-mix(in srgb, var(--accent) 32%, transparent); }
+}

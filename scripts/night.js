@@ -131,19 +131,27 @@
     }
     window.nightToggle = toggle; // for the / menu
 
-    // The / menu (scripts/menu.js) is fetched the first time it's opened, like flyby.js
-    let menuLoading = false;
-    function toggleMenu() {
-        if (window.siteMenu) {
-            window.siteMenu.toggle();
-        } else if (!menuLoading) {
-            menuLoading = true;
+    // The / menu (scripts/menu.js) is fetched the first time it's opened, like
+    // flyby.js, or when one of its text matches brought us here to find the words
+    let menuLoading = null;
+    function withMenu(then) {
+        if (window.siteMenu) { then(); return; }
+        if (!menuLoading) menuLoading = new Promise(function (resolve, reject) {
             const script = document.createElement('script');
             script.src = '/scripts/menu.js';
-            script.onload = function () { window.siteMenu.toggle(); };
-            script.onerror = function () { menuLoading = false; };
+            script.onload = resolve;
+            script.onerror = function () { menuLoading = null; reject(); };
             document.head.appendChild(script);
-        }
+        });
+        menuLoading.then(then, function () {});
+    }
+
+    let menuWanted = false;
+    function toggleMenu() {
+        if (window.siteMenu) { window.siteMenu.toggle(); return; }
+        if (menuWanted) return; // still fetching
+        menuWanted = true;
+        withMenu(function () { menuWanted = false; window.siteMenu.toggle(); });
     }
 
     // Keys that work anywhere: N night mode, / the menu, F send a flyby (flyby.js,
@@ -181,6 +189,9 @@
             btn.blur();
         });
         show(root.classList.contains('night'), false); // the <head> script may have set it
+        let find = null;
+        try { find = sessionStorage.getItem('menu_find'); } catch (e) { /* private mode etc. */ }
+        if (find) withMenu(function () { window.siteMenu.findStored(); });
     });
 
     // The back and forward buttons often bring a page back from memory instead of

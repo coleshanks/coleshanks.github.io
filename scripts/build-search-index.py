@@ -9,7 +9,9 @@ Starts at index.html and follows the site's own links, so unlinked pages
   tree     the pages as the menu's nested Go to lists, each page under the one
            that first links to it (breadth-first from the home page)
   entries  what typing searches: every page, plus every hub row (.card,
-           .country-row, .course-row) pointing where the row links
+           .country-row, .course-row) pointing where the row links, plus every
+           code block's file (details.code-block[data-src]), read from disk,
+           with its src in 's' so the menu can open that block
 Standard library only.
 """
 import hashlib
@@ -65,6 +67,9 @@ class Page(html.parser.HTMLParser):
         self.row = None          # the hub row being read
         self.heading = None      # text of the heading being read
         self.alts = set()
+        self.code_blocks = []    # dicts: src, name (the summary)
+        self.code = None         # the code block being read
+        self.in_summary = False
 
     def skipping(self):
         return any(f.get('skip') for _, f in self.stack)
@@ -88,6 +93,13 @@ class Page(html.parser.HTMLParser):
             if tag == 'a' and a.get('href'):
                 self.link = [a['href'], []]
                 flags['link'] = True
+            if tag == 'details' and 'code-block' in classes and a.get('data-src') and self.code is None:
+                self.code = {'src': a['data-src'], 'name': ''}
+                self.code_blocks.append(self.code)
+                flags['code'] = True
+            if tag == 'summary' and self.code is not None:
+                self.in_summary = True
+                flags['summary'] = True
             if tag == 'img' and a.get('alt') and a['alt'] not in self.alts:
                 self.alts.add(a['alt'])  # once each: a gallery's photos all share one alt
                 self.add_text(a['alt'])
@@ -124,6 +136,10 @@ class Page(html.parser.HTMLParser):
                 else:
                     self.headings.append(text)
             self.heading = None
+        if flags.get('summary'):
+            self.in_summary = False
+        if flags.get('code'):
+            self.code = None
         if flags.get('row') and self.row is not None:
             self.rows.append(self.row)
             self.row = None
@@ -138,6 +154,8 @@ class Page(html.parser.HTMLParser):
             self.link[1].append(data)
         if self.heading is not None:
             self.heading.append(data)
+        if self.in_summary:
+            self.code['name'] += data
         self.add_text(data)
 
     def add_text(self, data):
@@ -283,6 +301,20 @@ def main():
             if title:
                 entries.append({'t': title, 'c': ' › '.join(filter(None, [crumb(path), name(path)])),
                                 'u': path, 'h': '', 'x': rtext})
+    # A code block's file is fetched only when it's opened, so the page text has
+    # just its name; the file itself is an entry of its own
+    for path in order:
+        for block in pages[path].code_blocks if path in pages else []:
+            src = unquote(block['src'])
+            file = real_case(src)
+            if file is None:
+                warnings.append(f'missing code on {path}: {block["src"]}')
+                continue
+            with open(file, encoding='utf-8', errors='replace') as f:
+                code = f.read()
+            entries.append({'t': clean(block['name']) or posixpath.basename(src),
+                            'c': ' › '.join(filter(None, [crumb(path), name(path)])),
+                            'u': path, 'h': '', 'x': clean(code), 's': block['src']})
     for entry in entries:
         entry['k'] = emoji_names(entry['x'])
 

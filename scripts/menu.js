@@ -9,6 +9,11 @@
 // (built by hand with scripts/build-search-index.py), the way Omarchy's does.
 // The Go to lists come from the same file. Colours follow the page's --accent,
 // day or night; the styles are in assets/css/menu.css.
+//
+// A text match goes to the spot as well as the page: the words ride along in
+// sessionStorage, night.js calls siteMenu.find() when the page loads, and that
+// opens any <details> they're in (fetching a code block's file first), scrolls
+// to them and flashes them in the accent.
 (function () {
     const INDEX = '/assets/data/search-index.json';
     const CSS = '/assets/css/menu.css';
@@ -17,6 +22,11 @@
     const MAX_PAGES = 6;     // pages and actions listed above the text matches
     const MAX_HITS = 12;     // text matches listed
     const SNIPPET = 70;      // characters of context either side of a match
+    const FIND_KEY = 'menu_find'; // sessionStorage: { u, words, s, at } for the page a match goes to
+    const FIND_FOR = 10000;  // ms a stored find stays good, so a stale one never fires later
+    const LAYOUT_WAIT = 1200; // ms at most to wait for the page's images before scrolling
+    const CODE_WAIT = 4000;  // ms at most to wait for a code block's file
+    const FIND_AT = 0.25;    // where a match lands, as a share of the window's height from the top
 
     const root = document.documentElement;
     const here = decodeURI(location.pathname === '/' ? '/index.html' : location.pathname);
@@ -28,18 +38,24 @@
     let active = 0;
     let lastFocus = null;
     let ready = null;
+    let cssReady = null;
 
     // --- loading ---
 
-    function load() {
-        if (ready) return ready;
-        const css = new Promise(function (resolve) {
+    function loadCss() {
+        if (!cssReady) cssReady = new Promise(function (resolve) {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
             link.href = CSS;
             link.onload = link.onerror = resolve;
             document.head.appendChild(link);
         });
+        return cssReady;
+    }
+
+    function load() {
+        if (ready) return ready;
+        const css = loadCss();
         if (!document.querySelector('link[href*="family=JetBrains+Mono"]')) {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -327,7 +343,15 @@
             close();
             r.action.run();
         } else if (r.kind === 'hit') {
-            go(r.entry.u);
+            if (r.entry.u === here) {
+                close();
+                find(r.words, r.entry.s);
+            } else {
+                try {
+                    sessionStorage.setItem(FIND_KEY, JSON.stringify({ u: r.entry.u, words: r.words, s: r.entry.s || '', at: Date.now() }));
+                } catch (e) { /* private mode etc.: it still goes to the page */ }
+                go(r.entry.u);
+            }
         } else if (r.kind === 'page' && r.node.k) {
             enter(r.node);
         } else {
@@ -362,6 +386,216 @@
         }
     }
 
+    // --- finding a match on the page ---
+
+    const INLINE = /^(A|ABBR|B|CODE|EM|I|KBD|MARK|S|SAMP|SMALL|SPAN|STRONG|SUB|SUP|U)$/;
+
+    function blockOf(el) { // the nearest ancestor that isn't inline, so words don't run across blocks
+        while (el && INLINE.test(el.tagName)) el = el.parentElement;
+        return el;
+    }
+
+    function shown(el) { // on screen, or only hidden by a closed <details> that find() opens
+        const seen = el.checkVisibility ? el.checkVisibility() : el.getClientRects().length > 0;
+        if (seen) return true;
+        const d = el.closest('details:not([open])');
+        if (!d) return false;
+        for (let e = el; e !== d; e = e.parentElement) {
+            if (getComputedStyle(e).display === 'none') return false; // hidden for its own reasons, like the playground's output
+        }
+        return shown(d);
+    }
+
+    // The page's text in scope, normalised like the search, with where each
+    // character came from: { flat, at: [{ node, i, n }] } (n is the source length)
+    function pageText(scope) {
+        const walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {
+            acceptNode: function (node) {
+                const el = node.parentElement;
+                if (!el || !node.data.trim()) return NodeFilter.FILTER_REJECT;
+                if (el.closest('script, style, noscript, .navbar, .profile_navbar, .site-menu, .code-loading')) return NodeFilter.FILTER_REJECT;
+                return shown(el) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+            },
+        });
+        let flat = '';
+        const at = [];
+        let lastBlock = null;
+        for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+            const block = blockOf(node.parentElement);
+            if (block !== lastBlock && flat) { flat += ' '; at.push(null); }
+            lastBlock = block;
+            let i = 0;
+            for (const ch of node.data) {
+                const n = norm(ch); // one entry per UTF-16 unit, like flat's indexes: 🦀 is two
+                flat += n;
+                for (let k = 0; k < n.length; k++) at.push({ node: node, i: i, n: ch.length });
+                i += ch.length;
+            }
+        }
+        return { flat: flat, at: at };
+    }
+
+    // The closest-together run with every word in it: [[start, end], ...], one
+    // span per match, each stretched to the end of its word (dumpling → dumplings)
+    function bestSpans(flat, words) {
+        const hits = [];
+        words.forEach(function (w, wi) {
+            for (let i = flat.indexOf(w); i !== -1; i = flat.indexOf(w, i + w.length)) hits.push({ s: i, e: i + w.length, w: wi });
+        });
+        if (!hits.length) return [];
+        hits.sort((a, b) => a.s - b.s);
+        const need = new Set(words.map((w, i) => i)).size;
+        const count = new Map();
+        let best = null;
+        for (let lo = 0, hi = 0; hi < hits.length; hi++) {
+            count.set(hits[hi].w, (count.get(hits[hi].w) || 0) + 1);
+            while (count.size === need) {
+                const span = hits[hi].e - hits[lo].s;
+                if (!best || span < best.span) best = { span: span, lo: lo, hi: hi };
+                const w = hits[lo].w;
+                if (count.get(w) === 1) count.delete(w); else count.set(w, count.get(w) - 1);
+                lo++;
+            }
+        }
+        if (!best) return [];
+        const out = [];
+        hits.slice(best.lo, best.hi + 1).forEach(function (h) {
+            let e = h.e;
+            while (/[a-z0-9]/.test(flat[e] || '')) e++;
+            const last = out[out.length - 1];
+            // overlapping, or only spaces between: one span, so a phrase flashes as one
+            if (last && (h.s < last[1] || /^ +$/.test(flat.slice(last[1], h.s)))) last[1] = Math.max(last[1], e);
+            else out.push([h.s, e]);
+        });
+        return out;
+    }
+
+    // Wraps the spans in <mark class="site-find">, a piece per text node, last
+    // first so splitting a node doesn't move the pieces still to come
+    function wrap(spans, at) {
+        const pieces = [];
+        spans.forEach(function ([s, e]) {
+            for (let i = s; i < e; i++) {
+                const a = at[i];
+                if (!a) continue;
+                const last = pieces[pieces.length - 1];
+                if (last && last.node === a.node && last.end >= a.i) last.end = Math.max(last.end, a.i + a.n);
+                else pieces.push({ node: a.node, start: a.i, end: a.i + a.n });
+            }
+        });
+        const marks = [];
+        pieces.reverse().forEach(function (p) {
+            const range = document.createRange();
+            range.setStart(p.node, p.start);
+            range.setEnd(p.node, p.end);
+            const mark = document.createElement('mark');
+            mark.className = 'site-find';
+            range.surroundContents(mark);
+            marks.unshift(mark);
+        });
+        return marks;
+    }
+
+    function unwrap(marks) {
+        marks.forEach(function (mark) {
+            const parent = mark.parentNode;
+            if (!parent) return;
+            while (mark.firstChild) parent.insertBefore(mark.firstChild, mark);
+            parent.removeChild(mark);
+            parent.normalize();
+        });
+    }
+
+    function codeLoaded(block) { // resolves once a code block's file is in, or after CODE_WAIT
+        return new Promise(function (resolve) {
+            const t0 = Date.now();
+            (function check() {
+                if (!block.querySelector('.code-loading') || Date.now() - t0 > CODE_WAIT) resolve();
+                else setTimeout(check, 50);
+            })();
+        });
+    }
+
+    // Scrolls el to FIND_AT down the window. The browser stops at the page's
+    // ends, so on a short page it stays where it is
+    function scrollToMatch(el) {
+        const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const top = el.getBoundingClientRect().top + scrollY - innerHeight * FIND_AT;
+        window.scrollTo({ top: Math.max(0, top), behavior: still ? 'auto' : 'smooth' });
+    }
+
+    function afterScroll() { // resolves when a smooth scroll settles, or at once if nothing scrolled
+        return new Promise(function (resolve) {
+            let done = false;
+            const finish = function () { if (!done) { done = true; resolve(); } };
+            const y = scrollY;
+            if ('onscrollend' in window) window.addEventListener('scrollend', finish, { once: true });
+            setTimeout(finish, 'onscrollend' in window ? 1000 : 500);
+            setTimeout(function () { if (scrollY === y) finish(); }, 100); // already in view
+        });
+    }
+
+    // Shows where words are on this page: opens the code block with src (or any
+    // closed <details> they're in), scrolls to them and flashes them
+    function find(words, src) {
+        if (!words || !words.length) return;
+        const css = loadCss();
+        const block = src ? [...document.querySelectorAll('details[data-src]')].find(d => d.dataset.src === src) : null;
+        let opened = Promise.resolve();
+        if (block) {
+            block.open = true; // its toggle handler fetches the file
+            opened = codeLoaded(block);
+        }
+        Promise.all([css, opened]).then(function () {
+            let text = block ? pageText(block) : null;
+            let spans = text ? bestSpans(text.flat, words) : [];
+            if (!spans.length) {
+                text = pageText(document.body);
+                spans = bestSpans(text.flat, words);
+            }
+            if (!spans.length) { glowImage(words); return; }
+            const marks = wrap(spans, text.at);
+            marks.forEach(function (m) {
+                for (let d = m.closest('details:not([open])'); d; d = d.parentElement.closest('details:not([open])')) d.open = true;
+            });
+            scrollToMatch(marks[0]);
+            afterScroll().then(function () {
+                marks.forEach(m => m.classList.add('is-on'));
+                marks[0].addEventListener('animationend', function () { unwrap(marks); }, { once: true });
+            });
+        });
+    }
+
+    // When the words are only in an image's alt text (the home page's Thailand
+    // motorbike), the image glows instead. An emoji match finds nothing, and
+    // the page is enough
+    function glowImage(words) {
+        const img = [...document.querySelectorAll('img[alt]')]
+            .find(el => words.every(w => norm(el.alt).includes(w)) && shown(el));
+        if (!img) return;
+        scrollToMatch(img);
+        afterScroll().then(function () {
+            img.classList.add('site-find-img');
+            img.addEventListener('animationend', function () { img.classList.remove('site-find-img'); }, { once: true });
+        });
+    }
+
+    // The find a text match left for this page, if it's fresh; night.js calls
+    // this on load when one is waiting. Waits for the page's images (at most
+    // LAYOUT_WAIT), so the spot doesn't move after the scroll
+    function findStored() {
+        let job = null;
+        try {
+            job = JSON.parse(sessionStorage.getItem(FIND_KEY) || 'null');
+            sessionStorage.removeItem(FIND_KEY);
+        } catch (e) { /* private mode etc. */ }
+        if (!job || job.u !== here || !(Date.now() - job.at < FIND_FOR)) return;
+        const loaded = document.readyState === 'complete' ? Promise.resolve()
+            : new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
+        Promise.race([loaded, new Promise(resolve => setTimeout(resolve, LAYOUT_WAIT))])
+            .then(function () { find(job.words, job.s); });
+    }
+
     // --- open and close ---
 
     function open() {
@@ -393,5 +627,7 @@
             });
         },
         close: close,
+        find: find,
+        findStored: findStored,
     };
 })();
