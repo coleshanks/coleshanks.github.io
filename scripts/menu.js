@@ -2,7 +2,7 @@
 // over the page, after the one on omarchy.org (our own code). night.js fetches
 // this file the first time it's opened.
 //
-// It opens on a "Go…" field: ↑/↓ move the highlight, Enter or → runs an item or
+// It opens on a "🛸…" field: ↑/↓ move the highlight, Enter or → runs an item or
 // opens its submenu, ← or Backspace (with the field empty) goes back up, and Esc
 // clears the field, then goes back up, then closes. Typing filters the pages and
 // actions, and also searches the site's text, from assets/data/search-index.json
@@ -18,6 +18,10 @@
     const INDEX = '/assets/data/search-index.json';
     const CSS = '/assets/css/menu.css';
     const FONT = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap';
+    // the prompt's 🛸 for systems with no emoji font of their own: Noto's, cut to that one
+    // glyph (about 2 KB; its unicode-range is U+1F6F8 alone). Apple's and Segoe's come first
+    const EMOJI_FONT = 'https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&text=%F0%9F%9B%B8&display=swap';
+    const PROMPT = '🛸…';
     const READY_WAIT = 1500; // ms at most to wait for the styles, index and font on first open
     const MAX_PAGES = 6;     // pages and actions listed above the text matches
     const MAX_HITS = 12;     // text matches listed
@@ -61,6 +65,10 @@
             link.href = FONT;
             document.head.appendChild(link);
         }
+        const emoji = document.createElement('link'); // not waited for: it only matters where 🛸 has no font
+        emoji.rel = 'stylesheet';
+        emoji.href = EMOJI_FONT;
+        document.head.appendChild(emoji);
         const font = document.fonts ? document.fonts.load('13px "JetBrains Mono"').catch(function () {}) : null;
         const data = fetch(INDEX).then(r => r.json()).then(function (d) { index = d; }).catch(function () {});
         const wait = new Promise(resolve => setTimeout(resolve, READY_WAIT));
@@ -223,7 +231,7 @@
                     '<button class="site-menu-back" type="button" aria-label="Back" tabindex="-1"><i class="fas fa-arrow-left"></i></button>' +
                     '<span class="site-menu-crumb"></span>' +
                     '<input class="site-menu-input" type="text" autocomplete="off" spellcheck="false" ' +
-                        'role="combobox" aria-expanded="true" aria-controls="site-menu-list" aria-autocomplete="list" placeholder="Go…">' +
+                        'role="combobox" aria-expanded="true" aria-controls="site-menu-list" aria-autocomplete="list" placeholder="' + PROMPT + '">' +
                 '</div>' +
                 '<div class="site-menu-list" id="site-menu-list" role="listbox"></div>' +
                 '<div class="site-menu-live" aria-live="polite"></div>' +
@@ -258,7 +266,7 @@
         const level = stack[stack.length - 1];
         prompt.classList.toggle('in-submenu', !!level && !words.length);
         crumb.textContent = level && !words.length ? level.node.t : '';
-        input.placeholder = level ? '' : 'Go…';
+        input.placeholder = level ? '' : PROMPT;
         list.innerHTML = rows.map(rowHtml).join('');
         if (active >= rows.length) active = rows.length - 1;
         highlight(Math.max(0, active), true);

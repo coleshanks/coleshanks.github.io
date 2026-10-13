@@ -44,6 +44,7 @@
     align-self: stretch;
     display: flex;
     align-items: center;
+    justify-content: center; /* a one-line name sat at the left; a wrapped one looked centred */
 }
 
 .course-desc::before {

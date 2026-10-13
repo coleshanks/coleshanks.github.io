@@ -12,7 +12,7 @@
     background: color-mix(in srgb, var(--primary_dark) 55%, transparent);
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
-    font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    font-family: 'JetBrains Mono', ui-monospace, Menlo, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', monospace;
     font-size: 13px;
     font-weight: 400;
     line-height: 1.4;
@@ -48,7 +48,7 @@
     box-shadow: 0 16px 48px rgb(0 0 0 / 0.45);
 }
 
-/* the Go… field, with the submenu's name and a back arrow in front of it */
+/* the 🛸… field, with the submenu's name and a back arrow in front of it */
 .site-menu-prompt {
     display: flex;
     align-items: center;
@@ -100,8 +100,11 @@
 }
 
 .site-menu-input::placeholder {
-    color: var(--accent);
-    opacity: 0.75;
+    /* faded through the colour, not opacity, so the … fades and the 🛸 (a colour
+       emoji, which ignores the colour) stays at full strength */
+    color: color-mix(in srgb, var(--accent) 75%, transparent);
+    opacity: 1;
+    font-size: 20px; /* for the 🛸; a placeholder is one run of text, so the … grows too */
 }
 
 .site-menu-list {
