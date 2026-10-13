@@ -27,7 +27,9 @@
         <div id="dos"></div>
         <script>
             Dos(document.getElementById('dos'), {
-                url: '/assets/doom/doom.jsdos',
+                // js-dos keeps a copy of the bundle in the browser, keyed by this URL, so bump
+                // ?v= whenever doom.jsdos changes or past visitors keep the old one
+                url: '/assets/doom/doom.jsdos?v=2', // v2: DEFAULT.CFG picks the Sound Blaster
                 pathPrefix: '/assets/doom/js-dos/emulators/', // the emulator files, from this site
                 kiosk: true,   // no js-dos sidebar or menus, just the game
                 noCloud: true, // no js-dos account or cloud saves

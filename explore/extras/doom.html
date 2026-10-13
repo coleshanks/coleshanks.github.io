@@ -63,8 +63,8 @@
                 display: block;
             }
             .doom-credits {
-                margin: 10px auto 0;
-                max-width: 560px;
+                margin: 32px auto 0;
+                text-align: center;
                 font-size: 13px;
                 color: var(--text_grey);
             }
@@ -128,6 +128,17 @@
                 image-rendering: pixelated;
                 flex-shrink: 0;
             }
+            .doom-subtitle {
+                margin-left: 6px;
+                font-size: 16px;
+                line-height: 1.3;
+                text-align: left;
+                color: var(--text_grey);
+            }
+            .doom-subtitle a {
+                color: var(--text_grey);
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
@@ -152,7 +163,8 @@
         <div class="doom-container">
             <div class="doom-title">
                 <img src="/assets/images/sprites/doom/27876.png" alt="Doomguy">
-                <h2 style="margin: 0; font-size: 42px;">Doom (1993) <span style="color: var(--text_grey); font-size: 18px; font-weight: 400;">shareware — Episode 1 released free by <a href="https://en.wikipedia.org/wiki/Id_Software" target="_blank" style="color: var(--text_grey); text-decoration: underline;">id Software</a></span></h2>
+                <h2 style="margin: 0; font-size: 42px;">Doom (1993)</h2>
+                <span class="doom-subtitle">shareware — Episode 1<br>released free by <a href="https://en.wikipedia.org/wiki/Id_Software" target="_blank">id Software</a></span>
             </div>
             <hr>
             <div class="doom-embed">
@@ -166,8 +178,6 @@
                     title="DOOM"
                 ></iframe>
             </div>
-            <p class="doom-credits">DOOM shareware © 1993 id Software, shared as id intended: complete and unmodified. It runs here in <a href="https://js-dos.com" target="_blank">js-dos</a>, a build of <a href="https://www.dosbox.com" target="_blank">DOSBox</a> (both GPL-2.0), served from this site. These aren't covered by the site's licence; <a href="/assets/doom/LICENSES.md" target="_blank">credits and licences</a>.</p>
-
             <div class="doom-controls">
                 <div class="ctrl-item">
                     <div class="ctrl-keys"><span class="key">Arrow keys</span></div>
@@ -203,6 +213,8 @@
                 </div>
                 <div class="ctrl-item empty"></div>
             </div>
+
+            <p class="doom-credits">DOOM © 1993 id Software · <a href="https://js-dos.com" target="_blank">js-dos</a> and <a href="https://www.dosbox.com" target="_blank">DOSBox</a> (GPL-2.0) · <a href="/assets/doom/LICENSES.md" target="_blank">licences</a></p>
         </div>
     </body>
 </html>
