@@ -318,7 +318,7 @@
         const file = url.split('/').pop().toLowerCase();
         const duck = Object.keys(underConstruction).some(k => k.toLowerCase() === file && underConstruction[k] === true);
         close();
-        location.href = duck ? '/pages/under_construction.html' : url;
+        location.href = duck ? '/under_construction.html' : url;
     }
 
     function enter(node) {

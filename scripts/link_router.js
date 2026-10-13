@@ -21,7 +21,7 @@ fetch('/under_construction.json')
 
       if (isUnderConstruction) {
         e.preventDefault();
-        window.location.href = "/pages/under_construction.html";
+        window.location.href = "/under_construction.html";
       }
     }, true);
   })

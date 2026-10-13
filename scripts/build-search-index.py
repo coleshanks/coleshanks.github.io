@@ -27,7 +27,7 @@ from urllib.parse import unquote, urljoin, urlparse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'assets', 'data', 'search-index.json')
 START = '/index.html'
-SKIP = {'/pages/under_construction.html', '/404.html'}  # error pages, never results
+SKIP = {'/under_construction.html', '/404.html'}  # error pages, never results
 ROW_CLASSES = {'card', 'country-row', 'course-row'}
 HEADINGS = {'h1', 'h2', 'h3', 'h4'}
 IGNORED = {'script', 'style', 'noscript', 'template', 'head'}
@@ -163,7 +163,7 @@ class Page(html.parser.HTMLParser):
 
 
 def resolve(base, href):
-    """A link on page base -> a site page path like /pages/CV.html, or None."""
+    """A link on page base -> a site page path like /cv.html, or None."""
     url = urlparse(urljoin('http://site' + base, href))
     if url.netloc != 'site':
         return None
