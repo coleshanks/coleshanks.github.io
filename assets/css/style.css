@@ -49,6 +49,16 @@
     --btn_transition_speed: 0.6s
 }
 
+/* the navbar's wrapper <div> steps aside, so the sticky navbar sticks to the
+   page rather than to the wrapper, and the page needs no padding to clear it.
+   Pages without a navbar (Home, DOOM, the kanji list) keep body's padding-top */
+body > div:has(> .navbar) {
+    display: contents;
+}
+body:has(> div > .navbar) {
+    padding-top: 0;
+}
+
 body {
     font-family: var(--f2); /* Use Open Sans for paragraphs */
     display: flex;
@@ -79,10 +89,12 @@ body {
     text-align: center;
     background-color: var(--secondary_dark);
     padding: 30px 0;
-    position: fixed;
+    /* sticky, not fixed: it takes its real height (one line or wrapped, any font)
+       and the page follows a 10px gap below it, then it sticks to the top on
+       scroll. The -8px sides undo body's default margin, so it spans the window */
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
+    margin: 0 -8px 10px;
     z-index: 1000;
     transition: transform 0.5s ease; /* Adjust the 0.5s to control the speed */
     border-radius: 0 0 8px 8px;
