@@ -1,18 +1,67 @@
-/* The DOOM gamepad (scripts/doom_pad.js), on touch screens only, in the key
-   table's place under the game. Sizes are in vw, because the page keeps its
-   desktop-width layout and a phone shrinks it to fit: a vw is the same share of
-   any phone's width, so the buttons stay thumb sized, and the title, game and
-   pad fit on one phone screen. Not position: fixed, which lands partway up the
-   screen on a shrunk desktop layout. Colours follow the page's key boxes. */
+/* The DOOM gamepad (scripts/doom_pad.js), on touch screens only, and the DOOM
+   page's phone layout around it. Everything here hangs off html.has-doom-pad,
+   which the script sets, so computers keep the page and key table as they were.
+   The DOOM page has a viewport tag (unlike most pages), so a phone lays it out
+   at its own width:
+   - upright: title, game full width, then the pad under it, all on one screen
+   - sideways: play mode, with the game in the middle and the controls either side
+   Sizes are in --u, about 1% of the phone's width upright and of its height
+   sideways, capped so tablets don't get giant buttons. */
 
 html.has-doom-pad .doom-controls { display: none; } /* the key table is for keyboards */
 
+html.has-doom-pad {
+    --u: min(1vw, 6px);
+    --blood: #8a0000;
+    --blood-hi: #e01b10;
+    --gore-text: #e8291c;
+}
+
+/* ---- the page, upright ---- */
+
+html.has-doom-pad body { padding-top: 52px; }
+html.has-doom-pad .doom-sprite-scatter img { scale: 0.55; }
+html.has-doom-pad .doom-container {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto 24px;
+    padding: 0 12px;
+}
+html.has-doom-pad .doom-title { flex-wrap: wrap; gap: 4px 10px; }
+html.has-doom-pad .doom-title img { height: 34px; }
+html.has-doom-pad .doom-title h2 { font-size: 30px !important; white-space: nowrap; } /* the h2 sets 42px inline */
+html.has-doom-pad .doom-subtitle { flex-basis: 100%; margin-left: 0; font-size: 12px; } /* on its own lines under the title */
+html.has-doom-pad .doom-container hr { width: 100%; margin: 8px 0 0; }
+html.has-doom-pad .doom-embed { margin-top: 12px; }
+html.has-doom-pad .doom-embed iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10; /* DOOM's 320×200, so the game fills the frame */
+}
+html.has-doom-pad .doom-credits { margin-top: 20px; font-size: 11px; }
+
+/* ---- the pad ---- */
+
 .doom-pad {
+    position: relative;
     box-sizing: border-box;
-    margin-top: 3vw;
-    padding: 3vw;
-    border-radius: 3vw;
-    background: rgb(10 10 10 / 0.85);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "hint    hint"
+        "sys     weapons"
+        "stick   act";
+    gap: calc(var(--u) * 2.5) calc(var(--u) * 3);
+    margin-top: calc(var(--u) * 3);
+    padding: calc(var(--u) * 6) calc(var(--u) * 3) calc(var(--u) * 3);
+    border: 2px solid #2a0808;
+    border-radius: calc(var(--u) * 2);
+    background:
+        radial-gradient(ellipse 30% 22% at 12% 92%, rgb(130 0 0 / 0.4), transparent 70%),
+        radial-gradient(ellipse 22% 16% at 88% 30%, rgb(130 0 0 / 0.3), transparent 70%),
+        radial-gradient(ellipse 12% 8% at 55% 70%, rgb(90 0 0 / 0.35), transparent 70%),
+        linear-gradient(#160606, #0a0303);
+    box-shadow: inset 0 0 calc(var(--u) * 6) rgb(0 0 0 / 0.9), 0 0 calc(var(--u) * 4) rgb(120 0 0 / 0.35);
     font-family: var(--hf2);
     touch-action: none;           /* presses never scroll or zoom */
     user-select: none;
@@ -21,87 +70,223 @@ html.has-doom-pad .doom-controls { display: none; } /* the key table is for keyb
     -webkit-tap-highlight-color: transparent;
 }
 
-.doom-pad.is-waiting .pad-top,
-.doom-pad.is-waiting .pad-main { opacity: 0.35; }
+/* blood running down from the pad's top edge */
+.doom-pad::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--u) * 5);
+    border-radius: calc(var(--u) * 2) calc(var(--u) * 2) 0 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath fill='%237a0000' d='M0,0H100V1.5Q97,1.5 96.5,4Q96,7 95,7Q94,7 93.5,4Q93,1.5 90,1.5H74Q72,1.5 71.6,5Q71.2,9 70.3,9Q69.4,9 69,5Q68.6,1.5 66.5,1.5H48Q46.5,1.5 46.2,3.5Q46,5.5 45.3,5.5Q44.6,5.5 44.4,3.5Q44.1,1.5 42.5,1.5H22Q20,1.5 19.6,6Q19.2,10 18.2,10Q17.2,10 16.9,6Q16.5,1.5 14.5,1.5H0Z'/%3E%3C/svg%3E") top / 100% 100% no-repeat;
+    pointer-events: none;
+}
+
+.doom-pad.is-waiting > :not(.pad-hint) { opacity: 0.35; }
 
 .pad-hint {
+    grid-area: hint;
     display: none;
     text-align: center;
-    color: var(--text_grey);
-    font-size: 3.4vw;
-    margin-bottom: 2vw;
+    color: #c8382c;
+    font-size: calc(var(--u) * 3.4);
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 6px rgb(255 0 0 / 0.5);
 }
 .doom-pad.is-waiting .pad-hint { display: block; }
 
-.pad-btn,
-.pad-dpad {
-    background: #1e1e32;
-    border: 0.4vw solid #3a3a5c;
-    color: var(--text_orange);
-    font-weight: bold;
-}
-
+/* buttons: rusty brown metal like DOOM's status bar, smeared with blood, red lettering */
 .pad-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2vw;
-    font-size: 3.6vw;
-}
-
-.pad-btn.is-down,
-.pad-arrow.is-down {
-    background: var(--text_orange);
-    color: #0a0a0f;
-    border-color: var(--text_orange);
-}
-
-/* top strip: Menu, Map, Enter, Y, then weapons 1–7 */
-.pad-top {
-    display: flex;
-    gap: 1.4vw;
-    margin-bottom: 3vw;
-}
-.pad-top .pad-btn { flex: 1; height: 9vw; }
-.pad-top .pad-weapon { flex: 0.7; }
-
-.pad-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-/* left thumb: the D-pad */
-.pad-dpad {
     position: relative;
-    width: 40vw;
-    height: 40vw;
-    border-radius: 50%;
-}
-.pad-arrow {
-    position: absolute;
-    width: 12vw;
-    height: 12vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 2vw;
-    font-size: 5vw;
+    box-sizing: border-box;
+    border: 2px solid #120805;
+    border-radius: calc(var(--u) * 1.5);
+    background:
+        radial-gradient(ellipse 70% 55% at 25% 110%, rgb(150 0 0 / 0.75), transparent 70%),
+        radial-gradient(circle at 85% 10%, rgb(110 0 0 / 0.5) 0 12%, transparent 30%),
+        linear-gradient(#5d4a39, #3a2b20 55%, #22170f);
+    box-shadow:
+        inset 1px 1px 0 rgb(255 220 180 / 0.22),
+        inset -2px -2px 0 rgb(0 0 0 / 0.55),
+        0 2px 0 #000;
+    color: var(--gore-text);
+    font-size: calc(var(--u) * 3.3);
+    font-weight: 800;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 0 0 6px rgb(255 0 0 / 0.45);
 }
-.pad-arrow.up    { top: 2vw;    left: 50%; transform: translateX(-50%); }
-.pad-arrow.down  { bottom: 2vw; left: 50%; transform: translateX(-50%); }
-.pad-arrow.left  { left: 2vw;   top: 50%;  transform: translateY(-50%); }
-.pad-arrow.right { right: 2vw;  top: 50%;  transform: translateY(-50%); }
+.pad-btn.is-down {
+    background: radial-gradient(circle at 40% 35%, #ff4a30, var(--blood) 70%);
+    color: #ffe2c8;
+    box-shadow: inset 0 0 calc(var(--u) * 2) rgb(0 0 0 / 0.6), 0 0 calc(var(--u) * 3) rgb(255 30 0 / 0.7);
+    transform: translateY(1px);
+}
 
-/* right thumb: Fire big, Use beside it, Run and Strafe above */
-.pad-right {
+/* the top strip: Menu, Map, Enter, Y, then weapons 1–5 */
+.pad-sys,
+.pad-weapons {
+    display: flex;
+    gap: calc(var(--u) * 1.4);
+}
+.pad-sys     { grid-area: sys; }
+.pad-weapons { grid-area: weapons; }
+.pad-sys .pad-btn,
+.pad-weapons .pad-btn { flex: 1; height: calc(var(--u) * 10); }
+.pad-sys .pad-btn { font-size: calc(var(--u) * 2.7); }
+.pad-weapons { width: calc(var(--u) * 43.5); } /* as wide as Strafe, Use and Fire under it */
+.pad-weapon { font-size: calc(var(--u) * 4); }
+
+/* left thumb: the stick's zone. At rest the stick waits dimmed in the middle;
+   a thumb anywhere in the zone brings it there (doom_pad.js sets left and top) */
+.pad-stick {
+    grid-area: stick;
+    position: relative;
+    height: calc(var(--u) * 38);
+    border-radius: calc(var(--u) * 3);
+}
+.pad-stick-base {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(var(--u) * 33);
+    height: calc(var(--u) * 33);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid #120805;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23a00000' stroke-width='2.5' stroke-linejoin='round' opacity='0.75'%3E%3Ccircle cx='50' cy='50' r='44'/%3E%3Cpath d='M50,10L73.51,82.36L11.96,37.64H88.04L26.49,82.36Z'/%3E%3C/g%3E%3C/svg%3E") center / 82% no-repeat,
+        radial-gradient(circle, rgb(40 0 0 / 0.7) 0 62%, #3a2b20 64% 70%, #160d08 72%);
+    box-shadow: inset 0 0 calc(var(--u) * 4) #000, 0 0 calc(var(--u) * 3) rgb(140 0 0 / 0.4);
+    opacity: 0.45;
+    transition: opacity 0.15s;
+}
+.pad-stick.is-held .pad-stick-base { opacity: 1; }
+.pad-stick-knob {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(var(--u) * 14);
+    height: calc(var(--u) * 14);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid #1a0000;
+    background: radial-gradient(circle at 35% 30%, #ff7058, #c01010 38%, #5a0000 80%, #2a0000);
+    box-shadow: inset 0 calc(var(--u) * -1) calc(var(--u) * 2) rgb(0 0 0 / 0.5), 0 0 calc(var(--u) * 3) rgb(255 0 0 / 0.5);
+}
+
+/* right thumb: Strafe and Use, and Fire big */
+.pad-act {
+    grid-area: act;
+    align-self: end;
     display: grid;
-    grid-template-columns: 17vw 21vw;
-    grid-template-rows: 11vw 21vw;
-    gap: 2.5vw;
+    grid-template-columns: calc(var(--u) * 16) calc(var(--u) * 25);
+    grid-template-areas:
+        "strafe fire"
+        "use    fire";
+    gap: calc(var(--u) * 2.5);
     align-items: end;
 }
-.pad-run    { grid-column: 1; grid-row: 1; height: 11vw; }
-.pad-strafe { grid-column: 2; grid-row: 1; height: 11vw; }
-.pad-use    { grid-column: 1; grid-row: 2; height: 17vw; border-radius: 50%; }
-.pad-fire   { grid-column: 2; grid-row: 2; height: 21vw; border-radius: 50%; font-size: 4.4vw; }
+.pad-strafe { grid-area: strafe; height: calc(var(--u) * 10); }
+.pad-use    { grid-area: use; height: calc(var(--u) * 16); border-radius: 50%; }
+
+/* Fire: a blood orb, dripping */
+.pad-fire {
+    grid-area: fire;
+    height: calc(var(--u) * 25);
+    border-radius: 50%;
+    border: 3px solid #1a0000;
+    background: radial-gradient(circle at 35% 30%, #ff5a44, #c41010 30%, #6e0000 70%, #2a0000);
+    box-shadow: inset 0 calc(var(--u) * -1.5) calc(var(--u) * 3) rgb(0 0 0 / 0.6), 0 0 calc(var(--u) * 4) rgb(200 0 0 / 0.55);
+    color: #ffe0c8;
+    font-size: calc(var(--u) * 4.6);
+}
+.pad-fire::before,
+.pad-fire::after {
+    content: '';
+    position: absolute;
+    top: 88%;
+    background: #6e0000;
+    border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+    pointer-events: none;
+}
+.pad-fire::before { left: 30%; width: 13%; height: 20%; }
+.pad-fire::after  { left: 58%; width: 9%;  height: 13%; top: 92%; }
+.pad-fire.is-down {
+    background: radial-gradient(circle at 40% 35%, #ff9070, #ff2a10 35%, #8a0000 80%);
+    box-shadow: inset 0 0 calc(var(--u) * 3) rgb(0 0 0 / 0.5), 0 0 calc(var(--u) * 7) rgb(255 40 0 / 0.9);
+    transform: scale(0.95);
+}
+
+/* ---- sideways: play mode ----
+   The game sits in the middle at the height of the screen, and the pad turns
+   into an overlay with the controls in the black either side of it. The
+   overlay lets taps through to the game (for js-dos's ▶) */
+@media (orientation: landscape) {
+    html.has-doom-pad {
+        --u: min(0.9dvh, 0.5vw, 5px);
+        --game: min(160dvh, 58vw);
+    }
+    html.has-doom-pad body { padding-top: 0; }
+    html.has-doom-pad .doom-sprite-scatter,
+    html.has-doom-pad .back-to-main,
+    html.has-doom-pad .doom-title,
+    html.has-doom-pad .doom-container hr,
+    html.has-doom-pad .doom-credits { display: none; }
+    html.has-doom-pad .doom-container {
+        position: fixed;
+        inset: 0;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        z-index: 10;
+        background:
+            radial-gradient(ellipse 20% 30% at 8% 85%, rgb(120 0 0 / 0.35), transparent 70%),
+            radial-gradient(ellipse 18% 25% at 93% 15%, rgb(120 0 0 / 0.3), transparent 70%),
+            #070202;
+    }
+    html.has-doom-pad .doom-embed {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: 0;
+        transform: translate(-50%, -50%);
+    }
+    html.has-doom-pad .doom-embed iframe { width: var(--game); }
+
+    .doom-pad {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        padding: max(calc(var(--u) * 4), env(safe-area-inset-top)) max(calc(var(--u) * 4), env(safe-area-inset-right))
+                 max(calc(var(--u) * 4), env(safe-area-inset-bottom)) max(calc(var(--u) * 4), env(safe-area-inset-left));
+        grid-template-columns: 1fr var(--game) 1fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "sys   .  weapons"
+            "stick .  act";
+        column-gap: calc(var(--u) * 4);
+        border: none;
+        border-radius: 0;
+        background: none;
+        box-shadow: none;
+        pointer-events: none;
+    }
+    .doom-pad > * { pointer-events: auto; }
+    .doom-pad::before { display: none; }
+    .pad-hint {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: calc(var(--u) * 1.5);
+        pointer-events: none;
+    }
+    .pad-stick { height: auto; }
+    .pad-sys .pad-btn,
+    .pad-weapons .pad-btn { height: calc(var(--u) * 9); }
+    .pad-weapons { width: auto; }
+    .pad-act { justify-self: end; }
+}
