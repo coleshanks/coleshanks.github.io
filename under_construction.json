@@ -1,6 +1,6 @@
 {
   "/index.html": false,
-  "/projects.html": true,
+  "/projects.html": false,
   "/cv.html": false,
   "/explore.html": false,
   "/explore/japanese.html": false,

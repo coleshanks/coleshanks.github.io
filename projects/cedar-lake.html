@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <title>Cedar Lake | Cole Shanks</title>
+        <script src="/scripts/link_router.js" defer></script>
+        <!-- Cedar Lake's own page, like DOOM's: no navbar and none of the site's stylesheets, just a soft
+             green and the game in the middle (projects/cedar-lake/play.html, built from the game's web/
+             folder). Its type is the game's own (assets/cedar-lake/fonts). -->
+        <style>
+            @font-face { font-family: "Cedar Rounded"; src: url(/assets/cedar-lake/fonts/rounded-500.woff2) format("woff2"); font-weight: 500; }
+            @font-face { font-family: "Cedar Rounded"; src: url(/assets/cedar-lake/fonts/rounded-700.woff2) format("woff2"); font-weight: 700; }
+            :root {
+                --ink: #34503d;
+                --soft: #5f7d67;
+                --leaf: #7fb27f;
+                --leaf-deep: #4f8a57;
+                --paper: #f7fbf4;
+            }
+            html { background: #e6f1e1; }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(170deg, #f0f7ec 0%, #e1efdb 55%, #d3e7cf 100%);
+                color: var(--ink);
+                font: 500 17px/1.6 "Cedar Rounded", "Hiragino Maru Gothic ProN", system-ui, sans-serif;
+            }
+            .back {
+                position: absolute;
+                top: 16px;
+                left: 18px;
+                padding: 6px 16px;
+                border-radius: 999px;
+                background: var(--paper);
+                border: 1px solid #c5dcc0;
+                color: var(--leaf-deep);
+                text-decoration: none;
+            }
+            .back:hover { background: #fff; border-color: var(--leaf); }
+            header {
+                text-align: center;
+                padding: 34px 20px 4px;
+            }
+            h1 {
+                margin: 0;
+                font-size: 46px;
+                font-weight: 700;
+                letter-spacing: .5px;
+                color: var(--leaf-deep);
+            }
+            .tagline {
+                margin: 2px 0 0;
+                color: var(--soft);
+            }
+            .frame {
+                width: min(92vw, 1180px);
+                aspect-ratio: 16 / 10;
+                margin: 26px auto 0;
+                border-radius: 16px;
+                border: 6px solid var(--paper);
+                overflow: hidden;
+                background: #0d2024;
+                box-shadow: 0 14px 34px rgba(52, 90, 62, .22);
+            }
+            .frame iframe {
+                display: block;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+            .keys {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                width: min(92vw, 1180px);
+                margin: 18px auto 0;
+                padding: 0;
+                list-style: none;
+                font-size: 15px;
+                color: var(--soft);
+            }
+            .keys li {
+                background: var(--paper);
+                border: 1px solid #cfe2ca;
+                border-radius: 999px;
+                padding: 3px 12px;
+            }
+            .keys b {
+                color: var(--leaf-deep);
+                font-weight: 700;
+            }
+            .about {
+                width: min(92vw, 760px);
+                margin: 30px auto 0;
+                padding-bottom: 56px;
+            }
+            .about p { margin: 0 0 12px; text-align: center; }
+            .lang { font-family: system-ui, sans-serif; letter-spacing: -.5px; }  /* the rounded type's + signs are wide */
+        </style>
+    </head>
+    <body>
+        <a class="back" href="/projects.html">← Projects</a>
+        <header>
+            <h1>Cedar Lake</h1>
+            <p class="tagline">The Broken Flapjack · a 3D English adventure</p>
+        </header>
+
+        <div class="frame">
+            <iframe src="/projects/cedar-lake/play.html" title="Cedar Lake" allow="fullscreen; autoplay" allowfullscreen onload="this.contentWindow.focus()"></iframe>
+        </div>
+
+        <ul class="keys">
+            <li><b>Enter</b> start</li>
+            <li><b>WASD</b> move</li>
+            <li><b>Mouse</b> look</li>
+            <li><b>Space</b> jump</li>
+            <li><b>Shift</b> run</li>
+            <li><b>E</b> talk</li>
+            <li><b>Click</b> use</li>
+            <li><b>1–8</b> hotbar</li>
+            <li><b>J</b> journal</li>
+            <li><b>Esc</b> pause</li>
+            <li><b>F</b> full screen</li>
+        </ul>
+
+        <div class="about">
+            <p>A 3D English adventure game designed for 中学校3年生, written in <span class="lang">c++</span>. Playable in the browser via WebAssembly.</p>
+        </div>
+    </body>
+</html>

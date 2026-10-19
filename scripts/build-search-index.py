@@ -5,7 +5,9 @@ Run by hand after adding or removing a page or changing page text, then commit
 the JSON with the change:  python3 scripts/build-search-index.py
 
 Starts at index.html and follows the site's own links, so unlinked pages
-(games.html, the 404) stay out without a list. Writes:
+(games.html, the 404) stay out without a list. A page with
+<meta name="robots" content="noindex"> stays out too (Cedar Lake's bare game
+page, reached through its project page). Writes:
   tree     the pages as the menu's nested Go to lists, each page under the one
            that first links to it (breadth-first from the home page)
   entries  what typing searches: every page, plus every hub row (.card,
@@ -70,6 +72,7 @@ class Page(html.parser.HTMLParser):
         self.code_blocks = []    # dicts: src, name (the summary)
         self.code = None         # the code block being read
         self.in_summary = False
+        self.noindex = False     # <meta name="robots" content="noindex">: not listed
 
     def skipping(self):
         return any(f.get('skip') for _, f in self.stack)
@@ -78,6 +81,8 @@ class Page(html.parser.HTMLParser):
         a = dict(attrs)
         classes = set((a.get('class') or '').split())
         flags = {}
+        if tag == 'meta' and (a.get('name') or '').lower() == 'robots' and 'noindex' in (a.get('content') or '').lower():
+            self.noindex = True
         # the navbar repeats on every page; code blocks say "Loading..." until fetched
         if tag in IGNORED or tag == 'title' or classes & {'navbar', 'profile_navbar', 'code-loading'}:
             flags['skip'] = True
@@ -209,6 +214,10 @@ def main():
         page = Page(path)
         with open(file, encoding='utf-8') as f:
             page.feed(f.read())
+        if page.noindex:
+            parent.pop(path, None)
+            label.pop(path, None)
+            continue
         pages[path] = page
         for href, text in page.links:
             target = resolve(path, href)
