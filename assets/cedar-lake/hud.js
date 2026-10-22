@@ -312,6 +312,9 @@ window.CedarHUD = (() => {
             ctx.scale(s, s);
             scale *= s;
         },
+        translate(x, y) {
+            ctx.translate(x, y);
+        },
         clip(heap, at, count) { ctx.clip(path(heap, at, count)); },
         shadow(r, g, b, a, blur) {
             ctx.shadowColor = css(r, g, b, a);
