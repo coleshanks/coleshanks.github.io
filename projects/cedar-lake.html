@@ -5,6 +5,14 @@
         <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
         <title>Cedar Lake | Cole Shanks</title>
         <script src="/scripts/link_router.js" defer></script>
+        <script>
+            // Phones and tablets go straight to the game's own page: the frame below can't go full
+            // screen, and the game is laid out for the whole screen. Not when coming back from it, or
+            // its back link would only bounce here and back.
+            if (matchMedia('(pointer: coarse)').matches && !document.referrer.includes('/projects/cedar-lake/play.html')) {
+                location.replace('/projects/cedar-lake/play.html');
+            }
+        </script>
         <!-- Cedar Lake's own page, like DOOM's: no navbar and none of the site's stylesheets, just a soft
              green and the game in the middle (projects/cedar-lake/play.html, built from the game's web/
              folder). Its type is the game's own (assets/cedar-lake/fonts). -->

@@ -46,8 +46,33 @@
         }
         #back:hover { background: rgba(9, 26, 31, .95); }
         body.title:not(.framed) #back[href^="/"] { display: block; }
+        /* A phone in the browser: on the title, a ? with the steps to add the game to the Home Screen
+           (full screen there), in Japanese, in the phone's own rounded type. */
+        #help {
+            position: fixed; right: calc(env(safe-area-inset-right) + 18px); bottom: calc(env(safe-area-inset-bottom) + 52px);
+            width: 44px; height: 44px; display: none; border-radius: 50%; padding: 0; cursor: pointer;
+            font: 700 24px "Cedar Rounded", system-ui, sans-serif; color: #f5ebcf;
+            background: rgba(9, 26, 31, .82); border: 2px solid #f0a752; -webkit-tap-highlight-color: transparent;
+        }
+        #help:active { background: rgba(240, 167, 82, .35); }
+        body.title.touch:not(.framed) #help { display: block; }
+        #howto {
+            position: fixed; inset: 0; display: none; z-index: 3; background: rgba(2, 8, 10, .6);
+            align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent;
+        }
+        #howto.open { display: flex; }
+        #howto .card {
+            width: min(84vw, 560px); max-height: 86vh; overflow-y: auto; box-sizing: border-box; padding: 18px 24px 16px;
+            background: rgba(9, 26, 31, .97); border-left: 5px solid #f0a752; border-radius: 14px; color: #f5ebcf;
+            font: 500 15px/1.55 "Cedar Rounded", "Hiragino Maru Gothic ProN", system-ui, sans-serif;
+        }
+        #howto h2 { margin: 0 0 6px; font-size: 19px; color: #f0a752; }
+        #howto ol { margin: 8px 0 10px; padding-left: 1.4em; }
+        #howto li { margin: 3px 0; }
+        #howto .save { margin: 0 0 8px; color: #c9d4cc; font-size: 14px; }
+        #howto .close { margin: 0; color: #8fa39a; font-size: 13px; }
         @media (display-mode: fullscreen), (display-mode: standalone) {  /* opened from the Home Screen */
-            #back { display: none !important; }  /* nowhere to go back to */
+            #back, #help { display: none !important; }  /* nowhere to go back to, and already added */
             #game, #hud { height: calc(100% + env(safe-area-inset-top)); }  /* 100% starts under the status bar but leaves out its height */
         }
     </style>
@@ -57,6 +82,27 @@
     <canvas id="hud"></canvas>
     <input id="type" type="text" placeholder="Tap here to type" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="go">
     <a id="back" href="/projects/cedar-lake.html">← back</a>
+    <button id="help" aria-label="ホーム画面に追加する方法">?</button>
+    <div id="howto">
+        <div class="card">
+            <h2>ホーム画面に追加して遊ぼう</h2>
+            <div>ホーム画面から開くと、全画面で遊べます。</div>
+            <ol class="ios">
+                <li>Safariの共有ボタン（四角に上向きの矢印）をタップ</li>
+                <li>「ホーム画面に追加」をタップ（見えないときは下にスクロール）</li>
+                <li>「ウェブアプリとして開く」がオンになっているのを確かめて、「追加」をタップ</li>
+                <li>ホーム画面の「Cedar Lake」から開いて、横向きで遊ぼう</li>
+            </ol>
+            <ol class="android" hidden>
+                <li>Chromeの右上の「⋮」をタップ</li>
+                <li>「ホーム画面に追加」か「アプリをインストール」をタップ</li>
+                <li>「インストール」か「追加」をタップ</li>
+                <li>ホーム画面の「Cedar Lake」から開いて、横向きで遊ぼう</li>
+            </ol>
+            <p class="save">セーブについて：ホーム画面のCedar Lakeは、ブラウザとは別にセーブします。ブラウザで始めたゲームは、ホーム画面の方には引き継がれません。</p>
+            <p class="close">まわりをタップすると閉じます。</p>
+        </div>
+    </div>
     <div id="loading" class="note">Loading Cedar Lake…</div>
     <div id="hint" class="note">Click to look around</div>
     <script>
@@ -64,6 +110,17 @@
         const ASSETS = '/assets/cedar-lake/';  // where the game's files are, from this page (the site's copy points to its own)
         window.CEDAR_ASSETS = ASSETS;
         if (window.self !== window.top) document.body.classList.add('framed');  // in another page's frame: that page has the way back
+
+        // The Home Screen steps (a phone in the browser, on the title): the ? opens them, a tap
+        // outside the card closes them. Android's steps differ from the iPhone's.
+        if (matchMedia('(pointer: coarse)').matches) document.body.classList.add('touch');
+        if (/Android/.test(navigator.userAgent)) {
+            document.querySelector('#howto .ios').hidden = true;
+            document.querySelector('#howto .android').hidden = false;
+        }
+        const howto = document.getElementById('howto');
+        document.getElementById('help').addEventListener('click', () => howto.classList.add('open'));
+        howto.addEventListener('click', e => { if (!e.target.closest('.card')) howto.classList.remove('open'); });
 
         // For a phone with no keyboard: ?views=overview,dialogue stages each scene in turn, a tap moving to
         // the next. Staged pages leave out the manifest, so the Home Screen keeps the address as it is.
