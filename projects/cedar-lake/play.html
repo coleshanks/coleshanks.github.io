@@ -41,7 +41,7 @@
         body.title:not(.framed) #back[href^="/"] { display: block; }
         @media (display-mode: fullscreen), (display-mode: standalone) {  /* opened from the Home Screen */
             #back { display: none !important; }  /* nowhere to go back to */
-            #game, #hud { height: 100vh; }       /* 100% stops short of the bottom by the status bar's height */
+            #game, #hud { height: calc(100% + env(safe-area-inset-top)); }  /* 100% starts under the status bar but leaves out its height */
         }
     </style>
 </head>
