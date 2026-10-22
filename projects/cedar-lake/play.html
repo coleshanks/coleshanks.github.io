@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">  <!-- phones draw at their real size -->
     <title>Cedar Lake | Cole Shanks</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
-    <!-- Added to the Home Screen, it opens full screen like an app (on iPhone the only full screen). -->
-    <link rel="manifest" href="/assets/cedar-lake/manifest.webmanifest">
+    <!-- Added to the Home Screen, it opens full screen like an app (on iPhone the only full screen); the
+         manifest, which sends it to the title, is added below unless the address stages a scene. -->
     <link rel="apple-touch-icon" href="/assets/cedar-lake/icon-180.png">
     <meta name="apple-mobile-web-app-title" content="Cedar Lake">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -56,6 +56,22 @@
         const ASSETS = '/assets/cedar-lake/';  // where the game's files are, from this page (the site's copy points to its own)
         window.CEDAR_ASSETS = ASSETS;
         if (window.self !== window.top) document.body.classList.add('framed');  // in another page's frame: that page has the way back
+
+        // For a phone with no keyboard: ?views=overview,dialogue stages each scene in turn, a tap moving to
+        // the next. Staged pages leave out the manifest, so the Home Screen keeps the address as it is.
+        const params = new URLSearchParams(location.search);
+        if (params.has('views')) {
+            const views = params.get('views').split(',');
+            const next = view => { params.set('view', view); location.replace('?' + params); };
+            if (!params.has('view')) next(views[0]);
+            addEventListener('pointerup', () => next(views[(views.indexOf(params.get('view')) + 1) % views.length]));
+        }
+        if (!params.has('view') && !params.has('benchmark')) {
+            const manifest = document.createElement('link');
+            manifest.rel = 'manifest';
+            manifest.href = ASSETS + 'manifest.webmanifest';
+            document.head.appendChild(manifest);
+        }
 
         function load(src) {
             return new Promise((done, failed) => {
