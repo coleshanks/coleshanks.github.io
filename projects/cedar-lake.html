@@ -101,6 +101,14 @@
             }
             .board h2 { margin: 0 0 4px; font-size: 21px; color: var(--leaf-deep); }
             .board p { margin: 0; color: var(--soft); font-size: 15px; }
+            .board table { width: 100%; margin: 6px 0 8px; border-collapse: collapse; text-align: left; }
+            .board td { padding: 5px 8px; border-top: 1px solid #cfe2ca; }
+            .board .rank { width: 2.5em; color: var(--soft); }
+            .board .name { font-weight: 700; overflow-wrap: anywhere; }
+            .board .flag { width: 2em; text-align: center; }
+            .board .time { width: 5em; font-variant-numeric: tabular-nums; }
+            .board .day { width: 7.5em; color: var(--soft); font-size: 15px; }
+            .board .all { display: inline-block; margin-top: 6px; color: var(--leaf-deep); font-size: 15px; }
             .keys {
                 display: flex;
                 flex-wrap: wrap;
@@ -147,8 +155,23 @@
 
         <section class="board">
             <h2>Leaderboard</h2>
-            <p>Coming soon: the fastest runs that fix the Flying Flapjack.</p>
+            <p>The fastest runs that fix the Flying Flapjack.</p>
+            <table hidden><tbody id="top"></tbody></table>
+            <p id="board-note">Loading…</p>
+            <a class="all" href="/projects/cedar-lake/board.html" target="_blank" rel="noopener">Full leaderboard ↗</a>
         </section>
+        <!-- The top 10 from the game's server (board.js comes with the game, from its web/ folder). -->
+        <script src="/assets/cedar-lake/board.js"></script>
+        <script>
+            CedarBoard.top()
+                .then((runs) => {
+                    const top = document.getElementById('top');
+                    CedarBoard.fill(top, runs);
+                    top.parentElement.hidden = !runs.length;
+                    document.getElementById('board-note').textContent = runs.length ? '' : 'No finished runs yet. Be the first!';
+                })
+                .catch(() => (document.getElementById('board-note').textContent = 'The leaderboard can’t be reached right now.'));
+        </script>
 
         <ul class="keys">
             <li><b>Enter</b> start</li>

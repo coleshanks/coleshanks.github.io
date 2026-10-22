@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Leaderboard | Cedar Lake | Cole Shanks</title>
+        <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+        <!-- The full leaderboard: every name's best run, fastest first; a row opens to all of that
+             name's runs and their numbers. The look is the project page's. -->
+        <style>
+            @font-face { font-family: "Cedar Rounded"; src: url(/assets/cedar-lake/fonts/rounded-500.woff2) format("woff2"); font-weight: 500; }
+            @font-face { font-family: "Cedar Rounded"; src: url(/assets/cedar-lake/fonts/rounded-700.woff2) format("woff2"); font-weight: 700; }
+            :root {
+                --ink: #34503d;
+                --soft: #5f7d67;
+                --leaf: #7fb27f;
+                --leaf-deep: #4f8a57;
+                --paper: #f7fbf4;
+                --line: #cfe2ca;
+            }
+            html { background: #e6f1e1; }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(170deg, #f0f7ec 0%, #e1efdb 55%, #d3e7cf 100%);
+                color: var(--ink);
+                font: 500 17px/1.6 "Cedar Rounded", "Hiragino Maru Gothic ProN", system-ui, sans-serif;
+            }
+            header { text-align: center; padding: 34px 16px 4px; }
+            h1 { margin: 0; font-size: 38px; font-weight: 700; color: var(--leaf-deep); }
+            header p { margin: 2px 0 0; color: var(--soft); }
+            header a { color: var(--leaf-deep); }
+            main {
+                width: min(100% - 32px, 760px);
+                margin: 22px auto 56px;
+                padding: 10px 18px 16px;
+                box-sizing: border-box;
+                border-radius: 16px;
+                background: var(--paper);
+                border: 1px solid var(--line);
+            }
+            table { width: 100%; border-collapse: collapse; }
+            th { text-align: left; font-size: 14px; color: var(--soft); font-weight: 500; padding: 6px 8px; }
+            td { padding: 8px; border-top: 1px solid var(--line); }
+            tbody tr { cursor: pointer; }
+            tbody tr:hover td { background: #eef6ea; }
+            .rank { width: 2.5em; color: var(--soft); }
+            .name { font-weight: 700; overflow-wrap: anywhere; }
+            .flag { width: 2em; text-align: center; }
+            .time { width: 5em; font-variant-numeric: tabular-nums; }
+            .day { width: 7.5em; color: var(--soft); font-size: 15px; }
+            tr.open td { background: #eef6ea; }
+            tr.runs td { cursor: default; background: #fbfdf9; padding: 4px 8px 12px; }
+            .run { padding: 8px 0; border-top: 1px dashed var(--line); font-size: 15px; }
+            .run:first-child { border-top: 0; }
+            .run b { color: var(--leaf-deep); }
+            .run span { color: var(--soft); }
+            .note { text-align: center; color: var(--soft); margin: 14px 0 6px; }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Leaderboard</h1>
+            <p>Cedar Lake: the fastest runs that fix the Flying Flapjack. <a id="back" href="/projects/cedar-lake.html">Play</a></p>
+        </header>
+        <main>
+            <table>
+                <thead><tr><th>#</th><th>Name</th><th></th><th>Time</th><th class="day">Day (JST)</th></tr></thead>
+                <tbody id="rows"></tbody>
+            </table>
+            <p class="note" id="note">Loading…</p>
+        </main>
+        <script src="/assets/cedar-lake/board.js"></script>
+        <script>
+            const rows = document.getElementById('rows');
+            const note = document.getElementById('note');
+
+            // One run's numbers, as its results screen had them.
+            function describe(run) {
+                const r = run.results || {};
+                const bits = [];
+                if (r.right !== undefined) bits.push(`${r.right} right, ${r.wrong} wrong`);
+                if (r.fainted !== undefined) bits.push(`fainted ${r.fainted} time${r.fainted === 1 ? '' : 's'}`);
+                if (r.enemies !== undefined) bits.push(`${r.enemies} sent packing`);
+                if (r.crates !== undefined) bits.push(`${r.crates} crate${r.crates === 1 ? '' : 's'}`);
+                if (r.walked !== undefined) bits.push(`walked ${(r.walked / 1000).toFixed(1)} km, drove ${(r.drove / 1000).toFixed(1)} km`);
+                if (r.jumps !== undefined) bits.push(`${r.jumps} jumps`);
+                if (r.honks) bits.push(`${r.honks} honks`);
+                return bits.join(' · ');
+            }
+
+            async function toggle(row) {
+                const next = row.nextElementSibling;
+                if (row.classList.contains('open')) {
+                    row.classList.remove('open');
+                    if (next && next.classList.contains('runs')) next.remove();
+                    return;
+                }
+                row.classList.add('open');
+                const holder = document.createElement('tr');
+                holder.className = 'runs';
+                const td = document.createElement('td');
+                td.colSpan = 5;
+                td.textContent = 'Loading…';
+                holder.appendChild(td);
+                row.after(holder);
+                try {
+                    const runs = await CedarBoard.runsOf(row.dataset.who);
+                    td.replaceChildren();
+                    for (const run of runs) {
+                        const line = document.createElement('div');
+                        line.className = 'run';
+                        const when = document.createElement('b');
+                        when.textContent = CedarBoard.time(run.time);
+                        const rest = document.createElement('span');
+                        rest.textContent = `  ${CedarBoard.moment(run.finished)} · build ${run.build}`;
+                        const numbers = document.createElement('div');
+                        numbers.textContent = describe(run);
+                        line.append(when, rest, numbers);
+                        td.appendChild(line);
+                    }
+                } catch (e) {
+                    td.textContent = 'Those runs can’t be loaded right now.';
+                }
+            }
+
+            rows.addEventListener('click', (e) => {
+                const row = e.target.closest('tr');
+                if (row && row.dataset.who) toggle(row);
+            });
+
+            CedarBoard.all()
+                .then((runs) => {
+                    CedarBoard.fill(rows, runs);
+                    note.textContent = runs.length ? 'Open a row to see all of that name’s runs.' : 'No finished runs yet. Fix the Flying Flapjack to be first!';
+                })
+                .catch(() => (note.textContent = 'The leaderboard can’t be reached right now.'));
+        </script>
+    </body>
+</html>
