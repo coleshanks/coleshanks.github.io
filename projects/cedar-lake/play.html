@@ -25,14 +25,14 @@
         #type {  /* a touch screen's text box, for names and typed answers: top middle, clear of the keyboard */
             position: fixed; top: calc(env(safe-area-inset-top) + 12px); left: 50%; transform: translateX(-50%);
             width: min(60vw, 520px); display: none; box-sizing: border-box; z-index: 2;
-            font: 500 20px "Cedar Rounded", system-ui, sans-serif; color: #f5ebcf;
+            font: 500 20px "Cedar Rounded", "Cedar Symbols", "Cedar Extra", system-ui, sans-serif; color: #f5ebcf;
             background: rgba(9, 26, 31, .95); border: 2px solid #f0a752; border-radius: 10px; padding: 10px 14px; outline: none;
         }
         #type::placeholder { color: #a9b5ad; }
         #hud { pointer-events: none; }
         .note {
             position: fixed; left: 50%; transform: translateX(-50%);
-            font: 500 18px "Cedar Rounded", system-ui, sans-serif; color: #f5ebcf;
+            font: 500 18px "Cedar Rounded", "Cedar Symbols", "Cedar Extra", system-ui, sans-serif; color: #f5ebcf;
             background: rgba(9, 26, 31, .88); border-radius: 10px; padding: 12px 22px;
             pointer-events: none; text-align: center;
         }
@@ -41,7 +41,7 @@
         #result { top: 50%; transform: translate(-50%, -50%); white-space: pre-line; line-height: 1.35; font-size: 15px; padding: 10px 18px; }
         #back {
             position: fixed; top: 18px; right: 22px; display: none;
-            font: 500 16px "Cedar Rounded", system-ui, sans-serif; color: #f5ebcf; text-decoration: none;
+            font: 500 16px "Cedar Rounded", "Cedar Symbols", "Cedar Extra", system-ui, sans-serif; color: #f5ebcf; text-decoration: none;
             background: rgba(9, 26, 31, .7); border-radius: 8px; padding: 7px 14px;
         }
         #back:hover { background: rgba(9, 26, 31, .95); }
@@ -51,7 +51,7 @@
         #help {
             position: fixed; right: calc(env(safe-area-inset-right) + 18px); bottom: calc(env(safe-area-inset-bottom) + 52px);
             width: 44px; height: 44px; display: none; border-radius: 50%; padding: 0; cursor: pointer;
-            font: 700 24px "Cedar Rounded", system-ui, sans-serif; color: #f5ebcf;
+            font: 700 24px "Cedar Rounded", "Cedar Symbols", "Cedar Extra", system-ui, sans-serif; color: #f5ebcf;
             background: rgba(9, 26, 31, .82); border: 2px solid #f0a752; -webkit-tap-highlight-color: transparent;
         }
         #help:active { background: rgba(240, 167, 82, .35); }
@@ -64,7 +64,7 @@
         #howto .card {
             width: min(84vw, 560px); max-height: 86vh; overflow-y: auto; box-sizing: border-box; padding: 18px 24px 16px;
             background: rgba(9, 26, 31, .97); border: 1px solid rgba(245, 235, 207, .15); border-radius: 14px; color: #f5ebcf;
-            font: 500 15px/1.55 "Cedar Rounded", "Hiragino Maru Gothic ProN", system-ui, sans-serif;
+            font: 500 15px/1.55 "Cedar Rounded", "Cedar Symbols", "Cedar Extra", "Hiragino Maru Gothic ProN", system-ui, sans-serif;
         }
         #howto h2 { margin: 0 0 6px; font-size: 19px; color: #f0a752; }
         #howto ol { margin: 8px 0 10px; padding-left: 1.4em; }
@@ -160,6 +160,14 @@
             const fonts = [['Cedar Rounded', 'rounded', 500], ['Cedar Rounded', 'rounded', 700], ['Cedar Symbols', 'symbols', 500], ['Cedar Symbols', 'symbols', 700]]
                 .map(([family, file, weight]) => new FontFace(family, `url(${ASSETS}fonts/${file}-${weight}.woff2)`, {weight: String(weight)}))
                 .map(face => face.load().then(loaded => document.fonts.add(loaded)).catch(() => {}));
+            // The rest of Zen Maru Gothic in slices, each fetched only once a character in it is on
+            // screen (names and answers typed in Japanese, the Home Screen steps): tools/web_fonts.py.
+            fetch(ASSETS + 'fonts/extra.json').then(r => r.json()).then(slices => {
+                for (const weight of [500, 700]) {
+                    slices.forEach((range, n) => document.fonts.add(new FontFace('Cedar Extra', `url(${ASSETS}fonts/extra/${weight}-${n}.woff2)`,
+                                                                                 {weight: String(weight), unicodeRange: range})));
+                }
+            }).catch(() => {});
             Promise.all([...fonts, load('hud.js'), load('audio.js')])
                 .then(() => load('cedar.js'))
                 .catch(() => { document.getElementById('loading').textContent = 'Cedar Lake could not load. Try reloading the page.'; });

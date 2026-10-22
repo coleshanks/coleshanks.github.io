@@ -10,7 +10,7 @@
 'use strict';
 
 window.CedarHUD = (() => {
-    const ROUNDED = '"Cedar Rounded", "Cedar Symbols", "Hiragino Maru Gothic ProN", "Yu Gothic UI", system-ui, sans-serif';
+    const ROUNDED = '"Cedar Rounded", "Cedar Symbols", "Cedar Extra", "Hiragino Maru Gothic ProN", "Yu Gothic UI", system-ui, sans-serif';
     // Cocoa's metrics for each face (ascender and default line height, as a share of the size), and
     // its paragraphs' line spacing: draw.h's FACE_ROUNDED, FACE_ROUNDED_BOLD, FACE_SANS, FACE_SERIF, FACE_MONO.
     const FACES = [
@@ -57,11 +57,20 @@ window.CedarHUD = (() => {
         }
         if (parsed.size > 4000) parsed.clear();
         parsed.set(encoded, spans);
+        // Text beyond the game's own characters (a name typed in Japanese, say) asks for its slices of
+        // the font; once they're in, the text is measured again (fonts loading, below).
+        for (const s of spans) {
+            if (/[^\u0000-\u024f]/.test(s.text)) document.fonts.load(s.font, s.text).catch(() => {});
+        }
         return spans;
     }
 
     const widths = new Map();
     let measuringFont = '';
+    document.fonts.addEventListener('loadingdone', () => {
+        widths.clear();
+        measuringFont = '';
+    });
     function width(font, text) {
         const key = font + '\x00' + text;
         let w = widths.get(key);
@@ -77,7 +86,7 @@ window.CedarHUD = (() => {
     }
 
     // Kana, kanji and full-width forms break anywhere, like Cocoa's line breaking for Japanese.
-    const cjk = c => /[　-ヿ㐀-鿿＀-￯]/.test(c);
+    const cjk = c => /[\u3000-\u30ff\u3400-\u9fff\uff00-\uffef]/.test(c);
 
     // Words: runs of pieces (a piece is part of one span) that wrap together. A word ends after its
     // spaces, at a new line, and around each Japanese character.
