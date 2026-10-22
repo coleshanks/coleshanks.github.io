@@ -22,13 +22,16 @@
         html, body { margin: 0; height: 100%; overflow: hidden; background: #061416; user-select: none; -webkit-user-select: none; }
         #game, #hud { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
         #game { outline: none; touch-action: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
-        #type {  /* a touch screen's text box, for names and typed answers: top middle, clear of the keyboard */
+        #type {  /* a touch screen's text box: for typed answers top middle, clear of the keyboard (for names, .over) */
             position: fixed; top: calc(env(safe-area-inset-top) + 12px); left: 50%; transform: translateX(-50%);
             width: min(60vw, 520px); display: none; box-sizing: border-box; z-index: 2;
             font: 500 20px "Cedar Rounded", "Cedar Symbols", "Cedar Extra", system-ui, sans-serif; color: #f5ebcf;
             background: rgba(9, 26, 31, .95); border: 2px solid #f0a752; border-radius: 10px; padding: 10px 14px; outline: none;
         }
         #type::placeholder { color: #a9b5ad; }
+        #type.over {  /* lying on the HUD's name row: the row's own look, the page placing it */
+            transform: none; background: transparent; border: 0; border-radius: 0; padding: 0 10px; color: #f5ebcf;
+        }
         #hud { pointer-events: none; }
         .note {
             position: fixed; left: 50%; transform: translateX(-50%);

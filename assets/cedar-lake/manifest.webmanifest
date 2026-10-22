@@ -4,7 +4,7 @@
     "start_url": "/projects/cedar-lake/play.html",
     "scope": "/projects/cedar-lake/",
     "display": "fullscreen",
-    "orientation": "landscape",
+    "orientation": "any",
     "background_color": "#061416",
     "theme_color": "#061416",
     "icons": [
