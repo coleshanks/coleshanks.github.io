@@ -39,7 +39,10 @@
         }
         #back:hover { background: rgba(9, 26, 31, .95); }
         body.title:not(.framed) #back[href^="/"] { display: block; }
-        @media (display-mode: fullscreen), (display-mode: standalone) { #back { display: none !important; } }  /* opened from the Home Screen: nowhere to go back to */
+        @media (display-mode: fullscreen), (display-mode: standalone) {  /* opened from the Home Screen */
+            #back { display: none !important; }  /* nowhere to go back to */
+            #game, #hud { height: 100vh; }       /* 100% stops short of the bottom by the status bar's height */
+        }
     </style>
 </head>
 <body>
