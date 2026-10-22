@@ -65,6 +65,9 @@
             const next = view => { params.set('view', view); location.replace('?' + params); };
             if (!params.has('view')) next(views[0]);
             addEventListener('pointerup', () => next(views[(views.indexOf(params.get('view')) + 1) % views.length]));
+            // A staged scene stops drawing once it's done, so a turned phone stages it again at the new size.
+            const wide = innerWidth > innerHeight;
+            addEventListener('resize', () => { if ((innerWidth > innerHeight) !== wide) location.reload(); });
         }
         if (!params.has('view') && !params.has('benchmark')) {
             const manifest = document.createElement('link');
