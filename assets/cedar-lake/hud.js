@@ -65,10 +65,17 @@ window.CedarHUD = (() => {
         return spans;
     }
 
+    // Words are measured on a canvas of their own: the screen's font changes as it draws, so measuring
+    // there could catch whatever font was drawn last (after the cache was cleared, a whole screen of
+    // text laid out at the wrong size, the words run into each other).
+    const measurer = document.createElement('canvas').getContext('2d');
     const widths = new Map();
     let measuringFont = '';
+    // Once a font arrives, every word and paragraph is measured again: one laid out while it was
+    // still loading was measured in a stand-in font and would be drawn at the real one's widths.
     document.fonts.addEventListener('loadingdone', () => {
         widths.clear();
+        layouts.clear();
         measuringFont = '';
     });
     function width(font, text) {
@@ -76,10 +83,10 @@ window.CedarHUD = (() => {
         let w = widths.get(key);
         if (w !== undefined) return w;
         if (measuringFont !== font) {
-            screen.font = font;
+            measurer.font = font;
             measuringFont = font;
         }
-        w = screen.measureText(text).width;
+        w = measurer.measureText(text).width;
         if (widths.size > 20000) widths.clear();
         widths.set(key, w);
         return w;
@@ -277,7 +284,6 @@ window.CedarHUD = (() => {
             if (canvas !== element) {
                 canvas = element;
                 screen = canvas.getContext('2d');
-                measuringFont = '';
             }
             ctx = screen;
             ctx.setTransform(1, 0, 0, 1, 0, 0);
