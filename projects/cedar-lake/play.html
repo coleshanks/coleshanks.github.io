@@ -63,14 +63,13 @@
         #howto.open { display: flex; }
         #howto .card {
             width: min(84vw, 560px); max-height: 86vh; overflow-y: auto; box-sizing: border-box; padding: 18px 24px 16px;
-            background: rgba(9, 26, 31, .97); border-left: 5px solid #f0a752; border-radius: 14px; color: #f5ebcf;
+            background: rgba(9, 26, 31, .97); border: 1px solid rgba(245, 235, 207, .15); border-radius: 14px; color: #f5ebcf;
             font: 500 15px/1.55 "Cedar Rounded", "Hiragino Maru Gothic ProN", system-ui, sans-serif;
         }
         #howto h2 { margin: 0 0 6px; font-size: 19px; color: #f0a752; }
         #howto ol { margin: 8px 0 10px; padding-left: 1.4em; }
         #howto li { margin: 3px 0; }
-        #howto .save { margin: 0 0 8px; color: #c9d4cc; font-size: 14px; }
-        #howto .close { margin: 0; color: #8fa39a; font-size: 13px; }
+        #howto .save { margin: 0; color: #c9d4cc; font-size: 14px; }
         @media (display-mode: fullscreen), (display-mode: standalone) {  /* opened from the Home Screen */
             #back, #help { display: none !important; }  /* nowhere to go back to, and already added */
             #game, #hud { height: calc(100% + env(safe-area-inset-top)); }  /* 100% starts under the status bar but leaves out its height */
@@ -100,7 +99,6 @@
                 <li>ホーム画面の「Cedar Lake」から開いて、横向きで遊ぼう</li>
             </ol>
             <p class="save">セーブについて：ホーム画面のCedar Lakeは、ブラウザとは別にセーブします。ブラウザで始めたゲームは、ホーム画面の方には引き継がれません。</p>
-            <p class="close">まわりをタップすると閉じます。</p>
         </div>
     </div>
     <div id="loading" class="note">Loading Cedar Lake…</div>
