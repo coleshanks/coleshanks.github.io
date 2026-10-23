@@ -43,13 +43,29 @@ const CedarBoard = (() => {
         return td;
     }
 
+    // A reserved name played by its owner (special): the game's magic colours, green to purple, a shade
+    // deeper so they read on the page's paper. Set here, so a page showing the board needs no styles of its own.
+    // The gradient runs over the name's own letters (a span in the cell), as the game's does.
+    function magic(td) {
+        const span = document.createElement('span');
+        span.textContent = td.textContent;
+        Object.assign(span.style, {
+            backgroundImage: 'linear-gradient(90deg, #1f9d55, #8b3fd9)',
+            webkitBackgroundClip: 'text', backgroundClip: 'text',
+            webkitTextFillColor: 'transparent', color: 'transparent',
+        });
+        td.replaceChildren(span);
+        return td;
+    }
+
     // The board's rows into a table body: rank, name, flag, time, day.
     function fill(body, runs) {
         body.replaceChildren();
         runs.forEach((run, i) => {
             const row = document.createElement('tr');
             cell(row, i + 1, 'rank');
-            cell(row, run.shown, 'name');
+            const name = cell(row, run.shown, 'name');
+            if (run.special) magic(name);
             cell(row, flag(run.country), 'flag').title = run.country || '';
             cell(row, time(run.time), 'time');
             cell(row, day(run.finished), 'day');
@@ -62,6 +78,6 @@ const CedarBoard = (() => {
         top: () => get('/board'),
         all: () => get('/board?all'),
         runsOf: (who) => get('/board/runs?who=' + encodeURIComponent(who)),
-        time, day, moment, flag, cell, fill,
+        time, day, moment, flag, cell, fill, magic,
     };
 })();
