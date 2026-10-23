@@ -94,9 +94,13 @@ window.CedarHUD = (() => {
 
     // Kana, kanji and full-width forms break anywhere, like Cocoa's line breaking for Japanese.
     const cjk = c => /[\u3000-\u30ff\u3400-\u9fff\uff00-\uffef]/.test(c);
+    // ...except where Japanese never breaks, as Cocoa keeps it: nothing that closes (。、」！ small kana,
+    // ー) starts a line, and nothing that opens (「（) ends one.
+    const closes = c => /[、。，．）」』】〕！？：；・ー…ぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶ]/.test(c);
+    const opens = c => /[（「『【〔]/.test(c);
 
     // Words: runs of pieces (a piece is part of one span) that wrap together. A word ends after its
-    // spaces, at a new line, and around each Japanese character.
+    // spaces, at a new line, and around each Japanese character (but see closes and opens).
     function words(spans) {
         const out = [];
         let word = null;
@@ -119,10 +123,16 @@ window.CedarHUD = (() => {
                     if (!word) add(span, '');
                     word.newline = true;
                     finish();
-                } else if (cjk(c)) {
-                    finish();
+                } else if (cjk(c) && closes(c)) {
+                    // Onto the word before, so it can't start a line.
+                    if (!word && out.length && !out[out.length - 1].newline && !out[out.length - 1].trailing) word = out.pop();
                     add(span, c);
                     finish();
+                } else if (cjk(c)) {
+                    if (!word || !word.opening) finish();
+                    add(span, c);
+                    if (opens(c)) word.opening = true;  // held for the next character
+                    else finish();
                 } else if (c === ' ') {
                     add(span, c);
                     word.trailing = true;
@@ -274,6 +284,11 @@ window.CedarHUD = (() => {
         umbrella: ['M22 12a10.06 10.06 1 0 0-20 0Z', 'M12 12v8a2 2 0 0 0 4 0', 'M12 2v1'],
         thermometer: ['M2 12h10', 'M9 4v16', 'm3 9 3 3-3 3', 'M12 6 9 9 6 6', 'm6 18 3-3 1.5 1.5', 'M20 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z'],
         token: ['M22 12a10 10 0 1 1-20 0a10 10 0 1 1 20 0Z', 'M13 12a1 1 0 1 1-2 0a1 1 0 1 1 2 0Z'],
+        book: ['M12 7v14', 'M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z'],
+        binoculars: ['M10 10h4', 'M19 7V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v3',
+                     'M20 21a2 2 0 0 0 2-2v-3.851c0-1.39-2-2.962-2-4.829V8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2z', 'M22 16H2',
+                     'M4 21a2 2 0 0 1-2-2v-3.851c0-1.39 2-2.962 2-4.829V8a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2z',
+                     'M9 7V4a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v3'],
     };
     const iconPaths = {};
     for (const name in ICONS) iconPaths[name] = ICONS[name].map(d => new Path2D(d));
