@@ -1,6 +1,15 @@
 // The leaderboard on a page: the project page's top 10 and the full board (board.html). It reads the
 // server (the game repo's server/); ?server=http://localhost:8787 on the page points it at a local
 // wrangler dev. Names are put in as text, never as HTML.
+//
+// The systems' logos are Font Awesome Free's brand icons (https://fontawesome.com, CC BY 4.0), the
+// ones Nerd Fonts carry and prompts like Starship show.
+//
+// The platform icons are from Lucide (https://lucide.dev), ISC License:
+// Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of Feather (MIT). All
+// other copyright (c) for Lucide are held by Lucide Contributors 2022. Permission to use, copy, modify,
+// and/or distribute this software for any purpose with or without fee is hereby granted, provided that
+// the above copyright notice and this permission notice appear in all copies.
 const CedarBoard = (() => {
     const server = new URLSearchParams(location.search).get('server') || 'https://cedar-lake.coleshanks.workers.dev';
 
@@ -35,6 +44,80 @@ const CedarBoard = (() => {
         return String.fromCodePoint(...[...country].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
     }
 
+    // What a run was played on, as the page told the server (none for runs before build 75): Lucide's
+    // smartphone, tablet (turned) and laptop, drawn in the text's own colour.
+    const PLATFORMS = {
+        phone: {title: 'Phone', shapes: [['rect', {width: 14, height: 20, x: 5, y: 2, rx: 2, ry: 2}], ['path', {d: 'M12 18h.01'}]]},
+        tablet: {title: 'Tablet', shapes: [['rect', {width: 20, height: 16, x: 2, y: 4, rx: 2, ry: 2}], ['path', {d: 'M18 12h.01'}]]},  // on its side, apart from the phone
+        computer: {title: 'Computer', shapes: [['path', {d: 'M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16'}]]},
+    };
+
+    // What it was played on, in words, for the icons' titles: iPhone, Android phone, iPad, Mac, Windows PC
+    // and so on, or just the kind when the system isn't known.
+    const DEVICES = {
+        'phone ios': 'iPhone', 'phone android': 'Android phone', 'tablet ios': 'iPad', 'tablet android': 'Android tablet',
+        'computer macos': 'Mac', 'computer windows': 'Windows PC', 'computer linux': 'Linux', 'computer chromeos': 'Chromebook',
+    };
+    function device(platform, os) {
+        return DEVICES[`${platform} ${os}`] || PLATFORMS[platform]?.title || '';
+    }
+
+    // Each system's logo: Apple for iOS and macOS, Windows, Tux for Linux, Android, Chrome for ChromeOS.
+    const LOGOS = {
+        apple: {viewBox: '0 0 384 512', d: 'M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z'},
+        windows: {viewBox: '0 0 448 512', d: 'M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z'},
+        linux: {viewBox: '0 0 448 512', d: 'M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-1.4-25.9c-4.1-6.6-9.6-13.6-14.4-19.6 7.1 0 14.2-2.2 16.7-8.9 2.3-6.2 0-14.9-7.4-24.9-13.5-18.2-38.3-32.5-38.3-32.5-13.5-8.4-21.1-18.7-24.6-29.9s-3-23.3-.3-35.2c5.2-22.9 18.6-45.2 27.2-59.2 2.3-1.7.8 3.2-8.7 20.8-8.5 16.1-24.4 53.3-2.6 82.4.6-20.7 5.5-41.8 13.8-61.5 12-27.4 37.3-74.9 39.3-112.7 1.1.8 4.6 3.2 6.2 4.1 4.6 2.7 8.1 6.7 12.6 10.3 12.4 10 28.5 9.2 42.4 1.2 6.2-3.5 11.2-7.5 15.9-9 9.9-3.1 17.8-8.6 22.3-15 7.7 30.4 25.7 74.3 37.2 95.7 6.1 11.4 18.3 35.5 23.6 64.6 3.3-.1 7 .4 10.9 1.4 13.8-35.7-11.7-74.2-23.3-84.9-4.7-4.6-4.9-6.6-2.6-6.5 12.6 11.2 29.2 33.7 35.2 59 2.8 11.6 3.3 23.7.4 35.7 16.4 6.8 35.9 17.9 30.7 34.8-2.2-.1-3.2 0-4.2 0 3.2-10.1-3.9-17.6-22.8-26.1-19.6-8.6-36-8.6-38.3 12.5-12.1 4.2-18.3 14.7-21.4 27.3-2.8 11.2-3.6 24.7-4.4 39.9-.5 7.7-3.6 18-6.8 29-32.1 22.9-76.7 32.9-114.3 7.2zm257.4-11.5c-.9 16.8-41.2 19.9-63.2 46.5-13.2 15.7-29.4 24.4-43.6 25.5s-26.5-4.8-33.7-19.3c-4.7-11.1-2.4-23.1 1.1-36.3 3.7-14.2 9.2-28.8 9.9-40.6.8-15.2 1.7-28.5 4.2-38.7 2.6-10.3 6.6-17.2 13.7-21.1.3-.2.7-.3 1-.5.8 13.2 7.3 26.6 18.8 29.5 12.6 3.3 30.7-7.5 38.4-16.3 9-.3 15.7-.9 22.6 5.1 9.9 8.5 7.1 30.3 17.1 41.6 10.6 11.6 14 19.5 13.7 24.6zM173.3 148.7c2 1.9 4.7 4.5 8 7.1 6.6 5.2 15.8 10.6 27.3 10.6 11.6 0 22.5-5.9 31.8-10.8 4.9-2.6 10.9-7 14.8-10.4s5.9-6.3 3.1-6.6-2.6 2.6-6 5.1c-4.4 3.2-9.7 7.4-13.9 9.8-7.4 4.2-19.5 10.2-29.9 10.2s-18.7-4.8-24.9-9.7c-3.1-2.5-5.7-5-7.7-6.9-1.5-1.4-1.9-4.6-4.3-4.9-1.4-.1-1.8 3.7 1.7 6.5z'},
+        android: {viewBox: '0 0 576 512', d: 'M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55'},
+        chrome: {viewBox: '0 0 512 512', d: 'M0 256C0 209.4 12.47 165.6 34.27 127.1L144.1 318.3C166 357.5 207.9 384 256 384C270.3 384 283.1 381.7 296.8 377.4L220.5 509.6C95.9 492.3 0 385.3 0 256zM365.1 321.6C377.4 302.4 384 279.1 384 256C384 217.8 367.2 183.5 340.7 160H493.4C505.4 189.6 512 222.1 512 256C512 397.4 397.4 511.1 256 512L365.1 321.6zM477.8 128H256C193.1 128 142.3 172.1 130.5 230.7L54.19 98.47C101 38.53 174 0 256 0C350.8 0 433.5 51.48 477.8 128V128zM168 256C168 207.4 207.4 168 256 168C304.6 168 344 207.4 344 256C344 304.6 304.6 344 256 344C207.4 344 168 304.6 168 256z'},
+    };
+    const LOGO_OF = {ios: 'apple', macos: 'apple', windows: 'windows', linux: 'linux', android: 'android', chromeos: 'chrome'};
+
+    function systemLogo(platform, os) {
+        const logo = LOGOS[LOGO_OF[os]];
+        if (!logo) return null;
+        const ns = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(ns, 'svg');
+        const attributes = {viewBox: logo.viewBox, height: '1em', fill: 'currentColor', role: 'img', 'aria-label': device(platform, os)};
+        for (const [name, value] of Object.entries(attributes)) svg.setAttribute(name, value);
+        svg.style.verticalAlign = '-0.125em';
+        const title = document.createElementNS(ns, 'title');
+        title.textContent = device(platform, os);
+        const path = document.createElementNS(ns, 'path');
+        path.setAttribute('d', logo.d);
+        svg.append(title, path);
+        return svg;
+    }
+
+    // The device's icon and its system's logo, side by side (either missing when unknown); null for neither.
+    function playedOn(platform, os) {
+        const icons = [platformIcon(platform, os), systemLogo(platform, os)].filter(Boolean);
+        if (!icons.length) return null;
+        const span = document.createElement('span');
+        span.style.whiteSpace = 'nowrap';
+        icons.forEach((icon, i) => span.append(i ? ' ' : '', icon));
+        return span;
+    }
+
+    function platformIcon(platform, os) {
+        const known = PLATFORMS[platform];
+        if (!known) return null;
+        const ns = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(ns, 'svg');
+        const attributes = {viewBox: '0 0 24 24', width: '1em', height: '1em', fill: 'none', stroke: 'currentColor',
+                            'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', role: 'img', 'aria-label': device(platform, os)};
+        for (const [name, value] of Object.entries(attributes)) svg.setAttribute(name, value);
+        svg.style.verticalAlign = '-0.125em';
+        const title = document.createElementNS(ns, 'title');
+        title.textContent = device(platform, os);
+        svg.appendChild(title);
+        for (const [tag, shape] of known.shapes) {
+            const element = document.createElementNS(ns, tag);
+            for (const [name, value] of Object.entries(shape)) element.setAttribute(name, value);
+            svg.appendChild(element);
+        }
+        return svg;
+    }
+
     function cell(row, text, className) {
         const td = document.createElement('td');
         td.textContent = text;
@@ -58,7 +141,7 @@ const CedarBoard = (() => {
         return td;
     }
 
-    // The board's rows into a table body: rank, name, flag, time, day.
+    // The board's rows into a table body: rank, name, flag and what it was played on, time, day.
     function fill(body, runs) {
         body.replaceChildren();
         runs.forEach((run, i) => {
@@ -66,7 +149,11 @@ const CedarBoard = (() => {
             cell(row, i + 1, 'rank');
             const name = cell(row, run.shown, 'name');
             if (run.special) magic(name);
-            cell(row, flag(run.country), 'flag').title = run.country || '';
+            const where = cell(row, flag(run.country), 'flag');
+            where.title = run.country || '';
+            const icon = playedOn(run.platform, run.os);
+            if (icon) where.append(where.textContent ? ' ' : '', icon);
+            where.style.whiteSpace = 'nowrap';
             cell(row, time(run.time), 'time');
             cell(row, day(run.finished), 'day');
             row.dataset.who = run.who;
@@ -78,6 +165,6 @@ const CedarBoard = (() => {
         top: () => get('/board'),
         all: () => get('/board?all'),
         runsOf: (who) => get('/board/runs?who=' + encodeURIComponent(who)),
-        time, day, moment, flag, cell, fill, magic,
+        time, day, moment, flag, playedOn, device, cell, fill, magic,
     };
 })();

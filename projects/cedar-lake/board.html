@@ -45,7 +45,7 @@
             tbody tr:hover td { background: #eef6ea; }
             .rank { width: 2.5em; color: var(--soft); }
             .name { font-weight: 700; overflow-wrap: anywhere; }
-            .flag { width: 2em; text-align: center; }
+            .flag { width: 4em; text-align: center; }
             .time { width: 5em; font-variant-numeric: tabular-nums; }
             .day { width: 7.5em; color: var(--soft); font-size: 15px; }
             tr.open td { background: #eef6ea; }
@@ -113,6 +113,8 @@
                         when.textContent = CedarBoard.time(run.time);
                         const rest = document.createElement('span');
                         rest.textContent = `  ${CedarBoard.moment(run.finished)} · build ${run.build}`;
+                        const icon = CedarBoard.playedOn(run.platform, run.os);
+                        if (icon) rest.append(' · ', icon);
                         const numbers = document.createElement('div');
                         numbers.textContent = describe(run);
                         line.append(when, rest, numbers);
