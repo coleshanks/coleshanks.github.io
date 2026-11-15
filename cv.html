@@ -106,7 +106,7 @@
                Sizing follows standard resume norms: 0.75in margins,
                10.5pt body, 12pt section headings, ~19pt name, 1.3 line-height. */
             @media print {
-                @page { size: Letter; margin: 0.55in; }
+                @page { size: Letter; margin: 0.6in; }
 
                 /* the PDFs keep their own fonts, so the site's font switch doesn't reflow them */
                 :root {
@@ -222,6 +222,65 @@
             <div class="cv-grid">
                 <div class="cv-main">
                     <section>
+                        <h2>education</h2>
+                        <hr>
+                        <div class="cv-entry">
+                            <div class="cv-entry-head">
+                                <span class="cv-role">BASc Electrical Engineering, 2018&ndash;2022</span>
+                                <span class="cv-org">University of British Columbia</span>
+                            </div>
+                            <p class="cv-line">Graduated with distinction &middot; Minor in Commerce<br>
+                            <a href="/explore/school/ubc.html">Main degree</a> &mdash; digital systems design, microcomputers, signals &amp; systems, control systems, electronics, and a year-long capstone project.</p>
+                        </div>
+                        <div class="cv-entry">
+                            <div class="cv-entry-head">
+                                <span class="cv-role">BASc Engineering Transfer Program, 2017&ndash;2018</span>
+                                <span class="cv-org">Capilano University</span>
+                            </div>
+                            <p class="cv-line"><a href="/explore/school/capu.html">First-year engineering transfer</a> &mdash; calculus, physics, and chemistry foundations before transferring to UBC.</p>
+                        </div>
+                        <div class="cv-entry">
+                            <div class="cv-entry-head">
+                                <span class="cv-role">BCom, Rotman Commerce, 2016&ndash;2017</span>
+                                <span class="cv-org">University of Toronto</span>
+                            </div>
+                            <p class="cv-line"><a href="/explore/school/uoft.html">First year of Rotman Commerce</a> &mdash; economics, financial accounting, and marketing fundamentals &mdash; before switching into electrical engineering.</p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>experience</h2>
+                        <hr>
+
+                        <div class="cv-entry">
+                            <div class="cv-entry-head">
+                                <span class="cv-role">Assistant Language Teacher</span>
+                                <span class="cv-org">JET Programme</span>
+                            </div>
+                            <p class="cv-meta">Aug 2022&ndash;Present, Kure City Board of Education, Hiroshima, Japan</p>
+                            <ul class="cv-work">
+                                <li>Plan and teach English lessons with Japanese teachers at four schools, presenting in front of classes.</li>
+                                <li>Coach students for English speech contests.</li>
+                                <li>Take part in school life: sports day, culture festival and other events.</li>
+                                <li>Work in Japanese: staff-room meetings and day-to-day coordination are all in Japanese.</li>
+                            </ul>
+                        </div>
+
+                        <div class="cv-entry">
+                            <div class="cv-entry-head">
+                                <span class="cv-role">Application Engineer (Co-op)</span>
+                                <span class="cv-org">Maxim Integrated (now Analog Devices)</span>
+                            </div>
+                            <p class="cv-meta">Jun 2020&ndash;Dec 2020, Burnaby, BC, Canada</p>
+                            <ul class="cv-work">
+                                <li>Soak-tested USB/DisplayPort extenders: power-cycle, hot-plug and multi-day endurance runs with error logs.</li>
+                                <li>Ran a peripheral compatibility matrix (cameras, speakerphones, mics) across multiple host setups.</li>
+                                <li>Measured throughput and data integrity over live video calls with iperf3 and PassMark BurnInTest.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
                         <h2>projects</h2>
                         <hr>
 
@@ -273,66 +332,26 @@
                             </ul>
                         </div>
 
-                        <p class="cv-line"><span class="cv-desc">Also at UBC (2019): a RISC CPU in Verilog, run on an FPGA; a reflow-oven controller in 8051 assembly.</span></p>
+                        <p class="cv-line"><a href="/projects.html">Simple RISC Machine</a> <span class="cv-desc">&mdash; a RISC (Reduced Instruction Set Computer) CPU built in Verilog and run on an FPGA (UBC, 2019)</span></p>
+                        <p class="cv-line"><a href="/projects.html">Reflow Oven Controller</a> <span class="cv-desc">&mdash; 8051-assembly firmware controlling a solder-reflow oven's temperature profile via LCD and button interface (UBC, 2019)</span></p>
                     </section>
 
-                    <section>
-                        <h2>experience</h2>
-                        <hr>
-
-                        <div class="cv-entry">
-                            <div class="cv-entry-head">
-                                <span class="cv-role">Assistant Language Teacher</span>
-                                <span class="cv-org">JET Programme</span>
-                            </div>
-                            <p class="cv-meta">Aug 2022&ndash;Present, Kure City Board of Education, Hiroshima, Japan</p>
-                            <ul class="cv-work">
-                                <li>Plan and teach English lessons with Japanese teachers at four schools; coach students for speech contests.</li>
-                                <li>Work in Japanese: staff-room meetings and day-to-day coordination are all in Japanese.</li>
-                            </ul>
-                        </div>
-
-                        <div class="cv-entry">
-                            <div class="cv-entry-head">
-                                <span class="cv-role">Application Engineer (Co-op)</span>
-                                <span class="cv-org">Maxim Integrated (now Analog Devices)</span>
-                            </div>
-                            <p class="cv-meta">Jun 2020&ndash;Dec 2020, Burnaby, BC, Canada</p>
-                            <ul class="cv-work">
-                                <li>Soak-tested USB/DisplayPort extenders: power-cycle, hot-plug and multi-day endurance runs with error logs.</li>
-                                <li>Ran a peripheral compatibility matrix (cameras, speakerphones, mics) across multiple host setups.</li>
-                                <li>Measured throughput and data integrity over live video calls with iperf3 and PassMark BurnInTest.</li>
-                            </ul>
-                        </div>
-                    </section>
-
-                    <section>
-                        <h2>education</h2>
-                        <hr>
-                        <div class="cv-entry">
-                            <div class="cv-entry-head">
-                                <span class="cv-role">BASc Electrical Engineering, 2018&ndash;2022</span>
-                                <span class="cv-org">University of British Columbia</span>
-                            </div>
-                            <p class="cv-line">Graduated with distinction &middot; Minor in Commerce<br>
-                            <a href="/explore/school/ubc.html">Coursework</a>: digital systems design, microcomputers, signals &amp; systems, control systems, electronics.<br>
-                            Before UBC: engineering transfer year at <a href="/explore/school/capu.html">Capilano University</a>; first year at the <a href="/explore/school/uoft.html">University of Toronto</a>.</p>
-                        </div>
-                    </section>
                 </div>
 
                 <div class="cv-sidebar">
                     <section>
                         <h2>skills</h2>
                         <hr>
-                        <p class="cv-line">C &middot; C++ &middot; Rust &middot; C# &middot; 8051 assembly &middot; Verilog (FPGA) &middot; HTML / CSS</p>
-                        <p class="cv-line">git &middot; Linux &middot; PlatformIO &middot; Quartus / ModelSim &middot; MATLAB / Simulink &middot; oscilloscope, function generator</p>
+                        <p class="cv-line">Rust &middot; Low-level (C, 8051 assembly) &middot; OOP (C++, C#) &middot; FPGA / HDL (Verilog) &middot; Web (HTML, CSS)</p>
+                        <p class="cv-line">git / GitHub &middot; Linux / Unix (fish) &middot; VS Code / Vim / Visual Studio &middot; PlatformIO</p>
+                        <p class="cv-line">Quartus / ModelSim &middot; MATLAB / Simulink &middot; Oscilloscope / Function Generator</p>
                     </section>
 
                     <section>
                         <h2>languages</h2>
                         <hr>
-                        <p class="cv-line">English &mdash; native &middot; Japanese &mdash; JLPT N3 (N2 exam in December 2026)</p>
+                        <p class="cv-line">English &mdash; native</p>
+                        <p class="cv-line">Japanese &mdash; JLPT N3 &middot; CEFR B1</p>
                     </section>
                 </div>
             </div>
