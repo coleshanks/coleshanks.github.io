@@ -394,6 +394,7 @@ footer:hover a {
     padding: 18px 24px 18px 27px;
     color: var(--text_grey);
     font-size: 15px;
+    text-align: left;
     flex: 1;
     align-self: stretch;
     display: flex;
