@@ -8,9 +8,9 @@
     /* Fonts */
     --f: 'Fira Sans', sans-serif;
     --hf: 'Fira Sans', sans-serif;
-    /* JetBrains Mono for English; it has no kana or kanji, so Japanese falls through to Noto Sans JP */
-    --f2: 'JetBrains Mono', 'Noto Sans JP', monospace;
-    --hf2: 'JetBrains Mono', 'Noto Sans JP', monospace;
+    /* Open Sans for text, Roboto for headings and the navbar; Japanese falls through to Noto Sans JP */
+    --f2: 'Open Sans', 'Noto Sans JP', sans-serif;
+    --hf2: 'Roboto', 'Noto Sans JP', sans-serif;
 
     /* My stuff */
     --primary_dark: #353b43;
