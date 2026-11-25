@@ -25,7 +25,7 @@ class CedarSynth extends AudioWorkletProcessor {
         const low = memory.getUint32(this.levels, true), high = memory.getUint32(this.levels + 4, true);
         memory.setUint32(this.levels, (low | m[0]) >>> 0, true);
         memory.setUint32(this.levels + 4, (high | m[1]) >>> 0, true);
-        for (let i = 0; i < 10; i++) memory.setFloat32(this.levels + 8 + i * 4, m[2 + i], true);
+        for (let i = 0; i < 11; i++) memory.setFloat32(this.levels + 8 + i * 4, m[2 + i], true);
     }
 
     process(inputs, outputs) {
